@@ -1,6 +1,6 @@
-# idfive Paragraphs Carousel with Modal
+# Howard Paragraphs Carousel with Modal
 
-Paragraphs integration of a Carousel with Modal for use in howard projects:
+Paragraphs integration of a Carousel with Modal for use in Howard projects:
 
 This module contains markup only (no js or css), those should be provided in the client theme, loaded via the idfive Component Library:
 

@@ -1,6 +1,6 @@
 # Howard Paragraphs Featured Article
 
-Paragraphs integration of the ability to add Featured Articles in Howard client projects:
+Paragraphs integration of the ability to add Featured Articles in Howard projects:
 
 This module contains markup only (no js or css), those should be provided in the client theme, loaded via the idfive Component Library:
 

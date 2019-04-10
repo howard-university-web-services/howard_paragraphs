@@ -1,6 +1,6 @@
-# idfive Paragraphs Views Embed
+# Howard Paragraphs Views Embed
 
-Paragraphs integration of viewfield module for use in idfive client projects:
+Paragraphs integration of viewfield module for use in Howard projects:
 
  - [viewfield module](https://www.drupal.org/project/viewfield)
 

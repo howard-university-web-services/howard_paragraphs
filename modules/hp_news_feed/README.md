@@ -1,6 +1,6 @@
 # Howard Paragraphs News Feed
 
-Paragraphs integration of News Feed for Howard projects:
+Paragraphs integration of News Feed (from newsroom.howard.edu) for Howard projects:
 
 This module contains markup only (no js or css), those should be provided in the client theme, loaded via the idfive Component Library:
 

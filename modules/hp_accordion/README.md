@@ -1,6 +1,6 @@
-# idfive Paragraphs Accordion
+# Howard Paragraphs Accordion
 
-Paragraphs integration of the silc accordion library for use in idfive client projects:
+Paragraphs integration of the silc accordion library for use in howard projects:
 
  - [silc accordions](https://github.com/nickrigby/silc-accordion)
 

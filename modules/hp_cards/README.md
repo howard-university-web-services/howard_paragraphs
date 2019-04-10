@@ -1,6 +1,6 @@
 # Howard Paragraphs Cards
 
-Paragraphs integration of cards for use in idfive client projects:
+Paragraphs integration of cards for use in Howard projects:
 
 This module contains markup only (no js or css), those should be provided in the client theme, loaded via the idfive Component Library:
 

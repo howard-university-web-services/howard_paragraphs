@@ -1,6 +1,6 @@
-# idfive Paragraphs Table
+# Howard Paragraphs Table
 
-Paragraphs integration of tablefield module for use in idfive client projects, and set up to use tablesaw js:
+Paragraphs integration of tablefield module for use in Howard projects, and set up to use tablesaw js:
 
  - [tablefield module](https://www.drupal.org/project/tablefield)
  - [tablesaw](https://github.com/filamentgroup/tablesaw)

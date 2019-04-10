@@ -1,6 +1,6 @@
-# idfive Paragraphs Carousel with Caption
+# Howard Paragraphs Carousel with Caption
 
-Paragraphs integration of a Carousel with Caption for use in howard projects:
+Paragraphs integration of a Carousel with Caption for use in Howard projects:
 
 This module contains markup only (no js or css), those should be provided in the client theme, loaded via the idfive Component Library:
 

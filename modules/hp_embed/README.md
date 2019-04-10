@@ -1,6 +1,6 @@
 # Howard Paragraphs Embed
 
-Paragraphs integration of the ability to add iframes/js/etc Howard client projects:
+Paragraphs integration of the ability to add iframes/js/etc Howard projects:
 
 This module contains markup only (no js or css), those should be provided in the client theme, loaded via the idfive Component Library:
 

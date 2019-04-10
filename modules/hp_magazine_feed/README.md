@@ -1,6 +1,6 @@
 # Howard Paragraphs Magazine Feed
 
-Paragraphs integration of Magazine Feed for Howard projects:
+Paragraphs integration of Magazine Feed (from magazine.howard.edu) for Howard projects:
 
 This module contains markup only (no js or css), those should be provided in the client theme, loaded via the idfive Component Library:
 

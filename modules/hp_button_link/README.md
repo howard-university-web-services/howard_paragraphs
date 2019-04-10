@@ -1,6 +1,6 @@
-# idfive Paragraphs Button/Link
+# Howard Paragraphs Button/Link
 
-Paragraphs integration of buttons/Links for use in idfive client projects:
+Paragraphs integration of buttons/Links for use in Howard projects:
 
 This module contains markup only (no js or css), those should be provided in the client theme, loaded via the idfive Component Library:
 

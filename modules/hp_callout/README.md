@@ -1,6 +1,6 @@
-# idfive Paragraphs Callout
+# Howard Paragraphs Callout
 
-Paragraphs integration of callout with image for use in howard client projects:
+Paragraphs integration of callout with image for use in Howard projects:
 
 This module contains markup only (no js or css), those should be provided in the client theme, loaded via the idfive Component Library:
 

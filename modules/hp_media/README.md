@@ -1,6 +1,6 @@
-# idfive Paragraphs Views Embed
+# Howard Paragraphs Views Embed
 
-Paragraphs integration of media for use in idfive client projects.
+Paragraphs integration of media for use in Howard projects.
 
 This module contains markup only (no js or css), those should be provided in the client theme, loaded via the idfive Component Library:
 

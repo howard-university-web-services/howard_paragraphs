@@ -1,6 +1,6 @@
-# idfive Paragraphs Webform Embed
+# Howard Paragraphs Webform Embed
 
-Paragraphs integration of webform module for use in idfive client projects:
+Paragraphs integration of webform module for use in Howard projects:
 
  - [webform module](https://www.drupal.org/project/webform)
 

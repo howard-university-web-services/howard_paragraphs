@@ -1,6 +1,6 @@
 # Howard Paragraphs Profiles Feed
 
-Paragraphs integration of Profiles Feed for Howard projects:
+Paragraphs integration of Profiles Feed (from profiles.howard.edu) for Howard projects:
 
 This module contains markup only (no js or css), those should be provided in the client theme, loaded via the idfive Component Library:
 

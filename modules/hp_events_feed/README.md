@@ -1,6 +1,6 @@
 # Howard Paragraphs Events Feed
 
-Paragraphs integration of Events Feed for Howard projects:
+Paragraphs integration of Events Feed (from calendar.howard.edu) for Howard projects:
 
 This module contains markup only (no js or css), those should be provided in the client theme, loaded via the idfive Component Library:
 

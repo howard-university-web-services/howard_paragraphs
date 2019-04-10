@@ -1,6 +1,6 @@
-# Howard Paragraphs Programs Feed
+# Howard Paragraphs Program
 
-Paragraphs integration of Programs Feed for Howard projects:
+Paragraphs integration of embedding a Program (from programs.howard.edu) for Howard projects:
 
 This module contains markup only (no js or css), those should be provided in the client theme, loaded via the idfive Component Library:
 
