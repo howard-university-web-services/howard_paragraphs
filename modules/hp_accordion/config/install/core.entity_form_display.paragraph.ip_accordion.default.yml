@@ -1,0 +1,61 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ip_accordion.field_ip_ac_allow_mult
+    - field.field.paragraph.ip_accordion.field_ip_ac_item
+    - field.field.paragraph.ip_accordion.field_ip_ac_open_first
+    - field.field.paragraph.ip_accordion.field_ip_ac_title
+    - field.field.paragraph.ip_accordion.field_ip_ac_type
+    - paragraphs.paragraphs_type.ip_accordion
+  module:
+    - paragraphs
+id: paragraph.ip_accordion.default
+targetEntityType: paragraph
+bundle: ip_accordion
+mode: default
+content:
+  field_ip_ac_allow_mult:
+    weight: 3
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_ip_ac_item:
+    type: entity_reference_paragraphs
+    weight: 4
+    settings:
+      title: 'Accordion Item'
+      title_plural: 'Accordion Items'
+      edit_mode: closed
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: ip_accordion_item
+    third_party_settings: {  }
+    region: content
+  field_ip_ac_open_first:
+    weight: 2
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_ip_ac_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_ip_ac_type:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

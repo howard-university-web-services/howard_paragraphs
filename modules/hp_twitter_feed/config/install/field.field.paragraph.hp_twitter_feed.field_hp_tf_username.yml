@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_tf_username
+    - paragraphs.paragraphs_type.hp_twitter_feed
+id: paragraph.hp_twitter_feed.field_hp_tf_username
+field_name: field_hp_tf_username
+entity_type: paragraph
+bundle: hp_twitter_feed
+label: Username
+description: 'The username of the twitter account to pull tweets from.'
+required: false
+translatable: false
+default_value:
+  -
+    value: HowardU
+default_value_callback: ''
+settings: {  }
+field_type: string

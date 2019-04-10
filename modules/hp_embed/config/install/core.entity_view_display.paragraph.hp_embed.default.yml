@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_embed.field_hp_embed_code
+    - paragraphs.paragraphs_type.hp_embed
+id: paragraph.hp_embed.default
+targetEntityType: paragraph
+bundle: hp_embed
+mode: default
+content:
+  field_hp_embed_code:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+hidden: {  }

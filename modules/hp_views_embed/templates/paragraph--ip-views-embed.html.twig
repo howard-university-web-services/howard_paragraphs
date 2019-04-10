@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * IP Views Embed paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<section class="section--padded-top section--padded-bottom" aria-label="View">
+  {% if hp_show_wrapper %}
+    <div class="compartment">
+  {% endif %}
+
+      {% if content.field_ip_ve_title[0] %}
+        <div class="block-header">
+            <div class="block-header__title">
+                <span class=" block-header__icon icon-info"></span>
+                <h2>{{ content.field_ip_ve_title }}</h2>
+            </div>
+        </div>
+      {% endif %}
+
+      {{ content.field_ip_ve_view }}
+
+      <!-- Render without, so quickedit/etc works -->
+      {{ content|without('field_ip_ve_title', 'field_ip_ve_view') }}
+
+  {% if hp_show_wrapper %}
+    </div>
+  {% endif %}
+</section>

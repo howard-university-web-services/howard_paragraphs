@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_nf_news_category
+    - paragraphs.paragraphs_type.hp_news_feed
+  module:
+    - external_data_source
+id: paragraph.hp_news_feed.field_hp_nf_news_category
+field_name: field_hp_nf_news_category
+entity_type: paragraph
+bundle: hp_news_feed
+label: 'News Category'
+description: 'Optionally, filter this feed by category. These categories are pulled from the "Category" taxonomy (calendar_taxonomy_3) on the prod installation of newsroom.howard.edu.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: external_data_source

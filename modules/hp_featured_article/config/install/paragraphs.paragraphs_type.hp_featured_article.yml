@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_featured_article
+label: 'HP Featured Article'
+icon_uuid: null
+description: 'This paragraph bundle allows you to choose one article from this site to feature.'
+behavior_plugins: {  }

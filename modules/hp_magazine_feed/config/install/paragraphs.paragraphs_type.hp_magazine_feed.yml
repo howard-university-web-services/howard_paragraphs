@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_magazine_feed
+label: 'HP Magazine Feed'
+icon_uuid: null
+description: 'This is a feed of magazine articles from magazine.howard.edu.'
+behavior_plugins: {  }

@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ip_we_title
+    - paragraphs.paragraphs_type.ip_webform_embed
+id: paragraph.ip_webform_embed.field_ip_we_title
+field_name: field_ip_we_title
+entity_type: paragraph
+bundle: ip_webform_embed
+label: 'Webform Title'
+description: 'If you add a title here, it will appear above the view.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

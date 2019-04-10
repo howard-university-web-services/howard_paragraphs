@@ -1,0 +1,59 @@
+{#
+/**
+ * @file
+ * HP News Feed paragraph bundle.
+ * Holds both the 3 col with image, and 1 featured/3 title layouts
+ *
+ * @ingroup themeable
+ */
+#}
+
+
+<section class="section--padded-top section--padded-bottom news-and-events">
+
+  {% if hp_show_wrapper %}
+    <div class="compartment">
+  {% endif %}
+
+      <div class="block-header">
+        <div class="block-header__title"><span class=" block-header__icon icon-paper"></span>
+          <h2>{{ content.field_hp_mf_title }}</h2>
+        </div>
+        {% if content.field_hp_mf_link[0] %}
+          <div class="block-header__btn">
+            <a href="{{ content.field_hp_mf_link[0]['#url'] }}" class="fancy-link fancy-link--light" {% if content.field_hp_mf_link[0]['#options'].attributes.target %} target="{{ content.field_hp_mf_link[0]['#options'].attributes.target }}"{% endif %}>
+              <span>{{ content.field_hp_mf_link[0]['#title'] }}</span>
+              <span class="icon-arrow-right"></span>
+            </a>
+          </div>
+        {% endif %}
+      </div>
+
+      {% if hp_mf_articles[0] %}
+
+          <div class="silc-grid">
+            {% for evnt in hp_mf_articles %}
+              <div class="silc-grid__col silc-grid__col--4-medium">
+                <a href="{{ evnt.url }}" class="news-and-events__block" target="_blank">
+                  <div class="news-and-events__img" style="background-image:url('{{ evnt.image.image_styles.large }}')"></div>
+                  <div class="news-and-events__desc">
+                    <h3 class="news-and-events__title header--h3-small">{{ evnt.label }}</h3>
+                    <p class="body-text--small">{{ evnt.body_trimmed }}</p>
+                  </div>
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+
+      {% else %}
+        <div class="silc-grid">
+          <div class="silc-grid__col silc-grid__col--12-medium">
+            <p>No current magazine articles.</p>
+          </div>
+        </div>
+      {% endif %}
+
+  {% if hp_show_wrapper %}
+    </div>
+  {% endif %}
+</section>

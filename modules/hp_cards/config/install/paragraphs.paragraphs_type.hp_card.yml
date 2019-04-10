@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_card
+label: 'HP Card'
+icon_uuid: null
+description: 'This is holds individual cards to be used in HP Cards.'
+behavior_plugins: {  }

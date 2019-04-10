@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * HP Cards paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% if content.field_hp_cd_cards %}
+  <section class="section--padded-top section--padded-bottom news-and-events">
+    {% if hp_show_wrapper %}
+      <div class="compartment">
+    {% endif %}
+
+        <div class="{{ hp_card_wrapper_class }}">
+          <div class="silc-grid">
+
+            {{ content.field_hp_cd_cards }}
+
+          </div>
+        </div>
+
+    {% if hp_show_wrapper %}
+      </div>
+    {% endif %}
+  </section>
+{% endif %}

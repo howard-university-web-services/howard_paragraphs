@@ -1,0 +1,204 @@
+<?php
+
+/**
+ * @file
+ * hp_program module file.
+ */
+
+ use Drupal\Core\Routing\RouteMatchInterface;
+ use Drupal\paragraphs\Entity\Paragraph;
+ use Drupal\Core\Form\FormStateInterface;
+ use Drupal\Component\Utility\Html;
+
+ /**
+ * Implements hook_help().
+ *
+ * @inheritdoc
+ */
+function hp_program_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.hp_program':
+      $text = file_get_contents(dirname(__FILE__) . "/README.md");
+      if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        return '<pre>' . $text . '</pre>';
+      }
+      else {
+        // Use the Markdown filter to render the README.
+        $filter_manager = \Drupal::service('plugin.manager.filter');
+        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $config = ['settings' => $settings];
+        $filter = $filter_manager->createInstance('markdown', $config);
+        return $filter->process($text, 'en');
+      }
+  }
+  return NULL;
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ * @param $variables
+ * This sets variables for getting events, and then gets events.
+ */
+function hp_program_preprocess_paragraph__hp_program(&$variables) {
+  // UUID to pass for cache
+  $uuid = $variables['elements']['#paragraph']->uuid->value;
+  // Get program ID
+  $program = null;
+  if(isset($variables['elements']['#paragraph']->field_hp_pg_program_id->value)) {
+    $program = $variables['elements']['#paragraph']->field_hp_pg_program_id->value;
+  }
+  // Get program
+  $variables['hp_pg_program'] = _hp_program_get_program($program, $uuid);
+  // Get related faculty
+  $variables['hp_pg_faculty'] = _hp_program_get_faculty($program, $uuid);
+
+  // Get video for preproccessing
+  $video = null;
+  if(isset($variables['hp_pg_program']['featured_video']['type'])) {
+    $video = $variables['hp_pg_program']['featured_video'];
+  }
+  $variables['hp_pg_video'] = _hp_program_proccess_video($video, $uuid);
+}
+
+ /**
+  * Implements hook_theme().
+  * Lets us define our paragraphs templates in this module.
+  */
+ function hp_program_theme($existing, $type, $theme, $path) {
+   return [
+     'paragraph__hp_program' => [
+       'base hook' => 'paragraph',
+     ]
+   ];
+ }
+
+
+/**
+* CUSTOM FUNCTIONS
+*
+*/
+
+ /**
+ * Proccesses vimeo and youtube video into an embed.
+ *
+ */
+function _hp_program_proccess_video($video = null, $id = 'default') {
+  if ($cache = \Drupal::cache()->get('hp_program_video--' . $id)) {
+    return $cache->data;
+  }
+  else {
+    if(isset($video)) {
+  
+      $type = $video['type'];
+      $id = $video['id'];
+
+      if($type == 'video/vimeo') {
+        // Get vimeo ID
+        $vimeoId = str_replace("vimeo://v/","",$id);
+        $result = '<iframe id="iframe-' . $vimeoId . '" src="https://player.vimeo.com/video/' . $vimeoId . '?color=c9ff23&badge=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+      } elseif ($type == 'video/youtube') {
+        // Get YT ID
+        $youtubeId = str_replace("youtube://v/","",$id);
+        $result = '<iframe id="iframe-' . $youtubeId . '" src="https://www.youtube.com/embed/' . $youtubeId . '" width="560" height="315" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+      }
+      \Drupal::cache()->set('hp_program_video--' . $id, $result, time() + 7200);
+      return $result;
+    } else {
+      return null;
+    }
+  }
+}
+
+
+ /**
+ * Gets program from programs.howard.edu, and displays.
+ *
+ */
+function _hp_program_get_program($program = null, $id = 'default') {
+  if ($cache = \Drupal::cache()->get('hp_program--' . $id)) {
+    return $cache->data;
+  }
+  else {
+    $url = "https://programs.howard.edu/api/programs/" . $program;
+    $result = file_get_contents($url);
+    $result = json_decode($result, true);
+    $result = $result['data'][0];
+    if($result) {
+      $html_fields = [
+        'body',
+        'admission_requirements',
+        'admission_requirements_international',
+        'degree_requirements',
+        'residence_requirements',
+        'personal_potential_index',
+        'admission_to_candidacy',
+        'caution_to_prospective_students'
+      ];
+      // Update HTML fields with proper classes
+      foreach($html_fields as $field) {
+        $result[$field] = _hp_sanitize_external_html($result[$field]);
+      }
+      \Drupal::cache()->set('hp_program--' . $id, $result, time() + 7200);
+      return $result;
+    } else {
+      return null;
+    }
+  }
+}
+
+/**
+ * Gets faculty for the program from profiles.howard.edu, and displays.
+ *
+ */
+function _hp_program_get_faculty($program = null, $id = 'default') {
+  if ($cache = \Drupal::cache()->get('hp_program_faculty--' . $id)) {
+    return $cache->data;
+  }
+  else {
+    $tax_url = "https://profiles.howard.edu/api/taxonomy_5?filter[program_id]=" . $program;
+    $tax_result = file_get_contents($tax_url);
+    $tax_result = json_decode($tax_result, true);
+    $tax_result = $tax_result['data'][0]['id'];
+    if($tax_result) {
+      $url = "https://profiles.howard.edu/api/profilesearch/%20?sort=last_name&filter[public][value]=1&range=100&filter[taxonomy_5][value][]=" . $tax_result;
+      $result = file_get_contents($url);
+      $result = json_decode($result, true);
+      $result = $result['data'];
+      if($result) {
+        \Drupal::cache()->set('hp_program_faculty--' . $id, $result, time() + 7200);
+        return $result;
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
+}
+
+/**
+ * Takes stringified HTML and adds proper classes to elements
+ */
+function _hp_sanitize_external_html($markup) {
+  $dom = Html::load($markup);
+  $xpath = new \DOMXPath($dom);
+  _hp_process_external_uls($xpath);
+  // Serialize manipulated DOM back to string
+  return Html::serialize($dom);
+}
+
+/**
+ * Parse UL's to add proper class.
+ *
+ */
+function _hp_process_external_uls($xpath) {
+  $ul_nodes = $xpath->query('//ul');
+  // If any UL's were found, append the body-text--list class to each of their class attributes
+  if ($ul_nodes->length > 0) {
+    foreach($ul_nodes as $ul) {
+      $class_list = explode(' ', $ul->getAttribute('class'));
+      $class_list[] = 'body-text--list';
+      $ul->setAttribute('class', join(' ', array_unique($class_list)));
+    }
+  }
+}

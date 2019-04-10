@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * IP Button/Link paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<section aria-label="Button or Link">
+  {% if hp_show_wrapper %}
+    <div class="compartment">
+  {% endif %}
+
+      {% for key, item in content.field_ip_bl_link if key|first != '#' %}
+
+        {% if ip_bl_type == 'fancy_link' %}
+          <a href="{{ content.field_ip_bl_link[key]['#url'] }}" class="fancy-link"{% if content.field_ip_bl_link[key]['#options'].attributes.target %} target="{{ content.field_ip_bl_link[key]['#options'].attributes.target }}"{% endif %}>
+            <span>{{ content.field_ip_bl_link[key]['#title'] }}</span>
+            <span class="icon-arrow-right"></span>
+          </a>
+        {% elseif ip_bl_type == 'button' %}
+          <a href="{{ content.field_ip_bl_link[key]['#url'] }}" class="btn"{% if content.field_ip_bl_link[key]['#options'].attributes.target %} target="{{ content.field_ip_bl_link[key]['#options'].attributes.target }}"{% endif %}>
+            <span class="btn__text">{{ content.field_ip_bl_link[key]['#title'] }}</span>
+            <span class="icon-arrow-right"></span>
+          </a>
+        {% else %}
+          <a href="{{ content.field_ip_bl_link[key]['#url'] }}" {% if content.field_ip_bl_link[key]['#options'].attributes.target %} target="{{ content.field_ip_bl_link[key]['#options'].attributes.target }}"{% endif %}>
+            {{ content.field_ip_bl_link[key]['#title'] }}
+          </a>
+        {% endif %}
+
+      {% endfor %}
+
+      <!-- Render without, so quickedit/etc works -->
+      {{ content|without('field_ip_bl_link', 'field_ip_bl_type') }}
+
+  {% if hp_show_wrapper %}
+    </div>
+  {% endif %}
+</section>

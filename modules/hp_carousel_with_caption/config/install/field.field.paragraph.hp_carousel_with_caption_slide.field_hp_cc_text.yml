@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_cc_text
+    - paragraphs.paragraphs_type.hp_carousel_with_caption_slide
+  module:
+    - text
+id: paragraph.hp_carousel_with_caption_slide.field_hp_cc_text
+field_name: field_hp_cc_text
+entity_type: paragraph
+bundle: hp_carousel_with_caption_slide
+label: Text
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

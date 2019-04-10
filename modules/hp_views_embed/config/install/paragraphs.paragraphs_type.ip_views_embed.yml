@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: ip_views_embed
+label: 'HP Views Embed'
+icon_uuid: null
+description: 'This Paragraph type provides a way to embed views created in drupal, into the Kitchen Sink Widgets.'
+behavior_plugins: {  }

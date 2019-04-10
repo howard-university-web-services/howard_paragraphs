@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_cc_link
+    - paragraphs.paragraphs_type.hp_carousel_with_caption_slide
+  module:
+    - link
+id: paragraph.hp_carousel_with_caption_slide.field_hp_cc_link
+field_name: field_hp_cc_link
+entity_type: paragraph
+bundle: hp_carousel_with_caption_slide
+label: Link
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

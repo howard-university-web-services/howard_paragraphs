@@ -1,0 +1,81 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_cc_slides
+    - paragraphs.paragraphs_type.hp_carousel_with_caption
+    - paragraphs.paragraphs_type.hp_carousel_with_caption_slide
+  module:
+    - entity_reference_revisions
+id: paragraph.hp_carousel_with_caption.field_hp_cc_slides
+field_name: field_hp_cc_slides
+entity_type: paragraph
+bundle: hp_carousel_with_caption
+label: Slides
+description: '<em>Purpose:</em> Display a series of four or more images in a gallery. These pictures are vertically and horizontally centered.<br><br><em>Dimensions:</em> Minimum of 800 pixels wide;<br><br><em>File Size:</em> < 300kb, if possible per image<br><br><em>File Size:</em>'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      hp_carousel_with_caption_slide: hp_carousel_with_caption_slide
+    target_bundles_drag_drop:
+      home_callout:
+        weight: 19
+        enabled: false
+      home_slideshow_slide:
+        weight: 20
+        enabled: false
+      hp_card:
+        weight: 21
+        enabled: false
+      hp_cards:
+        weight: 22
+        enabled: false
+      hp_carousel_with_caption:
+        weight: 23
+        enabled: false
+      hp_carousel_with_caption_slide:
+        enabled: true
+        weight: 24
+      hp_events_feed:
+        weight: 25
+        enabled: false
+      hp_html:
+        weight: 26
+        enabled: false
+      hp_media:
+        weight: 27
+        enabled: false
+      hp_news_feed:
+        weight: 28
+        enabled: false
+      hp_profiles_feed:
+        weight: 29
+        enabled: false
+      ip_accordion:
+        weight: 30
+        enabled: false
+      ip_accordion_item:
+        weight: 31
+        enabled: false
+      ip_button_link:
+        weight: 32
+        enabled: false
+      ip_table:
+        weight: 33
+        enabled: false
+      ip_views_embed:
+        weight: 34
+        enabled: false
+      ip_webform_embed:
+        weight: 35
+        enabled: false
+      sponsors:
+        weight: 36
+        enabled: false
+field_type: entity_reference_revisions

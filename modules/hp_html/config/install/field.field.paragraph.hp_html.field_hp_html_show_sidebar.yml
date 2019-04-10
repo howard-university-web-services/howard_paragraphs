@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_html_show_sidebar
+    - paragraphs.paragraphs_type.hp_html
+id: paragraph.hp_html.field_hp_html_show_sidebar
+field_name: field_hp_html_show_sidebar
+entity_type: paragraph
+bundle: hp_html
+label: 'Show Sidebar'
+description: 'Should the sidebar be shown for this widget?'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

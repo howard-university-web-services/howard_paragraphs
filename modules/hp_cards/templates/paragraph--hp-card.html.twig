@@ -1,0 +1,43 @@
+{#
+/**
+ * @file
+ * HP Card paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+
+<div class="silc-grid__col silc-grid__col--4-medium">
+
+  {% if hp_card_layout == 'card_with_image' %}
+
+    <a href="{{ content.field_hp_cd_link[0]['#url'] }}" class="{{ hp_card_class }}" {% if content.field_hp_cd_link[0]['#options'].attributes.target %} target="{{ content.field_hp_cd_link[0]['#options'].attributes.target }}"{% endif %}>
+      <div class="news-and-events__img" style="background-image:url({{ hp_card_image }})"></div>
+      <div class="news-and-events__desc">
+        <h3 class="news-and-events__title header--h3-small">{{ content.field_hp_cd_title }}</h3>
+        <div class="body-text--small">{{ content.field_hp_cd_text }}</div>
+      </div>
+    </a>
+
+  {% else %}
+
+    <div class="{{ hp_card_class }}">
+      {% if content.field_hp_cd_title %}
+        <h3 class="announcements__title">{{ content.field_hp_cd_title }}</h3>
+      {% endif %}
+      {{ content.field_hp_cd_text }}
+      {% if content.field_hp_cd_link[0]['#url'] %}
+        <a href="{{ content.field_hp_cd_link[0]['#url'] }}" class="fancy-link" {% if content.field_hp_cd_link[0]['#options'].attributes.target %} target="{{ content.field_hp_cd_link[0]['#options'].attributes.target }}"{% endif %}>
+          <span>{{ content.field_hp_cd_link[0]['#title'] }}</span>
+          <span class="icon-arrow-right"></span>
+        </a>
+      {%  endif %}
+    </div>
+
+  {% endif %}
+
+  <!-- Render without, so quickedit/etc works -->
+  {{ content|without('field_hp_cd_title', 'field_hp_cd_text', 'field_hp_cd_image', 'field_hp_cd_link') }}
+
+</div>

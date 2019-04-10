@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_pg_program_id
+    - paragraphs.paragraphs_type.hp_program
+id: paragraph.hp_program.field_hp_pg_program_id
+field_name: field_hp_pg_program_id
+entity_type: paragraph
+bundle: hp_program
+label: 'Program ID'
+description: 'When looking at a program on programs.howard.edu, look at the edit screen, the URL should look like: https://programs.howard.edu/node/<strong>XXX</strong>/edit. The <strong>XXX</strong> is the ID to add here.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_embed
+label: 'HP Embed'
+icon_uuid: null
+description: 'This Paragraph type provides the ability to embed an iframe, google map, etc.'
+behavior_plugins: {  }

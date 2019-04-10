@@ -1,0 +1,24 @@
+uuid: d47876b3-40e7-427d-92b4-e3c811d73cd2
+langcode: en
+status: true
+dependencies:
+  module:
+    - external_data_source
+    - paragraphs
+id: paragraph.field_hp_ef_event_category
+field_name: field_hp_ef_event_category
+entity_type: paragraph
+type: external_data_source
+settings:
+  ws: event_categories
+  count: '100'
+  max_length: '255'
+  is_ascii: false
+  case_sensitive: false
+module: external_data_source
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

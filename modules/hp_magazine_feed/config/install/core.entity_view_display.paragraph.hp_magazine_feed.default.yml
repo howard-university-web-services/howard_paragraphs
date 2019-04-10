@@ -1,0 +1,61 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_magazine_feed.field_hp_mf_article_admin_catego
+    - field.field.paragraph.hp_magazine_feed.field_hp_mf_article_category
+    - field.field.paragraph.hp_magazine_feed.field_hp_mf_environment
+    - field.field.paragraph.hp_magazine_feed.field_hp_mf_link
+    - field.field.paragraph.hp_magazine_feed.field_hp_mf_title
+    - paragraphs.paragraphs_type.hp_magazine_feed
+  module:
+    - external_data_source
+    - link
+    - options
+id: paragraph.hp_magazine_feed.default
+targetEntityType: paragraph
+bundle: hp_magazine_feed
+mode: default
+content:
+  field_hp_mf_article_admin_catego:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: external_data_source_formatter
+    region: content
+  field_hp_mf_article_category:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: external_data_source_formatter
+    region: content
+  field_hp_mf_environment:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_hp_mf_link:
+    weight: 1
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_hp_mf_title:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

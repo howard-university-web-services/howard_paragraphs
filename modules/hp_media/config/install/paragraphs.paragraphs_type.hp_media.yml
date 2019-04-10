@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_media
+label: 'HP Media'
+icon_uuid: null
+description: 'This Paragraph type provides a media embed into the Kitchen Sink Widgets.'
+behavior_plugins: {  }

@@ -1,0 +1,51 @@
+{#
+/**
+ * @file
+ * IP Accordion paragraph bundle override.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<section class="section--padded-top section--padded-bottom" aria-label="Accordion">
+  {% if hp_show_wrapper %}
+    <div class="compartment">
+  {% endif %}
+
+
+      {% if content.field_ip_ac_title[0] %}
+        <div class="block-header">
+            <div class="block-header__title">
+                <span class=" block-header__icon icon-info"></span>
+                <h2>{{ content.field_ip_ac_title }}</h2>
+            </div>
+        </div>
+      {% endif %}
+
+      <div class="{{ ip_accordion_type }}" id="accordion-{{paragraph.id()}}" {{ ip_accordion_open_first }} {{ ip_accordion_open_multiple }}>
+
+        {% if ip_accordion_nav_items %}
+          <nav class="silc-accordion__nav">
+            <ul class="silc-accordion__nav-items">
+              {% for key, item in ip_accordion_nav_items %}
+                {% if item.uuid is defined %}
+                  <li class="silc-accordion__nav-item">
+                    <a class="silc-accordion__nav-link" href="#silc-accordion-{{item.uuid}}">{{item.title}}</a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </nav>
+        {% endif %}
+
+        {{ content.field_ip_ac_item }}
+
+      </div>
+
+      <!-- Render without, so quickedit/etc works -->
+      {{ content|without('field_ip_ac_title', 'field_ip_ac_allow_mult', 'field_ip_ac_item', 'field_ip_ac_open_first', 'field_ip_ac_type') }}
+
+  {% if hp_show_wrapper %}
+    </div>
+  {% endif %}
+</section>

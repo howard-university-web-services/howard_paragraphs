@@ -1,0 +1,51 @@
+{#
+/**
+ * @file
+ * HP Alumni Feed paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<section class="section--padded-top section--padded-bottom" aria-label="Embed">
+  {% if hp_show_wrapper %}
+    <div class="compartment">
+  {% endif %}
+
+    {% if content.field_hp_af_title[0] %}
+      <div class="block-header">
+          <div class="block-header__title">
+              <span class=" block-header__icon icon-our-people"></span>
+              <h2>{{ content.field_hp_af_title }}</h2>
+          </div>
+      </div>
+    {% endif %}
+
+    {% for evnt in hp_af_profiles %}
+
+      {{ evnt.image.large }}
+      {{ evnt.label }}
+      {{ evnt.title }}
+      {{ evnt.hometown }}
+      {{ evnt.year_graduated }}
+      {{ evnt.quote }}
+      {{ evnt.biography.value }}
+
+      <!-- logic to display modal or not -->
+      {% if content.field_hp_af_display_links_modal[0]['#markup'] == 'On' %}
+        <!-- Modal -->
+        modal
+      {% else %}
+        <!-- Standard Link -->
+        normal link
+      {% endif %}
+
+      <br /><br />
+
+    {% endfor %}
+
+
+  {% if hp_show_wrapper %}
+    </div>
+  {% endif %}
+</section>

@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: FLAKMryLv2ciemlyC6j7SJnYxT6qOIJlSf-JR6gosfw
+id: hp_news_feed
+label: 'HP News Feed'
+icon_uuid: null
+description: 'This is a feed of news articles from newsroom.howard.edu.'
+behavior_plugins: {  }

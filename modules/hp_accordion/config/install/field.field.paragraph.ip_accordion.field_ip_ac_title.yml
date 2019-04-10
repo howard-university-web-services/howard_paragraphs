@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ip_ac_title
+    - paragraphs.paragraphs_type.ip_accordion
+id: paragraph.ip_accordion.field_ip_ac_title
+field_name: field_ip_ac_title
+entity_type: paragraph
+bundle: ip_accordion
+label: 'Accordion group title'
+description: 'Should there be a title above this set of accordions?'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

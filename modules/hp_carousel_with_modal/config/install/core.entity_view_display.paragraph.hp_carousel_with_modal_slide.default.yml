@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_carousel_with_modal_slide.field_hp_cm_image
+    - paragraphs.paragraphs_type.hp_carousel_with_modal_slide
+id: paragraph.hp_carousel_with_modal_slide.default
+targetEntityType: paragraph
+bundle: hp_carousel_with_modal_slide
+mode: default
+content:
+  field_hp_cm_image:
+    type: entity_reference_entity_view
+    weight: 0
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+hidden: {  }

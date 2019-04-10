@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ip_ac_type
+    - paragraphs.paragraphs_type.ip_accordion
+  module:
+    - options
+id: paragraph.ip_accordion.field_ip_ac_type
+field_name: field_ip_ac_type
+entity_type: paragraph
+bundle: ip_accordion
+label: Type
+description: 'Please choose the type of accordion/tab.'
+required: true
+translatable: false
+default_value:
+  -
+    value: accordion
+default_value_callback: ''
+settings: {  }
+field_type: list_string

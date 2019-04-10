@@ -1,0 +1,53 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_callout.field_hp_call_background
+    - field.field.paragraph.hp_callout.field_hp_call_display_type
+    - field.field.paragraph.hp_callout.field_hp_call_links
+    - field.field.paragraph.hp_callout.field_hp_call_title
+    - paragraphs.paragraphs_type.hp_callout
+  module:
+    - link
+    - options
+id: paragraph.hp_callout.default
+targetEntityType: paragraph
+bundle: hp_callout
+mode: default
+content:
+  field_hp_call_background:
+    type: entity_reference_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  field_hp_call_display_type:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_hp_call_links:
+    weight: 2
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_hp_call_title:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+hidden: {  }

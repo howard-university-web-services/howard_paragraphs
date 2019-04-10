@@ -1,0 +1,116 @@
+<?php
+
+/**
+ * @file
+ * hp_alumni_feed module file.
+ */
+
+ use Drupal\Core\Routing\RouteMatchInterface;
+ use Drupal\paragraphs\Entity\Paragraph;
+
+ /**
+ * Implements hook_help().
+ *
+ * @inheritdoc
+ */
+function hp_alumni_feed_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.hp_alumni_feed':
+      $text = file_get_contents(dirname(__FILE__) . "/README.md");
+      if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        return '<pre>' . $text . '</pre>';
+      }
+      else {
+        // Use the Markdown filter to render the README.
+        $filter_manager = \Drupal::service('plugin.manager.filter');
+        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $config = ['settings' => $settings];
+        $filter = $filter_manager->createInstance('markdown', $config);
+        return $filter->process($text, 'en');
+      }
+  }
+  return NULL;
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ * @param $variables
+ * This sets variables for getting profiles, and then gets profiles.
+ */
+function hp_alumni_feed_preprocess_paragraph__hp_featured_student_alumni_feed(&$variables) {
+  // UUID to pass for cache
+  $uuid = $variables['elements']['#paragraph']->uuid->value;
+
+  // Check on env to get events from
+  $env = $variables['elements']['#paragraph']->field_hp_pf_environment->value;
+  $env_url = 'https://profiles.howard.edu';
+  if($env == 'stg') {
+    $env_url = 'http://stg.profiles.howard.edu';
+  } elseif($env == 'dev') {
+    $env_url = 'http://dev.profiles.howard.edu';
+  }
+  $variables['hp_pf_env_url'] = $env_url;
+
+  // Check on Feed Type
+  $type = null;
+  if(isset($variables['elements']['#paragraph']->field_hp_af_feed_type->value)) {
+    $type = $variables['elements']['#paragraph']->field_hp_af_feed_type->value;
+  }
+
+  // Get profiles
+  $variables['hp_af_profiles'] = _hp_alumni_feed_get_profiles($env_url, $type, 50, $uuid);
+
+}
+
+/**
+* Implements hook_theme().
+* Lets us define our paragraphs templates in this module.
+*/
+function hp_alumni_feed_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__hp_featured_student_alumni_feed' => [
+      'base hook' => 'paragraph',
+    ]
+  ];
+ }
+
+ /**
+* CUSTOM FUNCTIONS
+*
+*/
+
+
+ /**
+ * Gets alumni from profiles site, and displays.
+ *
+ */
+function _hp_alumni_feed_get_profiles($env_url = 'https://profiles.howard.edu', $type = null, $range = 50, $id = 'default') {
+  if ($cache = \Drupal::cache()->get('hp_alumni_feed--' . $id)) {
+    return $cache->data;
+  }
+  else {
+    $url = $env_url . "/api/featured?range=" . $range;
+    if(isset($type)) {
+      if($type == 'iconic_alumni') {
+        $url .= "&filter[classification]=iconic_alumni";
+      } elseif($type == 'students_only') {
+        $url .= "&filter[classification]=student";
+      } elseif($type == 'alumni_only') {
+        $url .= "&filter[classification]=alumni";
+      } elseif($type == 'faculty_only') {
+        $url .= "&filter[classification]=faculty";
+      } else {
+        $url .= "&filter[classification][value]=iconic_alumni&filter[classification][operator]=!=";
+      }
+    }
+    $result = file_get_contents($url);
+    $result = json_decode($result, true);
+    $result = $result['data'];
+    if($result) {
+      \Drupal::cache()->set('hp_alumni_feed--' . $id, $result, time() + 7200);
+      return $result;
+    } else {
+      return null;
+    }
+  }
+}

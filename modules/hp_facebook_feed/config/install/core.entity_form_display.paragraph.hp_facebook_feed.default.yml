@@ -1,0 +1,81 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_facebook_feed.field_hp_ff_app
+    - field.field.paragraph.hp_facebook_feed.field_hp_ff_app_secret
+    - field.field.paragraph.hp_facebook_feed.field_hp_ff_count
+    - field.field.paragraph.hp_facebook_feed.field_hp_ff_page_id
+    - field.field.paragraph.hp_facebook_feed.field_hp_ff_token
+    - paragraphs.paragraphs_type.hp_facebook_feed
+  module:
+    - field_group
+third_party_settings:
+  field_group:
+    group_app:
+      children:
+        - field_hp_ff_token
+        - field_hp_ff_page_id
+        - field_hp_ff_app
+        - field_hp_ff_app_secret
+      parent_name: ''
+      weight: 2
+      format_type: fieldset
+      format_settings:
+        label: App
+        description: 'If you have created, or need to create a separate Facebook app for this, add details here.'
+        required_fields: true
+        id: ''
+        classes: ''
+      label: App
+      region: content
+_core:
+  default_config_hash: 03Tzwc1nKGMXEFIIGT0Y4VpLGzEMi0ynodh2-bejMUA
+id: paragraph.hp_facebook_feed.default
+targetEntityType: paragraph
+bundle: hp_facebook_feed
+mode: default
+content:
+  field_hp_ff_app:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_hp_ff_app_secret:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_hp_ff_count:
+    weight: 0
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_hp_ff_page_id:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_hp_ff_token:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

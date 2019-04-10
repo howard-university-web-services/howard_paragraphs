@@ -1,0 +1,70 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_news_feed.field_hp_nf_environment
+    - field.field.paragraph.hp_news_feed.field_hp_nf_feed_type
+    - field.field.paragraph.hp_news_feed.field_hp_nf_link
+    - field.field.paragraph.hp_news_feed.field_hp_nf_news_admin_category
+    - field.field.paragraph.hp_news_feed.field_hp_nf_news_category
+    - field.field.paragraph.hp_news_feed.field_hp_nf_title
+    - paragraphs.paragraphs_type.hp_news_feed
+  module:
+    - external_data_source
+    - link_target
+_core:
+  default_config_hash: bqcxjdoxDV42k-BKwu3tvG_FxxUqireMnfiztJVKpEE
+id: paragraph.hp_news_feed.default
+targetEntityType: paragraph
+bundle: hp_news_feed
+mode: default
+content:
+  field_hp_nf_environment:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_hp_nf_feed_type:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_hp_nf_link:
+    weight: 1
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+      link_target: ''
+    third_party_settings: {  }
+    type: link_target_field_widget
+    region: content
+  field_hp_nf_news_admin_category:
+    weight: 5
+    settings:
+      size: 1
+      placeholder: ''
+    third_party_settings: {  }
+    type: external_data_source_select_widget
+    region: content
+  field_hp_nf_news_category:
+    weight: 4
+    settings:
+      size: 1
+      placeholder: ''
+    third_party_settings: {  }
+    type: external_data_source_select_widget
+    region: content
+  field_hp_nf_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

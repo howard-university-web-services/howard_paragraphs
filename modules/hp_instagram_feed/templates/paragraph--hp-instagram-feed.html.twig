@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * HP Facebook Feed paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<section aria-label="Facebook Feed">
+  
+  <div class="facebook-twitter-feed">
+    <div class="compartment">
+      <div class="silc-grid">
+        {% if hp_ff_posts.results[0] %}
+          {% for post in hp_ff_posts.results %}
+            <div class="silc-grid__col silc-grid__col--1-medium"> 
+              <a class="social-links__item" href="{{ post.permalink_url }}" target="_blank">
+                <i class="icon-facebook"><span class="visible-for-screen-readers">Facebook</span></i>
+              </a>
+            </div>
+            <div class="silc-grid__col silc-grid__col--11-medium">
+              <div class="facebook-twitter-feed__desc">
+                <p class="body-text--social-media">{{ post.message | raw }} </p>
+                  <a href="{{ post.permalink_url }}" target="_blank" class="fancy-link fancy-link--light">
+                    <span>View on Facebook</span>
+                    <span class="icon-arrow-right"></span>
+                  </a>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="social--error">Sorry, there was an error connecting to Facebook: {{ hp_ff_posts.error }}</div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+
+</section>

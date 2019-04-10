@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ip_accordion_item.field_ip_ac_body
+    - field.field.paragraph.ip_accordion_item.field_ip_ac_title
+    - paragraphs.paragraphs_type.ip_accordion_item
+  module:
+    - text
+id: paragraph.ip_accordion_item.default
+targetEntityType: paragraph
+bundle: ip_accordion_item
+mode: default
+content:
+  field_ip_ac_body:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_ip_ac_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

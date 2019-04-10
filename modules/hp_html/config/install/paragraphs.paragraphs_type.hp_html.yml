@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: DIzDixCpkrszDTJEJyP0CU2bKTQ3UJtbTFpCnVmi-HQ
+id: hp_html
+label: 'HP HTML'
+icon_uuid: null
+description: 'HTML KS Widget for Howard sites.'
+behavior_plugins: {  }

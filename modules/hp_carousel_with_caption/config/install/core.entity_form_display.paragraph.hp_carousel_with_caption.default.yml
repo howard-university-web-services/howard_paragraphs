@@ -1,0 +1,40 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_carousel_with_caption.field_hp_cc_slides
+    - field.field.paragraph.hp_carousel_with_caption.field_hp_cc_title
+    - paragraphs.paragraphs_type.hp_carousel_with_caption
+  module:
+    - paragraphs
+_core:
+  default_config_hash: h0zwzvfOuqomUMDs7P1DOCa4UUmSIUnPi345lsdALiI
+id: paragraph.hp_carousel_with_caption.default
+targetEntityType: paragraph
+bundle: hp_carousel_with_caption
+mode: default
+content:
+  field_hp_cc_slides:
+    type: entity_reference_paragraphs
+    weight: 1
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
+  field_hp_cc_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

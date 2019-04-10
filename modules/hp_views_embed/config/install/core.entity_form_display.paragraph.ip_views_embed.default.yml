@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ip_views_embed.field_ip_ve_title
+    - field.field.paragraph.ip_views_embed.field_ip_ve_view
+    - paragraphs.paragraphs_type.ip_views_embed
+  module:
+    - viewfield
+id: paragraph.ip_views_embed.default
+targetEntityType: paragraph
+bundle: ip_views_embed
+mode: default
+content:
+  field_ip_ve_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_ip_ve_view:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: viewfield_select
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

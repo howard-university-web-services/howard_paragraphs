@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_nf_feed_type
+    - paragraphs.paragraphs_type.hp_news_feed
+  module:
+    - options
+id: paragraph.hp_news_feed.field_hp_nf_feed_type
+field_name: field_hp_nf_feed_type
+entity_type: paragraph
+bundle: hp_news_feed
+label: 'Feed Type'
+description: 'Please choose the type of format desired for the news feed.'
+required: true
+translatable: false
+default_value:
+  -
+    value: three_w_images
+default_value_callback: ''
+settings: {  }
+field_type: list_string

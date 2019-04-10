@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ip_tb_table
+    - paragraphs.paragraphs_type.ip_table
+  module:
+    - tablefield
+_core:
+  default_config_hash: uuVV8KRN8HZYfXLJV2H_veha3RZXWiALr5NNZo3cuWY
+id: paragraph.ip_table.field_ip_tb_table
+field_name: field_ip_tb_table
+entity_type: paragraph
+bundle: ip_table
+label: Table
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  export: 0
+  restrict_rebuild: 1
+  restrict_import: 1
+  lock_values: 0
+  cell_processing: '0'
+  empty_rules:
+    ignore_table_structure: 0
+    ignore_table_header: 0
+field_type: tablefield

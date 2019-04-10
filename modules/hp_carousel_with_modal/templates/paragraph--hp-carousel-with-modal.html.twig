@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * HP Carousel with Modal paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<section class="section--padded-top section--padded-bottom" aria-label="Carousel with Modal">
+  {% if hp_show_wrapper %}
+    <div class="compartment">
+  {% endif %}
+
+      {% if content.field_hp_cm_title[0] %}
+        <div class="block-header">
+            <div class="block-header__title">
+                <span class=" block-header__icon icon-picture"></span>
+                <h2>{{ content.field_hp_cm_title }}</h2>
+            </div>
+        </div>
+      {% endif %}
+
+      <div class="carousel">
+
+        {{ content.field_hp_cm_slides }}
+
+      </div>
+
+      <!-- Render without, so quickedit/etc works -->
+      {{ content|without('field_hp_cm_slides', 'field_hp_cm_title') }}
+
+  {% if hp_show_wrapper %}
+    </div>
+  {% endif %}
+</section>

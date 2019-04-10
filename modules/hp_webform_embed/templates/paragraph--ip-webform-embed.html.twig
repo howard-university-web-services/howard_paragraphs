@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * IP Webform Embed paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<section class="section--padded-top section--padded-bottom" aria-label="Accordion">
+  {% if hp_show_wrapper %}
+    <div class="compartment">
+  {% endif %}
+
+      {% if content.field_ip_we_title[0] %}
+        <div class="block-header">
+            <div class="block-header__title">
+                <span class=" block-header__icon icon-info"></span>
+                <h2>{{ content.field_ip_we_title }}</h2>
+            </div>
+        </div>
+      {% endif %}
+
+      {{ content.field_ip_we_webform }}
+
+      <!-- Render without, so quickedit/etc works -->
+      {{ content|without('field_ip_we_title', 'field_ip_we_webform') }}
+
+  {% if hp_show_wrapper %}
+    </div>
+  {% endif %}
+</section>

@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_twitter_feed.field_hp_tf_count
+    - field.field.paragraph.hp_twitter_feed.field_hp_tf_username
+    - paragraphs.paragraphs_type.hp_twitter_feed
+id: paragraph.hp_twitter_feed.default
+targetEntityType: paragraph
+bundle: hp_twitter_feed
+mode: default
+content:
+  field_hp_tf_count:
+    weight: 0
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_hp_tf_username:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

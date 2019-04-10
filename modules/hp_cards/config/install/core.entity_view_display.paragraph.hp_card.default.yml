@@ -1,0 +1,54 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_card.field_hp_cd_image
+    - field.field.paragraph.hp_card.field_hp_cd_link
+    - field.field.paragraph.hp_card.field_hp_cd_text
+    - field.field.paragraph.hp_card.field_hp_cd_title
+    - paragraphs.paragraphs_type.hp_card
+  module:
+    - link
+    - text
+id: paragraph.hp_card.default
+targetEntityType: paragraph
+bundle: hp_card
+mode: default
+content:
+  field_hp_cd_image:
+    type: entity_reference_entity_view
+    weight: 4
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  field_hp_cd_link:
+    weight: 3
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_hp_cd_text:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_hp_cd_title:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

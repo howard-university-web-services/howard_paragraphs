@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_program.field_hp_pg_program_id
+    - paragraphs.paragraphs_type.hp_program
+id: paragraph.hp_program.default
+targetEntityType: paragraph
+bundle: hp_program
+mode: default
+content:
+  field_hp_pg_program_id:
+    weight: 0
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+hidden: {  }

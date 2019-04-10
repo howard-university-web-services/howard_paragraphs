@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ip_table.field_ip_tb_table
+    - field.field.paragraph.ip_table.field_ip_tb_title
+    - paragraphs.paragraphs_type.ip_table
+  module:
+    - tablefield
+_core:
+  default_config_hash: VK-7OKDspoJmExTEPTp5dUskB2pkSU7KFV1fN_PtPlg
+id: paragraph.ip_table.default
+targetEntityType: paragraph
+bundle: ip_table
+mode: default
+content:
+  field_ip_tb_table:
+    weight: 1
+    settings:
+      input_type: textfield
+    third_party_settings: {  }
+    type: tablefield
+    region: content
+  field_ip_tb_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

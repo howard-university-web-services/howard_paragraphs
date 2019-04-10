@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_featured_article.field_hp_fa_article
+    - field.field.paragraph.hp_featured_article.field_hp_fa_title
+    - paragraphs.paragraphs_type.hp_featured_article
+id: paragraph.hp_featured_article.default
+targetEntityType: paragraph
+bundle: hp_featured_article
+mode: default
+content:
+  field_hp_fa_article:
+    weight: 0
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_hp_fa_title:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

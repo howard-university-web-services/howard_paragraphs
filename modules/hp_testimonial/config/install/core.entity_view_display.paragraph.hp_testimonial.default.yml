@@ -1,0 +1,57 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_testimonial.field_hp_tst_image
+    - field.field.paragraph.hp_testimonial.field_hp_tst_intro
+    - field.field.paragraph.hp_testimonial.field_hp_tst_name
+    - field.field.paragraph.hp_testimonial.field_hp_tst_quote
+    - field.field.paragraph.hp_testimonial.field_hp_tst_title
+    - paragraphs.paragraphs_type.hp_testimonial
+  module:
+    - text
+id: paragraph.hp_testimonial.default
+targetEntityType: paragraph
+bundle: hp_testimonial
+mode: default
+content:
+  field_hp_tst_image:
+    type: entity_reference_entity_view
+    weight: 4
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  field_hp_tst_intro:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_hp_tst_name:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_hp_tst_quote:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_hp_tst_title:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

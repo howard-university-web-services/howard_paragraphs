@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_cm_title
+    - paragraphs.paragraphs_type.hp_carousel_with_modal
+id: paragraph.hp_carousel_with_modal.field_hp_cm_title
+field_name: field_hp_cm_title
+entity_type: paragraph
+bundle: hp_carousel_with_modal
+label: Title
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ip_button_link.field_ip_bl_link
+    - field.field.paragraph.ip_button_link.field_ip_bl_type
+    - paragraphs.paragraphs_type.ip_button_link
+  module:
+    - link
+    - options
+id: paragraph.ip_button_link.default
+targetEntityType: paragraph
+bundle: ip_button_link
+mode: default
+content:
+  field_ip_bl_link:
+    weight: 0
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_ip_bl_type:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+hidden: {  }

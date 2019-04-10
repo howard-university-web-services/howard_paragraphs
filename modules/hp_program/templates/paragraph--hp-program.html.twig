@@ -1,0 +1,291 @@
+{#
+/**
+ * @file
+ * HP Program paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+
+<section class="section--padded-top section--padded-bottom" aria-label="Program">
+    
+  {% if hp_pg_program %}
+
+    <!-- Intro -->
+    <div class="section--padded-bottom">
+      <h2>{{ hp_pg_program.label }} | {{ hp_pg_program.degree_classification }}</h2>
+      {% if hp_pg_program.lead_in %}
+        <p class="lead-in lead-in--small">{{ hp_pg_program.lead_in }}</p>
+      {% endif %}
+      {% if hp_pg_program.body %}
+        {{ hp_pg_program.body|raw }}
+      {% endif %}
+    </div>
+
+    <!-- Links -->
+    {% if hp_pg_program.apply_link or hp_pg_program.program_links %}
+      <div class="section--padded-bottom">
+        {% if hp_pg_program.apply_link %}
+          <a href="{{ hp_pg_program.apply_link.url }}" class="btn" target="_blank">{{ hp_pg_program.apply_link.title }}</a>
+        {% endif %}
+        {% if hp_pg_program.program_links %}
+          {% for link in hp_pg_program.program_links %}
+            <a href="{{ link.url }}" class="btn" target="_blank">{{ link.title }}</a>
+          {% endfor %}
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <!-- Contacts -->
+    {% if hp_pg_program.contacts %}
+      <div class="section--padded-bottom">
+        <div class="block-header">
+          <div class="block-header__title">
+            <span class=" block-header__icon icon-phone"></span>
+            <h3 class="h2">Contacts</h3>
+          </div>
+        </div>
+        <div class="silc-grid">
+          {% for contact in hp_pg_program.contacts %}
+          <div class="silc-grid__col silc-grid__col--4-medium">
+            <h4>{{ contact.name }}</h4>
+            {% if contact.title %}
+              <span>Title: {{ contact.title }}</span>
+            {% endif %}
+            {% if contact.position %}
+              <span>Position: {{ contact.position }}</span>
+            {% endif %}
+            {% if contact.phone %}
+              <span>Phone: {{ contact.phone }}</span>
+            {% endif %}
+            {% if contact.email %}
+              <span>Email: <a href="mailto:{{ contact.email }}">Email</a></span>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    <!-- Video -->
+    {% if hp_pg_video %}
+      <div class="section--padded-bottom">
+        <div class="video">
+          {% if hp_pg_program.featured_video_title %}
+            <div class="block-header">
+              <div class="block-header__title">
+                <span class=" block-header__icon icon-picture"></span>
+                <h3 class="h2">{{ hp_pg_program.featured_video_title }}</h3>
+              </div>
+            </div>
+          {% endif %}
+          <div class="video__wrap">
+            {{ hp_pg_video|raw }}
+          </div>
+          {% if hp_pg_program.featured_video_text %}
+            <div class="video__desc">
+              <div class="body-text--light body-text--small media-caption">
+                {{ hp_pg_program.featured_video_text }}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+    
+    <!-- Details -->
+    {% if hp_pg_program.program_format or hp_pg_program.program_frequency or hp_pg_program.related_degrees or hp_pg_program.degree_classification or hp_pg_program.program_length or  hp_pg_program.program_tuition or hp_pg_program.total_students or hp_pg_program.total_alumni or hp_pg_program.related_professions %}
+      <div class="section--padded-bottom">
+        <div class="block-header">
+          <div class="block-header__title">
+            <span class="block-header__icon icon-info"></span>
+            <h3 class="h2">Program Details</h3>
+          </div>
+        </div>
+        <ul class="body-text--list">
+          {% if hp_pg_program.degree_classification %}
+            <li><strong>Degree Classification:</strong> {{ hp_pg_program.degree_classification }}</li>
+          {% endif %}
+          {% if hp_pg_program.related_degrees %}
+            <li><strong>Related Degrees:</strong> {{ hp_pg_program.related_degrees }}</li>
+          {% endif %}
+          {% if hp_pg_program.program_frequency %}
+            <li><strong>Program Frequency:</strong> {{ hp_pg_program.program_frequency }}</li>
+          {% endif %}
+          {% if hp_pg_program.program_format %}
+            <li><strong>Format:</strong> {{ hp_pg_program.program_format }}</li>
+          {% endif %}
+          {% if hp_pg_program.program_length %}
+            <li><strong>Length:</strong> {{ hp_pg_program.program_length }}</li>
+          {% endif %}
+          {% if hp_pg_program.program_tuition %}
+            <li><strong>Tuition:</strong> {{ hp_pg_program.program_tuition }}</li>
+          {% endif %}
+          {% if hp_pg_program.total_students %}
+            <li><strong>Total Students:</strong> {{ hp_pg_program.total_students }}</li>
+          {% endif %}
+          {% if hp_pg_program.total_alumni %}
+            <li><strong>Total Alumni:</strong> {{ hp_pg_program.total_alumni }}</li>
+          {% endif %}
+          {% if hp_pg_program.related_professions %}
+            <li><strong>Related Professions:</strong> {{ hp_pg_program.related_professions }}</li>
+          {% endif %}
+        </ul>
+      </div>
+    {% endif %}
+
+    <!-- Documents -->
+    {% if hp_pg_program.program_documents %}
+      <div class="section--padded-bottom">
+        <div class="block-header">
+          <div class="block-header__title">
+            <span class="block-header__icon icon-news"></span>
+            <h3 class="h2">Program Documents</h3>
+          </div>
+        </div>
+        <ul class="body-text--list">
+          {% for link in hp_pg_program.program_documents %}
+            <li><a href="{{ link.url }}" target="_blank">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    <!-- Admission Requirements -->
+    {% if hp_pg_program.admission_requirements or hp_pg_program.admission_requirements_international %}
+      <div class="section--padded-bottom">
+        <div class="block-header">
+          <div class="block-header__title">
+            <h3 class="h2">Admission Requirements</h3>
+          </div>
+        </div>
+        {{ hp_pg_program.admission_requirements|raw }}
+        {% if hp_pg_program.admission_requirements_international %}
+          <h4>International Applicants</h4>
+          {{ hp_pg_program.admission_requirements_international|raw }}
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <!-- Degree Requirements -->
+    {% if hp_pg_program.degree_requirements %}
+      <div class="section--padded-bottom">
+        <h4>Degree Requirements</h4>
+        {{ hp_pg_program.degree_requirements|raw }}
+      </div>
+    {% endif %}
+
+    <!-- PPI -->
+    {% if hp_pg_program.personal_potential_index %}
+      <div class="section--padded-bottom">
+        <h4>Degree Requirements</h4>
+        {{ hp_pg_program.personal_potential_index|raw }}
+      </div>
+    {% endif %}
+
+    <!-- Admission to Candidacy -->
+    {% if hp_pg_program.admission_to_candidacy %}
+      <div class="section--padded-bottom">
+        <h4>Degree Requirements</h4>
+        {{ hp_pg_program.admission_to_candidacy|raw }}
+      </div>
+    {% endif %}
+
+    <!-- Residency Requirements -->
+    {% if hp_pg_program.residence_requirements %}
+      <div class="section--padded-bottom">
+        <h4>Degree Requirements</h4>
+        {{ hp_pg_program.residence_requirements|raw }}
+      </div>
+    {% endif %}
+
+    <!-- Caution to Prospective Students -->
+    {% if hp_pg_program.caution_to_prospective_students %}
+      <div class="section--padded-bottom">
+        <h4>Degree Requirements</h4>
+        {{ hp_pg_program.caution_to_prospective_students|raw }}
+      </div>
+    {% endif %}
+
+    <!-- Faculty -->
+    {% if hp_pg_faculty %}
+      <div class="section--padded-bottom">
+        <div class="block-header">
+          <div class="block-header__title">
+            <span class="block-header__icon icon-our-people"></span>
+            <h3 class="h2">Faculty</h3>
+          </div>
+        </div>
+        <div class="silc-grid">
+          {% for faculty in hp_pg_faculty %}
+            <div class="silc-grid__col silc-grid__col--4-medium">
+              <div class="faculty-profile">
+                <div class="faculty-profile__block">
+                  {% if faculty.image.thumbnail %}
+                    <div class="faculty-profile__img" style="background-image:url('{{ faculty.image.thumbnail }}')" role="img" aria-labelledby="faculty-profile-name--{{ faculty.id }}">
+                    </div>
+                  {% endif %}
+                  <h3 id="faculty-profile-name--{{ faculty.id }}">{{ faculty.first_name }} {{ faculty.last_name }}</h3>
+                  <h4>{{ faculty.position_title[0] }}</h4>
+                  <h5>{{ hp_pg_program.label }}</h5>
+                  <div class="faculty-profile__divider"></div>
+                  {% if faculty.show_email %}
+                    <a href="mailto:{{ faculty.email }}" class="faculty-profile__link faculty-profile__email"><span class=" icon icon-envelope"></span>{{ faculty.email }}</a>
+                  {% endif %}
+                </div>
+                <div class="faculty-profile__btn">
+                  <a href="https://profiles.howard.edu/profile/{{ faculty.id }}/{{ faculty.uri }}" class="fancy-link fancy-link--dark" target="_blank">
+                    <span>View Full Profile</span>
+                    <span class="icon-arrow-right"></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    <!-- Stats -->
+    {% if hp_pg_program.statistics %}
+      <div class="section--padded-bottom">
+        <div class="block-header">
+          <div class="block-header__title">
+            <h3 class="h2">Statistics</h3>
+          </div>
+        </div>
+        <div class="silc-grid">
+          {% for stat in hp_pg_program.statistics %}
+            <div class="silc-grid__col silc-grid__col--4-medium">
+              <h4>{{ stat.main }}</h4>
+              <h5>{{ stat.secondary }}</h5>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    <!-- Resources -->
+    {% if hp_pg_program.resources %}
+      <div class="section--padded-bottom">
+        <div class="block-header">
+          <div class="block-header__title">
+            <h3 class="h2">Program Resources</h3>
+          </div>
+        </div>
+        <ul class="body-text--list">
+          {% for link in hp_pg_program.resources %}
+            <li><a href="{{ link.url }}" target="_blank">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+    
+  {% else %}
+
+    <p>Sorry, there was an error in fetching this program.</p>
+
+  {% endif %}
+
+</section>

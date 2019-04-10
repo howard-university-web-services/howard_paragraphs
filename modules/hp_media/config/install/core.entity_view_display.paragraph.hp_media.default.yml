@@ -1,0 +1,40 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_media.field_hp_md_caption
+    - field.field.paragraph.hp_media.field_hp_md_media
+    - field.field.paragraph.hp_media.field_hp_md_title
+    - paragraphs.paragraphs_type.hp_media
+  module:
+    - text
+id: paragraph.hp_media.default
+targetEntityType: paragraph
+bundle: hp_media
+mode: default
+content:
+  field_hp_md_caption:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_hp_md_media:
+    type: entity_reference_entity_view
+    weight: 0
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  field_hp_md_title:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

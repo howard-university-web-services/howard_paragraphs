@@ -1,0 +1,133 @@
+<?php
+
+/**
+ * @file
+ * hp_news_feed module file.
+ */
+
+ use Drupal\Core\Routing\RouteMatchInterface;
+ use Drupal\paragraphs\Entity\Paragraph;
+ use Drupal\Core\Form\FormStateInterface;
+
+ /**
+ * Implements hook_help().
+ *
+ * @inheritdoc
+ */
+function hp_news_feed_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.hp_news_feed':
+      $text = file_get_contents(dirname(__FILE__) . "/README.md");
+      if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        return '<pre>' . $text . '</pre>';
+      }
+      else {
+        // Use the Markdown filter to render the README.
+        $filter_manager = \Drupal::service('plugin.manager.filter');
+        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $config = ['settings' => $settings];
+        $filter = $filter_manager->createInstance('markdown', $config);
+        return $filter->process($text, 'en');
+      }
+  }
+  return NULL;
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ * @param $variables
+ * This sets variables for getting events, and then gets events.
+ */
+function hp_news_feed_preprocess_paragraph__hp_news_feed(&$variables) {
+  // UUID to pass for cache
+  $uuid = $variables['elements']['#paragraph']->uuid->value;
+
+  // Check on env to get events from
+  $env = $variables['elements']['#paragraph']->field_hp_nf_environment->value;
+  $env_url = 'https://newsroom.howard.edu';
+  if($env == 'stg') {
+    $env_url = 'http://stg.newsroom.howard.edu';
+  } elseif($env == 'dev') {
+    $env_url = 'http://dev.newsroom.howard.edu';
+  }
+  $variables['hp_nf_env_url'] = $env_url;
+
+  // Check on categories filter
+  $category = null;
+  if(isset($variables['elements']['#paragraph']->field_hp_nf_news_category->value)) {
+    $category = $variables['elements']['#paragraph']->field_hp_nf_news_category->value;
+    // Decode string workaround due to bug in core or external_data_source
+    $category = str_replace('id=','',$category);
+  }
+
+  // Check on admin categories filter
+  $admin_category = null;
+  if(isset($variables['elements']['#paragraph']->field_hp_nf_news_admin_category->value)) {
+    $admin_category = $variables['elements']['#paragraph']->field_hp_nf_news_admin_category->value;
+    // Decode string workaround due to bug in core or external_data_source
+    $admin_category = str_replace('id=','',$admin_category);
+  }
+
+  // Get the desired type of feed
+  $feed_type = $variables['elements']['#paragraph']->field_hp_nf_feed_type->value;
+  $variables['hp_nf_type'] = $feed_type;
+
+  // Get news
+  if($feed_type == 'three_w_images') {
+    $variables['hp_nf_news'] = _hp_news_feed_get_news($env_url, $category, $admin_category, 3, 1, $uuid);
+  } elseif($feed_type == 'three_w_one_featured') {
+    $variables['hp_nf_news'] = _hp_news_feed_get_news($env_url, $category, $admin_category, 4, 1, $uuid);
+  } elseif($feed_type == 'four_w_one_featured') {
+    $variables['hp_nf_news'] = _hp_news_feed_get_news($env_url, $category, $admin_category, 5, 1, $uuid);
+  }
+
+}
+
+ /**
+  * Implements hook_theme().
+  * Lets us define our paragraphs templates in this module.
+  */
+ function hp_news_feed_theme($existing, $type, $theme, $path) {
+   return [
+     'paragraph__hp_news_feed' => [
+       'base hook' => 'paragraph',
+     ]
+   ];
+ }
+
+
+/**
+* CUSTOM FUNCTIONS
+*
+*/
+
+
+ /**
+ * Gets articles from newsroom, and displays.
+ *
+ */
+ function _hp_news_feed_get_news($env_url = 'https://newsroom.howard.edu', $category = null, $admin_category = null, $range = 3, $page = 1, $id = 'default') {
+   if ($cache = \Drupal::cache()->get('hp_news_feed--' . $id . '-' . $range)) {
+     return $cache->data;
+   }
+   else {
+     $currentDate = date('Y-m-d');
+     $url = $env_url . "/api/articlesearch/%20?sort=-publication_date&fields=id,label,publication_date_formatted,image,uri,summary&range=" . $range . "&page=" . $page . "&filter[publication_date][value][]=" . $currentDate . "%2023:59:59&filter[publication_date][operator]='<='&filter[exclude_from_main_feed][value]=1&filter[exclude_from_main_feed][operator]='!='";
+     if(isset($category)) {
+       $url .= "&filter[taxonomy_3][value][]=" . $category;
+     }
+     if(isset($admin_category)) {
+       $url .= "&filter[taxonomy_5][value][]=" . $admin_category;
+     }
+     $result = file_get_contents($url);
+     $result = json_decode($result, true);
+     $result = $result['data'];
+     if($result) {
+       \Drupal::cache()->set('hp_news_feed--' . $id. '-' . $range, $result, time() + 7200);
+
+       return $result;
+     } else {
+       return null;
+     }
+   }
+ }

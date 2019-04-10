@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_twitter_feed
+label: 'HP Twitter Feed'
+icon_uuid: null
+description: 'This Paragraph type provides a means to add Tweets into the Kitchen Sink Widgets.'
+behavior_plugins: {  }

@@ -1,0 +1,72 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_cd_cards
+    - paragraphs.paragraphs_type.hp_card
+    - paragraphs.paragraphs_type.hp_cards
+  module:
+    - entity_reference_revisions
+id: paragraph.hp_cards.field_hp_cd_cards
+field_name: field_hp_cd_cards
+entity_type: paragraph
+bundle: hp_cards
+label: Cards
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      hp_card: hp_card
+    target_bundles_drag_drop:
+      home_callout:
+        weight: 16
+        enabled: false
+      home_slideshow_slide:
+        weight: 17
+        enabled: false
+      hp_card:
+        enabled: true
+        weight: 18
+      hp_cards:
+        weight: 19
+        enabled: false
+      hp_events_feed:
+        weight: 20
+        enabled: false
+      hp_html:
+        weight: 21
+        enabled: false
+      hp_news_feed:
+        weight: 22
+        enabled: false
+      hp_profiles_feed:
+        weight: 23
+        enabled: false
+      ip_accordion:
+        weight: 24
+        enabled: false
+      ip_accordion_item:
+        weight: 25
+        enabled: false
+      ip_button_link:
+        weight: 26
+        enabled: false
+      ip_table:
+        weight: 27
+        enabled: false
+      ip_views_embed:
+        weight: 28
+        enabled: false
+      ip_webform_embed:
+        weight: 29
+        enabled: false
+      sponsors:
+        weight: 30
+        enabled: false
+field_type: entity_reference_revisions

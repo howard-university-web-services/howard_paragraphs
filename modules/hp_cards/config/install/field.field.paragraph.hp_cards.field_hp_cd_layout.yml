@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_cd_layout
+    - paragraphs.paragraphs_type.hp_cards
+  module:
+    - options
+id: paragraph.hp_cards.field_hp_cd_layout
+field_name: field_hp_cd_layout
+entity_type: paragraph
+bundle: hp_cards
+label: Layout
+description: 'Please choose which layout you would like for this callout.'
+required: true
+translatable: false
+default_value:
+  -
+    value: card_with_image
+default_value_callback: ''
+settings: {  }
+field_type: list_string

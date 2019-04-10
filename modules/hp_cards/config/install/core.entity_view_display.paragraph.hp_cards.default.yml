@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_cards.field_hp_cd_cards
+    - field.field.paragraph.hp_cards.field_hp_cd_layout
+    - paragraphs.paragraphs_type.hp_cards
+  module:
+    - entity_reference_revisions
+    - options
+id: paragraph.hp_cards.default
+targetEntityType: paragraph
+bundle: hp_cards
+mode: default
+content:
+  field_hp_cd_cards:
+    type: entity_reference_revisions_entity_view
+    weight: 1
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_hp_cd_layout:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+hidden: {  }

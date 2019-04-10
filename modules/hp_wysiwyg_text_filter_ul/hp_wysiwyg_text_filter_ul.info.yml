@@ -1,0 +1,7 @@
+name: 'Howard Paragraphs: Text Filter UL'
+type: module
+description: Provides a text filter for UL's that automatically applies a class for styling typographic UL's.
+version: '8.x-1.0'
+core: '8.x'
+
+package: Howard University

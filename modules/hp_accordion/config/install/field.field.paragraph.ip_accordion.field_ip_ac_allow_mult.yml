@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ip_ac_allow_mult
+    - paragraphs.paragraphs_type.ip_accordion
+id: paragraph.ip_accordion.field_ip_ac_allow_mult
+field_name: field_ip_ac_allow_mult
+entity_type: paragraph
+bundle: ip_accordion
+label: 'Allow multiple accordions open at once'
+description: 'Should multiple accordions be allowed to be opened at once? (only applies to some selections, like accordions, but not tabs)'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

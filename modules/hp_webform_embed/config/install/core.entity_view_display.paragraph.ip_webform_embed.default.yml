@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ip_webform_embed.field_ip_we_title
+    - field.field.paragraph.ip_webform_embed.field_ip_we_webform
+    - paragraphs.paragraphs_type.ip_webform_embed
+  module:
+    - webform
+id: paragraph.ip_webform_embed.default
+targetEntityType: paragraph
+bundle: ip_webform_embed
+mode: default
+content:
+  field_ip_we_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_ip_we_webform:
+    weight: 1
+    label: hidden
+    settings:
+      source_entity: true
+    third_party_settings: {  }
+    type: webform_entity_reference_entity_view
+    region: content
+hidden: {  }

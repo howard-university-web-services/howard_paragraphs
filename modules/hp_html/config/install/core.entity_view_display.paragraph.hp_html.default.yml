@@ -1,0 +1,60 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_html.field_hp_html_body
+    - field.field.paragraph.hp_html.field_hp_html_lead_in
+    - field.field.paragraph.hp_html.field_hp_html_show_sidebar
+    - field.field.paragraph.hp_html.field_hp_html_sidebar_body
+    - field.field.paragraph.hp_html.field_hp_html_sidebar_title
+    - paragraphs.paragraphs_type.hp_html
+  module:
+    - text
+_core:
+  default_config_hash: y2ZI3a0E_CM4NuEkrbhPTV8Qc6FQ2maicbSfI1QcChk
+id: paragraph.hp_html.default
+targetEntityType: paragraph
+bundle: hp_html
+mode: default
+content:
+  field_hp_html_body:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_hp_html_lead_in:
+    weight: 5
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_hp_html_show_sidebar:
+    weight: 2
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_hp_html_sidebar_body:
+    weight: 4
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_hp_html_sidebar_title:
+    weight: 3
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

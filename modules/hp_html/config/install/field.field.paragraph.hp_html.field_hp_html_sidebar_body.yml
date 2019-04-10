@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_html_sidebar_body
+    - paragraphs.paragraphs_type.hp_html
+  module:
+    - text
+id: paragraph.hp_html.field_hp_html_sidebar_body
+field_name: field_hp_html_sidebar_body
+entity_type: paragraph
+bundle: hp_html
+label: 'Sidebar Body'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

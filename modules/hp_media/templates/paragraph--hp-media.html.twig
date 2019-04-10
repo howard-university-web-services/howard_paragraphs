@@ -1,0 +1,66 @@
+{#
+/**
+ * @file
+ * HP Media paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<section class="section--padded-top section--padded-bottom media">
+  {% if hp_show_wrapper %}
+    <div class="compartment">
+  {% endif %}
+
+      {% if hp_media_type == 'remote_video' %}
+
+        <div class="video">
+          {% if content.field_hp_md_title[0] %}
+            <div class="block-header">
+                <div class="block-header__title">
+                    <span class=" block-header__icon icon-picture"></span>
+                    <h2>{{ content.field_hp_md_title }}</h2>
+                </div>
+            </div>
+          {% endif %}
+          <div class="video__wrap">
+            {{ content.field_hp_md_media }}
+          </div>
+          <div class="video__desc">
+            <div class="body-text--light body-text--small media-caption">
+              {{ content.field_hp_md_caption }}
+            </div>
+          </div>
+        </div>
+
+      {% elseif hp_media_type == 'audio' %}
+
+        <div class="audio-file">
+          {% if content.field_hp_md_title[0] %}
+            <h3>{{ content.field_hp_md_title }}</h3>
+          {% endif %}
+          {{ content.field_hp_md_media }}
+          <div class="body-text--light body-text--small media-caption">
+            {{ content.field_hp_md_caption }}
+          </div>
+        </div>
+
+      {% else %}
+
+        {% if content.field_hp_md_title[0] %}
+          <h3>{{ content.field_hp_md_title }}</h3>
+        {% endif %}
+        {{ content.field_hp_md_media }}
+        <div class="body-text--light body-text--small media-caption">
+          {{ content.field_hp_md_caption }}
+        </div>
+
+      {% endif %}
+
+      <!-- Render without, so quickedit/etc works -->
+      {{ content|without('field_hp_md_caption', 'field_hp_md_media', 'field_hp_md_title') }}
+
+  {% if hp_show_wrapper %}
+    </div>
+  {% endif %}
+</section>

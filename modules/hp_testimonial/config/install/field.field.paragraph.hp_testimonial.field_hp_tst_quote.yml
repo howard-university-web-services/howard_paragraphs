@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_tst_quote
+    - paragraphs.paragraphs_type.hp_testimonial
+  module:
+    - text
+id: paragraph.hp_testimonial.field_hp_tst_quote
+field_name: field_hp_tst_quote
+entity_type: paragraph
+bundle: hp_testimonial
+label: Quote
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

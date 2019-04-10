@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_call_background
+    - media.type.image
+    - paragraphs.paragraphs_type.hp_callout
+id: paragraph.hp_callout.field_hp_call_background
+field_name: field_hp_call_background
+entity_type: paragraph
+bundle: hp_callout
+label: 'Callout Background'
+description: '<em>Purpose:</em> A brief call to action. Limit text to ~80 characters (3 lines or less on a desktop view)<br><br><em>Dimensions:</em> 1920x1080 pixels;<br><br><em>File Size:</em> < 300kb, if possible'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

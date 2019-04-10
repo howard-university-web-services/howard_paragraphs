@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_testimonial
+label: 'HP Testimonial'
+icon_uuid: null
+description: 'This Paragraph type provides a means to add Testimonials into the Kitchen Sink Widgets.'
+behavior_plugins: {  }

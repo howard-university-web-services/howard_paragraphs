@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+#}
+
+{% for item in items %}
+  <a href="{{ item.content['#url'] }}" class="fancy-link"{% if item.content['#options'].attributes.target %} target="{{ item.content['#options'].attributes.target }}"{% endif %}>
+    <span>Read More</span>
+    <span class="icon-arrow-right"></span>
+  </a>
+{% endfor %}

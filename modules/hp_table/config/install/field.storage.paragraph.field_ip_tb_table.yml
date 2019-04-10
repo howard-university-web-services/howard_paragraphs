@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - tablefield
+_core:
+  default_config_hash: 4zNrveyBLix8YBrWCPJfdirYPhIZ9-kCVJ6S0kCsi5M
+id: paragraph.field_ip_tb_table
+field_name: field_ip_tb_table
+entity_type: paragraph
+type: tablefield
+settings: {  }
+module: tablefield
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

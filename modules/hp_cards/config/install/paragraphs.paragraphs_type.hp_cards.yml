@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_cards
+label: 'HP Cards'
+icon_uuid: null
+description: 'This is for adding three column card/text content.'
+behavior_plugins: {  }

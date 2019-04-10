@@ -1,0 +1,61 @@
+{#
+/**
+ * @file
+ * HP Events Feed paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<section class="section--padded-top section--padded-bottom news-and-events">
+  {% if hp_show_wrapper %}
+    <div class="compartment">
+  {% endif %}
+
+    <div class="block-header">
+      <div class="block-header__title"><span class=" block-header__icon icon-calendar"></span>
+        <h2>{{ content.field_hp_ef_title }}</h2>
+      </div>
+      {% if content.field_hp_ef_link[0] %}
+        <div class="block-header__btn">
+          <a href="{{ content.field_hp_ef_link[0]['#url'] }}" class="fancy-link fancy-link--light" {% if content.field_hp_ef_link[0]['#options'].attributes.target %} target="{{ content.field_hp_ef_link[0]['#options'].attributes.target }}"{% endif %}>
+            <span>{{ content.field_hp_ef_link[0]['#title'] }}</span>
+            <span class="icon-arrow-right"></span>
+          </a>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="silc-grid">
+
+      {% if hp_ef_events[0] %}
+
+        {% for evnt in hp_ef_events %}
+          <div class="silc-grid__col silc-grid__col--4-medium">
+            <a href="{{ hp_ef_env_url }}/event/{{ evnt.id }}/{{ evnt.uri }}" class="news-and-events__block" target="_blank">
+              <div class="news-and-events__desc">
+                <span class="news-and-events__date">{{ evnt.date[0].start_date }}</span>
+                <span class="news-and-events__time">
+                  {{ evnt.date[0].start_time }}
+                  {% if evnt.date[0].start_time != evnt.date[0].end_time %}
+                  - {{ evnt.date[0].end_time }}
+                  {% endif %}
+                </span>
+                <h3 class="news-and-events__title header--h3-small">{{ evnt.label }}</h3>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+
+      {% else %}
+        <div class="silc-grid__col silc-grid__col--12-medium">
+          <p>No upcoming events.</p>
+        </div>
+      {% endif %}
+
+    </div>
+
+  {% if hp_show_wrapper %}
+    </div>
+  {% endif %}
+</section>

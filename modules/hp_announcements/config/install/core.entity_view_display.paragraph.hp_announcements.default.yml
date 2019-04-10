@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_announcements.field_hp_an_feed_type
+    - paragraphs.paragraphs_type.hp_announcements
+  module:
+    - options
+id: paragraph.hp_announcements.default
+targetEntityType: paragraph
+bundle: hp_announcements
+mode: default
+content:
+  field_hp_an_feed_type:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+hidden: {  }

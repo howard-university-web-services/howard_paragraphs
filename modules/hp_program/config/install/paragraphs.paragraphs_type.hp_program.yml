@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_program
+label: 'HP Program'
+icon_uuid: null
+description: 'This is a way to embed a program from programs.howard.edu.'
+behavior_plugins: {  }

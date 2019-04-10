@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_cd_image
+    - media.type.image
+    - paragraphs.paragraphs_type.hp_card
+id: paragraph.hp_card.field_hp_cd_image
+field_name: field_hp_cd_image
+entity_type: paragraph
+bundle: hp_card
+label: Image
+description: 'If your chosen display allows an image, add one here.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_ff_count
+    - paragraphs.paragraphs_type.hp_facebook_feed
+_core:
+  default_config_hash: v_CVwz-bb-4wKX-mROo77Z-cZZSGpZfL_WsyBElfiJU
+id: paragraph.hp_facebook_feed.field_hp_ff_count
+field_name: field_hp_ff_count
+entity_type: paragraph
+bundle: hp_facebook_feed
+label: Count
+description: 'Please choose how many posts should display.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

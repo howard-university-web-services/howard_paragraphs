@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: ip_webform_embed
+label: 'HP Webform Embed'
+icon_uuid: null
+description: 'This Paragraph type provides a way to embed webforms created in drupal, into the Kitchen Sink Widgets.'
+behavior_plugins: {  }

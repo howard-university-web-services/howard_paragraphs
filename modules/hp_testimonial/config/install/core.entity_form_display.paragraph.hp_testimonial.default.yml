@@ -1,0 +1,69 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.media_entity_browser
+    - field.field.paragraph.hp_testimonial.field_hp_tst_image
+    - field.field.paragraph.hp_testimonial.field_hp_tst_intro
+    - field.field.paragraph.hp_testimonial.field_hp_tst_name
+    - field.field.paragraph.hp_testimonial.field_hp_tst_quote
+    - field.field.paragraph.hp_testimonial.field_hp_tst_title
+    - paragraphs.paragraphs_type.hp_testimonial
+  module:
+    - entity_browser
+    - text
+id: paragraph.hp_testimonial.default
+targetEntityType: paragraph
+bundle: hp_testimonial
+mode: default
+content:
+  field_hp_tst_image:
+    weight: 0
+    settings:
+      entity_browser: hc_media_browser_image
+      field_widget_display: label
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      field_widget_replace: false
+      open: false
+      field_widget_display_settings: {  }
+    third_party_settings: {  }
+    type: entity_browser_entity_reference
+    region: content
+  field_hp_tst_intro:
+    weight: 3
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_hp_tst_name:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_hp_tst_quote:
+    weight: 4
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_hp_tst_title:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

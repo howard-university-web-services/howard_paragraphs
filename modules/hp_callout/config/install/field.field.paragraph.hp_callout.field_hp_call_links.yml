@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_call_links
+    - paragraphs.paragraphs_type.hp_callout
+  module:
+    - link
+id: paragraph.hp_callout.field_hp_call_links
+field_name: field_hp_call_links
+entity_type: paragraph
+bundle: hp_callout
+label: 'Callout Links'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

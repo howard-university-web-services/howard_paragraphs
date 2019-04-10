@@ -1,0 +1,74 @@
+<?php
+
+/**
+ * @file
+ * ip_button_link module file.
+ */
+
+ use Drupal\Core\Routing\RouteMatchInterface;
+ use Drupal\paragraphs\Entity\Paragraph;
+ use Drupal\media\Entity\Media;
+ use Drupal\image\Entity\ImageStyle;
+
+ /**
+ * Implements hook_help().
+ *
+ * @inheritdoc
+ */
+function hp_carousel_with_caption_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.hp_carousel_with_caption':
+      $text = file_get_contents(dirname(__FILE__) . "/README.md");
+      if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        return '<pre>' . $text . '</pre>';
+      }
+      else {
+        // Use the Markdown filter to render the README.
+        $filter_manager = \Drupal::service('plugin.manager.filter');
+        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $config = ['settings' => $settings];
+        $filter = $filter_manager->createInstance('markdown', $config);
+        return $filter->process($text, 'en');
+      }
+  }
+  return NULL;
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ * @param $variables
+ * This sets classes needed for the button/link type.
+ */
+function hp_carousel_with_caption_preprocess_paragraph__hp_carousel_with_caption_slide(&$variables) {
+    $paragraph = $variables['elements']['#paragraph'];
+
+    // Get media image URL
+    if ($paragraph->hasField('field_hp_cc_image')) {
+      $hero_image = $paragraph->get('field_hp_cc_image')->getValue();
+      if ($hero_image && !empty($hero_image)) {
+        $entity = Media::load($hero_image[0]['target_id']);
+        if(isset($entity->field_media_image->entity)) {
+          $variables['hp_cc_image'] = ImageStyle::load('hc_carousel_image')->buildUrl($entity->field_media_image->entity->getFileUri());
+        }
+      }
+    }
+
+  }
+
+ /**
+  * Implements hook_theme().
+  * Lets us define our paragraphs templates in this module.
+  */
+ function hp_carousel_with_caption_theme($existing, $type, $theme, $path) {
+   return [
+     'paragraph__hp_carousel_with_caption' => [
+       'base hook' => 'paragraph',
+     ],
+     'paragraph__hp_carousel_with_caption_slide' => [
+       'base hook' => 'paragraph',
+     ],
+     'field__paragraph__field_hp_cc_link' => [
+       'base hook' => 'paragraph',
+     ]
+   ];
+ }

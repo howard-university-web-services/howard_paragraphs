@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_carousel_with_modal_slide
+label: 'HP Carousel with Modal Slide'
+icon_uuid: null
+description: 'This Paragraph type provides individual slide items to the Carousel with Modal.'
+behavior_plugins: {  }

@@ -1,0 +1,93 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_html.field_hp_html_body
+    - field.field.paragraph.hp_html.field_hp_html_lead_in
+    - field.field.paragraph.hp_html.field_hp_html_show_sidebar
+    - field.field.paragraph.hp_html.field_hp_html_sidebar_body
+    - field.field.paragraph.hp_html.field_hp_html_sidebar_title
+    - paragraphs.paragraphs_type.hp_html
+  module:
+    - field_group
+    - text
+third_party_settings:
+  field_group:
+    group_sidebar:
+      children:
+        - field_hp_html_show_sidebar
+        - field_hp_html_sidebar_title
+        - field_hp_html_sidebar_body
+      parent_name: ''
+      weight: 4
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: Sidebar
+      region: content
+    group_menu:
+      children:
+        - field_hp_html_show_menu
+      parent_name: ''
+      weight: 0
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: Menu
+      region: content
+_core:
+  default_config_hash: T_XvvLBG7JTp_AstY87YXQOCxA9gILPVKNohAuWpnS4
+id: paragraph.hp_html.default
+targetEntityType: paragraph
+bundle: hp_html
+mode: default
+content:
+  field_hp_html_body:
+    weight: 3
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_hp_html_lead_in:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_hp_html_show_sidebar:
+    weight: 4
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_hp_html_sidebar_body:
+    weight: 6
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_hp_html_sidebar_title:
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

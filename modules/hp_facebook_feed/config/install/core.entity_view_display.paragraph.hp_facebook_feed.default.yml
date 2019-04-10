@@ -1,0 +1,59 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_facebook_feed.field_hp_ff_app
+    - field.field.paragraph.hp_facebook_feed.field_hp_ff_app_secret
+    - field.field.paragraph.hp_facebook_feed.field_hp_ff_count
+    - field.field.paragraph.hp_facebook_feed.field_hp_ff_page_id
+    - field.field.paragraph.hp_facebook_feed.field_hp_ff_token
+    - paragraphs.paragraphs_type.hp_facebook_feed
+_core:
+  default_config_hash: 47KgS5SCqqAHGCga85Mk2KxnsGEG-R3D8wSTa68U-vg
+id: paragraph.hp_facebook_feed.default
+targetEntityType: paragraph
+bundle: hp_facebook_feed
+mode: default
+content:
+  field_hp_ff_app:
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_hp_ff_app_secret:
+    weight: 3
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_hp_ff_count:
+    weight: 0
+    label: hidden
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_hp_ff_page_id:
+    weight: 4
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_hp_ff_token:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

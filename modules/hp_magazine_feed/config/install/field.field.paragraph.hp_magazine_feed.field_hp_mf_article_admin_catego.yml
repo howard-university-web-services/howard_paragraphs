@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_mf_article_admin_catego
+    - paragraphs.paragraphs_type.hp_magazine_feed
+  module:
+    - external_data_source
+id: paragraph.hp_magazine_feed.field_hp_mf_article_admin_catego
+field_name: field_hp_mf_article_admin_catego
+entity_type: paragraph
+bundle: hp_magazine_feed
+label: 'Article Admin Category'
+description: 'Optionally, filter this feed by admin category. These categories are pulled from the "Administrative Category" taxonomy (admin_categories) on the prod installation of magazine.howard.edu.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: external_data_source

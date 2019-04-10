@@ -1,0 +1,113 @@
+<?php
+
+/**
+ * @file
+ * hp_cards module file.
+ */
+
+ use Drupal\Core\Routing\RouteMatchInterface;
+ use Drupal\paragraphs\Entity\Paragraph;
+ use Drupal\media\Entity\Media;
+ use Drupal\image\Entity\ImageStyle;
+
+ /**
+ * Implements hook_help().
+ *
+ * @inheritdoc
+ */
+function hp_cards_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.hp_cards':
+      $text = file_get_contents(dirname(__FILE__) . "/README.md");
+      if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        return '<pre>' . $text . '</pre>';
+      }
+      else {
+        // Use the Markdown filter to render the README.
+        $filter_manager = \Drupal::service('plugin.manager.filter');
+        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $config = ['settings' => $settings];
+        $filter = $filter_manager->createInstance('markdown', $config);
+        return $filter->process($text, 'en');
+      }
+  }
+  return NULL;
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ * @param $variables
+ * This sets several classes needed for the card type.
+ */
+function hp_cards_preprocess_paragraph__hp_cards(&$variables) {
+    // Set classes for card type
+    $layout = $variables['elements']['#paragraph']->field_hp_cd_layout->value;
+
+    // Default to text_only class
+    $variables['hp_card_wrapper_class'] = 'announcements';
+    if($layout == 'card_with_image') {
+      $variables['hp_card_wrapper_class'] = 'news-and-events';
+    } elseif($layout == 'text_only') {
+      $variables['hp_card_wrapper_class'] = 'announcements';
+    }
+  }
+
+/**
+ * Implements hook_preprocess_paragraph().
+ * @param $variables
+ * This sets several classes needed for the card type.
+ */
+function hp_cards_preprocess_paragraph__hp_card(&$variables) {
+    $paragraph = $variables['elements']['#paragraph'];
+
+    // Get layout from parent
+    $cards = $paragraph->getParentEntity();
+    $layout = $cards->field_hp_cd_layout->value;
+
+    // Set layout Var
+    $variables['hp_card_layout'] = $layout;
+
+    // Default to text_only class
+    $variables['hp_card_class'] = 'announcements__block';
+    if($layout == 'card_with_image') {
+      $variables['hp_card_class'] = 'news-and-events__block';
+    } elseif($layout == 'text_only') {
+      $variables['hp_card_class'] = 'announcements__block';
+    }
+
+    // Get media image URL
+    if ($paragraph->hasField('field_hp_cd_image')) {
+      $hero_image = $paragraph->get('field_hp_cd_image')->getValue();
+      if ($hero_image && !empty($hero_image)) {
+        $entity = Media::load($hero_image[0]['target_id']);
+        if(isset($entity->field_media_image->entity)) {
+          $variables['hp_card_image'] = ImageStyle::load('large')->buildUrl($entity->field_media_image->entity->getFileUri());
+        }
+      }
+    }
+
+  }
+
+ /**
+  * Implements hook_theme().
+  * Lets us define our paragraphs templates in this module.
+  */
+ function hp_cards_theme($existing, $type, $theme, $path) {
+   return [
+     'paragraph__hp_card' => [
+       'base hook' => 'paragraph',
+     ],
+     'paragraph__hp_cards' => [
+       'base hook' => 'paragraph',
+     ],
+     'field__paragraph__field_hp_cd_text' => [
+       'base hook' => 'paragraph',
+     ],
+     'field__paragraph__field_hp_cd_title' => [
+       'base hook' => 'paragraph',
+     ],
+     'field__paragraph__field_hp_cd_link' => [
+       'base hook' => 'paragraph',
+     ]
+   ];
+ }

@@ -1,0 +1,58 @@
+{#
+/**
+ * @file
+ * HP Announcements paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<section class="section--padded-top section--padded-bottom" aria-label="Featured Announcements">
+  {% if hp_show_wrapper %}
+    <div class="compartment">
+  {% endif %}
+
+
+    <div class="announcements">
+      <div class="block-header">
+        <div class="block-header__title"><span class=" block-header__icon icon-announcement"></span><h2>Announcements</h2>
+        </div>
+      </div>
+      <div class="silc-grid">
+        {% if hp_announcements[0] %}
+          {% for ann in hp_announcements %}
+
+            {% if hp_an_type == 'one_column' %}
+              <div class="silc-grid__col silc-grid__col--12-medium">
+            {% elseif hp_an_type == 'two_column' %}
+              <div class="silc-grid__col silc-grid__col--6-medium">
+            {% endif %}
+            
+                <div class="announcements__block {% if ann.featured == '1' %}announcements__block--featured{% endif %}">
+                  <h3 class="announcements__title">{{ ann.title }}</h3>
+                  <p><span class="body-text--date">{{ ann.start_date|date("M d, Y") }}</span></p>
+                  <p>{{ ann.summary }}</p>
+
+                  {% if ann.link.uri %}
+                      <a href="{{ ann.link.uri }}" class="fancy-link" target="{{ ann.link.target }}">
+                        <span>{{ ann.link.title }}</span>
+                        <span class="icon-arrow-right"></span>
+                      </a>
+                  {% endif %}
+            
+                </div>
+              </div>
+          {% endfor %}
+        {% else %}
+          <div class="silc-grid__col silc-grid__col--12-medium">
+            <p>No current announcements.</p>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+
+  {% if hp_show_wrapper %}
+    </div>
+  {% endif %}
+</section>

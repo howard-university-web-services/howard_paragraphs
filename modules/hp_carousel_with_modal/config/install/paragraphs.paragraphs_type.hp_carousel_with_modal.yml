@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_carousel_with_modal
+label: 'HP Carousel with Modal'
+icon_uuid: null
+description: 'This Paragraph type provides the Carousel with Modal.'
+behavior_plugins: {  }

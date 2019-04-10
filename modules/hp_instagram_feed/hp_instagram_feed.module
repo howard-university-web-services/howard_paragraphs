@@ -1,0 +1,151 @@
+<?php
+
+/**
+ * @file
+ * hp_instagram_feed module file.
+ */
+
+ require "vendor/autoload.php";
+
+ use Facebook\Facebook;
+ use Drupal\Core\Routing\RouteMatchInterface;
+ use Drupal\paragraphs\Entity\Paragraph;
+ use Drupal\Core\Form\FormStateInterface;
+
+ /**
+ * Implements hook_help().
+ *
+ * @inheritdoc
+ */
+function hp_instagram_feed_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.hp_instagram_feed':
+      $text = file_get_contents(dirname(__FILE__) . "/README.md");
+      if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        return '<pre>' . $text . '</pre>';
+      }
+      else {
+        // Use the Markdown filter to render the README.
+        $filter_manager = \Drupal::service('plugin.manager.filter');
+        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $config = ['settings' => $settings];
+        $filter = $filter_manager->createInstance('markdown', $config);
+        return $filter->process($text, 'en');
+      }
+  }
+  return NULL;
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ * @param $variables
+ * This sets variables for getting instagram posts, and then gets posts.
+ */
+function hp_instagram_feed_preprocess_paragraph__hp_instagram_feed(&$variables) {
+
+  // Check on desired count
+  $count = 1;
+  if(isset($variables['elements']['#paragraph']->field_hp_if_count->value)) {
+    $count = $variables['elements']['#paragraph']->field_hp_if_count->value;
+  }
+  
+  // Token
+  $token = 'EAACI6TOoxmYBAHQWvUbfuKw6EyVllaudhZA6NhG5yaiKYXVKVmmDqlc3aAfD3WwgpVqsCF5zMZBkdZCNbw7bGarS4cigW1j7F1q5M1cZAZAqdKRjzEjnIckqdRSXL2IsKSkk4HksM0XjUtTPZBqXTCFdUfTXZARg9oZD';
+  if(isset($variables['elements']['#paragraph']->field_hp_if_token->value)) {
+    $token = $variables['elements']['#paragraph']->field_hp_if_token->value;
+  }
+
+  // App ID
+  $app_id = '150535175456358';
+  if(isset($variables['elements']['#paragraph']->field_hp_if_app->value)) {
+    $app_id = $variables['elements']['#paragraph']->field_hp_if_app->value;
+  }
+
+  // App Secret
+  $app_secret = '5e8f310a3f616ca899d4ba0c8ebe709f';
+  if(isset($variables['elements']['#paragraph']->field_hp_if_app_secret->value)) {
+    $app_secret = $variables['elements']['#paragraph']->field_hp_if_app_secret->value;
+  }
+
+  // Get posts
+  $variables['hp_if_posts'] = _hp_instagram_feed_get_posts($count, $token, $app_id, $app_secret);
+
+}
+
+ /**
+  * Implements hook_theme().
+  * Lets us define our paragraphs templates in this module.
+  */
+ function hp_instagram_feed_theme($existing, $type, $theme, $path) {
+   return [
+     'paragraph__hp_instagram_feed' => [
+       'base hook' => 'paragraph',
+     ]
+   ];
+ }
+
+
+/**
+* CUSTOM FUNCTIONS
+*
+*/
+
+
+ /**
+ * Gets posts from instagram, and displays.
+ *
+ */
+ function _hp_instagram_feed_get_posts( $count, $token, $app_id, $app_secret) {
+     
+   // Get cache if it's there.
+   if ($cache = \Drupal::cache()->get('hp_instagram_feed--' . $token . '-' . $count)) {
+     return $cache->data;
+   } else {
+
+    // Uses Facebook PHP SDK, attached via composer, see readme.
+    // see https://developers.facebook.com/docs/graph-api/reference/v3.2/user/feed for fields/etc
+
+  
+    $fb = new Facebook([
+      'app_id' => $app_id,
+      'app_secret' => $app_secret
+    ]);
+
+    $endpoint = '/me/posts?fields=picture,message,message_tags,permalink_url,link&limit=' . $count;
+
+    try {
+      // Test keys/etc here first so fails gracefully.
+      $test_access = $fb->get('/me', $token);
+    } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+      $result['error'] = 'Graph returned an error: ' . $e->getMessage();
+    } catch(\Facebook\Exceptions\FacebookSDKException $e) {
+      $result['error'] = 'Facebook SDK returned an error: ' . $e->getMessage();
+    }
+
+    if($test_access) {
+      try {
+        $response = $fb->get($endpoint, $token);
+      } catch(Facebook\Exceptions\FacebookResponseException $e) {
+        $result['error'] = 'Graph returned an error: ' . $e->getMessage();
+      } catch(Facebook\Exceptions\FacebookSDKException $e) {
+        $result['error'] = 'Facebook SDK returned an error: ' . $e->getMessage();
+      }
+
+      $feedEdge = $response->getGraphEdge();
+      $result = [];
+      foreach ($feedEdge as $key => $status) {
+        $result['results'][$key] = $status->asArray();
+      }
+
+    } 
+
+    // Set cache
+    if($result) {
+      \Drupal::cache()->set('hp_instagram_feed--' . $token . '-' . $count, $result, time() + 7200);
+      return $result;
+    } else {
+      return null;
+    }
+
+   }
+ }

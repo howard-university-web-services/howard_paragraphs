@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_pf_profiles_department
+    - paragraphs.paragraphs_type.hp_profiles_feed
+  module:
+    - external_data_source
+id: paragraph.hp_profiles_feed.field_hp_pf_profiles_department
+field_name: field_hp_pf_profiles_department
+entity_type: paragraph
+bundle: hp_profiles_feed
+label: 'Department'
+description: 'Optionally, filter this feed by department. These categories are pulled from the "Department" taxonomy (profile_department) on the prod installation of profiles.howard.edu.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: external_data_source

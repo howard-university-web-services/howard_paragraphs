@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ip_ac_open_first
+    - paragraphs.paragraphs_type.ip_accordion
+id: paragraph.ip_accordion.field_ip_ac_open_first
+field_name: field_ip_ac_open_first
+entity_type: paragraph
+bundle: ip_accordion
+label: 'Open first accordion'
+description: 'Should the first item be open? (Accordions only)'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

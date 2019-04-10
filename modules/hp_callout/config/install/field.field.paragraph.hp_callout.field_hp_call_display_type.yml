@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_call_display_type
+    - paragraphs.paragraphs_type.hp_callout
+  module:
+    - options
+id: paragraph.hp_callout.field_hp_call_display_type
+field_name: field_hp_call_display_type
+entity_type: paragraph
+bundle: hp_callout
+label: 'Display Type'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: standard
+default_value_callback: ''
+settings: {  }
+field_type: list_string

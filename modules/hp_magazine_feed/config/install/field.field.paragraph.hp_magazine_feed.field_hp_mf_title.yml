@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_mf_title
+    - paragraphs.paragraphs_type.hp_magazine_feed
+id: paragraph.hp_magazine_feed.field_hp_mf_title
+field_name: field_hp_mf_title
+entity_type: paragraph
+bundle: hp_magazine_feed
+label: Title
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 'Howard Magazine Articles'
+default_value_callback: ''
+settings: {  }
+field_type: string

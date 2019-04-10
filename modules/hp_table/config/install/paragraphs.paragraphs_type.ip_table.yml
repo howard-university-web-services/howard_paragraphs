@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: b3C2ZCr1OTd9B0VdI-FFD4qdyO-S15lKgdGqOkyhSG0
+id: ip_table
+label: 'HP Table'
+icon_uuid: null
+description: 'This Paragraph type provides a table into the Kitchen Sink Widgets.'
+behavior_plugins: {  }

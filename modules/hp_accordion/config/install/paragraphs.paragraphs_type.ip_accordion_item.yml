@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: ip_accordion_item
+label: 'HP Accordion Item'
+icon_uuid: null
+description: 'This Paragraph type provides individual accordion/tab items to the Accordion Group.'
+behavior_plugins: {  }

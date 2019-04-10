@@ -1,0 +1,50 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_profiles_feed.field_hp_pf_environment
+    - field.field.paragraph.hp_profiles_feed.field_hp_pf_level
+    - field.field.paragraph.hp_profiles_feed.field_hp_pf_profiles_department
+    - field.field.paragraph.hp_profiles_feed.field_hp_pf_title
+    - paragraphs.paragraphs_type.hp_profiles_feed
+  module:
+    - options
+_core:
+  default_config_hash: rGJZM-Ann_0IRtqkDUHhpDzvKR7W48IyEqgHAqPZh04
+id: paragraph.hp_profiles_feed.default
+targetEntityType: paragraph
+bundle: hp_profiles_feed
+mode: default
+content:
+  field_hp_ef_environment:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_hp_ef_event_category:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: external_data_source_formatter
+    region: content
+  field_hp_pf_level:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_hp_pf_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  field_hp_pf_environment: true
+  field_hp_pf_profiles_department: true

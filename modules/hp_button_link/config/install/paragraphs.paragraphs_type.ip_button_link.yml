@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: ip_button_link
+label: 'HP Button or Link'
+icon_uuid: null
+description: 'This Paragraph type provides a button or link into the Kitchen Sink Widgets. Classes available.'
+behavior_plugins: {  }

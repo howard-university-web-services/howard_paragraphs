@@ -1,0 +1,33 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ip_ac_item
+    - paragraphs.paragraphs_type.ip_accordion
+    - paragraphs.paragraphs_type.ip_accordion_item
+  module:
+    - entity_reference_revisions
+id: paragraph.ip_accordion.field_ip_ac_item
+field_name: field_ip_ac_item
+entity_type: paragraph
+bundle: ip_accordion
+label: Items
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      ip_accordion_item: ip_accordion_item
+    target_bundles_drag_drop:
+      ip_accordion:
+        weight: 2
+        enabled: false
+      ip_accordion_item:
+        enabled: true
+        weight: 4
+field_type: entity_reference_revisions

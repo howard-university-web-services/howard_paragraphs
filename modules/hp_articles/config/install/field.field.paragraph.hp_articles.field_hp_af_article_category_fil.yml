@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_af_article_category_fil
+    - paragraphs.paragraphs_type.hp_articles
+    - taxonomy.vocabulary.hc_article_category
+id: paragraph.hp_articles.field_hp_af_article_category_fil
+field_name: field_hp_af_article_category_fil
+entity_type: paragraph
+bundle: hp_articles
+label: 'Article Category Filter'
+description: 'If you wish to filter for a specific category of articles, do so here.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      hc_article_category: hc_article_category
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

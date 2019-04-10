@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_articles.field_hp_af_article_category_fil
+    - paragraphs.paragraphs_type.hp_articles
+id: paragraph.hp_articles.default
+targetEntityType: paragraph
+bundle: hp_articles
+mode: default
+content:
+  field_hp_af_article_category_fil:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

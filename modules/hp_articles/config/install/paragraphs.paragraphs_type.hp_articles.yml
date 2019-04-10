@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_articles
+label: 'HP Articles'
+icon_uuid: null
+description: 'This Paragraph type provides a way to embed a feed of Articles.'
+behavior_plugins: {  }

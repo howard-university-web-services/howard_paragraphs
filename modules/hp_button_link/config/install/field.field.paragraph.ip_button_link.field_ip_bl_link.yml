@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ip_bl_link
+    - paragraphs.paragraphs_type.ip_button_link
+  module:
+    - link
+id: paragraph.ip_button_link.field_ip_bl_link
+field_name: field_ip_bl_link
+entity_type: paragraph
+bundle: ip_button_link
+label: Link
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

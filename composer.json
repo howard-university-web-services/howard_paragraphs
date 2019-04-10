@@ -1,0 +1,14 @@
+{
+    "name": "howard/howard_paragraphs",
+    "type": "drupal-module",
+    "description": "This module is designed to provide default kitchen sink paragraph types for Howard University",
+    "keywords": ["Drupal"],
+    "homepage": "https://github.com/howard-university-web-services/howard_paragraphs.git",
+    "license": "GPL-2.0+",
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+        "8.x-1.x": "1.x-dev"
+        }
+    }
+}

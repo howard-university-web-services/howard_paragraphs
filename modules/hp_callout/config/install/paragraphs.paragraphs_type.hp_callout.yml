@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_callout
+label: 'HP Callout'
+icon_uuid: null
+description: 'This paragraph type holds a callout with background image.'
+behavior_plugins: {  }

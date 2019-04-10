@@ -1,0 +1,59 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.media_entity_browser
+    - field.field.paragraph.hp_callout.field_hp_call_background
+    - field.field.paragraph.hp_callout.field_hp_call_display_type
+    - field.field.paragraph.hp_callout.field_hp_call_links
+    - field.field.paragraph.hp_callout.field_hp_call_title
+    - paragraphs.paragraphs_type.hp_callout
+  module:
+    - entity_browser
+    - link_target
+id: paragraph.hp_callout.default
+targetEntityType: paragraph
+bundle: hp_callout
+mode: default
+content:
+  field_hp_call_background:
+    weight: 1
+    settings:
+      entity_browser: hc_media_browser_image
+      field_widget_display: label
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      field_widget_replace: false
+      open: false
+      field_widget_display_settings: {  }
+    third_party_settings: {  }
+    type: entity_browser_entity_reference
+    region: content
+  field_hp_call_display_type:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_hp_call_links:
+    weight: 3
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+      link_target: ''
+    third_party_settings: {  }
+    type: link_target_field_widget
+    region: content
+  field_hp_call_title:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

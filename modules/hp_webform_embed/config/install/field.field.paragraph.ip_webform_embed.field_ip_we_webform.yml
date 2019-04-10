@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ip_we_webform
+    - paragraphs.paragraphs_type.ip_webform_embed
+  module:
+    - webform
+id: paragraph.ip_webform_embed.field_ip_we_webform
+field_name: field_ip_we_webform
+entity_type: paragraph
+bundle: ip_webform_embed
+label: Webform
+description: 'Please choose the view you wish to embed here.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:webform'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+  default_data: ''
+  status: open
+  open: ''
+  close: ''
+field_type: webform

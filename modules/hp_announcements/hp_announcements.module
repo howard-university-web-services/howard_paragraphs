@@ -1,0 +1,76 @@
+<?php
+
+/**
+ * @file
+ * hp_announcements module file.
+ */
+
+ use Drupal\Core\Routing\RouteMatchInterface;
+ use Drupal\paragraphs\Entity\Paragraph;
+ use Drupal\views\Views;
+
+ /**
+ * Implements hook_help().
+ *
+ * @inheritdoc
+ */
+function hp_announcements_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.hp_announcements':
+      $text = file_get_contents(dirname(__FILE__) . "/README.md");
+      if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        return '<pre>' . $text . '</pre>';
+      }
+      else {
+        // Use the Markdown filter to render the README.
+        $filter_manager = \Drupal::service('plugin.manager.filter');
+        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $config = ['settings' => $settings];
+        $filter = $filter_manager->createInstance('markdown', $config);
+        return $filter->process($text, 'en');
+      }
+  }
+  return NULL;
+}
+
+ /**
+  * Implements hook_theme().
+  * Lets us define our paragraphs templates in this module.
+  */
+ function hp_announcements_theme($existing, $type, $theme, $path) {
+   return [
+     'paragraph__hp_announcements' => [
+       'base hook' => 'paragraph',
+     ]
+   ];
+ }
+
+ /**
+  * Implements hook_preprocess_paragraph().
+  * @param $variables
+  * This sets classes needed for the button/link type.
+  */
+ function hp_announcements_preprocess_paragraph__hp_announcements(&$variables) {
+    
+    // Load the view results
+    $values = [];
+    $view = views::getview('hp_announcements_ks_feed', 'hp_announcements_block');
+    if ($view) {
+      $view->execute();
+      foreach ($view->result as $rid => $row) {
+        $values[$rid]['title'] = $row->_entity->title->value;
+        $values[$rid]['featured'] = $row->_entity->field_hc_featured->value;
+        $values[$rid]['start_date'] = $row->_entity->field_hc_start_date[0]->value;
+        $values[$rid]['summary'] = $row->_entity->field_hc_summary->value;
+        $values[$rid]['link']['title'] = $row->_entity->field_hc_links[0]->title;
+        $values[$rid]['link']['uri'] = $row->_entity->field_hc_links[0]->uri;
+        $values[$rid]['link']['target'] = $row->_entity->field_hc_links[0]->options['attributes']['target'];
+      }
+    }
+    $variables['hp_announcements'] = $values;
+
+    // Get layout
+    $feed_type = $variables['elements']['#paragraph']->field_hp_an_feed_type->value;
+    $variables['hp_an_type'] = $feed_type;
+
+   }

@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * HP Embed paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<section class="section--padded-top section--padded-bottom" aria-label="Embed">
+  {% if hp_show_wrapper %}
+    <div class="compartment">
+  {% endif %}
+
+    {{ content.field_hp_embed_code }}
+
+    <!-- Render without, so quickedit/etc works -->
+    {{ content|without('field_hp_embed_code') }}
+
+  {% if hp_show_wrapper %}
+    </div>
+  {% endif %}
+</section>

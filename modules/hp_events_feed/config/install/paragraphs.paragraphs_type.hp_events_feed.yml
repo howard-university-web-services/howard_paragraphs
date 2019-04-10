@@ -1,0 +1,9 @@
+uuid: 9418110b-9820-4405-baf6-37ce86ef50b2
+langcode: en
+status: true
+dependencies: {  }
+id: hp_events_feed
+label: 'HP Events Feed'
+icon_uuid: null
+description: 'This is a feed of events from calendar.howard.edu.'
+behavior_plugins: {  }

@@ -1,0 +1,33 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_md_media
+    - media.type.audio
+    - media.type.file
+    - media.type.image
+    - media.type.remote_video
+    - paragraphs.paragraphs_type.hp_media
+id: paragraph.hp_media.field_hp_md_media
+field_name: field_hp_md_media
+entity_type: paragraph
+bundle: hp_media
+label: Media
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      audio: audio
+      file: file
+      image: image
+      remote_video: remote_video
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: audio
+field_type: entity_reference
