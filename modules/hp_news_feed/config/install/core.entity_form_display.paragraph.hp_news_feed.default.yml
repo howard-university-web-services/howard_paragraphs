@@ -7,6 +7,7 @@ dependencies:
     - field.field.paragraph.hp_news_feed.field_hp_nf_link
     - field.field.paragraph.hp_news_feed.field_hp_nf_news_admin_category
     - field.field.paragraph.hp_news_feed.field_hp_nf_news_category
+    - field.field.paragraph.hp_news_feed.field_hp_nf_news_schools_college
     - field.field.paragraph.hp_news_feed.field_hp_nf_title
     - paragraphs.paragraphs_type.hp_news_feed
   module:
@@ -50,6 +51,14 @@ content:
     region: content
   field_hp_nf_news_category:
     weight: 4
+    settings:
+      size: 1
+      placeholder: ''
+    third_party_settings: {  }
+    type: external_data_source_select_widget
+    region: content
+  field_hp_nf_news_schools_college:
+    weight: 6
     settings:
       size: 1
       placeholder: ''

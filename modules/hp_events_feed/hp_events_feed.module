@@ -68,8 +68,16 @@ function hp_events_feed_preprocess_paragraph__hp_events_feed(&$variables) {
     $admin_category = str_replace('id=','',$admin_category);
   }
 
+  // Check on Schools and Colleges filter
+  $schools_colleges = null;
+  if(isset($variables['elements']['#paragraph']->field_hp_ef_event_schools_colleg->value)) {
+    $schools_colleges = $variables['elements']['#paragraph']->field_hp_ef_event_schools_colleg->value;
+    // Decode string workaround due to bug in core or external_data_source
+    $schools_colleges = str_replace('id=','',$schools_colleges);
+  }
+
   // Get events
-  $variables['hp_ef_events'] = _hp_events_feed_get_events($env_url, $category, $admin_category, 3, 1, $uuid);
+  $variables['hp_ef_events'] = _hp_events_feed_get_events($env_url, $category, $admin_category, $schools_colleges, 3, 1, $uuid);
 
 
 }
@@ -97,7 +105,7 @@ function hp_events_feed_preprocess_paragraph__hp_events_feed(&$variables) {
  * Gets events from calendar, and displays.
  *
  */
- function _hp_events_feed_get_events($env_url = 'https://calendar.howard.edu', $category = null, $admin_category = null, $range = 3, $page = 1, $id = 'default') {
+ function _hp_events_feed_get_events($env_url = 'https://calendar.howard.edu', $category = null, $admin_category = null, $schools_colleges = null, $range = 3, $page = 1, $id = 'default') {
    if ($cache = \Drupal::cache()->get('hp_events_feed--' . $id)) {
      return $cache->data;
    }
@@ -109,6 +117,9 @@ function hp_events_feed_preprocess_paragraph__hp_events_feed(&$variables) {
      }
      if(isset($admin_category)) {
        $url .= "&filter[taxonomy_5][value][0]=" . $admin_category . "&filter[taxonomy_5][operator][0]='IN'";
+     }
+     if(isset($schools_colleges)) {
+       $url .= "&filter[taxonomy_1][value][0]=" . $schools_colleges . "&filter[taxonomy_1][operator][0]='IN'";
      }
      $result = file_get_contents($url);
      $result = json_decode($result, true);

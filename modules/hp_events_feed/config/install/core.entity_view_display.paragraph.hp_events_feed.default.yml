@@ -5,6 +5,7 @@ dependencies:
     - field.field.paragraph.hp_events_feed.field_hp_ef_environment
     - field.field.paragraph.hp_events_feed.field_hp_ef_event_admin_category
     - field.field.paragraph.hp_events_feed.field_hp_ef_event_category
+    - field.field.paragraph.hp_events_feed.field_hp_ef_event_schools_colleg
     - field.field.paragraph.hp_events_feed.field_hp_ef_link
     - field.field.paragraph.hp_events_feed.field_hp_ef_title
     - paragraphs.paragraphs_type.hp_events_feed
@@ -35,6 +36,13 @@ content:
     region: content
   field_hp_ef_event_category:
     weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: external_data_source_formatter
+    region: content
+  field_hp_ef_event_schools_colleg:
+    weight: 5
     label: hidden
     settings: {  }
     third_party_settings: {  }
