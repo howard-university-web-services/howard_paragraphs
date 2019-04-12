@@ -105,8 +105,6 @@ function hp_twitter_feed_preprocess_paragraph__hp_twitter_feed(&$variables) {
        $result['results'][$key] = $tweet;
       }
     }
-    
-
     // Set cache
     if($result) {
       \Drupal::cache()->set('hp_twitter_feed--' . $username . '-' . $count, $result, time() + 7200);

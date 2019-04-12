@@ -17,6 +17,9 @@
         "issues": "https://github.com/howard-university-web-services/howard_paragraphs/issues",
         "source": "https://github.com/howard-university-web-services/howard_paragraphs"
     },
+    "require": {
+        "abraham/twitteroauth": "^0.9.2"
+    },
     "extra": {
         "branch-alias": {
         "8.x-1.x": "1.x-dev"

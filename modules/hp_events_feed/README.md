@@ -7,7 +7,7 @@ This module contains markup only (no js or css), those should be provided in the
  - [idfive Component Library](https://bitbucket.org/idfivellc/idfive-component-library)
  - [idfive Component Library D8 Theme](https://bitbucket.org/idfivellc/idfive-component-library-d8-theme)
 
- ## Configuration
+## Configuration
 The following fields are available on this KS widget:
  - Title: Sets the title in the header bar. Defaults to "Events".
  - Link: Sets the "View all Link" in the header bar, defaults to production calendar (calendar.howard.edu). 
