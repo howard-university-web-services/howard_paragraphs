@@ -1,6 +1,6 @@
 # Howard Paragraphs Instagram Feed
 
-Paragraphs integration of a Instagram Feed for Howard projects:
+Paragraphs integration of a Instagram Feed for Howard projects.
 
 This module contains markup only (no js or css), those should be provided in the client theme, loaded via the idfive Component Library:
 
@@ -8,10 +8,15 @@ This module contains markup only (no js or css), those should be provided in the
  - [idfive Component Library D8 Theme](https://bitbucket.org/idfivellc/idfive-component-library-d8-theme)
 
 # Composer
-
 This module needs the following library, [facebook/graph-sdk](https://github.com/facebook/php-graph-sdk) added to the projects composer file:
-
  - composer require facebook/graph-sdk
+
+## Configuration
+The following fields are available on this KS widget:
+
+
+## Instagram specifics
+
 
 ## Markup Overrides
 
