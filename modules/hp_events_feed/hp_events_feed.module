@@ -132,3 +132,15 @@ function hp_events_feed_preprocess_paragraph__hp_events_feed(&$variables) {
      }
    }
  }
+
+
+ // UPDATES
+//////////////////////////////////////////////////////
+
+
+/**
+ * Add schools and colleges optional filter.
+ */
+function hp_events_feed_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_events_feed');
+}

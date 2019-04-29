@@ -141,3 +141,15 @@ function hp_news_feed_preprocess_paragraph__hp_news_feed(&$variables) {
      }
    }
  }
+
+
+// UPDATES
+//////////////////////////////////////////////////////
+
+
+/**
+ * Add schools and colleges optional filter.
+ */
+function hp_news_feed_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_news_feed');
+}

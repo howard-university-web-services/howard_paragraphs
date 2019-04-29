@@ -62,9 +62,9 @@ function hp_announcements_help($route_name, RouteMatchInterface $route_match) {
         $values[$rid]['featured'] = $row->_entity->field_hc_featured->value;
         $values[$rid]['start_date'] = $row->_entity->field_hc_start_date[0]->value;
         $values[$rid]['summary'] = $row->_entity->field_hc_summary->value;
-        $values[$rid]['link']['title'] = $row->_entity->field_hc_links[0]->title;
-        $values[$rid]['link']['uri'] = $row->_entity->field_hc_links[0]->uri;
-        $values[$rid]['link']['target'] = $row->_entity->field_hc_links[0]->options['attributes']['target'];
+        $values[$rid]['link']['title'] = $row->_entity->field_hc_links[0]->title ? $row->_entity->field_hc_links[0]->title : null;
+        $values[$rid]['link']['uri'] = $row->_entity->field_hc_links[0]->uri ? $row->_entity->field_hc_links[0]->uri : null;
+        $values[$rid]['link']['target'] = $row->_entity->field_hc_links[0]->options['attributes'] ? $row->_entity->field_hc_links[0]->options['attributes']['target'] : null;
       }
     }
     $variables['hp_announcements'] = $values;
