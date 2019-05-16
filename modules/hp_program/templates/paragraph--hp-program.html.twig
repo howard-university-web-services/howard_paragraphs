@@ -24,18 +24,17 @@
     </div>
 
     <!-- Links -->
-    {% if hp_pg_program.apply_link or hp_pg_program.program_links %}
-      <div class="section--padded-bottom">
-        {% if hp_pg_program.apply_link %}
-          <a href="{{ hp_pg_program.apply_link.url }}" class="btn" target="_blank">{{ hp_pg_program.apply_link.title }}</a>
-        {% endif %}
-        {% if hp_pg_program.program_links %}
-          {% for link in hp_pg_program.program_links %}
-            <a href="{{ link.url }}" class="btn" target="_blank">{{ link.title }}</a>
-          {% endfor %}
-        {% endif %}
-      </div>
-    {% endif %}
+    <div class="section--padded-bottom">
+      {% if hp_pg_program.apply_link %}
+        <a href="{{ hp_pg_program.apply_link.url }}" class="btn" target="_blank">{{ hp_pg_program.apply_link.title }}</a>
+      {% endif %}
+      {% if hp_pg_program.program_links %}
+        {% for link in hp_pg_program.program_links %}
+          <a href="{{ link.url }}" class="btn" target="_blank">{{ link.title }}</a>
+        {% endfor %}
+      {% endif %}
+      <a onclick="window.print();return false;" class="btn btn--hide-print">Print Program Details</a>
+    </div>
 
     <!-- Contacts -->
     {% if hp_pg_program.contacts %}
@@ -217,7 +216,7 @@
             <h3 class="h2">Faculty</h3>
           </div>
         </div>
-        <div class="silc-grid">
+        <div class="silc-grid silc-grid--faculty">
           {% for faculty in hp_pg_faculty %}
             <div class="silc-grid__col silc-grid__col--4-medium">
               <div class="faculty-profile">
