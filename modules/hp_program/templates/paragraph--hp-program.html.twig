@@ -8,7 +8,7 @@
 #}
 
 
-<section class="section--padded-top section--padded-bottom" aria-label="Program">
+<section class="section--padded-top section--padded-bottom section--program" aria-label="Program">
     
   {% if hp_pg_program %}
 
@@ -24,7 +24,7 @@
     </div>
 
     <!-- Links -->
-    <div class="section--padded-bottom">
+    <div class="section--padded-bottom section--hide-print">
       {% if hp_pg_program.apply_link %}
         <a href="{{ hp_pg_program.apply_link.url }}" class="btn" target="_blank">{{ hp_pg_program.apply_link.title }}</a>
       {% endif %}
