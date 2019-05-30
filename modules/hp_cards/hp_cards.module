@@ -111,3 +111,14 @@ function hp_cards_preprocess_paragraph__hp_card(&$variables) {
      ]
    ];
  }
+
+ // UPDATES
+//////////////////////////////////////////////////////
+
+
+/**
+ * Updates to allow unlimited cards.
+ */
+function hp_cards_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_cards');
+}

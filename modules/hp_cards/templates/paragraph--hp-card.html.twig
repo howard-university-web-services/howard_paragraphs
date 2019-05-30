@@ -11,14 +11,21 @@
 <div class="silc-grid__col silc-grid__col--4-medium">
 
   {% if hp_card_layout == 'card_with_image' %}
-
-    <a href="{{ content.field_hp_cd_link[0]['#url'] }}" class="{{ hp_card_class }}" {% if content.field_hp_cd_link[0]['#options'].attributes.target %} target="{{ content.field_hp_cd_link[0]['#options'].attributes.target }}"{% endif %}>
+    {% if content.field_hp_cd_link[0]['#url'] %}
+      <a href="{{ content.field_hp_cd_link[0]['#url'] }}" class="{{ hp_card_class }}" {% if content.field_hp_cd_link[0]['#options'].attributes.target %} target="{{ content.field_hp_cd_link[0]['#options'].attributes.target }}"{% endif %}>
+    {% else %}
+      <div class="{{ hp_card_class }}">
+    {% endif %}
       <div class="news-and-events__img" style="background-image:url({{ hp_card_image }})"></div>
       <div class="news-and-events__desc">
         <h3 class="news-and-events__title header--h3-small">{{ content.field_hp_cd_title }}</h3>
         <div class="body-text--small">{{ content.field_hp_cd_text }}</div>
       </div>
-    </a>
+    {% if content.field_hp_cd_link[0]['#url'] %}
+      </a>
+    {% else %}
+      </div>
+    {% endif %}
 
   {% else %}
 
