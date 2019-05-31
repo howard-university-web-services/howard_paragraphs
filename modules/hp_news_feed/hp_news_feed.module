@@ -51,6 +51,7 @@ function hp_news_feed_preprocess_paragraph__hp_news_feed(&$variables) {
     $env_url = 'http://dev.newsroom.howard.edu';
   }
   $variables['hp_nf_env_url'] = $env_url;
+  $variables['hp_nf_default_image'] = '/' . drupal_get_path('module', 'hp_news_feed') . '/assets/hp_news_feed_default.jpg';
 
   // Check on categories filter
   $category = null;
