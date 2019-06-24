@@ -99,6 +99,8 @@ function _hp_alumni_feed_get_profiles($env_url = 'https://profiles.howard.edu', 
         $url .= "&filter[classification]=alumni";
       } elseif($type == 'faculty_only') {
         $url .= "&filter[classification]=faculty";
+      } elseif($type == 'stem_scholars') {
+        $url .= "&filter[classification]=stem_scholars";
       } else {
         $url .= "&filter[classification][value]=iconic_alumni&filter[classification][operator]=!=";
       }
