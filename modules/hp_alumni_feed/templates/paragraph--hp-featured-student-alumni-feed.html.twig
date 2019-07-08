@@ -7,44 +7,94 @@
  */
 #}
 
-<section class="section--padded-top section--padded-bottom" aria-label="Embed">
+<section class="section--padded-top section--padded-bottom">
   {% if hp_show_wrapper %}
     <div class="compartment">
   {% endif %}
 
-    {% if content.field_hp_af_title[0] %}
-      <div class="block-header">
-          <div class="block-header__title">
-              <span class=" block-header__icon icon-our-people"></span>
-              <h2>{{ content.field_hp_af_title }}</h2>
-          </div>
-      </div>
-    {% endif %}
-
-    {% for evnt in hp_af_profiles %}
-
-      {{ evnt.image.large }}
-      {{ evnt.label }}
-      {{ evnt.title }}
-      {{ evnt.hometown }}
-      {{ evnt.year_graduated }}
-      {{ evnt.quote }}
-      {{ evnt.biography.value }}
-
-      <!-- logic to display modal or not -->
-      {% if content.field_hp_af_display_links_modal[0]['#markup'] == 'On' %}
-        <!-- Modal -->
-        modal
-      {% else %}
-        <!-- Standard Link -->
-        normal link
+      {% if content.field_hp_af_title[0] %}
+        <div class="block-header">
+            <div class="block-header__title">
+                <span class=" block-header__icon icon-our-people"></span>
+                <h2>{{ content.field_hp_af_title }}</h2>
+            </div>
+        </div>
       {% endif %}
 
-      <br /><br />
+      <div class="silc-grid">
 
-    {% endfor %}
+        {% for prsn in hp_af_profiles %}
+          <div class="silc-grid__col silc-grid__col--4-medium">
+            <div class="faculty-profile">
+              <div class="faculty-profile__block">
+              {% if prsn.image.large %}
+                <div class="faculty-profile__img" style="background-image:url('{{ prsn.image.large }}')"></div>
+              {% else %}
+                <div class="faculty-profile__img" style="background-image:url('https://profiles.howard.edu/sites/all/modules/idfive_profile_api/assets/images/avatar.jpg')"></div>
+              {% endif %}
+                <h3>{{ prsn.label}}</h3>
+                {% if prsn.classification == 'student' or prsn.classification == 'stem_scholars' %}
+                  {% if prsn.year_graduated %}<h4>Class of {{ prsn.year_graduated }}</h4>{% endif %}
+                  {% if prsn.degree_earned %}<h5>{{ prsn.degree_earned }}</h5>{% endif %}
+                {% endif %}
+                {% if prsn.classification == 'faculty' %}
+                  {% if prsn.title %}<h4>{{ prsn.title }}</h4>{% endif %}
+                  {% if prsn.affiliation %}<h5>{{ prsn.affiliation }}</h5>{% endif %}
+                {% endif %}
+                {% if prsn.classification == 'alumni' or prsn.classification == 'iconic_alumni' %}
+                  {% if prsn.year_graduated %}<h4>Class of {{ prsn.year_graduated }}</h4>{% endif %}
+                  {% if prsn.title %}<h5>{{ prsn.title }}</h5>{% endif %}
+                {% endif %}
+              </div>
+              <div class="faculty-profile__btn">
+                {% if content.field_hp_af_display_links_modal[0]['#markup'] == 'On' %}
+                  <a href="javascript:;" data-micromodal-trigger="hp-alumni-feed-{{ prsn.id }}" class="fancy-link fancy-link--dark">
+                  <span>View More</span>
+                {% else %}
+                  <a href="{{ hp_pf_env_url }}/node/{{ prsn.id }}" class="fancy-link fancy-link--dark" target="_blank">
+                  <span>View Full Profile</span>
+                {% endif %}
+                  <span class="icon-arrow-right"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- Modal -->
+          {% if content.field_hp_af_display_links_modal[0]['#markup'] == 'On' %}
+            <div class="modal micromodal-slide" id="hp-alumni-feed-{{ prsn.id }}" aria-hidden="true">
+              <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+                <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+                  <header class="modal__header">
+                    <h2 class="modal__title" id="hp-alumni-feed-{{ prsn.id }}-title">
+                      {{ prsn.label }}
+                    </h2>
+                    <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+                  </header>
+                  <main class="modal__content" id="hp-alumni-feed-{{ prsn.id }}-content">
+                      {% if prsn.title %}<div><strong>Title:</strong> {{ prsn.title }}</div>{% endif %}
+                      {% if prsn.affiliation %}<div><strong>Affiliation:</strong> {{ prsn.affiliation }}</div>{% endif %}
+                      {% if prsn.hometown %}<div><strong>Originally From:</strong> {{ prsn.hometown }}</div>{% endif %}
+                      {% if prsn.year_graduated %}<div><strong>Class of:</strong> {{ prsn.year_graduated }}</div>{% endif %}
+                      {% if prsn.degree_earned %}<div><strong>Degree Earned:</strong> {{ prsn.degree_earned }}</div>{% endif %}
+                      {# This check is to make sure the bio isn't only whitespace #}
+                      {% if prsn.biography and prsn.biography.safe_value|trim("\xC2\xA0")|length > 0 %}
+                        <div>
+                          {{ prsn.biography.value|raw }}
+                        </div>
+                      {% endif %}
+                      {% if prsn.quote %}
+                        <div>
+                          <blockquote>{{ prsn.quote|trim('“”') }}</blockquote>
+                        </div>
+                      {% endif %}
+                  </main>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
 
-
+      </div>
   {% if hp_show_wrapper %}
     </div>
   {% endif %}
