@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_pgf_school
+    - paragraphs.paragraphs_type.hp_programs_feed
+  module:
+    - external_data_source
+id: paragraph.hp_programs_feed.field_hp_pgf_school
+field_name: field_hp_pgf_school
+entity_type: paragraph
+bundle: hp_programs_feed
+label: School
+description: 'Optionally, filter this feed by school. These schools are pulled from the "Schools" taxonomy (schools) on the prod installation of programs.howard.edu.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: external_data_source

@@ -1,0 +1,58 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_programs_feed.field_hp_pgf_degree_classificati
+    - field.field.paragraph.hp_programs_feed.field_hp_pgf_environment
+    - field.field.paragraph.hp_programs_feed.field_hp_pgf_school
+    - field.field.paragraph.hp_programs_feed.field_hp_pgf_subject
+    - field.field.paragraph.hp_programs_feed.field_hp_pgf_title
+    - paragraphs.paragraphs_type.hp_programs_feed
+  module:
+    - external_data_source
+id: paragraph.hp_programs_feed.default
+targetEntityType: paragraph
+bundle: hp_programs_feed
+mode: default
+content:
+  field_hp_pgf_degree_classificati:
+    weight: 2
+    settings:
+      size: 1
+      placeholder: ''
+    third_party_settings: {  }
+    type: external_data_source_select_widget
+    region: content
+  field_hp_pgf_environment:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_hp_pgf_school:
+    weight: 3
+    settings:
+      size: 1
+      placeholder: ''
+    third_party_settings: {  }
+    type: external_data_source_select_widget
+    region: content
+  field_hp_pgf_subject:
+    weight: 4
+    settings:
+      size: 1
+      placeholder: ''
+    third_party_settings: {  }
+    type: external_data_source_select_widget
+    region: content
+  field_hp_pgf_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true

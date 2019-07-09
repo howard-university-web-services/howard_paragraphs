@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_programs_feed
+label: 'HP Programs Feed'
+icon_uuid: null
+description: 'Holds a feed of programs from programs.howard.edu.'
+behavior_plugins: {  }

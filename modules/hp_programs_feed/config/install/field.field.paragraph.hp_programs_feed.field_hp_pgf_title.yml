@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_pgf_title
+    - paragraphs.paragraphs_type.hp_programs_feed
+id: paragraph.hp_programs_feed.field_hp_pgf_title
+field_name: field_hp_pgf_title
+entity_type: paragraph
+bundle: hp_programs_feed
+label: Title
+description: 'Please add a title for this feed.'
+required: false
+translatable: false
+default_value:
+  -
+    value: Programs
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_pgf_degree_classificati
+    - paragraphs.paragraphs_type.hp_programs_feed
+  module:
+    - external_data_source
+id: paragraph.hp_programs_feed.field_hp_pgf_degree_classificati
+field_name: field_hp_pgf_degree_classificati
+entity_type: paragraph
+bundle: hp_programs_feed
+label: 'Degree Classification'
+description: 'Optionally, filter this feed by degree classification. These schools are pulled from the "Degree Classification" taxonomy (degree_classification) on the prod installation of programs.howard.edu.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: external_data_source

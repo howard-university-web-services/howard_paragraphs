@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_pgf_subject
+    - paragraphs.paragraphs_type.hp_programs_feed
+  module:
+    - external_data_source
+id: paragraph.hp_programs_feed.field_hp_pgf_subject
+field_name: field_hp_pgf_subject
+entity_type: paragraph
+bundle: hp_programs_feed
+label: Subject
+description: 'Optionally, filter this feed by subject. These schools are pulled from the "Subjects" taxonomy (subjects) on the prod installation of programs.howard.edu.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: external_data_source

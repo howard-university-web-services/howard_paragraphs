@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_pgf_environment
+    - paragraphs.paragraphs_type.hp_programs_feed
+  module:
+    - options
+id: paragraph.hp_programs_feed.field_hp_pgf_environment
+field_name: field_hp_pgf_environment
+entity_type: paragraph
+bundle: hp_programs_feed
+label: Environment
+description: 'Choose which environment to pull Howard Programs from, normally, this should be "Production" unless you are testing programs on another environment.'
+required: true
+translatable: false
+default_value:
+  -
+    value: prod
+default_value_callback: ''
+settings: {  }
+field_type: list_string

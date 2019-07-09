@@ -43,7 +43,7 @@ function hp_programs_feed_preprocess_paragraph__hp_programs_feed(&$variables) {
   $uuid = $variables['elements']['#paragraph']->uuid->value;
 
   // Check on env to get events from
-  $env = $variables['elements']['#paragraph']->field_hp_nf_environment->value;
+  $env = $variables['elements']['#paragraph']->field_hp_pgf_environment->value;
   $env_url = 'https://programs.howard.edu';
   if($env == 'stg') {
     $env_url = 'http://stg.programs.howard.edu';
@@ -60,16 +60,24 @@ function hp_programs_feed_preprocess_paragraph__hp_programs_feed(&$variables) {
     $degree_classification = str_replace('id=','',$degree_classification);
   }
 
-  // Check on admin categories filter
-  $department = null;
-  if(isset($variables['elements']['#paragraph']->field_hp_pgf_program_admin_category->value)) {
-    $department = $variables['elements']['#paragraph']->field_hp_pgf_program_admin_category->value;
+  // Check on schools filter
+  $school = null;
+  if(isset($variables['elements']['#paragraph']->field_hp_pgf_school->value)) {
+    $school = $variables['elements']['#paragraph']->field_hp_pgf_school->value;
     // Decode string workaround due to bug in core or external_data_source
-    $department = str_replace('id=','',$department);
+    $school = str_replace('id=','',$school);
+  }
+
+  // Check on subject filter
+  $subject = null;
+  if(isset($variables['elements']['#paragraph']->field_hp_pgf_subject->value)) {
+    $subject = $variables['elements']['#paragraph']->field_hp_pgf_subject->value;
+    // Decode string workaround due to bug in core or external_data_source
+    $subject = str_replace('id=','',$subject);
   }
 
   // Get programs
-  $variables['hp_nf_news'] = _hp_programs_feed_get_programs($env_url, $school, $department, 3, 1, $uuid);
+  $variables['hp_pgf_programs'] = _hp_programs_feed_get_programs($env_url, $degree_classification, $school, $subject, $uuid);
   
 
 }
@@ -97,24 +105,27 @@ function hp_programs_feed_preprocess_paragraph__hp_programs_feed(&$variables) {
  * Gets programs from programs.howard.edu, and displays.
  *
  */
- function _hp_programs_feed_get_programs($env_url = 'https://programs.howard.edu', $school = null, $department = null, $range = 3, $page = 1, $id = 'default') {
-   if ($cache = \Drupal::cache()->get('hp_news_feed--' . $id . '-' . $range)) {
+ function _hp_programs_feed_get_programs($env_url = 'https://programs.howard.edu', $degree_classification = null, $school = null, $subject = null, $id = 'default') {
+   if ($cache = \Drupal::cache()->get('hp_programs_feed--' . $id . '-' . $range)) {
      return $cache->data;
    }
    else {
      $currentDate = date('Y-m-d');
-     $url = $env_url . "/api/articlesearch/%20?sort=-publication_date&fields=id,label,publication_date_formatted,image,uri,summary&range=" . $range . "&page=" . $page . "&filter[publication_date][value][]=" . $currentDate . "%2023:59:59&filter[publication_date][operator]='<='&filter[exclude_from_main_feed][value]=1&filter[exclude_from_main_feed][operator]='!='";
-     if(isset($category)) {
-       $url .= "&filter[taxonomy_3][value][]=" . $school;
+     $url = $env_url . "/api/programs?sort=label";
+     if(isset($degree_classification)) {
+       $url .= "&filter[degree_classification][value][]=" . $degree_classification;
      }
-     if(isset($admin_category)) {
-       $url .= "&filter[taxonomy_5][value][]=" . $department;
+     if(isset($school)) {
+       $url .= "&filter[related_school][value][]=" . $school;
+     }
+     if(isset($subject)) {
+      $url .= "&filter[taxonomy_5][value][]=" . $subject;
      }
      $result = file_get_contents($url);
      $result = json_decode($result, true);
      $result = $result['data'];
      if($result) {
-       \Drupal::cache()->set('hp_news_feed--' . $id. '-' . $range, $result, time() + 7200);
+       \Drupal::cache()->set('hp_programs_feed--' . $id. '-' . $range, $result, time() + 7200);
        return $result;
      } else {
        return null;
