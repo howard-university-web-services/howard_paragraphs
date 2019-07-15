@@ -6,11 +6,14 @@ dependencies:
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_environment
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_school
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_subject
+    - field.field.paragraph.hp_programs_feed.field_hp_pgf_subtitle
+    - field.field.paragraph.hp_programs_feed.field_hp_pgf_text
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_title
     - paragraphs.paragraphs_type.hp_programs_feed
   module:
     - external_data_source
     - options
+    - text
 id: paragraph.hp_programs_feed.default
 targetEntityType: paragraph
 bundle: hp_programs_feed
@@ -43,6 +46,21 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: external_data_source_formatter
+    region: content
+  field_hp_pgf_subtitle:
+    weight: 5
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_hp_pgf_text:
+    weight: 6
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
     region: content
   field_hp_pgf_title:
     weight: 3

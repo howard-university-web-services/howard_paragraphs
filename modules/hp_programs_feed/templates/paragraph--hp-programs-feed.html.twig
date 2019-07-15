@@ -7,40 +7,34 @@
  */
 #}
 
-<section class="section--padded-top section--padded-bottom">
-    <div class="compartment">
-      <div class="block-header">
-        <div class="block-header__title">
-          <span class="block-header__icon icon-info"></span>
-          <h2>{{ content.field_hp_pgf_title }}</h2>
-        </div>
-      </div>
-      {% if hp_pgf_programs[0] %}
-        <div class="silc-grid">
-          {% for program in hp_pgf_programs %}
-            <div class="silc-grid__col silc-grid__col--6-medium">
-              <a href="{{ program.url }}" class="news-and-events__block" target="_blank">
-                <!--<div class="news-and-events__img" style="background-image:url('{{ evnt.image.large }}')"></div>-->
-                <div class="news-and-events__desc">
-                  <span class="news-and-events__date">{{ program.related_degrees }}</span>
-                  <h3 class="news-and-events__title header--h3-small">{{ program.label }}</h3>
-                  {{ program.degree_classification }}
-                  {% if program.summary %}
-                    {{ program.summary|raw }}
-                  {% else %}
-                  <p>{{ program.body_trimmed }}</p>
-                  {% endif %}
+<section class="section--padded-top section--padded-bottom hp-programs-feed" aria-label="Programs Feed">
+  <div class="programs section--blue">
+    {% if content.field_hp_pgf_title %}
+      <h2 class="header--h2 header--white">{{ content.field_hp_pgf_title }}</h2>
+    {% endif %}
+    {{ content.field_hp_pgf_text }}
+    <div class="programs__nav">
+        {% if content.field_hp_pgf_subtitle %}
+          <h4>{{ content.field_hp_pgf_subtitle }}</h4>
+        {% endif %}
+        {% if hp_pgf_programs[0] %}
+          <nav>
+            <ul>
+              <div class="silc-grid silc-grid--collapse">
+                {% for program in hp_pgf_programs %}
+                <div class="silc-grid__col silc-grid__col--4-table silc-grid__col--6-small">
+                  <a href="{{ program.master_link.url }}" class="fancy-link fancy-link--light">
+                    <span>{{ program.label }}</span>
+                  </a>
+                  <span class="hp-programs-feed--meta">{{ program.related_degrees }}</span>
                 </div>
-              </a>
-            </div>
-          {% endfor %}
-        </div>
-      {% else %}
-      <div class="silc-grid">
-          <div class="silc-grid__col silc-grid__col--12-medium">
-            <p>Sorry, no programs match that criteria.</p>
-          </div>
-        </div>
-      {% endif %}
+                {% endfor %}
+              </div>
+            </ul>
+          </nav>
+        {% else %}
+          <p>Sorry, no programs match that criteria.</p>
+        {% endif %}
+    </div>
   </div>
-</section>
+</sction>

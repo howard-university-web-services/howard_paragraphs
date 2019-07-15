@@ -1,6 +1,6 @@
-name: 'Howard Paragraphs: Programs Feed (UNFINISHED EXPERIMENTAL)'
+name: 'Howard Paragraphs: Programs Feed'
 type: module
-description: WORK STARTED, AND MAY BE VALUABLE IN THE FUTURE, BUT HOLDING ALL DEVELOPMENT FOR NOW, THIS MODULE WILL NOT WORK IN ANY WAY SHAPE OR FORM IF ENABLED. Provides a paragraphs bundle for embedding Programs Feeds as a Kitchen Sink Widget.
+description:  Provides a paragraphs bundle for embedding Programs Feeds as a Kitchen Sink Widget.
 version: '8.x-1.0'
 core: '8.x'
 
