@@ -45,12 +45,12 @@ function hp_announcements_help($route_name, RouteMatchInterface $route_match) {
    ];
  }
 
- /**
-  * Implements hook_preprocess_paragraph().
-  * @param $variables
-  * This sets classes needed for the button/link type.
-  */
- function hp_announcements_preprocess_paragraph__hp_announcements(&$variables) {
+/**
+* Implements hook_preprocess_paragraph().
+* @param $variables
+* This sets classes needed for the button/link type.
+*/
+function hp_announcements_preprocess_paragraph__hp_announcements(&$variables) {
     
     // Load the view results
     $values = [];
@@ -76,4 +76,14 @@ function hp_announcements_help($route_name, RouteMatchInterface $route_match) {
     // Title
     $variables['hp_an_title'] = $variables['elements']['#paragraph']->field_hp_an_title->value ? $variables['elements']['#paragraph']->field_hp_an_title->value : "Announcements";
 
-   }
+}
+
+// UPDATES
+//////////////////////////////////////////////////////
+
+/**
+ * Updates to allow title.
+ */
+function hp_announcements_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_announcements');
+}
