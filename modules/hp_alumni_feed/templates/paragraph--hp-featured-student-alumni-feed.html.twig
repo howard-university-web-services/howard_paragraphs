@@ -71,22 +71,24 @@
                     <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
                   </header>
                   <main class="modal__content" id="hp-alumni-feed-{{ prsn.id }}-content">
+                    <div class="silc-mbottom--5">
                       {% if prsn.title %}<div><strong>Title:</strong> {{ prsn.title }}</div>{% endif %}
                       {% if prsn.affiliation %}<div><strong>Affiliation:</strong> {{ prsn.affiliation }}</div>{% endif %}
                       {% if prsn.hometown %}<div><strong>Originally From:</strong> {{ prsn.hometown }}</div>{% endif %}
                       {% if prsn.year_graduated %}<div><strong>Class of:</strong> {{ prsn.year_graduated }}</div>{% endif %}
                       {% if prsn.degree_earned %}<div><strong>Degree Earned:</strong> {{ prsn.degree_earned }}</div>{% endif %}
-                      {# This check is to make sure the bio isn't only whitespace #}
-                      {% if prsn.biography and prsn.biography.safe_value|trim("\xC2\xA0")|length > 0 %}
-                        <div>
-                          {{ prsn.biography.value|raw }}
-                        </div>
-                      {% endif %}
-                      {% if prsn.quote %}
-                        <div>
-                          <blockquote>{{ prsn.quote|trim('“”') }}</blockquote>
-                        </div>
-                      {% endif %}
+                    </div>
+                    {# This check is to make sure the bio isn't only whitespace #}
+                    {% if prsn.biography and prsn.biography.safe_value|trim("\xC2\xA0")|length > 0 %}
+                      <div>
+                        {{ prsn.biography.value|raw }}
+                      </div>
+                    {% endif %}
+                    {% if prsn.quote %}
+                      <div>
+                        <blockquote>{{ prsn.quote|trim('“”') }}</blockquote>
+                      </div>
+                    {% endif %}
                   </main>
                 </div>
               </div>
