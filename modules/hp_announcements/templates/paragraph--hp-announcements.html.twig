@@ -12,12 +12,15 @@
     <div class="compartment">
   {% endif %}
 
-
     <div class="announcements">
-      <div class="block-header">
-        <div class="block-header__title"><span class=" block-header__icon icon-announcement"></span><h2>Announcements</h2>
+      {% if hp_an_title %}
+        <div class="block-header">
+            <div class="block-header__title">
+                <span class="block-header__icon icon-announcement"></span>
+                <h2>{{ hp_an_title }}</h2>
+            </div>
         </div>
-      </div>
+      {% endif %}
       <div class="silc-grid">
         {% if hp_announcements[0] %}
           {% for ann in hp_announcements %}

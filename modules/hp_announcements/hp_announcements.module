@@ -73,4 +73,7 @@ function hp_announcements_help($route_name, RouteMatchInterface $route_match) {
     $feed_type = $variables['elements']['#paragraph']->field_hp_an_feed_type->value;
     $variables['hp_an_type'] = $feed_type;
 
+    // Title
+    $variables['hp_an_title'] = $variables['elements']['#paragraph']->field_hp_an_title->value ? $variables['elements']['#paragraph']->field_hp_an_title->value : "Announcements";
+
    }
