@@ -71,6 +71,12 @@ function hp_cards_preprocess_paragraph__hp_card(&$variables) {
     $variables['hp_card_class'] = 'announcements__block';
     if($layout == 'card_with_image') {
       $variables['hp_card_class'] = 'news-and-events__block';
+      if ($paragraph->hasField('field_hp_cd_link')) {
+        $card_link = $paragraph->get('field_hp_cd_link')->getValue();
+        if(isset($card_link[0])) {
+          $variables['hp_card_class'] = 'news-and-events__block news-and-events__block-link';
+        }
+      }
     } elseif($layout == 'text_only') {
       $variables['hp_card_class'] = 'announcements__block';
     }
