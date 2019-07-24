@@ -25,9 +25,11 @@
           <div class="silc-grid__col silc-grid__col--8-medium">
             <div class="alumni-profile__quote">  
               {{ content.field_hp_tst_intro }}
-              <blockquote>
-                {{ content.field_hp_tst_quote }}
-              </blockquote>
+              {% if content.field_hp_tst_quote|render %}
+                <blockquote>
+                  {{ content.field_hp_tst_quote }}
+                </blockquote>
+              {% endif %}
             </div>
           </div>
         </div>
