@@ -1,0 +1,59 @@
+uuid: be5bfe47-1190-4d8e-a864-f50f267d1ccb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_featured_student_alumni_feed.field_hp_af_alumni_admin_categor
+    - field.field.paragraph.hp_featured_student_alumni_feed.field_hp_af_display_links_modal
+    - field.field.paragraph.hp_featured_student_alumni_feed.field_hp_af_feed_type
+    - field.field.paragraph.hp_featured_student_alumni_feed.field_hp_af_title
+    - field.field.paragraph.hp_featured_student_alumni_feed.field_hp_pf_environment
+    - paragraphs.paragraphs_type.hp_featured_student_alumni_feed
+  module:
+    - external_data_source
+    - options
+id: paragraph.hp_featured_student_alumni_feed.default
+targetEntityType: paragraph
+bundle: hp_featured_student_alumni_feed
+mode: default
+content:
+  field_hp_af_alumni_admin_categor:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: external_data_source_formatter
+    region: content
+  field_hp_af_display_links_modal:
+    weight: 2
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_hp_af_feed_type:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_hp_af_title:
+    weight: 3
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_hp_pf_environment:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+hidden: {  }

@@ -57,8 +57,16 @@ function hp_alumni_feed_preprocess_paragraph__hp_featured_student_alumni_feed(&$
     $type = $variables['elements']['#paragraph']->field_hp_af_feed_type->value;
   }
 
+  // Check on admin categories filter
+  $admin_category = null;
+  if(isset($variables['elements']['#paragraph']->field_hp_af_alumni_admin_categor->value)) {
+    $admin_category = $variables['elements']['#paragraph']->field_hp_af_alumni_admin_categor->value;
+    // Decode string workaround due to bug in core or external_data_source
+    $admin_category = str_replace('id=','',$admin_category);
+  }
+
   // Get profiles
-  $variables['hp_af_profiles'] = _hp_alumni_feed_get_profiles($env_url, $type, 50, $uuid);
+  $variables['hp_af_profiles'] = _hp_alumni_feed_get_profiles($env_url, $type, $admin_category, 50, $uuid);
 
 }
 
@@ -84,7 +92,7 @@ function hp_alumni_feed_theme($existing, $type, $theme, $path) {
  * Gets alumni from profiles site, and displays.
  *
  */
-function _hp_alumni_feed_get_profiles($env_url = 'https://profiles.howard.edu', $type = null, $range = 50, $id = 'default') {
+function _hp_alumni_feed_get_profiles($env_url = 'https://profiles.howard.edu', $type = null, $admin_category = null, $range = 50, $id = 'default') {
   if ($cache = \Drupal::cache()->get('hp_alumni_feed--' . $id)) {
     return $cache->data;
   }
@@ -105,6 +113,9 @@ function _hp_alumni_feed_get_profiles($env_url = 'https://profiles.howard.edu', 
         $url .= "&filter[classification][value]=iconic_alumni&filter[classification][operator]=!=";
       }
     }
+    if(isset($admin_category)) {
+      $url .= "&filter[categories][value][0]=" . $admin_category . "&filter[categories][operator][0]='IN'";
+    }
     $result = file_get_contents($url);
     $result = json_decode($result, true);
     $result = $result['data'];
@@ -115,4 +126,15 @@ function _hp_alumni_feed_get_profiles($env_url = 'https://profiles.howard.edu', 
       return null;
     }
   }
+}
+
+// UPDATES
+//////////////////////////////////////////////////////
+
+
+/**
+ * Updates to allow categories.
+ */
+function hp_alumni_feed_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_alumni_feed');
 }

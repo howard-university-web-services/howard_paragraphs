@@ -1,0 +1,24 @@
+uuid: 4bcf1330-6d3e-4d07-bcaa-e83621536f06
+langcode: en
+status: true
+dependencies:
+  module:
+    - external_data_source
+    - paragraphs
+id: paragraph.field_hp_af_alumni_admin_categor
+field_name: field_hp_af_alumni_admin_categor
+entity_type: paragraph
+type: external_data_source
+settings:
+  ws: alumni_admin_categories
+  count: '100'
+  max_length: '255'
+  is_ascii: false
+  case_sensitive: false
+module: external_data_source
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,19 @@
+uuid: 6d5794dc-dba6-45b3-abf2-1451b830f825
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_af_title
+    - paragraphs.paragraphs_type.hp_featured_student_alumni_feed
+id: paragraph.hp_featured_student_alumni_feed.field_hp_af_title
+field_name: field_hp_af_title
+entity_type: paragraph
+bundle: hp_featured_student_alumni_feed
+label: Title
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

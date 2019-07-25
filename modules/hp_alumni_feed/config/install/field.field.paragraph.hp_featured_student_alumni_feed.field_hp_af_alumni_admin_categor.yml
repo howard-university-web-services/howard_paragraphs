@@ -1,0 +1,21 @@
+uuid: 76698402-e58b-427c-bcd9-64dee68729f0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_af_alumni_admin_categor
+    - paragraphs.paragraphs_type.hp_featured_student_alumni_feed
+  module:
+    - external_data_source
+id: paragraph.hp_featured_student_alumni_feed.field_hp_af_alumni_admin_categor
+field_name: field_hp_af_alumni_admin_categor
+entity_type: paragraph
+bundle: hp_featured_student_alumni_feed
+label: 'Alumni Admin Category'
+description: 'Optionally, choose an admin category to also filter by.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: external_data_source

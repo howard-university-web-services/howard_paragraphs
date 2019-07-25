@@ -1,0 +1,9 @@
+uuid: 8200a5dd-a159-4a1a-a881-95b3463ffa06
+langcode: en
+status: true
+dependencies: {  }
+id: hp_featured_student_alumni_feed
+label: 'HP Featured Student and Alumni Feed'
+icon_uuid: null
+description: 'This is a feed of Featured Student and Alumni Profiles from profiles.howard.edu.'
+behavior_plugins: {  }

@@ -1,0 +1,39 @@
+uuid: 6142def5-4e07-43d6-ab16-dc7e2a500afb
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_hp_af_feed_type
+field_name: field_hp_af_feed_type
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: all
+      label: 'All types (except Iconic Alumni)'
+    -
+      value: iconic_alumni
+      label: 'Iconic Alumni'
+    -
+      value: students_only
+      label: 'Students Only'
+    -
+      value: alumni_only
+      label: 'Alumni Only'
+    -
+      value: faculty_only
+      label: 'Faculty Only'
+    -
+      value: stem_scholars
+      label: 'STEM Scholars'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

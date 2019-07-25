@@ -1,0 +1,23 @@
+uuid: e384a82a-61d9-4113-ba29-091cb043cf26
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_af_display_links_modal
+    - paragraphs.paragraphs_type.hp_featured_student_alumni_feed
+id: paragraph.hp_featured_student_alumni_feed.field_hp_af_display_links_modal
+field_name: field_hp_af_display_links_modal
+entity_type: paragraph
+bundle: hp_featured_student_alumni_feed
+label: 'Display Links as Modal'
+description: 'Choose this option if you wish to have the "view more" links open as modals, rather than external links.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,23 @@
+uuid: 1d07000a-60d3-4076-931a-c37d33fa2fd6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_af_feed_type
+    - paragraphs.paragraphs_type.hp_featured_student_alumni_feed
+  module:
+    - options
+id: paragraph.hp_featured_student_alumni_feed.field_hp_af_feed_type
+field_name: field_hp_af_feed_type
+entity_type: paragraph
+bundle: hp_featured_student_alumni_feed
+label: 'Feed Type'
+description: 'Please choose the type of Featured Profiles to pull.'
+required: true
+translatable: false
+default_value:
+  -
+    value: all
+default_value_callback: ''
+settings: {  }
+field_type: list_string
