@@ -22,8 +22,9 @@
           {% for post in hp_if_posts.results %}
             <div class="silc-grid__col silc-grid__col--4-medium">
               <a class="hp_if--link" href="{{ post.permalink }}" target="_blank">
-                <img style="max-width: 100%;" src="{{ post.media_url }}">
+                <img style="max-width: 100%;" src="{{ post.media_url }}" alt="">
                 <div class="hp_if--link--text">
+                  <span class="visible-for-screen-readers">view on instagram</span>
                   <span class="icon-arrow-right"></span>
                 </div>
               </a>
