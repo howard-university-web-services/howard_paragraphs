@@ -50,31 +50,36 @@ function hp_instagram_feed_preprocess_paragraph__hp_instagram_feed(&$variables) 
   }
 
    // Instagram account ID
-   $id = '17841400690423186';
+   // DR Testing: $id = '17841400690423186';
+   $id = '';
    if(isset($variables['elements']['#paragraph']->field_hp_if_id->value)) {
      $id = $variables['elements']['#paragraph']->field_hp_if_id->value;
    }
   
   // Token
-  $token = 'EAAjS8wkYZCkgBAPrTPnhK5UsAQjrXj7emGAUhBqZCzIqYtLs2WVGjK5whmG1kmnliZAnSpiEp3IO4MQwgZBPtYJ9gSzsedH6sm0TYDMlG9f0a5Wc9inZBg9JPB2aUqqZBMDyehre1rZC3iI80gYGk2QG9tZCsqIrJKPuFvDTHQmYrwZDZD';
+  // DR Testing: $token = 'EAAjS8wkYZCkgBAPrTPnhK5UsAQjrXj7emGAUhBqZCzIqYtLs2WVGjK5whmG1kmnliZAnSpiEp3IO4MQwgZBPtYJ9gSzsedH6sm0TYDMlG9f0a5Wc9inZBg9JPB2aUqqZBMDyehre1rZC3iI80gYGk2QG9tZCsqIrJKPuFvDTHQmYrwZDZD';
+  $token = '';
   if(isset($variables['elements']['#paragraph']->field_hp_if_token->value)) {
     $token = $variables['elements']['#paragraph']->field_hp_if_token->value;
   }
 
   // App ID
-  $app_id = '2483741085204040';
+  // DR Testing: $app_id = '2483741085204040';
+  $app_id = '';
   if(isset($variables['elements']['#paragraph']->field_hp_if_app->value)) {
     $app_id = $variables['elements']['#paragraph']->field_hp_if_app->value;
   }
 
   // App Secret
-  $app_secret = '2b2cbb7236afea6c90a84291f5a313ce';
+  // DR Testing: $app_secret = '2b2cbb7236afea6c90a84291f5a313ce';
+  $app_secret = '';
   if(isset($variables['elements']['#paragraph']->field_hp_if_app_secret->value)) {
     $app_secret = $variables['elements']['#paragraph']->field_hp_if_app_secret->value;
   }
 
   // Get posts
   $variables['hp_if_posts'] = _hp_instagram_feed_get_posts($id, $count, $token, $app_id, $app_secret);
+  $variables['hp_if_title'] = $variables['hp_if_posts']['results'][0]['username'];
 
 }
 
@@ -143,7 +148,6 @@ function hp_instagram_feed_preprocess_paragraph__hp_instagram_feed(&$variables) 
       foreach ($feedEdge as $key => $status) {
         $result['results'][$key] = $status->asArray();
       }
-      //dsm($result['results']);
 
     } 
 

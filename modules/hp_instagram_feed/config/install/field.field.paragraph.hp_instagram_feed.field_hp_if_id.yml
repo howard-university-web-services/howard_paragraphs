@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_if_id
+    - paragraphs.paragraphs_type.hp_instagram_feed
+id: paragraph.hp_instagram_feed.field_hp_if_id
+field_name: field_hp_if_id
+entity_type: paragraph
+bundle: hp_instagram_feed
+label: 'Instagram Account ID'
+description: 'The numeric ID of the desired Instagram account. See <a href="https://codeofaninja.com/tools/find-instagram-user-id" target="_blank">This Site</a> for how to access. All fields needed can be referenced <a href="https://developers.facebook.com/docs/instagram-api/getting-started" target="_blank">in documentation</a>.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

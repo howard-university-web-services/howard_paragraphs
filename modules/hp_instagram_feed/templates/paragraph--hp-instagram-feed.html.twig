@@ -8,22 +8,31 @@
 #}
 
 <section aria-label="Instagram Feed">
-  <div class="">
+  <div>
+
+      <div class="block-header block-header--slim">
+        <div class="block-header__title">
+          <span class="block-header__icon icon-instagram"></span>
+          <h2>{{ hp_if_title }}</h2>
+        </div>
+      </div>
+
       <div class="silc-grid">
         {% if hp_if_posts.results[0] %}
           {% for post in hp_if_posts.results %}
             <div class="silc-grid__col silc-grid__col--4-medium">
-            <a href="{{ post.permalink }}">
-              <img style="max-width: 100%;" src="{{ post.media_url }}">
-            </a>
-              <div class="">
-                <p class="">{{ post.caption | raw }} </p>
-              </div>
+              <a class="hp_if--link" href="{{ post.permalink }}" target="_blank">
+                <img style="max-width: 100%;" src="{{ post.media_url }}">
+                <div class="hp_if--link--text">
+                  <span class="icon-arrow-right"></span>
+                </div>
+              </a>
             </div>
           {% endfor %}
         {% else %}
-          <div class="social--error">Sorry, there was an error connecting to Facebook: {{ hp_if_posts.error }}</div>
+          <div class="social--error">Sorry, there was an error connecting to Instagram: {{ hp_if_posts.error }}</div>
         {% endif %}
       </div>
+
   </div>
 </section>

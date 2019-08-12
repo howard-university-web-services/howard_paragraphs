@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_if_token
+    - paragraphs.paragraphs_type.hp_instagram_feed
+id: paragraph.hp_instagram_feed.field_hp_if_token
+field_name: field_hp_if_token
+entity_type: paragraph
+bundle: hp_instagram_feed
+label: 'Instagram Token'
+description: 'Please add the access token for facebook graph API. All fields needed can be referenced <a href="https://developers.facebook.com/docs/instagram-api/getting-started" target="_blank">in documentation</a>. Also see <a href="https://stackoverflow.com/questions/17197970/facebook-permanent-page-access-token" target="_blank">this stack overflow article</a> for tips on a more permanent access token.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

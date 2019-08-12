@@ -1,6 +1,6 @@
-name: 'Howard Paragraphs: Instagram Feed (UNFINISHED EXPERIMENTAL)'
+name: 'Howard Paragraphs: Instagram Feed'
 type: module
-description: Provides a paragraphs bundle for embedding Instagram Posts as a Kitchen Sink Widget.
+description: Provides a paragraphs bundle for embedding Instagram Posts as a Kitchen Sink Widget. This uses the new facebook graph API, and ability to generate keys/etc will be needed. Advanced users only.
 version: '8.x-1.0'
 core: '8.x'
 

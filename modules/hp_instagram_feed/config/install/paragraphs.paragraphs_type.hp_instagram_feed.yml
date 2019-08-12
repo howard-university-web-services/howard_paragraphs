@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_instagram_feed
+label: 'HP Instagram Feed'
+icon_uuid: null
+description: 'This KS widget displays instagram posts using the new Facebook Graph API.'
+behavior_plugins: {  }

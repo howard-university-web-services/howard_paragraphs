@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_if_count
+    - paragraphs.paragraphs_type.hp_instagram_feed
+id: paragraph.hp_instagram_feed.field_hp_if_count
+field_name: field_hp_if_count
+entity_type: paragraph
+bundle: hp_instagram_feed
+label: Count
+description: 'The number of posts to display. These are displayed in a 3 column grid, so it is best to do a multiple of 3, ie 3/6/9.'
+required: true
+translatable: false
+default_value:
+  -
+    value: '3'
+default_value_callback: ''
+settings: {  }
+field_type: string
