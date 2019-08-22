@@ -107,7 +107,7 @@ function hp_twitter_feed_preprocess_paragraph__hp_twitter_feed(&$variables) {
     }
     // Set cache
     if($result) {
-      \Drupal::cache()->set('hp_twitter_feed--' . $username . '-' . $count, $result, time() + 7200);
+      \Drupal::cache()->set('hp_twitter_feed--' . $username . '-' . $count, $result, time() + 900);
       return $result;
     } else {
       return null;

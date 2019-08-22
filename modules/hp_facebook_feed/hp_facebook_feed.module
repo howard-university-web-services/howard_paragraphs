@@ -155,7 +155,7 @@ function hp_facebook_feed_preprocess_paragraph__hp_facebook_feed(&$variables) {
 
     // Set cache
     if($result) {
-      \Drupal::cache()->set('hp_facebook_feed--' . $token . '-' . $count, $result, time() + 7200);
+      \Drupal::cache()->set('hp_facebook_feed--' . $token . '-' . $count, $result, time() + 900);
       return $result;
     } else {
       return null;
