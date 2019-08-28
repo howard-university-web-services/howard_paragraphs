@@ -97,7 +97,7 @@ function _hp_alumni_feed_get_profiles($env_url = 'https://profiles.howard.edu', 
     return $cache->data;
   }
   else {
-    $url = $env_url . "/api/featured?range=" . $range;
+    $url = $env_url . "/api/featured?sort=last_name&range=" . $range;
     if(isset($type)) {
       if($type == 'iconic_alumni') {
         $url .= "&filter[classification]=iconic_alumni";
