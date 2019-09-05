@@ -75,6 +75,11 @@
                 </header>
                 <main class="modal__content" id="hp-alumni-feed-{{ prsn.id }}-content">
                   <div class="silc-mbottom--5">
+                    {% if prsn.image.large %}
+                      <div class="faculty-profile__img" style="background-image:url('{{ prsn.image.large }}')"></div>
+                    {% else %}
+                      <div class="faculty-profile__img" style="background-image:url('https://profiles.howard.edu/sites/all/modules/idfive_profile_api/assets/images/avatar.jpg')"></div>
+                    {% endif %}
                     {% if prsn.title %}<div><strong>Title:</strong> {{ prsn.title }}</div>{% endif %}
                     {% if prsn.affiliation %}<div><strong>Affiliation:</strong> {{ prsn.affiliation }}</div>{% endif %}
                     {% if prsn.hometown %}<div><strong>Hometown:</strong> {{ prsn.hometown }}</div>{% endif %}
