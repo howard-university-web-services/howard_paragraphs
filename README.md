@@ -41,6 +41,7 @@ The following submodules are available:
  - Magazine Feed: Paragraphs integration of Magazine Feed (from magazine.howard.edu) for Howard projects
  - Media: Paragraphs integration of media for use in Howard projects
  - News Feed: Paragraphs integration of News Feed (from newsroom.howard.edu) for Howard projects
+ - Parallax: Paragraphs integration of parallax scrolling for use in Howard projects
  - Profiles Feed: Paragraphs integration of Profiles Feed (from profiles.howard.edu) for Howard projects
  - Program: Paragraphs integration of embedding a Program (from programs.howard.edu) for Howard projects
  - Programs Feed (EXPERIMENTAL/UNFINISHED/DO NOT ENABLE)
@@ -57,7 +58,7 @@ The following submodules are available:
 This module is designed so that config can be overridden locally. Essentially, the config provides a "starter" when installing the module, that can be modified per site. If config is "added to" after initial install, a manual config resync will likely need to be done. Something like:
 
  - drush cim -y --partial --source=modules/contrib/howard_paragraphs/SUBMODULE/config/install/
- 
+
 Keep in mind thast extensive testing should be done before attempting the above.
 
 ## Markup Overrides

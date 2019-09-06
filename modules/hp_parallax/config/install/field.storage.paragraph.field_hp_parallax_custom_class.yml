@@ -1,0 +1,23 @@
+uuid: 5b2951c7-3b69-4d4b-813b-2d00dd578d9b
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+_core:
+  default_config_hash: _5mHNG2tC07SqFvjFJD-Gd6xPPZuW-XS9uJpgXSVV_k
+id: paragraph.field_hp_parallax_custom_class
+field_name: field_hp_parallax_custom_class
+entity_type: paragraph
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
