@@ -67,7 +67,9 @@ function hp_media_help($route_name, RouteMatchInterface $route_match) {
        $media = $paragraph->get('field_hp_md_media')->getValue();
        if ($media && !empty($media)) {
          $entity = Media::load($media[0]['target_id']);
-         $variables['hp_media_type'] = $entity->bundle();
+         if($entity !== null) {
+          $variables['hp_media_type'] = $entity->bundle();
+         }
        }
      }
 
