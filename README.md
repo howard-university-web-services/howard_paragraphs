@@ -42,6 +42,7 @@ The following submodules are available:
  - Magazine Feed: Paragraphs integration of Magazine Feed (from magazine.howard.edu) for Howard projects
  - Media: Paragraphs integration of media for use in Howard projects
  - News Feed: Paragraphs integration of News Feed (from newsroom.howard.edu) for Howard projects
+ - Parallax: Paragraphs integration of parallax scrolling for use in Howard projects
  - Profiles Feed: Paragraphs integration of Profiles Feed (from profiles.howard.edu) for Howard projects
  - Program: Paragraphs integration of embedding a Program (from programs.howard.edu) for Howard projects
  - Programs Feed (EXPERIMENTAL/UNFINISHED/DO NOT ENABLE)

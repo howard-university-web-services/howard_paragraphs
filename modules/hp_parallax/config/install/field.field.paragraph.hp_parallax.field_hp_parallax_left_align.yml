@@ -1,0 +1,25 @@
+uuid: ab55a1bb-ccfc-4ebd-afda-716fdf91d136
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_parallax_left_align
+    - paragraphs.paragraphs_type.hp_parallax
+_core:
+  default_config_hash: PRFwDXjqIzqQVSqxxuEcVKmjseGAWLjABTO37hNIVwI
+id: paragraph.hp_parallax.field_hp_parallax_left_align
+field_name: field_hp_parallax_left_align
+entity_type: paragraph
+bundle: hp_parallax
+label: 'Left Align'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'true'
+  off_label: 'false'
+field_type: boolean

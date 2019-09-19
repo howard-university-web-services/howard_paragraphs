@@ -1,0 +1,25 @@
+uuid: acaa35d7-d561-47a3-b907-e5f35ad98fb1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_parallax_link
+    - paragraphs.paragraphs_type.hp_parallax
+  module:
+    - link
+_core:
+  default_config_hash: Rcz4J7wmxV85WaCFbZ6Rgm8P6Lz2ehVb5cevm-bO11s
+id: paragraph.hp_parallax.field_hp_parallax_link
+field_name: field_hp_parallax_link
+entity_type: paragraph
+bundle: hp_parallax
+label: Link
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

@@ -1,0 +1,21 @@
+uuid: 99bc3874-b7fb-4cf6-9c6b-10c35c217362
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_parallax_custom_class
+    - paragraphs.paragraphs_type.hp_parallax
+_core:
+  default_config_hash: eZnLAOZ_3slIwBqP0MaylyAs-mjXJ82XyoE9MFxW9DQ
+id: paragraph.hp_parallax.field_hp_parallax_custom_class
+field_name: field_hp_parallax_custom_class
+entity_type: paragraph
+bundle: hp_parallax
+label: 'Custom Class'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
