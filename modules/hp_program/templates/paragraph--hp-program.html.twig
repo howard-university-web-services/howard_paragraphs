@@ -26,14 +26,23 @@
     <!-- Links -->
     <div class="section--padded-bottom section--hide-print">
       {% if hp_pg_program.apply_link %}
-        <a href="{{ hp_pg_program.apply_link.url }}" class="btn" target="_blank">{{ hp_pg_program.apply_link.title }}</a>
+        <a href="{{ hp_pg_program.apply_link.url }}" class="btn" target="_blank">
+          <span class="btn__text">{{ hp_pg_program.apply_link.title }}</span>
+          <span class="icon-arrow-right"></span>
+        </a>
       {% endif %}
       {% if hp_pg_program.program_links %}
         {% for link in hp_pg_program.program_links %}
-          <a href="{{ link.url }}" class="btn" target="_blank">{{ link.title }}</a>
+          <a href="{{ link.url }}" class="btn" target="_blank">
+            <span class="btn__text">{{ link.title }}</span>
+            <span class="icon-arrow-right"></span>
+          </a>
         {% endfor %}
       {% endif %}
-      <a onclick="window.print();return false;" class="btn btn--hide-print">Print Program Details</a>
+      <a onclick="window.print();return false;" class="btn btn--hide-print">
+         <span class="btn__text">Print Program Details</span>
+         <span class="icon-arrow-right"></span>
+      </a>
     </div>
 
     <!-- Contacts -->
