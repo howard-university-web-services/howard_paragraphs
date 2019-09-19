@@ -1,13 +1,6 @@
 /**Stylesheet***/
 
-
 @media only screen and  (max-width: 767px){
-
-  .hp_parallax_bundle {
-  }
-}
-@media only screen and  (max-width: 767px){
-
   .hp_parallax_bundle:before {
     content:'';
     position:absolute;
@@ -16,7 +9,6 @@
     background:black;
     z-index:3;
     opacity:.65;
-
   }
 }
 
@@ -31,7 +23,6 @@
     font-size: 2.5rem !important;
   }
 }
-
 
 .hp_parallax_bundle .lead {
   font-size: 1.25rem;
@@ -52,7 +43,6 @@
 }
 
 @media only screen and  (max-width: 767px){
-
   .hp_parallax_bundle .float_right{
     float:none !important;
   }
@@ -63,28 +53,23 @@
 }
 
 @media only screen and  (max-width: 767px){
-
   .hp_parallax_bundle .float_left{
     float:none !important;
   }
 }
-
 
 .hp_parallax_bundle .featurettes_image{
   width:50%;
   height: 100%;
 }
 
-
 @media only screen and  (max-width: 767px){
-
    .hp_parallax_bundle .featurettes_image{
     width:100%;
     position: absolute;
     top: 0;
   }
 }
-
 
 .hp_parallax_bundle .featurettes_image .background-image{
   width:100%;
@@ -96,8 +81,7 @@
 }
 
 @media only screen and  (max-width: 767px){
-
-  .hp_parallax_bundle .featurettes_image .background-image{
+  .hp_parallax_bundle .featurettes_image .background-image {
     width:100%;
     background-size:cover;
     background-repeat: no-repeat;
@@ -117,14 +101,13 @@
   padding: 0px 15px;
 }
 
-.hp_parallax_bundle .featurettes_text{
+.hp_parallax_bundle .featurettes_text {
   width:50%;
   height: 100%;
   position: relative;
 }
 
-@media only screen and  (max-width: 767px){
-
+@media only screen and  (max-width: 767px) {
   .hp_parallax_bundle .featurettes_text{
     width:100%;
     position: relative;
@@ -133,7 +116,7 @@
   }
 }
 
-.hp_parallax_bundle .icon .svg-inline--fa{
+.hp_parallax_bundle .icon .svg-inline--fa {
   width:4em;
   height:4em
 }

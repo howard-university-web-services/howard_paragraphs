@@ -45,7 +45,7 @@ The following submodules are available:
  - Parallax: Paragraphs integration of parallax scrolling for use in Howard projects
  - Profiles Feed: Paragraphs integration of Profiles Feed (from profiles.howard.edu) for Howard projects
  - Program: Paragraphs integration of embedding a Program (from programs.howard.edu) for Howard projects
- - Programs Feed (EXPERIMENTAL/UNFINISHED/DO NOT ENABLE)
+ - Programs Paragraphs integration of embedding a Programs Feed (from programs.howard.edu) for Howard projects
  - Promo Space: Paragraphs integration of a Promotional Space for use in Howard projects
  - Table: Paragraphs integration of tablefield module for use in Howard projects, and set up to use tablesaw js
  - Testimonial: Paragraphs integration of testimonials for use in Howard projects
