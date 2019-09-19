@@ -1,0 +1,22 @@
+uuid: d28db15e-bc36-4abc-a9c1-550a4798b7aa
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+_core:
+  default_config_hash: PWK7YA--ufsz2vf6_61KP73PtYFpbst1ZiQ_SroIz2Y
+id: paragraph.field_hp_graph_percent
+field_name: field_hp_graph_percent
+entity_type: paragraph
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,21 @@
+uuid: 72c71c33-4066-45e2-96b3-d0140d36c79c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_graph_description
+    - paragraphs.paragraphs_type.hp_graph
+_core:
+  default_config_hash: '-BzKAbKi-Sj99bnuD2bOOTufU7iQtzQPQSi1ilMP7w4'
+id: paragraph.hp_graph.field_hp_graph_description
+field_name: field_hp_graph_description
+entity_type: paragraph
+bundle: hp_graph
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

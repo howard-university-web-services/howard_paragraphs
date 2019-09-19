@@ -1,0 +1,11 @@
+uuid: 049b5885-bcaa-4800-be23-99290af195c1
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: mN0INpLMjhNneWnI-ji4YfYNvqyrbiN2IzU5eHlVrQM
+id: hp_graph
+label: 'HP Graph'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }
