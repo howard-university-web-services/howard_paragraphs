@@ -1,0 +1,39 @@
+uuid: 17e27dd7-6b37-4858-a391-0fcb4583bcf4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_graph_data
+    - paragraphs.paragraphs_type.hp_graph
+    - paragraphs.paragraphs_type.hp_graph_field
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: Yc4v8zg8HI-uA1_2ZN80-wK-eLGRCEOKkHy4Qz14yfM
+id: paragraph.hp_graph.field_hp_graph_data
+field_name: field_hp_graph_data
+entity_type: paragraph
+bundle: hp_graph
+label: Data
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      hp_graph_field: hp_graph_field
+    target_bundles_drag_drop:
+      hp_graph_field:
+        enabled: true
+        weight: 4
+      hp_graph:
+        weight: 5
+        enabled: false
+      hp_parallax:
+        weight: 6
+        enabled: false
+field_type: entity_reference_revisions

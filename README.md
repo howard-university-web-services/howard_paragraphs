@@ -36,6 +36,7 @@ The following submodules are available:
  - Events Feed: Paragraphs integration of Events Feed (from calendar.howard.edu) for Howard projects
  - Facebook Feed: Paragraphs integration of a Facebook Feed for Howard projects
  - Featured Article: Paragraphs integration of the ability to add Featured Articles in Howard projects
+ - Graphs: Paragraphs integration of the ability to add custom graphs in Howard projects
  - HTML: Paragraphs integration of HTML for use in Howard projects
  - Instagram Feed: Paragraphs integration of a Instagram Feed for Howard projects
  - Magazine Feed: Paragraphs integration of Magazine Feed (from magazine.howard.edu) for Howard projects
@@ -57,7 +58,7 @@ The following submodules are available:
 This module is designed so that config can be overridden locally. Essentially, the config provides a "starter" when installing the module, that can be modified per site. If config is "added to" after initial install, a manual config resync will likely need to be done. Something like:
 
  - drush cim -y --partial --source=modules/contrib/howard_paragraphs/SUBMODULE/config/install/
- 
+
 Keep in mind thast extensive testing should be done before attempting the above.
 
 ## Markup Overrides

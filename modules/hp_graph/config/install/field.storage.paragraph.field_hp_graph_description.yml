@@ -1,0 +1,21 @@
+uuid: f42c4b25-673a-4fe9-ad68-4fa85e254d70
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+_core:
+  default_config_hash: Vno_d-4r8D6-5PbOp5TxawcXgOwxIJxvGA2fwuScWsg
+id: paragraph.field_hp_graph_description
+field_name: field_hp_graph_description
+entity_type: paragraph
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

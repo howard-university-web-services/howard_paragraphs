@@ -1,0 +1,34 @@
+uuid: 49894ef4-d2c5-4e91-ae9e-12ebb1ea0759
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_graph_field.field_hp_graph_label
+    - field.field.paragraph.hp_graph_field.field_hp_graph_percent
+    - paragraphs.paragraphs_type.hp_graph_field
+_core:
+  default_config_hash: A9CFEb2nh9tfV_XgEK7TUjBUp5OlN6MfKxwjlUMgHI4
+id: paragraph.hp_graph_field.default
+targetEntityType: paragraph
+bundle: hp_graph_field
+mode: default
+content:
+  field_hp_graph_label:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_hp_graph_percent:
+    weight: 0
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true
