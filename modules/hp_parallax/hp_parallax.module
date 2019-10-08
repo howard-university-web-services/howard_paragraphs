@@ -44,8 +44,3 @@ function hp_parallax_help($route_name, RouteMatchInterface $route_match) {
    ];
  }
 
- function hp_parallax_preprocess_maintenance_page(&$variables) {
-  $variables['#attached']['library'][] =  'hp_parallax/global-styling';
-}
-
-
