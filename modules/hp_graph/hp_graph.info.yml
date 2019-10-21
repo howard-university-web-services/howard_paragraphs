@@ -4,8 +4,6 @@ description: Provides a paragraphs bundle for embedding Graphs  as a Kitchen Sin
 version: '8.x-1.0'
 core: '8.x'
 
-libraries:
-  - hp_graph/global-styling
 package: Howard University
 dependencies:
   - entity_reference_revisions
