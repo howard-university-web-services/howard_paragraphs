@@ -8,11 +8,7 @@
  use Drupal\Core\Routing\RouteMatchInterface;
  use Drupal\paragraphs\Entity\Paragraph;
 
- /**
- * Implements hook_help().
- *
- * @inheritdoc
- */
+
 
 function hp_parallax_preprocess(array &$variables) {
     $variables['custom_class'] = $variables['content']['field_hp_parallax_custom_class'][0];
@@ -20,6 +16,12 @@ function hp_parallax_preprocess(array &$variables) {
 
 
 }
+
+/**
+* Implements hook_help().
+*
+* @inheritdoc
+*/
 
 function hp_parallax_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
