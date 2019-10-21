@@ -13,6 +13,14 @@
  *
  * @inheritdoc
  */
+
+function hp_parallax_preprocess(array &$variables) {
+    $variables['custom_class'] = $variables['content']['field_hp_parallax_custom_class'][0];
+    $variables['float_left'] = $variables['content']['field_hp_parallax_left_align'][0];
+
+
+}
+
 function hp_parallax_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
     case 'help.page.hp_parallax':
@@ -44,8 +52,6 @@ function hp_parallax_help($route_name, RouteMatchInterface $route_match) {
    ];
  }
 
- function hp_parallax_preprocess_maintenance_page(&$variables) {
-  $variables['#attached']['library'][] =  'hp_parallax/global-styling';
-}
+
 
 
