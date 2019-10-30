@@ -3,7 +3,6 @@
 <section class=" hp_parallax_bundle" >
 	<section class="h-100">
 	{{float_left}}
-		{%  if float_left == 'true'%}
 		<div class="featurettes_text float_left">
 			<aside class="featurette">
 				<div class="icon">{{-content.field_hp_parallax_icon[0]-}}</div>
@@ -17,7 +16,6 @@
 		<div class="featurettes_image float_right">
 			<section class="background-image" style="background-image: url('{{content.field_hp_parallax_bg_image[0]}}')">&nbsp;</section>
 		</div>
-		{% endif %}
 
 		{%  if float_left == 'false'%}
 		<div class="featurettes_image float_left">
