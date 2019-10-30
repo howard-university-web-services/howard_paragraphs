@@ -4,19 +4,30 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.hp_parallax.field_hp_parallax_bg_image
-    - field.field.paragraph.hp_parallax.field_hp_parallax_custom_class
     - field.field.paragraph.hp_parallax.field_hp_parallax_description
-    - field.field.paragraph.hp_parallax.field_hp_parallax_icon
     - field.field.paragraph.hp_parallax.field_hp_parallax_left_align
     - field.field.paragraph.hp_parallax.field_hp_parallax_link
     - field.field.paragraph.hp_parallax.field_hp_parallax_title
     - paragraphs.paragraphs_type.hp_parallax
   module:
-    - fontawesome
+    - field_group
     - image
     - link
+third_party_settings:
+  field_group:
+    group_parallax_introduction:
+      children: {  }
+      parent_name: ''
+      weight: 20
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: false
+      label: Introduction
 _core:
-  default_config_hash: fMBY4CDD1BIdP2gDhysc07SIhWEFd5oufRLDf6liT5A
+  default_config_hash: uojgyx5og9nlSvc7V6gVW5ezVeJmt6f4Zec6macrBwU
 id: paragraph.hp_parallax.default
 targetEntityType: paragraph
 bundle: hp_parallax
@@ -30,14 +41,6 @@ content:
     third_party_settings: {  }
     type: image_url
     region: content
-  field_hp_parallax_custom_class:
-    weight: 4
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
   field_hp_parallax_description:
     weight: 1
     label: hidden
@@ -45,14 +48,6 @@ content:
     third_party_settings: {  }
     type: basic_string
     region: content
-  field_hp_parallax_icon:
-    type: fontawesome_icon_formatter
-    weight: 6
-    region: content
-    label: hidden
-    settings:
-      layers: false
-    third_party_settings: {  }
   field_hp_parallax_left_align:
     weight: 5
     label: hidden

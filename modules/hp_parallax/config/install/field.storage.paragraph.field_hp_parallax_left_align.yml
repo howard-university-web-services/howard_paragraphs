@@ -5,7 +5,7 @@ dependencies:
   module:
     - paragraphs
 _core:
-  default_config_hash: vUmP1yILDTrq96JVdtdsfqC8JVRWyPVa6Hn7rtSJfok
+  default_config_hash: ZiPij7cLhhyJQWoI8UTWKkxRskTo4lFhk-06FG7nAFU
 id: paragraph.field_hp_parallax_left_align
 field_name: field_hp_parallax_left_align
 entity_type: paragraph

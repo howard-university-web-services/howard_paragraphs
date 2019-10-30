@@ -8,7 +8,7 @@ dependencies:
   module:
     - image
 _core:
-  default_config_hash: 5Fsuh-PqwUQmUZ6gIMFMKcntQENEc7YeEpTq8DEa2U8
+  default_config_hash: BaSr2GhSkzY67ZgOf8MteenW6YQV-C6fyYqLW4-hi_s
 id: paragraph.hp_parallax.field_hp_parallax_bg_image
 field_name: field_hp_parallax_bg_image
 entity_type: paragraph

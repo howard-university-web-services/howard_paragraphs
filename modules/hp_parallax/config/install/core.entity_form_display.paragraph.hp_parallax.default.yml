@@ -4,20 +4,61 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.hp_parallax.field_hp_parallax_bg_image
-    - field.field.paragraph.hp_parallax.field_hp_parallax_custom_class
     - field.field.paragraph.hp_parallax.field_hp_parallax_description
-    - field.field.paragraph.hp_parallax.field_hp_parallax_icon
     - field.field.paragraph.hp_parallax.field_hp_parallax_left_align
     - field.field.paragraph.hp_parallax.field_hp_parallax_link
     - field.field.paragraph.hp_parallax.field_hp_parallax_title
     - image.style.thumbnail
     - paragraphs.paragraphs_type.hp_parallax
   module:
-    - fontawesome
+    - field_group
     - image
     - link
+third_party_settings:
+  field_group:
+    group_parallax_introduction:
+      children:
+        - field_hp_parallax_title
+        - field_hp_parallax_description
+      parent_name: ''
+      weight: 0
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: true
+      label: Introduction
+      region: content
+    group_parallax_image:
+      children:
+        - field_hp_parallax_bg_image
+        - field_hp_parallax_icon
+      parent_name: ''
+      weight: 1
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: true
+      label: 'Parallax Image'
+      region: content
+    group_parallax_hyperlink:
+      children:
+        - field_hp_parallax_link
+      parent_name: ''
+      weight: 2
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: true
+      label: 'Parallax Hyperlink'
+      region: content
 _core:
-  default_config_hash: EFxNmNfNwLehQVOb5SCjlbYZJijGaGYDD0LXk3bRmEo
+  default_config_hash: '-DcHAsrhMPkFP7AfxuB7tEyUhDXLkv3SfAcypCVy2Ts'
 id: paragraph.hp_parallax.default
 targetEntityType: paragraph
 bundle: hp_parallax
@@ -31,28 +72,14 @@ content:
     third_party_settings: {  }
     type: image_image
     region: content
-  field_hp_parallax_custom_class:
-    weight: 4
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_hp_parallax_description:
-    weight: 1
+    weight: 2
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
     region: content
-  field_hp_parallax_icon:
-    type: fontawesome_icon_widget
-    weight: 6
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_hp_parallax_left_align:
     weight: 5
     settings:
@@ -69,7 +96,7 @@ content:
     type: link_default
     region: content
   field_hp_parallax_title:
-    weight: 0
+    weight: 1
     settings:
       size: 60
       placeholder: ''
