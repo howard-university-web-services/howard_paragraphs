@@ -11,10 +11,9 @@
 
 
 function hp_parallax_preprocess(array &$variables) {
-    $variables['custom_class'] = $variables['content']['field_hp_parallax_custom_class'][0];
-    $variables['float_left'] = $variables['content']['field_hp_parallax_left_align'][0];
-
-
+    $variables['float_left'] =var_dump( ['elements']['#paragraph']->field_hp_parallax_left_align);
+   // $variables['#attached']['library'][] =  'hp_parallax/library_name';
+    
 }
 
 /**
