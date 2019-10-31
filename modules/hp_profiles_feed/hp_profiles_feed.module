@@ -66,8 +66,14 @@ function hp_profiles_feed_preprocess_paragraph__hp_profiles_feed(&$variables) {
     $level = $variables['elements']['#paragraph']->field_hp_pf_level->value;
   }
 
+  // Check for the hierachy dropdown
+  $flatten = 0;
+  if(isset($variables['elements']['#paragraph']->field_sort_by->value)) {
+    $flatten = $variables['elements']['#paragraph']->field_sort_by->value;
+  }
+
   // Get profiles
-  $variables['hp_pf_profiles'] = _hp_profiles_feed_get_profiles($env_url, $department, $level, 50, 1, $uuid);
+  $variables['hp_pf_profiles'] = _hp_profiles_feed_get_profiles($env_url, $department, $level, $flatten, 50, 1, $uuid);
 
 }
 
@@ -94,7 +100,7 @@ function hp_profiles_feed_preprocess_paragraph__hp_profiles_feed(&$variables) {
  * Gets people from profiles site, and displays.
  *
  */
- function _hp_profiles_feed_get_profiles($env_url = 'https://profiles.howard.edu', $department = null, $level = null, $range = 50, $page = 1, $id = 'default') {
+ function _hp_profiles_feed_get_profiles($env_url = 'https://profiles.howard.edu', $department = null, $level = null, $flatten=0, $range = 50, $page = 1, $id = 'default') {
    if ($cache = \Drupal::cache()->get('hp_profiles_feed--' . $id)) {
      return $cache->data;
    }
@@ -107,11 +113,17 @@ function hp_profiles_feed_preprocess_paragraph__hp_profiles_feed(&$variables) {
      if(isset($level)) {
        $url .= "&filter[department_role][value][]=" . $level;
      }
-     $result_1 = file_get_contents($url . '&filter[department_role_feature][value][]=1');
-     $result_2 = file_get_contents($url . '&filter[department_role_feature][value][]=0');
-     $result_1 = json_decode($result_1, true);
-     $result_2 = json_decode($result_2, true);
-     $result = array_merge($result_1['data'], $result_2['data']);
+     if ($flatten) {
+        $result1 = file_get_contents($url);
+        $result2 = json_decode($result1, true);
+        $result = $result2['data'];
+     } else {
+        $result_1 = file_get_contents($url . '&filter[department_role_feature][value][]=1');
+        $result_2 = file_get_contents($url . '&filter[department_role_feature][value][]=0');
+        $result_1 = json_decode($result_1, true);
+        $result_2 = json_decode($result_2, true);
+        $result = array_merge($result_1['data'], $result_2['data']);
+     }
      if($result) {
        \Drupal::cache()->set('hp_profiles_feed--' . $id, $result, time() + 7200);
        return $result;
@@ -120,3 +132,14 @@ function hp_profiles_feed_preprocess_paragraph__hp_profiles_feed(&$variables) {
      }
    }
  }
+
+ // UPDATES
+//////////////////////////////////////////////////////
+
+
+/**
+ * Updates to add a dropbox to flatten feed hierachy 
+ */
+function hp_profiles_feed_update_8002() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_profiles_feed');
+}
