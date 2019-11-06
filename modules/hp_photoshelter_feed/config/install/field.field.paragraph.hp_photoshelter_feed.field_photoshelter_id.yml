@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_photoshelter_id
+    - paragraphs.paragraphs_type.hp_photoshelter_feed
+id: paragraph.hp_photoshelter_feed.field_photoshelter_id
+field_name: field_photoshelter_id
+entity_type: paragraph
+bundle: hp_photoshelter_feed
+label: 'PhotoShelter ID'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

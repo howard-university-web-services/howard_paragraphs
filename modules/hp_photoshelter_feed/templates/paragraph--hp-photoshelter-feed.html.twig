@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * HP Photoshelter Feed paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<section class="section--padded-top section--padded-bottom" aria-label="Photoshelter Gallery">
+  {% if hp_show_wrapper %}
+    <div class="compartment">
+  {% endif %}
+
+      {% if content.field_title[0] %}
+        <div class="block-header">
+            <div class="block-header__title">
+                <span class=" block-header__icon icon-picture"></span>
+                <h2>{{ content.field_title }}</h2>
+            </div>
+        </div>
+      {% endif %}
+
+      <div class="carousel">
+        {% for image in images %}
+            <div class="carousel__cell" style="background-image: url('https://ssl.c.photoshelter.com/img-get2/{{image["image_id"]}}')">
+                <a class="carousel__link lightbox" href="https://ssl.c.photoshelter.com/img-get2/{{image["image_id"]}}">
+                    <span class="visible-for-screen-readers">link to image</span>
+                </a>
+            </div>
+        {% endfor %}
+      </div>
+
+      <!-- Render without, so quickedit/etc works -->
+      {{ content|without('field_photoshelter_id', 'field_title') }}
+
+  {% if hp_show_wrapper %}
+    </div>
+  {% endif %}
+</section>

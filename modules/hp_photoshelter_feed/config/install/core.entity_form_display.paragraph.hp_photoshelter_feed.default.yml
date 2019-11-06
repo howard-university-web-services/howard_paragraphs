@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_photoshelter_feed.field_photoshelter_id
+    - field.field.paragraph.hp_photoshelter_feed.field_title
+    - paragraphs.paragraphs_type.hp_photoshelter_feed
+id: paragraph.hp_photoshelter_feed.default
+targetEntityType: paragraph
+bundle: hp_photoshelter_feed
+mode: default
+content:
+  field_photoshelter_id:
+    weight: 1
+    settings:
+      rows: 1
+      placeholder: 'ID#'
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_title:
+    weight: 0
+    settings:
+      rows: 1
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+hidden:
+  created: true
+  status: true

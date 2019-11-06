@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_photoshelter_feed
+label: 'HP Photoshelter Feed'
+icon_uuid: null
+description: 'Feed of Images from PhotoShelter'
+behavior_plugins: {  }
