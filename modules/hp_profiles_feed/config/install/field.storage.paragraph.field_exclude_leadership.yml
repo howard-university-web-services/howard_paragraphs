@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+_core:
+  default_config_hash: Kg5kPwAaBR58d-ZdV13PqcyRYKvqZGlTaY7tTS1KHaY
+id: paragraph.field_exclude_leadership
+field_name: field_exclude_leadership
+entity_type: paragraph
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

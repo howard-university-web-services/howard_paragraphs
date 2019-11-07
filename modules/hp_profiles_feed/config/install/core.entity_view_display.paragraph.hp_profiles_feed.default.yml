@@ -6,11 +6,12 @@ dependencies:
     - field.field.paragraph.hp_profiles_feed.field_hp_pf_level
     - field.field.paragraph.hp_profiles_feed.field_hp_pf_profiles_department
     - field.field.paragraph.hp_profiles_feed.field_hp_pf_title
+    - field.field.paragraph.hp_profiles_feed.field_sort_by
     - paragraphs.paragraphs_type.hp_profiles_feed
   module:
     - options
 _core:
-  default_config_hash: rGJZM-Ann_0IRtqkDUHhpDzvKR7W48IyEqgHAqPZh04
+  default_config_hash: KHaBX9YBmwpAbdpGeXd2eDpS9tRCZGlkCFAx_dIUe4c
 id: paragraph.hp_profiles_feed.default
 targetEntityType: paragraph
 bundle: hp_profiles_feed
@@ -45,6 +46,14 @@ content:
     third_party_settings: {  }
     type: string
     region: content
+  field_sort_by:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
 hidden:
   field_hp_pf_environment: true
   field_hp_pf_profiles_department: true
+
