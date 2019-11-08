@@ -1,16 +1,9 @@
-{% set custom_class %}
-    {{-content.field_hp_parallax_custom_class[0]-}}
-{% endset %}
 
-{% set float_left %}
-	{{-content.field_hp_parallax_left_align[0]-}}
-{% endset %}
-
-{{ attach_library('hp_parallax/global-styling') }}
 
 <section class=" hp_parallax_bundle" >
-	<section class="{{custom_class}} h-100">
-		{%  if float_left == 'true'%}
+	<section class="h-100" >
+		{# 	if float_left  is true  #}		
+		{%  if float_left == 1 %}
 		<div class="featurettes_text float_left">
 			<aside class="featurette">
 				<div class="icon">{{-content.field_hp_parallax_icon[0]-}}</div>
@@ -26,7 +19,8 @@
 		</div>
 		{% endif %}
 
-		{%  if float_left == 'false'%}
+		{# if float_left is false #}		
+		{%  if float_left == 0 %}
 		<div class="featurettes_image float_left">
 			<section class="background-image" style="background-image: url('{{content.field_hp_parallax_bg_image[0]}}')">&nbsp;</section>
 		</div>

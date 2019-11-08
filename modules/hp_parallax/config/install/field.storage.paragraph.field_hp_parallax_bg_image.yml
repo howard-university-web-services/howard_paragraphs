@@ -7,7 +7,7 @@ dependencies:
     - image
     - paragraphs
 _core:
-  default_config_hash: hseftETADKLl5km3-QHPhTGOoH8mge7skzYEh_kGFIc
+  default_config_hash: UYI6fi9mOsxqRNXRLTBotA71vs43bnvznrIAf-Ew0QU
 id: paragraph.field_hp_parallax_bg_image
 field_name: field_hp_parallax_bg_image
 entity_type: paragraph

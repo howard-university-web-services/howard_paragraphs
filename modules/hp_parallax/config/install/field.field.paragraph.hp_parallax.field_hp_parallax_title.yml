@@ -6,7 +6,7 @@ dependencies:
     - field.storage.paragraph.field_hp_parallax_title
     - paragraphs.paragraphs_type.hp_parallax
 _core:
-  default_config_hash: Nk291Ec1rIzf3ff5uA6OGeJcJ_irDZsLo1kiIK-2Ytg
+  default_config_hash: XK8VKNofT5W6So8esc9K5bPl6qH47dD2xCZd5AdQLjw
 id: paragraph.hp_parallax.field_hp_parallax_title
 field_name: field_hp_parallax_title
 entity_type: paragraph

@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: DuOBJFYrxlKoSiEpl-cFZsCCU_qo63h0lbA9NQeGoXU
+  default_config_hash: MluqEnxIEJDEOArIzT0LAHeY_1KiHURerOn5q3ozXns
 id: hp_parallax
 label: 'HP Parallax'
 icon_uuid: null

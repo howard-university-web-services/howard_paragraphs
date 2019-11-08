@@ -44,3 +44,10 @@ function hp_parallax_help($route_name, RouteMatchInterface $route_match) {
    ];
  }
 
+
+ function hp_parallax_preprocess_paragraph__hp_parallax(array &$variables) {
+
+  $paragraph = $variables['elements']['#paragraph'];
+  $variables['float_left'] = $paragraph->get('field_hp_parallax_left_align')->value;
+
+}

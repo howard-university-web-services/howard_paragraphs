@@ -5,7 +5,7 @@ dependencies:
   module:
     - paragraphs
 _core:
-  default_config_hash: LrNDApZu9QFewi_fQxlzAcx90I7f_snwMk2AdcEKqok
+  default_config_hash: Gzv1YmnBnJ22uQQLcS1Epjp55smpAAVfM3UiGqD5moo
 id: paragraph.field_hp_parallax_description
 field_name: field_hp_parallax_description
 entity_type: paragraph
