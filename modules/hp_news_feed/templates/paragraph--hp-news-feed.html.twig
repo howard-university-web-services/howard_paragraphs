@@ -39,12 +39,11 @@
             {% for evnt in hp_nf_news %}
               <div class="silc-grid__col silc-grid__col--4-medium">
                 <a href="{{ hp_nf_env_url }}/newsroom/article/{{ evnt.id }}/{{ evnt.uri }}" class="news-and-events__block" target="_blank">
-                  <div class="news-and-events__img" style="background-image:url('{% if evnt.image.large %}{{ evnt.image.large }}{% else %}{{ hp_nf_default_image }}{% endif %}')"></div>
+                  <div class="news-and-events__img news-and-events__img_portrait" style="background-image:url('{% if evnt.image.large %}{{ evnt.image.large }}{% else %}{{ hp_nf_default_image }}{% endif %}')"></div>
                   
                   <div class="news-and-events__desc">
                     <span class="news-and-events__date">{{ evnt.publication_date_formatted }}</span>
                     <h3 class="news-and-events__title header--h3-small">{{ evnt.label }}</h3>
-                    <p class="body-text--small">{{ evnt.summary }}</p>
                   </div>
                 </a>
               </div>
@@ -58,22 +57,17 @@
 
               {% if loop.first %}
                 <div class="silc-grid silc-grid--no-gutters">
-                  <div class="silc-grid__col silc-grid__col--8-medium">
-                    <div class="news-and-events__img" style="background-image:url('{% if evnt.image.large %}{{ evnt.image.large }}{% else %}{{ hp_nf_default_image }}{% endif %}')"></div>
-                  </div>
-                  <div class="silc-grid__col silc-grid__col--4-medium">
-                    <div class="news-and-events__desc--featured">
-                      <div class="news-and-events__main">
-                        <span class="news-and-events__date">{{ evnt.publication_date_formatted }}</span>
-                        <h3 class="header--h3-large">{{ evnt.label }}</h3>
-                        <p>{{ evnt.summary }}</p>
-                      </div>
-                      <div class="news-and-events__btn">
-                        <a href="{{ hp_nf_env_url }}/newsroom/article/{{ evnt.id }}/{{ evnt.uri }}" class="fancy-link fancy-link--dark" target="_blank">
-                          <span>View Featured Story</span>
-                          <span class="icon-arrow-right"></span>
-                        </a>
-                      </div>
+                  <div class="silc-grid__col silc-grid__col--12 news-and-events__white">
+                    <div class="news-and-events__block news-and-events__block_feat_3up">
+                        <div class="news-and-events__img" style="background-image:url('{% if evnt.image.large %}{{ evnt.image.large }}{% else %}{{ hp_nf_default_image }}{% endif %}')"></div>
+                        <div class="news-and-events__desc">
+                          <span class="news-and-events__date">{{ evnt.publication_date_formatted }}</span>
+                          <h3 class="news-and-events__title header--h3-large">{{ evnt.label }}</h3>
+                          <a href="{{ hp_nf_env_url }}/newsroom/article/{{ evnt.id }}/{{ evnt.uri }}" class="btn" target="_blank">
+                            <span class="btn__text">View Featured Story</span>
+                            <span class="icon-arrow-right"></span>
+                          </a>
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -107,18 +101,17 @@
             {% for evnt in hp_nf_news %}
 
               {% if loop.first %}
-                <div class="silc-grid__col silc-grid__col--7-medium">
-                  <div class="news-and-events--featured">
+                <div class="silc-grid__col silc-grid__col--6-medium news-and-events__white">
+                  <div class="news-and-events__block news-and-events__block_feat_4up">
                       <div class="news-and-events__img" style="background-image:url('{% if evnt.image.large %}{{ evnt.image.large }}{% else %}{{ hp_nf_default_image }}{% endif %}')"></div>
                       <div class="news-and-events__desc">
                           <div class="news-and-events__main">
                               <span class="news-and-events__date">{{ evnt.publication_date_formatted }}</span>
-                              <h3 class="header--h3-large">{{ evnt.label }}</h3>
-                              <p>{{ evnt.summary }}</p>
+                              <h3 class="news-and-events__title header--h3-large">{{ evnt.label }}</h3>
                           </div>
                           <div class="news-and-events__btn">
-                            <a href="{{ hp_nf_env_url }}/newsroom/article/{{ evnt.id }}/{{ evnt.uri }}" class="fancy-link fancy-link--dark" target="_blank">
-                              <span>View Featured Story</span>
+                            <a href="{{ hp_nf_env_url }}/newsroom/article/{{ evnt.id }}/{{ evnt.uri }}" class="btn" target="_blank">
+                              <span class="btn__text">View Featured Story</span>
                               <span class="icon-arrow-right"></span>
                             </a>
                           </div>
@@ -128,7 +121,7 @@
               {% endif %}
 
               {% if loop.first %}
-                <div class="silc-grid__col silc-grid__col--5-medium">
+                <div class="silc-grid__col silc-grid__col--6-medium">
               {% endif %}
 
                 {% if not loop.first %}

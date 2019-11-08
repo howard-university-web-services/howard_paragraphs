@@ -26,11 +26,13 @@
           <div class="video__wrap">
             {{ content.field_hp_md_media }}
           </div>
-          <div class="video__desc">
-            <div class="body-text--light body-text--small media-caption">
-              {{ content.field_hp_md_caption }}
+          {% if content.field_hp_md_caption[0] %}
+            <div class="video__desc">
+              <div class="body-text--light body-text--small media-caption">
+                {{ content.field_hp_md_caption }}
+              </div>
             </div>
-          </div>
+          {% endif %}
         </div>
 
       {% elseif hp_media_type == 'audio' %}
@@ -40,9 +42,11 @@
             <h3>{{ content.field_hp_md_title }}</h3>
           {% endif %}
           {{ content.field_hp_md_media }}
-          <div class="body-text--light body-text--small media-caption">
-            {{ content.field_hp_md_caption }}
-          </div>
+          {% if content.field_hp_md_caption[0] %}
+            <div class="body-text--light body-text--small media-caption">
+              {{ content.field_hp_md_caption }}
+            </div>
+          {% endif %}
         </div>
 
       {% else %}
@@ -51,9 +55,11 @@
           <h3>{{ content.field_hp_md_title }}</h3>
         {% endif %}
         {{ content.field_hp_md_media }}
-        <div class="body-text--light body-text--small media-caption">
-          {{ content.field_hp_md_caption }}
-        </div>
+        {% if content.field_hp_md_caption[0] %}
+          <div class="body-text--light body-text--small media-caption">
+            {{ content.field_hp_md_caption }}
+          </div>
+        {% endif %}
 
       {% endif %}
 
