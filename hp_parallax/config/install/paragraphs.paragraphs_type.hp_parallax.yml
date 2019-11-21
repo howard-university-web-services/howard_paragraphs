@@ -1,0 +1,11 @@
+uuid: a5e20067-7f7f-4216-841d-da9827a4c942
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: MluqEnxIEJDEOArIzT0LAHeY_1KiHURerOn5q3ozXns
+id: hp_parallax
+label: 'HP Parallax'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }
