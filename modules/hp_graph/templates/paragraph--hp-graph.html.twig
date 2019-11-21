@@ -1,0 +1,21 @@
+
+<section class=" hp_graph_bundle" >
+	<div class="featurettes_text  col">
+		<aside class="featurette">
+			<h1 class="featurette-heading">{{-content.field_hp_graph_title[0]-}}</h1>
+			<p class="lead "> {{-content.field_hp_graph_description[0]-}}</p>
+			{%  if true in content.field_hp_graph_link[0] %}
+				<a class="btn" href="{% spaceless %}{{-content.field_hp_graph_link[0]['#url']-}}{% endspaceless %}">{{-content.field_hp_graph_link[0]['#title']-}}</a>
+			{% endif %}
+		</aside>
+	</div>
+	<div class="featurettes_image col">
+		{% for i in 0..content.field_hp_graph_data|length %}
+			{% if content.field_hp_graph_data[i] is not null %} 
+			{{-content.field_hp_graph_data[i]-}}
+			{% endif %}
+		{% endfor %}
+	</div>
+		
+</section>
+

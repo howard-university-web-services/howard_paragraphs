@@ -1,0 +1,60 @@
+uuid: 45ff32f8-327a-466a-84d9-5749071e219e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_graph.field_hp_graph_data
+    - field.field.paragraph.hp_graph.field_hp_graph_description
+    - field.field.paragraph.hp_graph.field_hp_graph_link
+    - field.field.paragraph.hp_graph.field_hp_graph_title
+    - paragraphs.paragraphs_type.hp_graph
+  module:
+    - link
+    - paragraphs
+_core:
+  default_config_hash: BjQOb3pngghhGSgsDaubJrqtEWU_McKH99vSHVWhNIA
+id: paragraph.hp_graph.default
+targetEntityType: paragraph
+bundle: hp_graph
+mode: default
+content:
+  field_hp_graph_data:
+    type: entity_reference_paragraphs
+    weight: 2
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
+  field_hp_graph_description:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_hp_graph_link:
+    weight: 3
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_hp_graph_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

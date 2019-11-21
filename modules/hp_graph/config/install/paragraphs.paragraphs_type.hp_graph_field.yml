@@ -1,0 +1,11 @@
+uuid: d2f92974-0f5e-4df0-a673-214a65f4371d
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: kE3UrlIdCuzBsRe_coZZ-LfkbfIFvdvyK2v5Ek2l_5s
+id: hp_graph_field
+label: 'HP Graph Field'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }
