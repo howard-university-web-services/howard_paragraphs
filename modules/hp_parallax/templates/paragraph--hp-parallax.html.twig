@@ -1,0 +1,40 @@
+
+
+<section class=" hp_parallax_bundle" >
+	<section class="h-100" >
+		{# 	if float_left  is true  #}		
+		{%  if float_left == 1 %}
+		<div class="featurettes_text float_left">
+			<aside class="featurette">
+				<div class="icon">{{-content.field_hp_parallax_icon[0]-}}</div>
+				<h1 class="featurette-heading">{{-content.field_hp_parallax_title[0]-}}</h1>
+				<p class="lead "> {{-content.field_hp_parallax_description[0]-}}</p>
+				{%  if true in content.field_hp_parallax_link[0] %}
+				<a class="btn" href="{% spaceless %}{{-content.field_hp_parallax_link[0]['#url']-}}{% endspaceless %}">{{-content.field_hp_parallax_link[0]['#title']-}}</a>
+			{% endif %}
+			</aside>
+		</div>
+		<div class="featurettes_image float_right">
+			<section class="background-image" style="background-image: url('{{content.field_hp_parallax_bg_image[0]}}')">&nbsp;</section>
+		</div>
+		{% endif %}
+
+		{# if float_left is false #}		
+		{%  if float_left == 0 %}
+		<div class="featurettes_image float_left">
+			<section class="background-image" style="background-image: url('{{content.field_hp_parallax_bg_image[0]}}')">&nbsp;</section>
+		</div>
+			<div class="featurettes_text float_right">
+				<aside class="featurette">
+						<div class="icon">{{-content.field_hp_parallax_icon[0]-}}</div>
+				<h1 class="featurette-heading">{{-content.field_hp_parallax_title[0]-}}</h1>
+				<p class="lead">{{-content.field_hp_parallax_description[0]-}}</p>
+				{%  if true in content.field_hp_parallax_link[0] %}
+					<a class="btn" href="{% spaceless %}{{-content.field_hp_parallax_link[0]['#url']-}}{% endspaceless %}">{{-content.field_hp_parallax_link[0]['#title']-}}</a>
+				{% endif %}
+				</aside>
+			</div>
+		{% endif %}
+		</div>
+	</section>
+</section>

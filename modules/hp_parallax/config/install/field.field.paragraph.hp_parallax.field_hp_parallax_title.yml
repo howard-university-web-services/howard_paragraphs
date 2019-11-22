@@ -1,0 +1,21 @@
+uuid: 627d54a0-78e9-4a1a-bee6-a3c28dc9ab74
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_parallax_title
+    - paragraphs.paragraphs_type.hp_parallax
+_core:
+  default_config_hash: XK8VKNofT5W6So8esc9K5bPl6qH47dD2xCZd5AdQLjw
+id: paragraph.hp_parallax.field_hp_parallax_title
+field_name: field_hp_parallax_title
+entity_type: paragraph
+bundle: hp_parallax
+label: Title
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
