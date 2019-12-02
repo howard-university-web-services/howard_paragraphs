@@ -11,7 +11,7 @@ dependencies:
     - paragraphs.paragraphs_type.hp_parallax
   module:
     - field_group
-    - image
+    - options
     - link
 third_party_settings:
   field_group:
@@ -26,20 +26,19 @@ third_party_settings:
         open: false
         required_fields: false
       label: Introduction
-_core:
-  default_config_hash: uojgyx5og9nlSvc7V6gVW5ezVeJmt6f4Zec6macrBwU
 id: paragraph.hp_parallax.default
 targetEntityType: paragraph
 bundle: hp_parallax
 mode: default
 content:
   field_hp_parallax_bg_image:
+    type: entity_reference_entity_view
     weight: 0
     label: hidden
     settings:
-      image_style: ''
+      view_mode: default
+      link: false
     third_party_settings: {  }
-    type: image_url
     region: content
   field_hp_parallax_description:
     weight: 1

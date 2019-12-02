@@ -57,20 +57,24 @@ third_party_settings:
         required_fields: true
       label: 'Parallax Hyperlink'
       region: content
-_core:
-  default_config_hash: '-DcHAsrhMPkFP7AfxuB7tEyUhDXLkv3SfAcypCVy2Ts'
 id: paragraph.hp_parallax.default
 targetEntityType: paragraph
 bundle: hp_parallax
 mode: default
 content:
   field_hp_parallax_bg_image:
-    weight: 2
+    weight: 1
     settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
+      entity_browser: hc_media_browser_image
+      field_widget_display: label
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      field_widget_replace: false
+      open: false
+      field_widget_display_settings: {  }
     third_party_settings: {  }
-    type: image_image
+    type: entity_browser_entity_reference
     region: content
   field_hp_parallax_description:
     weight: 2
