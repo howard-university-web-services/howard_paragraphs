@@ -51,3 +51,8 @@ function hp_parallax_help($route_name, RouteMatchInterface $route_match) {
   $variables['float_left'] = $paragraph->get('field_hp_parallax_left_align')->value;
 
 }
+
+function hp_parallax_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_parallax');
+}
+
