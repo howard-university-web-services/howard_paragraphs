@@ -1,4 +1,4 @@
-uuid: 0467311e-b5d8-4d26-a901-1a06c90417e7
+uuid: 30853af4-2fe1-43a7-8054-16c84e13b9af
 langcode: en
 status: true
 dependencies:
@@ -10,22 +10,8 @@ dependencies:
     - field.field.paragraph.hp_parallax.field_hp_parallax_title
     - paragraphs.paragraphs_type.hp_parallax
   module:
-    - field_group
-    - options
     - link
-third_party_settings:
-  field_group:
-    group_parallax_introduction:
-      children: {  }
-      parent_name: ''
-      weight: 20
-      format_type: details
-      format_settings:
-        id: ''
-        classes: ''
-        open: false
-        required_fields: false
-      label: Introduction
+    - text
 id: paragraph.hp_parallax.default
 targetEntityType: paragraph
 bundle: hp_parallax
@@ -33,22 +19,22 @@ mode: default
 content:
   field_hp_parallax_bg_image:
     type: entity_reference_entity_view
-    weight: 0
+    weight: 5
     label: hidden
     settings:
-      view_mode: default
       link: false
+      view_mode: default
     third_party_settings: {  }
     region: content
   field_hp_parallax_description:
-    weight: 1
+    weight: 0
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    type: text_default
     region: content
   field_hp_parallax_left_align:
-    weight: 5
+    weight: 2
     label: hidden
     settings:
       format: default
@@ -58,7 +44,7 @@ content:
     type: boolean
     region: content
   field_hp_parallax_link:
-    weight: 2
+    weight: 3
     label: hidden
     settings:
       trim_length: 80
@@ -70,7 +56,7 @@ content:
     type: link
     region: content
   field_hp_parallax_title:
-    weight: 3
+    weight: 4
     label: hidden
     settings:
       link_to_entity: false

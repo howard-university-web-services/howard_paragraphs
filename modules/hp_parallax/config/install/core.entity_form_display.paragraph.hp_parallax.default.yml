@@ -1,19 +1,20 @@
-uuid: 97ee2ddb-6155-46d6-b386-c0e4a09a8af2
+uuid: 821a2d22-2fec-4821-ad3a-cc6d84231a1d
 langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.hc_media_browser_image
     - field.field.paragraph.hp_parallax.field_hp_parallax_bg_image
     - field.field.paragraph.hp_parallax.field_hp_parallax_description
     - field.field.paragraph.hp_parallax.field_hp_parallax_left_align
     - field.field.paragraph.hp_parallax.field_hp_parallax_link
     - field.field.paragraph.hp_parallax.field_hp_parallax_title
-    - image.style.thumbnail
     - paragraphs.paragraphs_type.hp_parallax
   module:
+    - entity_browser
     - field_group
-    - image
     - link
+    - text
 third_party_settings:
   field_group:
     group_parallax_introduction:
@@ -29,11 +30,10 @@ third_party_settings:
         open: false
         required_fields: true
       label: Introduction
-      region: content
     group_parallax_image:
       children:
+        - group_parallax_icon
         - field_hp_parallax_bg_image
-        - field_hp_parallax_icon
       parent_name: ''
       weight: 1
       format_type: details
@@ -43,7 +43,6 @@ third_party_settings:
         open: false
         required_fields: true
       label: 'Parallax Image'
-      region: content
     group_parallax_hyperlink:
       children:
         - field_hp_parallax_link
@@ -55,15 +54,14 @@ third_party_settings:
         classes: ''
         open: false
         required_fields: true
-      label: 'Parallax Hyperlink'
-      region: content
+      label: Hyperlink(s)
 id: paragraph.hp_parallax.default
 targetEntityType: paragraph
 bundle: hp_parallax
 mode: default
 content:
   field_hp_parallax_bg_image:
-    weight: 1
+    weight: 22
     settings:
       entity_browser: hc_media_browser_image
       field_widget_display: label
@@ -77,22 +75,22 @@ content:
     type: entity_browser_entity_reference
     region: content
   field_hp_parallax_description:
-    weight: 2
+    weight: 6
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: string_textarea
+    type: text_textarea
     region: content
   field_hp_parallax_left_align:
-    weight: 5
+    weight: 3
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
   field_hp_parallax_link:
-    weight: 3
+    weight: 4
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -100,7 +98,7 @@ content:
     type: link_default
     region: content
   field_hp_parallax_title:
-    weight: 1
+    weight: 5
     settings:
       size: 60
       placeholder: ''
@@ -110,4 +108,3 @@ content:
 hidden:
   created: true
   status: true
-  uid: true

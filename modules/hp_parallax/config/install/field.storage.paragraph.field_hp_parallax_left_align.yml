@@ -1,11 +1,9 @@
-uuid: ca432529-ccfe-4269-b171-f3f9ac3fef4e
+uuid: 56832504-d106-47d7-8bb4-6b76711a96be
 langcode: en
 status: true
 dependencies:
   module:
     - paragraphs
-_core:
-  default_config_hash: ZiPij7cLhhyJQWoI8UTWKkxRskTo4lFhk-06FG7nAFU
 id: paragraph.field_hp_parallax_left_align
 field_name: field_hp_parallax_left_align
 entity_type: paragraph
