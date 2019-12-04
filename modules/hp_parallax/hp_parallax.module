@@ -7,6 +7,8 @@
 
  use Drupal\Core\Routing\RouteMatchInterface;
  use Drupal\paragraphs\Entity\Paragraph;
+ use Drupal\media\Entity\Media;
+
 
  /**
  * Implements hook_help().
