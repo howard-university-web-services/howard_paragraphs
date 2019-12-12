@@ -7,7 +7,7 @@ dependencies:
     - field.field.paragraph.hp_graph_field.field_hp_graph_percent
     - paragraphs.paragraphs_type.hp_graph_field
 _core:
-  default_config_hash: A9CFEb2nh9tfV_XgEK7TUjBUp5OlN6MfKxwjlUMgHI4
+  default_config_hash: RSQ7DpY_j9Vmw6ss9IfFCVECM3LkEpA8G0_NdwfuYAM
 id: paragraph.hp_graph_field.default
 targetEntityType: paragraph
 bundle: hp_graph_field

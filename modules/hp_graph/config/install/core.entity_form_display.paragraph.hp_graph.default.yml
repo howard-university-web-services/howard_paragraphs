@@ -9,10 +9,50 @@ dependencies:
     - field.field.paragraph.hp_graph.field_hp_graph_title
     - paragraphs.paragraphs_type.hp_graph
   module:
+    - field_group
     - link
     - paragraphs
+third_party_settings:
+  field_group:
+    group_introduction:
+      children:
+        - field_hp_graph_title
+        - field_hp_graph_description
+      parent_name: ''
+      weight: 0
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: true
+      label: Introduction
+    group_data:
+      children:
+        - field_hp_graph_data
+      parent_name: ''
+      weight: 1
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: true
+      label: Data
+    group_link:
+      children:
+        - field_hp_graph_link
+      parent_name: ''
+      weight: 2
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: true
+      label: Link
 _core:
-  default_config_hash: BjQOb3pngghhGSgsDaubJrqtEWU_McKH99vSHVWhNIA
+  default_config_hash: KPMg3dGGI01niVCkACuMtI3Z1jwDBsvAajTkz_OAirw
 id: paragraph.hp_graph.default
 targetEntityType: paragraph
 bundle: hp_graph
@@ -31,7 +71,7 @@ content:
     third_party_settings: {  }
     region: content
   field_hp_graph_description:
-    weight: 1
+    weight: 2
     settings:
       rows: 5
       placeholder: ''
@@ -47,7 +87,7 @@ content:
     type: link_default
     region: content
   field_hp_graph_title:
-    weight: 0
+    weight: 1
     settings:
       size: 60
       placeholder: ''
