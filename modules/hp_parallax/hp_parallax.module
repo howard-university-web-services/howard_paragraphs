@@ -7,6 +7,8 @@
 
  use Drupal\Core\Routing\RouteMatchInterface;
  use Drupal\paragraphs\Entity\Paragraph;
+ use Drupal\media\Entity\Media;
+
 
  /**
  * Implements hook_help().
@@ -43,4 +45,27 @@ function hp_parallax_help($route_name, RouteMatchInterface $route_match) {
      ]
    ];
  }
+
+
+ function hp_parallax_preprocess_paragraph__hp_parallax(array &$variables) {
+  $paragraph = $variables['elements']['#paragraph'];
+  $variables['float_left'] = $paragraph->get('field_hp_parallax_left_align')->value;
+  
+  //get media url
+  if ($paragraph->hasField('field_hp_parallax_bg_image')) {
+    $bkrd_image = $paragraph->get('field_hp_parallax_bg_image')->getValue();
+    if ($bkrd_image && !empty($bkrd_image)) {
+      $entity = Media::load($bkrd_image[0]['target_id']);
+      if(isset($entity->field_media_image->entity)) {
+        $variables['hp_parallax_bg_image'] = file_create_url($entity->field_media_image->entity->getFileUri());
+      }
+    }
+  }
+}
+
+
+
+function hp_parallax_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_parallax');
+}
 

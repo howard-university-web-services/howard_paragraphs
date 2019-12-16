@@ -1,12 +1,12 @@
-uuid: 8e941644-e159-435b-b79a-1bddab889f24
+uuid: a1c4a0dc-bce5-45ec-b557-591d8006b0ee
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_hp_parallax_description
     - paragraphs.paragraphs_type.hp_parallax
-_core:
-  default_config_hash: '-H57cmPsuN9IOFuS036WfmDpwsq_pPXN4ij0ZPFJ-E0'
+  module:
+    - text
 id: paragraph.hp_parallax.field_hp_parallax_description
 field_name: field_hp_parallax_description
 entity_type: paragraph
@@ -18,4 +18,4 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: string_long
+field_type: text_long

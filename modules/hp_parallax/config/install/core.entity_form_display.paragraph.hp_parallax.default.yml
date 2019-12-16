@@ -1,67 +1,96 @@
-uuid: 97ee2ddb-6155-46d6-b386-c0e4a09a8af2
+uuid: 821a2d22-2fec-4821-ad3a-cc6d84231a1d
 langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.hc_media_browser_image
     - field.field.paragraph.hp_parallax.field_hp_parallax_bg_image
-    - field.field.paragraph.hp_parallax.field_hp_parallax_custom_class
     - field.field.paragraph.hp_parallax.field_hp_parallax_description
-    - field.field.paragraph.hp_parallax.field_hp_parallax_icon
     - field.field.paragraph.hp_parallax.field_hp_parallax_left_align
     - field.field.paragraph.hp_parallax.field_hp_parallax_link
     - field.field.paragraph.hp_parallax.field_hp_parallax_title
-    - image.style.thumbnail
     - paragraphs.paragraphs_type.hp_parallax
   module:
-    - fontawesome
-    - image
+    - entity_browser
+    - field_group
     - link
-_core:
-  default_config_hash: EFxNmNfNwLehQVOb5SCjlbYZJijGaGYDD0LXk3bRmEo
+    - text
+third_party_settings:
+  field_group:
+    group_parallax_introduction:
+      children:
+        - field_hp_parallax_title
+        - field_hp_parallax_description
+      parent_name: ''
+      weight: 0
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: true
+      label: Introduction
+    group_parallax_image:
+      children:
+        - group_parallax_icon
+        - field_hp_parallax_bg_image
+      parent_name: ''
+      weight: 1
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: true
+      label: 'Parallax Image'
+    group_parallax_hyperlink:
+      children:
+        - field_hp_parallax_link
+      parent_name: ''
+      weight: 2
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: true
+      label: Hyperlink(s)
 id: paragraph.hp_parallax.default
 targetEntityType: paragraph
 bundle: hp_parallax
 mode: default
 content:
   field_hp_parallax_bg_image:
-    weight: 2
+    weight: 22
     settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
+      entity_browser: hc_media_browser_image
+      field_widget_display: label
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      field_widget_replace: false
+      open: false
+      field_widget_display_settings: {  }
     third_party_settings: {  }
-    type: image_image
-    region: content
-  field_hp_parallax_custom_class:
-    weight: 4
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
+    type: entity_browser_entity_reference
     region: content
   field_hp_parallax_description:
-    weight: 1
+    weight: 6
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: string_textarea
+    type: text_textarea
     region: content
-  field_hp_parallax_icon:
-    type: fontawesome_icon_widget
-    weight: 6
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_hp_parallax_left_align:
-    weight: 5
+    weight: 3
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
   field_hp_parallax_link:
-    weight: 3
+    weight: 4
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -69,7 +98,7 @@ content:
     type: link_default
     region: content
   field_hp_parallax_title:
-    weight: 0
+    weight: 5
     settings:
       size: 60
       placeholder: ''
@@ -79,4 +108,3 @@ content:
 hidden:
   created: true
   status: true
-  uid: true

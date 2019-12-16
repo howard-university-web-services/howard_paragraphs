@@ -1,12 +1,10 @@
-uuid: 627d54a0-78e9-4a1a-bee6-a3c28dc9ab74
+uuid: 5ed9d6cf-1cd1-45a8-8448-f81e402cbcfd
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_hp_parallax_title
     - paragraphs.paragraphs_type.hp_parallax
-_core:
-  default_config_hash: Nk291Ec1rIzf3ff5uA6OGeJcJ_irDZsLo1kiIK-2Ytg
 id: paragraph.hp_parallax.field_hp_parallax_title
 field_name: field_hp_parallax_title
 entity_type: paragraph

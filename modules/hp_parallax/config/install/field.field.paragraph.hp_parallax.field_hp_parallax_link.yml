@@ -1,4 +1,4 @@
-uuid: acaa35d7-d561-47a3-b907-e5f35ad98fb1
+uuid: 5b0c4874-c6e9-4be6-ac9a-c6b55983a2c6
 langcode: en
 status: true
 dependencies:
@@ -7,8 +7,6 @@ dependencies:
     - paragraphs.paragraphs_type.hp_parallax
   module:
     - link
-_core:
-  default_config_hash: Rcz4J7wmxV85WaCFbZ6Rgm8P6Lz2ehVb5cevm-bO11s
 id: paragraph.hp_parallax.field_hp_parallax_link
 field_name: field_hp_parallax_link
 entity_type: paragraph

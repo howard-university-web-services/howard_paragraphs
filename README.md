@@ -43,6 +43,8 @@ The following submodules are available:
  - Media: Paragraphs integration of media for use in Howard projects
  - News Feed: Paragraphs integration of News Feed (from newsroom.howard.edu) for Howard projects
  - Parallax: Paragraphs integration of parallax scrolling for use in Howard projects
+ - Photoshelter Feed: Paragraphs integration of Photoshelter Feed into a carousel with modal front end
+ - Photoshelter Feed Grid: Paragraphs integration of Photoshelter Feed into a silc grid.
  - Profiles Feed: Paragraphs integration of Profiles Feed (from profiles.howard.edu) for Howard projects
  - Program: Paragraphs integration of embedding a Program (from programs.howard.edu) for Howard projects
  - Programs Feed Paragraphs integration of embedding a Programs Feed (from programs.howard.edu) for Howard projects

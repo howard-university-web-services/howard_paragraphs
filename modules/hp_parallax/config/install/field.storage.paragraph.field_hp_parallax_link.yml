@@ -1,12 +1,10 @@
-uuid: df189dc2-3d9d-47e6-89bc-c91234035a65
+uuid: 81c57af1-2482-433c-a4a6-a0d1fa98252c
 langcode: en
 status: true
 dependencies:
   module:
     - link
     - paragraphs
-_core:
-  default_config_hash: 2W3-N0YC7alzW-CVh6xjOIEUFUTcG1Lr51kGFFvma48
 id: paragraph.field_hp_parallax_link
 field_name: field_hp_parallax_link
 entity_type: paragraph
@@ -14,7 +12,7 @@ type: link
 settings: {  }
 module: link
 locked: false
-cardinality: 2
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

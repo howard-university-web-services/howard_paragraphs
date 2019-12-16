@@ -1,14 +1,14 @@
-uuid: 56832504-d106-47d7-8bb4-6b76711a96be
 langcode: en
 status: true
 dependencies:
   module:
     - paragraphs
-id: paragraph.field_hp_parallax_left_align
-field_name: field_hp_parallax_left_align
+id: paragraph.field_hp_pfg_photoshelter_id
+field_name: field_hp_pfg_photoshelter_id
 entity_type: paragraph
-type: boolean
-settings: {  }
+type: string_long
+settings:
+  case_sensitive: false
 module: core
 locked: false
 cardinality: 1

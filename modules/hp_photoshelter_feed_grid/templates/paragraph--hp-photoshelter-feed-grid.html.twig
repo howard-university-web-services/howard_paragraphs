@@ -1,0 +1,43 @@
+{#
+/**
+ * @file
+ * HP Photoshelter Feed paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<section class="section--padded-top section--padded-bottom" aria-label="Photoshelter Gallery Grid">
+  {% if hp_show_wrapper %}
+    <div class="compartment">
+  {% endif %}
+
+      {% if content.field_hp_pfg_gallery_title[0] %}
+        <div class="block-header">
+            <div class="block-header__title">
+                <span class=" block-header__icon icon-picture"></span>
+                <h2>{{ content.field_hp_pfg_gallery_title }}</h2>
+            </div>
+        </div>
+      {% endif %}
+
+      <div class="silc-grid photoshelter-grid">
+        {% for image in images %}
+            <div class="silc-grid__col silc-grid__col--12 silc-grid__col--6-small silc-grid__col--4-medium silc-grid__col--3-large">
+               <!-- <a class="lightboxGallery" href="https://ssl.c.photoshelter.com/img-get2/{{image["image_id"]}}"> -->
+                <a class="lightboxGallery" href="{{image["Image"]["ImageLink"]["link"]}}">
+                    <img src="https://ssl.c.photoshelter.com/img-get2/{{image["image_id"]}}" alt="{{image["Image"]["Iptc"]["display_caption"]}}">
+                    <span class="visible-for-screen-readers">link to image</span>
+                </a>
+            </div>
+        {% endfor %}
+       </div>
+      </div>
+
+      <!-- Render without, so quickedit/etc works -->
+      {{ content|without('field_hp_pfg_photoshelter_id', 'field_hp_pfg_gallery_title') }}
+
+  {% if hp_show_wrapper %}
+    </div>
+  {% endif %}
+</section>
