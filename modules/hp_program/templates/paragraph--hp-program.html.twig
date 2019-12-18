@@ -103,7 +103,7 @@
     {% endif %}
     
     <!-- Details -->
-    {% if hp_pg_program.program_format or hp_pg_program.program_frequency or hp_pg_program.related_degrees or hp_pg_program.degree_classification or hp_pg_program.program_length or  hp_pg_program.program_tuition or hp_pg_program.total_students or hp_pg_program.total_alumni or hp_pg_program.related_professions %}
+    {% if hp_pg_program.program_format or hp_pg_program.program_frequency or hp_pg_program.related_degrees or hp_pg_program.program_type or hp_pg_program.degree_classification or hp_pg_program.program_length or  hp_pg_program.program_tuition or hp_pg_program.total_students or hp_pg_program.total_alumni or hp_pg_program.related_professions %}
       <div class="section--padded-bottom">
         <div class="block-header">
           <div class="block-header__title">
@@ -117,6 +117,9 @@
           {% endif %}
           {% if hp_pg_program.related_degrees %}
             <li><strong>Related Degrees:</strong> {{ hp_pg_program.related_degrees }}</li>
+          {% endif %}
+          {% if hp_pg_program.program_type %}
+	     <li><strong>Program Type:</strong> {{ hp_pg_program.program_type }} </li>
           {% endif %}
           {% if hp_pg_program.program_frequency %}
             <li><strong>Program Frequency:</strong> {{ hp_pg_program.program_frequency }}</li>
