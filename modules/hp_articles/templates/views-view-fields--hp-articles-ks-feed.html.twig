@@ -9,7 +9,7 @@
 
 <div class="silc-grid__col silc-grid__col--4-medium">
     <a href="{{ path('entity.node.canonical', {'node': fields.nid.content|render|striptags|trim}) }}" class="news-and-events__block">
-        <div class="news-and-events__img" style="background-image:url('{{ fields.field_media_image.content }}')"></div>
+        <div class="news-and-events__img" style="background-image:url('{{ fields.field_media_image.content|render|striptags|trim }}')"></div>
         <div class="news-and-events__desc">
             <span class="news-and-events__date">{{ fields.created.content }}</span>
             <h3 class="news-and-events__title header--h3-small">{{ fields.title.content }}</h3>
