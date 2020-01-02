@@ -40,8 +40,8 @@ class MagazineCategories extends ExternalDataSourceBase {
   }
 
   /**
-   * setRequest
-   * Setting sent request
+   * SetRequest
+   * Setting sent request.
    *
    * @params Symfony\Component\HttpFoundation\Request $request
    */
@@ -50,8 +50,8 @@ class MagazineCategories extends ExternalDataSourceBase {
   }
 
   /**
-   * getRequest
-   * getting sent request
+   * GetRequest
+   * getting sent request.
    *
    * @return \Symfony\Component\HttpFoundation\Request $request
    */
@@ -60,8 +60,9 @@ class MagazineCategories extends ExternalDataSourceBase {
   }
 
   /**
-   * getResponse
-   * Call WS to retrieve data
+   * GetResponse
+   * Call WS to retrieve data.
+   *
    * @return array
    */
   public function getResponse() {
@@ -77,26 +78,27 @@ class MagazineCategories extends ExternalDataSourceBase {
     else {
       $client = new Client();
       try {
-        // taxonomy_3 is the category endpoint on howard calendar
+        // taxonomy_3 is the category endpoint on howard calendar.
         $response = $client->get('https://magazine.howard.edu/api/categories/');
         $data = json_decode($response->getBody()->getContents());
         $data = $data->data;
-        //dsm($data);
-      } catch (GuzzleException $e) {
+        // dsm($data);
+      }
+      catch (GuzzleException $e) {
         watchdog_exception('external_data_source', $e->getMessage());
       }
-      //Caching result to avoid ws over use
+      // Caching result to avoid ws over use.
       \Drupal::cache()->set($cid, $data);
     }
     return $this->formatResponse($data);
   }
 
   /**
-   * formatResponse
+   * FormatResponse.
    *
    * @param array $response
-   * Formatting data retrieved from ws to match [{"value":"","label":""},
-   *   {"value":"", "label":""}] return array $collection retrieved suggestions
+   *   Formatting data retrieved from ws to match [{"value":"","label":""},
+   *   {"value":"", "label":""}] return array $collection retrieved suggestions.
    *
    * @return array $collection
    */
@@ -107,10 +109,10 @@ class MagazineCategories extends ExternalDataSourceBase {
       $value = 'id=' . strval($entry->id);
       $collection[] = [
         'value' => $value,
-        'label' => t($entry->label)
+        'label' => t($entry->label),
       ];
     }
-    //\Drupal::logger('hp_ec')->debug('response: ' . json_encode($collection) );
+    // \Drupal::logger('hp_ec')->debug('response: ' . json_encode($collection) );
     return $collection;
   }
 

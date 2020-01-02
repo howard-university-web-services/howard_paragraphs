@@ -2,14 +2,12 @@
 
 /**
  * @file
- * hp_programs_feed module file.
+ * Hp_programs_feed module file.
  */
 
- use Drupal\Core\Routing\RouteMatchInterface;
- use Drupal\paragraphs\Entity\Paragraph;
- use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
 
- /**
+/**
  * Implements hook_help().
  *
  * @inheritdoc
@@ -35,100 +33,98 @@ function hp_programs_feed_help($route_name, RouteMatchInterface $route_match) {
 
 /**
  * Implements hook_preprocess_paragraph().
+ *
  * @param $variables
- * This sets variables for getting events, and then gets events.
+ *   This sets variables for getting events, and then gets events.
  */
 function hp_programs_feed_preprocess_paragraph__hp_programs_feed(&$variables) {
-  // UUID to pass for cache
+  // UUID to pass for cache.
   $uuid = $variables['elements']['#paragraph']->uuid->value;
 
-  // Check on env to get events from
+  // Check on env to get events from.
   $env = $variables['elements']['#paragraph']->field_hp_pgf_environment->value;
   $env_url = 'https://programs.howard.edu';
-  if($env == 'stg') {
+  if ($env == 'stg') {
     $env_url = 'http://stg.programs.howard.edu';
-  } elseif($env == 'dev') {
+  }
+  elseif ($env == 'dev') {
     $env_url = 'http://dev.programs.howard.edu';
   }
   $variables['hp_pgf_env_url'] = $env_url;
 
-  // Check on Degree Classifications filter
-  $degree_classification = null;
-  if(isset($variables['elements']['#paragraph']->field_hp_pgf_degree_classificati->value)) {
+  // Check on Degree Classifications filter.
+  $degree_classification = NULL;
+  if (isset($variables['elements']['#paragraph']->field_hp_pgf_degree_classificati->value)) {
     $degree_classification = $variables['elements']['#paragraph']->field_hp_pgf_degree_classificati->value;
-    // Decode string workaround due to bug in core or external_data_source
-    $degree_classification = str_replace('id=','',$degree_classification);
+    // Decode string workaround due to bug in core or external_data_source.
+    $degree_classification = str_replace('id=', '', $degree_classification);
   }
 
-  // Check on schools filter
-  $school = null;
-  if(isset($variables['elements']['#paragraph']->field_hp_pgf_school->value)) {
+  // Check on schools filter.
+  $school = NULL;
+  if (isset($variables['elements']['#paragraph']->field_hp_pgf_school->value)) {
     $school = $variables['elements']['#paragraph']->field_hp_pgf_school->value;
-    // Decode string workaround due to bug in core or external_data_source
-    $school = str_replace('id=','',$school);
+    // Decode string workaround due to bug in core or external_data_source.
+    $school = str_replace('id=', '', $school);
   }
 
-  // Check on subject filter
-  $subject = null;
-  if(isset($variables['elements']['#paragraph']->field_hp_pgf_subject->value)) {
+  // Check on subject filter.
+  $subject = NULL;
+  if (isset($variables['elements']['#paragraph']->field_hp_pgf_subject->value)) {
     $subject = $variables['elements']['#paragraph']->field_hp_pgf_subject->value;
-    // Decode string workaround due to bug in core or external_data_source
-    $subject = str_replace('id=','',$subject);
+    // Decode string workaround due to bug in core or external_data_source.
+    $subject = str_replace('id=', '', $subject);
   }
 
-  // Get programs
+  // Get programs.
   $variables['hp_pgf_programs'] = _hp_programs_feed_get_programs($env_url, $degree_classification, $school, $subject, $uuid);
-  
 
 }
 
- /**
-  * Implements hook_theme().
-  * Lets us define our paragraphs templates in this module.
-  */
- function hp_programs_feed_theme($existing, $type, $theme, $path) {
-   return [
-     'paragraph__hp_programs_feed' => [
-       'base hook' => 'paragraph',
-     ]
-   ];
- }
-
+/**
+ * Implements hook_theme().
+ * Lets us define our paragraphs templates in this module.
+ */
+function hp_programs_feed_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__hp_programs_feed' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
 
 /**
-* CUSTOM FUNCTIONS
-*
-*/
-
-
- /**
- * Gets programs from programs.howard.edu, and displays.
- *
+ * CUSTOM FUNCTIONS.
  */
- function _hp_programs_feed_get_programs($env_url = 'https://programs.howard.edu', $degree_classification = null, $school = null, $subject = null, $id = 'default') {
-   if ($cache = \Drupal::cache()->get('hp_programs_feed--' . $id . '-' . $range)) {
-     return $cache->data;
-   }
-   else {
-     $currentDate = date('Y-m-d');
-     $url = $env_url . "/api/programs?sort=label";
-     if(isset($degree_classification)) {
-       $url .= "&filter[degree_classification][value][]=" . $degree_classification;
-     }
-     if(isset($school)) {
-       $url .= "&filter[related_school][value][]=" . $school;
-     }
-     if(isset($subject)) {
+
+/**
+ * Gets programs from programs.howard.edu, and displays.
+ */
+function _hp_programs_feed_get_programs($env_url = 'https://programs.howard.edu', $degree_classification = NULL, $school = NULL, $subject = NULL, $id = 'default') {
+  if ($cache = \Drupal::cache()->get('hp_programs_feed--' . $id . '-' . $range)) {
+    return $cache->data;
+  }
+  else {
+    $currentDate = date('Y-m-d');
+    $url = $env_url . "/api/programs?sort=label";
+    if (isset($degree_classification)) {
+      $url .= "&filter[degree_classification][value][]=" . $degree_classification;
+    }
+    if (isset($school)) {
+      $url .= "&filter[related_school][value][]=" . $school;
+    }
+    if (isset($subject)) {
       $url .= "&filter[taxonomy_5][value][]=" . $subject;
-     }
-     $result = file_get_contents($url);
-     $result = json_decode($result, true);
-     $result = $result['data'];
-     if($result) {
-       \Drupal::cache()->set('hp_programs_feed--' . $id. '-' . $range, $result, time() + 7200);
-       return $result;
-     } else {
-       return null;
-     }
-   }
- }
+    }
+    $result = file_get_contents($url);
+    $result = json_decode($result, TRUE);
+    $result = $result['data'];
+    if ($result) {
+      \Drupal::cache()->set('hp_programs_feed--' . $id . '-' . $range, $result, time() + 7200);
+      return $result;
+    }
+    else {
+      return NULL;
+    }
+  }
+}

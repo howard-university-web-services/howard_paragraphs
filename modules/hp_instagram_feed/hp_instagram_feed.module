@@ -2,17 +2,17 @@
 
 /**
  * @file
- * hp_instagram_feed module file.
+ * Hp_instagram_feed module file.
  */
 
- require "vendor/autoload.php";
+require "vendor/autoload.php";
 
- use Facebook\Facebook;
- use Drupal\Core\Routing\RouteMatchInterface;
- use Drupal\paragraphs\Entity\Paragraph;
- use Drupal\Core\Form\FormStateInterface;
+use Facebook\Exceptions\FacebookSDKException;
+use Facebook\Exceptions\FacebookResponseException;
+use Facebook\Facebook;
+use Drupal\Core\Routing\RouteMatchInterface;
 
- /**
+/**
  * Implements hook_help().
  *
  * @inheritdoc
@@ -38,88 +38,84 @@ function hp_instagram_feed_help($route_name, RouteMatchInterface $route_match) {
 
 /**
  * Implements hook_preprocess_paragraph().
+ *
  * @param $variables
- * This sets variables for getting instagram posts, and then gets posts.
+ *   This sets variables for getting instagram posts, and then gets posts.
  */
 function hp_instagram_feed_preprocess_paragraph__hp_instagram_feed(&$variables) {
 
-  // Check on desired count
+  // Check on desired count.
   $count = 3;
-  if(isset($variables['elements']['#paragraph']->field_hp_if_count->value)) {
+  if (isset($variables['elements']['#paragraph']->field_hp_if_count->value)) {
     $count = $variables['elements']['#paragraph']->field_hp_if_count->value;
   }
 
-   // Instagram account ID
-   // DR Testing: $id = '17841400690423186';
-   $id = '';
-   if(isset($variables['elements']['#paragraph']->field_hp_if_id->value)) {
-     $id = $variables['elements']['#paragraph']->field_hp_if_id->value;
-   }
-  
+  // Instagram account ID
+  // DR Testing: $id = '17841400690423186';.
+  $id = '';
+  if (isset($variables['elements']['#paragraph']->field_hp_if_id->value)) {
+    $id = $variables['elements']['#paragraph']->field_hp_if_id->value;
+  }
+
   // Token
-  // DR Testing: $token = 'EAAjS8wkYZCkgBAPrTPnhK5UsAQjrXj7emGAUhBqZCzIqYtLs2WVGjK5whmG1kmnliZAnSpiEp3IO4MQwgZBPtYJ9gSzsedH6sm0TYDMlG9f0a5Wc9inZBg9JPB2aUqqZBMDyehre1rZC3iI80gYGk2QG9tZCsqIrJKPuFvDTHQmYrwZDZD';
+  // DR Testing: $token = 'EAAjS8wkYZCkgBAPrTPnhK5UsAQjrXj7emGAUhBqZCzIqYtLs2WVGjK5whmG1kmnliZAnSpiEp3IO4MQwgZBPtYJ9gSzsedH6sm0TYDMlG9f0a5Wc9inZBg9JPB2aUqqZBMDyehre1rZC3iI80gYGk2QG9tZCsqIrJKPuFvDTHQmYrwZDZD';.
   $token = '';
-  if(isset($variables['elements']['#paragraph']->field_hp_if_token->value)) {
+  if (isset($variables['elements']['#paragraph']->field_hp_if_token->value)) {
     $token = $variables['elements']['#paragraph']->field_hp_if_token->value;
   }
 
   // App ID
-  // DR Testing: $app_id = '2483741085204040';
+  // DR Testing: $app_id = '2483741085204040';.
   $app_id = '';
-  if(isset($variables['elements']['#paragraph']->field_hp_if_app->value)) {
+  if (isset($variables['elements']['#paragraph']->field_hp_if_app->value)) {
     $app_id = $variables['elements']['#paragraph']->field_hp_if_app->value;
   }
 
   // App Secret
-  // DR Testing: $app_secret = '2b2cbb7236afea6c90a84291f5a313ce';
+  // DR Testing: $app_secret = '2b2cbb7236afea6c90a84291f5a313ce';.
   $app_secret = '';
-  if(isset($variables['elements']['#paragraph']->field_hp_if_app_secret->value)) {
+  if (isset($variables['elements']['#paragraph']->field_hp_if_app_secret->value)) {
     $app_secret = $variables['elements']['#paragraph']->field_hp_if_app_secret->value;
   }
 
-  // Get posts
+  // Get posts.
   $variables['hp_if_posts'] = _hp_instagram_feed_get_posts($id, $count, $token, $app_id, $app_secret);
   $variables['hp_if_title'] = $variables['hp_if_posts']['results'][0]['username'];
 
 }
 
- /**
-  * Implements hook_theme().
-  * Lets us define our paragraphs templates in this module.
-  */
- function hp_instagram_feed_theme($existing, $type, $theme, $path) {
-   return [
-     'paragraph__hp_instagram_feed' => [
-       'base hook' => 'paragraph',
-     ]
-   ];
- }
-
+/**
+ * Implements hook_theme().
+ * Lets us define our paragraphs templates in this module.
+ */
+function hp_instagram_feed_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__hp_instagram_feed' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
 
 /**
-* CUSTOM FUNCTIONS
-*
-*/
-
-
- /**
- * Gets posts from instagram, and displays.
- *
+ * CUSTOM FUNCTIONS.
  */
- function _hp_instagram_feed_get_posts( $id, $count, $token, $app_id, $app_secret) {
-     
-   // Get cache if it's there.
-   if ($cache = \Drupal::cache()->get('hp_instagram_feed--' . $token . '-' . $count)) {
-     return $cache->data;
-   } else {
+
+/**
+ * Gets posts from instagram, and displays.
+ */
+function _hp_instagram_feed_get_posts($id, $count, $token, $app_id, $app_secret) {
+
+  // Get cache if it's there.
+  if ($cache = \Drupal::cache()->get('hp_instagram_feed--' . $token . '-' . $count)) {
+    return $cache->data;
+  }
+  else {
 
     // Uses Facebook PHP SDK, attached via composer, see readme.
-    // see https://developers.facebook.com/docs/graph-api/reference/v3.2/user/feed for fields/etc
-
-  
+    // see https://developers.facebook.com/docs/graph-api/reference/v3.2/user/feed for fields/etc.
     $fb = new Facebook([
       'app_id' => $app_id,
-      'app_secret' => $app_secret
+      'app_secret' => $app_secret,
     ]);
 
     $endpoint = '/' . $id . '/media?fields=caption,like_count,media_type,media_url,permalink,thumbnail_url,timestamp,username&limit=' . $count;
@@ -127,37 +123,42 @@ function hp_instagram_feed_preprocess_paragraph__hp_instagram_feed(&$variables) 
     try {
       // Test keys/etc here first so fails gracefully.
       $test_access = $fb->get('/me', $token);
-    } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+    }
+    catch (FacebookResponseException $e) {
       $result['error'] = 'Graph returned an error: ' . $e->getMessage();
-    } catch(\Facebook\Exceptions\FacebookSDKException $e) {
+    }
+    catch (FacebookSDKException $e) {
       $result['error'] = 'Facebook SDK returned an error: ' . $e->getMessage();
     }
 
-    if($test_access) {
+    if ($test_access) {
 
       try {
         $response = $fb->get($endpoint, $token);
-      } catch(Facebook\Exceptions\FacebookResponseException $e) {
+      }
+      catch (FacebookResponseException $e) {
         $result['error'] = 'Graph returned an error: ' . $e->getMessage();
-      } catch(Facebook\Exceptions\FacebookSDKException $e) {
+      }
+      catch (FacebookSDKException $e) {
         $result['error'] = 'Facebook SDK returned an error: ' . $e->getMessage();
       }
-      
+
       $feedEdge = $response->getGraphEdge();
       $result = [];
       foreach ($feedEdge as $key => $status) {
         $result['results'][$key] = $status->asArray();
       }
 
-    } 
-
-    // Set cache
-    if($result) {
-      \Drupal::cache()->set('hp_instagram_feed--' . $token . '-' . $count, $result, time() + 7200);
-      return $result;
-    } else {
-      return null;
     }
 
-   }
- }
+    // Set cache.
+    if ($result) {
+      \Drupal::cache()->set('hp_instagram_feed--' . $token . '-' . $count, $result, time() + 7200);
+      return $result;
+    }
+    else {
+      return NULL;
+    }
+
+  }
+}

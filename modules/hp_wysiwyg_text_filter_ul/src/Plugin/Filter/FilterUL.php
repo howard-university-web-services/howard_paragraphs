@@ -15,6 +15,7 @@ use Drupal\filter\Plugin\FilterBase;
  * )
  */
 class FilterUL extends FilterBase {
+
   /**
    * {@inheritdoc}
    */
@@ -26,9 +27,9 @@ class FilterUL extends FilterBase {
     $xpath = new \DOMXPath($dom);
     $ul_nodes = $xpath->query('//ul');
 
-    // If any UL's were found, append the body-text--list class to each of their class attributes
+    // If any UL's were found, append the body-text--list class to each of their class attributes.
     if ($ul_nodes->length > 0) {
-      foreach($ul_nodes as $ul) {
+      foreach ($ul_nodes as $ul) {
         $class_list = explode(' ', $ul->getAttribute('class'));
         $class_list[] = 'body-text--list';
         $ul->setAttribute('class', join(' ', array_unique($class_list)));
@@ -37,4 +38,5 @@ class FilterUL extends FilterBase {
 
     return new FilterProcessResult(Html::serialize($dom));
   }
+
 }

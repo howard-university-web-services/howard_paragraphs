@@ -2,14 +2,12 @@
 
 /**
  * @file
- * hp_articles module file.
+ * Hp_articles module file.
  */
 
- use Drupal\Core\Routing\RouteMatchInterface;
- use Drupal\paragraphs\Entity\Paragraph;
- use Drupal\views\Views;
+use Drupal\Core\Routing\RouteMatchInterface;
 
- /**
+/**
  * Implements hook_help().
  *
  * @inheritdoc
@@ -33,37 +31,38 @@ function hp_articles_help($route_name, RouteMatchInterface $route_match) {
   return NULL;
 }
 
- /**
-  * Implements hook_theme().
-  * Lets us define our paragraphs templates in this module.
-  */
- function hp_articles_theme($existing, $type, $theme, $path) {
-   return [
-     'paragraph__hp_articles' => [
-       'base hook' => 'paragraph',
-     ],
-     'views_view_fields__hp_articles_ks_feed' => [
+/**
+ * Implements hook_theme().
+ * Lets us define our paragraphs templates in this module.
+ */
+function hp_articles_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__hp_articles' => [
+      'base hook' => 'paragraph',
+    ],
+    'views_view_fields__hp_articles_ks_feed' => [
       'base hook' => 'views',
-     ],
-     'views_view__hp_articles_ks_feed' => [
+    ],
+    'views_view__hp_articles_ks_feed' => [
       'base hook' => 'views',
-     ]
-   ];
- }
+    ],
+  ];
+}
 
- /**
-  * Implements hook_preprocess_paragraph().
-  * @param $variables
-  * This sets classes needed for the button/link type.
-  */
- function hp_articles_preprocess_paragraph__hp_articles(&$variables) {
+/**
+ * Implements hook_preprocess_paragraph().
+ *
+ * @param $variables
+ *   This sets classes needed for the button/link type.
+ */
+function hp_articles_preprocess_paragraph__hp_articles(&$variables) {
 
-    // Get Taxonomy, if present
-    $filter = NULL;
-    if($variables['elements']['#paragraph']->field_hp_af_article_category_fil->target_id) {
-      $filter = $variables['elements']['#paragraph']->field_hp_af_article_category_fil->target_id;
-    }
-    
-    $variables['hp_articles_feed'] = views_embed_view('hp_articles_ks_feed', 'hp_articles_block', $filter);
-
+  // Get Taxonomy, if present.
+  $filter = NULL;
+  if ($variables['elements']['#paragraph']->field_hp_af_article_category_fil->target_id) {
+    $filter = $variables['elements']['#paragraph']->field_hp_af_article_category_fil->target_id;
   }
+
+  $variables['hp_articles_feed'] = views_embed_view('hp_articles_ks_feed', 'hp_articles_block', $filter);
+
+}

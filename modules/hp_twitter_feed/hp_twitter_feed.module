@@ -2,17 +2,15 @@
 
 /**
  * @file
- * hp_twitter_feed module file.
+ * Hp_twitter_feed module file.
  */
 
- require "vendor/autoload.php";
+require "vendor/autoload.php";
 
- use Abraham\TwitterOAuth\TwitterOAuth;
- use Drupal\Core\Routing\RouteMatchInterface;
- use Drupal\paragraphs\Entity\Paragraph;
- use Drupal\Core\Form\FormStateInterface;
+use Abraham\TwitterOAuth\TwitterOAuth;
+use Drupal\Core\Routing\RouteMatchInterface;
 
- /**
+/**
  * Implements hook_help().
  *
  * @inheritdoc
@@ -38,109 +36,109 @@ function hp_twitter_feed_help($route_name, RouteMatchInterface $route_match) {
 
 /**
  * Implements hook_preprocess_paragraph().
+ *
  * @param $variables
- * This sets variables for getting events, and then gets events.
+ *   This sets variables for getting events, and then gets events.
  */
 function hp_twitter_feed_preprocess_paragraph__hp_twitter_feed(&$variables) {
 
-  // Check on desired count/user account
+  // Check on desired count/user account.
   $count = $variables['elements']['#paragraph']->field_hp_tf_count->value;
   $username = $variables['elements']['#paragraph']->field_hp_tf_username->value;
 
-  // If twitter key/etc are overrridden we could add fields/etc here
-
-  // Get tweets
+  // If twitter key/etc are overrridden we could add fields/etc here.
+  // Get tweets.
   $variables['hp_tf_tweets'] = _hp_twitter_feed_get_tweets($username, $count);
 
 }
 
- /**
-  * Implements hook_theme().
-  * Lets us define our paragraphs templates in this module.
-  */
- function hp_twitter_feed_theme($existing, $type, $theme, $path) {
-   return [
-     'paragraph__hp_twitter_feed' => [
-       'base hook' => 'paragraph',
-     ]
-   ];
- }
-
+/**
+ * Implements hook_theme().
+ * Lets us define our paragraphs templates in this module.
+ */
+function hp_twitter_feed_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__hp_twitter_feed' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
 
 /**
-* CUSTOM FUNCTIONS
-*
-*/
-
-
- /**
- * Gets tweets from twitter, and displays.
- *
+ * CUSTOM FUNCTIONS.
  */
- function _hp_twitter_feed_get_tweets(
-   $username = 'howardu', 
+
+/**
+ * Gets tweets from twitter, and displays.
+ */
+function _hp_twitter_feed_get_tweets(
+   $username = 'howardu',
    $count = 1,
    $consumer_key = 'uxGbTPREx8Y7wj2S50pqn3Gdr',
    $consumer_secret = 'fjvZyG0z0peQfJdKdZ06FBGz3Y0Kc6b1xM8aQezvBhfXYHqpNd',
    $access_token = '75077081-vxeX4ZhMj7SK9tzGovnpeDfqr1roSfTwOU2vCvVWA',
    $access_token_secret = 'GGyQTJfiUFfCykw6iXCpGTQlbQYSJ0FSRNIK3ZDSWrh63'
    ) {
-     
-   // Get cache if it's there.
-   if ($cache = \Drupal::cache()->get('hp_twitter_feed--' . $username . '-' . $count)) {
-     return $cache->data;
-   } else {
-    
-    // Get tweets from twitter
+
+  // Get cache if it's there.
+  if ($cache = \Drupal::cache()->get('hp_twitter_feed--' . $username . '-' . $count)) {
+    return $cache->data;
+  }
+  else {
+
+    // Get tweets from twitter.
     $connection = new TwitterOAuth($consumer_key, $consumer_secret, $access_token, $access_token_secret);
-    $resp = $connection->get("statuses/user_timeline", ["screen_name" => $username, "count" => $count, "exclude_rts" => true, "exclude_replies" => true]);
-    
-    if(isset($resp->errors[0])) {
+    $resp = $connection->get("statuses/user_timeline", ["screen_name" => $username, "count" => $count, "exclude_rts" => TRUE, "exclude_replies" => TRUE]);
+
+    if (isset($resp->errors[0])) {
       $result['error'] = $resp->errors[0]->message;
-    } else {
+    }
+    else {
       $result['results'] = $resp;
-      // Parse text because twitter adds links/etc seperately
-      foreach($result['results'] as $key => $tweet) {
-       $tweet = _hp_twitter_feed_parse_message($tweet);
-       $result['results'][$key] = $tweet;
+      // Parse text because twitter adds links/etc seperately.
+      foreach ($result['results'] as $key => $tweet) {
+        $tweet = _hp_twitter_feed_parse_message($tweet);
+        $result['results'][$key] = $tweet;
       }
     }
-    // Set cache
-    if($result) {
+    // Set cache.
+    if ($result) {
       \Drupal::cache()->set('hp_twitter_feed--' . $username . '-' . $count, $result, time() + 900);
       return $result;
-    } else {
-      return null;
+    }
+    else {
+      return NULL;
     }
 
-   }
- }
+  }
+}
 
 /**
  * Parses and modifies text and images/etc.
- * 
  */
- function _hp_twitter_feed_parse_message( &$tweet ) {
-	if ( !empty($tweet->entities) ) {
-		foreach ($tweet->entities as $area => $items) {
-			$prefix = false;
-			$display = false;
-			switch ( $area ) {
-				case 'media':
-					$display = 'media_url_https';
-					$href    = 'media_url_https';
-					$size    = 'medium';
-					break;
-				default: break;
-			}
-			foreach ($items as $item) {
-				if ( $area == 'media' ) {
-					 //We can display images at the end of the tweet but sizing needs to added all the way to the top.
-					 $tweet->shared_image = "<img src=\"{$item->$href}:$size\" />";
-           $tweet->shared_image_url = "{$item->$href}:$size";
-				} 
-			}
-		}
+function _hp_twitter_feed_parse_message(&$tweet) {
+  if (!empty($tweet->entities)) {
+    foreach ($tweet->entities as $area => $items) {
+      $prefix = FALSE;
+      $display = FALSE;
+      switch ($area) {
+        case 'media':
+          $display = 'media_url_https';
+          $href    = 'media_url_https';
+          $size    = 'medium';
+          break;
+
+        default:
+          break;
+      }
+      foreach ($items as $item) {
+        if ($area == 'media') {
+          // We can display images at the end of the tweet but sizing needs to added all the way to the top.
+          $tweet->shared_image = "<img src=\"{$item->$href}:$size\" />";
+          $tweet->shared_image_url = "{$item->$href}:$size";
+        }
+      }
+    }
   }
   $raw_date = strtotime($tweet->created_at);
   $date = date("F j, Y", $raw_date);

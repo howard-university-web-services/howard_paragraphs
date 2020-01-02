@@ -2,14 +2,13 @@
 
 /**
  * @file
- * hp_announcements module file.
+ * Hp_announcements module file.
  */
 
- use Drupal\Core\Routing\RouteMatchInterface;
- use Drupal\paragraphs\Entity\Paragraph;
- use Drupal\views\Views;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\views\Views;
 
- /**
+/**
  * Implements hook_help().
  *
  * @inheritdoc
@@ -33,53 +32,54 @@ function hp_announcements_help($route_name, RouteMatchInterface $route_match) {
   return NULL;
 }
 
- /**
-  * Implements hook_theme().
-  * Lets us define our paragraphs templates in this module.
-  */
- function hp_announcements_theme($existing, $type, $theme, $path) {
-   return [
-     'paragraph__hp_announcements' => [
-       'base hook' => 'paragraph',
-     ]
-   ];
- }
+/**
+ * Implements hook_theme().
+ * Lets us define our paragraphs templates in this module.
+ */
+function hp_announcements_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__hp_announcements' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
 
 /**
-* Implements hook_preprocess_paragraph().
-* @param $variables
-* This sets classes needed for the button/link type.
-*/
+ * Implements hook_preprocess_paragraph().
+ *
+ * @param $variables
+ *   This sets classes needed for the button/link type.
+ */
 function hp_announcements_preprocess_paragraph__hp_announcements(&$variables) {
-    
-    // Load the view results
-    $values = [];
-    $view = views::getview('hp_announcements_ks_feed', 'hp_announcements_block');
-    if ($view) {
-      $view->execute();
-      foreach ($view->result as $rid => $row) {
-        $values[$rid]['title'] = $row->_entity->title->value;
-        $values[$rid]['featured'] = $row->_entity->field_hc_featured->value;
-        $values[$rid]['start_date'] = $row->_entity->field_hc_start_date[0]->value;
-        $values[$rid]['summary'] = $row->_entity->field_hc_summary->value;
-        $values[$rid]['link']['title'] = $row->_entity->field_hc_links[0]->title ? $row->_entity->field_hc_links[0]->title : null;
-        $values[$rid]['link']['uri'] = $row->_entity->field_hc_links[0]->uri ? $row->_entity->field_hc_links[0]->getUrl()->toString() : null;
-        $values[$rid]['link']['target'] = $row->_entity->field_hc_links[0]->options['attributes'] ? $row->_entity->field_hc_links[0]->options['attributes']['target'] : null;
-      }
+
+  // Load the view results.
+  $values = [];
+  $view = views::getview('hp_announcements_ks_feed', 'hp_announcements_block');
+  if ($view) {
+    $view->execute();
+    foreach ($view->result as $rid => $row) {
+      $values[$rid]['title'] = $row->_entity->title->value;
+      $values[$rid]['featured'] = $row->_entity->field_hc_featured->value;
+      $values[$rid]['start_date'] = $row->_entity->field_hc_start_date[0]->value;
+      $values[$rid]['summary'] = $row->_entity->field_hc_summary->value;
+      $values[$rid]['link']['title'] = $row->_entity->field_hc_links[0]->title ? $row->_entity->field_hc_links[0]->title : NULL;
+      $values[$rid]['link']['uri'] = $row->_entity->field_hc_links[0]->uri ? $row->_entity->field_hc_links[0]->getUrl()->toString() : NULL;
+      $values[$rid]['link']['target'] = $row->_entity->field_hc_links[0]->options['attributes'] ? $row->_entity->field_hc_links[0]->options['attributes']['target'] : NULL;
     }
-    $variables['hp_announcements'] = $values;
+  }
+  $variables['hp_announcements'] = $values;
 
-    // Get layout
-    $feed_type = $variables['elements']['#paragraph']->field_hp_an_feed_type->value;
-    $variables['hp_an_type'] = $feed_type;
+  // Get layout.
+  $feed_type = $variables['elements']['#paragraph']->field_hp_an_feed_type->value;
+  $variables['hp_an_type'] = $feed_type;
 
-    // Title
-    $variables['hp_an_title'] = $variables['elements']['#paragraph']->field_hp_an_title->value ? $variables['elements']['#paragraph']->field_hp_an_title->value : "Announcements";
+  // Title.
+  $variables['hp_an_title'] = $variables['elements']['#paragraph']->field_hp_an_title->value ? $variables['elements']['#paragraph']->field_hp_an_title->value : "Announcements";
 
 }
 
 // UPDATES
-//////////////////////////////////////////////////////
+// .
 
 /**
  * Updates to allow title.

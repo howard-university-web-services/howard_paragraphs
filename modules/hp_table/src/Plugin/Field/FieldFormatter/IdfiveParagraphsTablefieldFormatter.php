@@ -79,10 +79,10 @@ class IdfiveParagraphsTablefieldFormatter extends FormatterBase {
             'class' => [
               'table',
               'table--theme-default',
-              'table--stacked'
+              'table--stacked',
             ],
             'data-tablesaw-mode' => [
-              'stack'
+              'stack',
             ],
           ],
         ];

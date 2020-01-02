@@ -2,12 +2,12 @@
 
 /**
  * @file
- * hp_wysiwyg_text_filter_ul module file.
+ * Hp_wysiwyg_text_filter_ul module file.
  */
 
- use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
 
- /**
+/**
  * Implements hook_help().
  *
  * @inheritdoc

@@ -2,13 +2,13 @@
 
 /**
  * @file
- * hp_accordion module file.
+ * Hp_accordion module file.
  */
 
- use Drupal\Core\Routing\RouteMatchInterface;
- use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\paragraphs\Entity\Paragraph;
 
- /**
+/**
  * Implements hook_help().
  *
  * @inheritdoc
@@ -32,83 +32,84 @@ function hp_accordion_help($route_name, RouteMatchInterface $route_match) {
   return NULL;
 }
 
- /**
-  * Implements hook_theme().
-  * Lets us define our paragraphs templates in this module.
-  */
- function hp_accordion_theme($existing, $type, $theme, $path) {
-   return [
-     'paragraph__ip_accordion' => [
-       'base hook' => 'paragraph',
-     ],
-     'paragraph__ip_accordion_item' => [
-       'base hook' => 'paragraph',
-     ],
-     'field__paragraph__field_ip_ac_body' => [
-       'base hook' => 'paragraph',
-     ],
-     'field__paragraph__field_ip_ac_title' => [
-       'base hook' => 'paragraph',
-     ],
-     'field__paragraph__field_ip_ac_item' => [
-       'base hook' => 'paragraph',
-     ]
-   ];
- }
-
 /**
- * Implements hook_preprocess_paragraph().
- * @param $variables
- * This sets several variables needed for the silc accordion options.
+ * Implements hook_theme().
+ * Lets us define our paragraphs templates in this module.
  */
-function hp_accordion_preprocess_paragraph__ip_accordion(&$variables) {
-
-  // Set JavaScript data attributes to open first accordion by default
-  if($variables['elements']['#paragraph']->field_ip_ac_open_first->value == 1) {
-    $variables['ip_accordion_open_first'] = 'data-silc-accordion-open-first';
-  }
-
-  // Set JavaScript data attributes to allow multiple content areas to be open
-  if($variables['elements']['#paragraph']->field_ip_ac_allow_mult->value == 1) {
-    $variables['ip_accordion_open_multiple'] = 'data-silc-accordion-open-multiple';
-  }
-
-  // Set classes and navigations for pure accordions, accordions that become tabs, or pure tabs
-  $type = $variables['elements']['#paragraph']->field_ip_ac_type->value;
-  $variables['ip_accordion_type'] = 'silc-accordion';
-  if($type == 'tabs_w_accordion_mobile') {
-    $variables['ip_accordion_type'] = 'silc-accordion silc-accordion--become-tabs';
-    $variables['ip_accordion_nav_items'] = _hp_accordion_get_accordion_nav($variables);
-  } 
+function hp_accordion_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__ip_accordion' => [
+      'base hook' => 'paragraph',
+    ],
+    'paragraph__ip_accordion_item' => [
+      'base hook' => 'paragraph',
+    ],
+    'field__paragraph__field_ip_ac_body' => [
+      'base hook' => 'paragraph',
+    ],
+    'field__paragraph__field_ip_ac_title' => [
+      'base hook' => 'paragraph',
+    ],
+    'field__paragraph__field_ip_ac_item' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
 }
 
 /**
  * Implements hook_preprocess_paragraph().
+ *
  * @param $variables
- * This preproccess gets the uuid value of an individual accordion item.
+ *   This sets several variables needed for the silc accordion options.
+ */
+function hp_accordion_preprocess_paragraph__ip_accordion(&$variables) {
+
+  // Set JavaScript data attributes to open first accordion by default.
+  if ($variables['elements']['#paragraph']->field_ip_ac_open_first->value == 1) {
+    $variables['ip_accordion_open_first'] = 'data-silc-accordion-open-first';
+  }
+
+  // Set JavaScript data attributes to allow multiple content areas to be open.
+  if ($variables['elements']['#paragraph']->field_ip_ac_allow_mult->value == 1) {
+    $variables['ip_accordion_open_multiple'] = 'data-silc-accordion-open-multiple';
+  }
+
+  // Set classes and navigations for pure accordions, accordions that become tabs, or pure tabs.
+  $type = $variables['elements']['#paragraph']->field_ip_ac_type->value;
+  $variables['ip_accordion_type'] = 'silc-accordion';
+  if ($type == 'tabs_w_accordion_mobile') {
+    $variables['ip_accordion_type'] = 'silc-accordion silc-accordion--become-tabs';
+    $variables['ip_accordion_nav_items'] = _hp_accordion_get_accordion_nav($variables);
+  }
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ *
+ * @param $variables
+ *   This preproccess gets the uuid value of an individual accordion item.
  */
 function hp_accordion_preprocess_paragraph__ip_accordion_item(&$variables) {
   $variables['accordion_id'] = $variables['elements']['#paragraph']->uuid->value;
 }
 
-
 /**
- * CUSTOM FUNCTIONS
- *
+ * CUSTOM FUNCTIONS.
  */
 
-
-// Return tab titles and uuid for navigation, if required
+/**
+ * Return tab titles and uuid for navigation, if required.
+ */
 function _hp_accordion_get_accordion_nav($variables) {
 
-  $paragraph    = $variables['elements']['#paragraph'];
-  $acc_items    = $paragraph->field_ip_ac_item->getValue();
+  $paragraph = $variables['elements']['#paragraph'];
+  $acc_items = $paragraph->field_ip_ac_item->getValue();
   $nav_items = [];
 
-  foreach ($acc_items as $key => $entity){
-      $accordion =  Paragraph::load( $entity['target_id'] );
-      $nav_items[$key]['title'] = $accordion->field_ip_ac_title->value;
-      $nav_items[$key]['uuid'] = $accordion->uuid->value;
+  foreach ($acc_items as $key => $entity) {
+    $accordion = Paragraph::load($entity['target_id']);
+    $nav_items[$key]['title'] = $accordion->field_ip_ac_title->value;
+    $nav_items[$key]['uuid'] = $accordion->uuid->value;
   }
 
   return $nav_items;

@@ -2,16 +2,13 @@
 
 /**
  * @file
- * ip_button_link module file.
+ * Ip_button_link module file.
  */
 
- use Drupal\Core\Routing\RouteMatchInterface;
- use Drupal\paragraphs\Entity\Paragraph;
- use Drupal\media\Entity\Media;
- use Drupal\image\Entity\ImageStyle;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\media\Entity\Media;
 
-
- /**
+/**
  * Implements hook_help().
  *
  * @inheritdoc
@@ -37,31 +34,32 @@ function hp_testimonial_help($route_name, RouteMatchInterface $route_match) {
 
 /**
  * Implements hook_preprocess_paragraph().
+ *
  * @param $variables
- * This sets a url for the image.
+ *   This sets a url for the image.
  */
 function hp_testimonial_preprocess_paragraph__hp_testimonial(&$variables) {
   $paragraph = $variables['elements']['#paragraph'];
-  // Get media image URL
+  // Get media image URL.
   if ($paragraph->hasField('field_hp_tst_image')) {
     $bkrd_image = $paragraph->get('field_hp_tst_image')->getValue();
     if ($bkrd_image && !empty($bkrd_image)) {
       $entity = Media::load($bkrd_image[0]['target_id']);
-      if(isset($entity->field_media_image->entity)) {
+      if (isset($entity->field_media_image->entity)) {
         $variables['hp_tst_image'] = file_create_url($entity->field_media_image->entity->getFileUri());
       }
     }
   }
 }
 
- /**
-  * Implements hook_theme().
-  * Lets us define our paragraphs templates in this module.
-  */
- function hp_testimonial_theme($existing, $type, $theme, $path) {
-   return [
-     'paragraph__hp_testimonial' => [
-       'base hook' => 'paragraph',
-     ]
-   ];
- }
+/**
+ * Implements hook_theme().
+ * Lets us define our paragraphs templates in this module.
+ */
+function hp_testimonial_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__hp_testimonial' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
