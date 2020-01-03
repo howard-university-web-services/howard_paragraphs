@@ -52,10 +52,10 @@
             <div class="faculty-profile__btn">
               {% if content.field_hp_af_display_links_modal[0]['#markup'] == 'On' %}
                 <a href="javascript:;" data-micromodal-trigger="hp-alumni-feed-{{ prsn.id }}" class="fancy-link fancy-link--dark">
-                <span>View More</span>
+                <span>View More<span class="visually-hidden"> about {{ prsn.label }}</span></span>
               {% else %}
                 <a href="{{ hp_pf_env_url }}/node/{{ prsn.id }}" class="fancy-link fancy-link--dark" target="_blank">
-                <span>View Full Profile</span>
+                <span>View Full Profile<span class="visually-hidden"> of {{ prsn.label }}</span></span>
               {% endif %}
                 <span class="icon-arrow-right"></span>
               </a>
