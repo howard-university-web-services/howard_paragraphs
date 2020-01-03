@@ -34,11 +34,7 @@ function howard_paragraphs_help($route_name, RouteMatchInterface $route_match) {
 /**
  * Implements hook_preprocess_paragraph().
  *
- * @param array $variables
- *   An associative array containing:
- *   - elements: An array of elements to display in view mode.
- *   - paragraph: The paragraph object.
- *   - view_mode: View mode; e.g., 'full', 'teaser'...
+ * Shows/hides a wrapper based on parent node type.
  */
 function howard_paragraphs_preprocess_paragraph(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -55,6 +51,7 @@ function howard_paragraphs_preprocess_paragraph(&$variables) {
 
 /**
  * Implements hook_theme().
+ *
  * Provides some basic stripped down templates.
  */
 function howard_paragraphs_theme($existing, $type, $theme, $path) {

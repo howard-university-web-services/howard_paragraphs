@@ -8,6 +8,7 @@ package: Howard University
 dependencies:
   - entity_reference_revisions
   - field
+  - field_group
   - file
   - filter
   - image

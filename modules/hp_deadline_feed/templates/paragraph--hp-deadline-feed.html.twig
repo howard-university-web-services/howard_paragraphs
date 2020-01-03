@@ -1,0 +1,83 @@
+{#
+/**
+ * @file
+ * HP Deadline Feed paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<section class="section--padded-top section--padded-bottom news-and-events">
+  {% if hp_show_wrapper %}
+    <div class="compartment">
+  {% endif %}
+
+    <div class="block-header">
+      <div class="block-header__title"><span class=" block-header__icon icon-calendar"></span>
+        <h2>{{ content.field_hp_df_title }}</h2>
+      </div>
+    </div>
+
+      {% if hp_df_deadlines[0] %}
+        <table class="table table--theme-default table--stacked responsive-enabled tablesaw-stack" data-tablesaw-mode="stack">
+          <thead>
+            <tr>
+              <th>Deadline For</th>
+              <th>Deadline</th>
+              {% if not hp_df_hide_schools %}
+                <th>School / College</th>
+              {% endif %}
+              {% if not hp_df_hide_admin %}
+                <th>Department</th>
+              {% endif %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for dl in hp_df_deadlines %}
+              <tr>
+                <td>
+                  {% if dl.deadline_link %}
+                    <a href="{{ dl.deadline_link }}">
+                  {% endif %}
+                  <strong>{{ dl.label }}</strong></td>
+                  {% if dl.deadline_link %}
+                    </a>
+                  {% endif %}
+                </td>
+                <td>
+                  {{ dl.date.start_date }}
+                  {% if not hp_df_hide_time %}
+                    {{ dl.date.start_time }}
+                  {% endif %}
+                </td>
+
+                {% if not hp_df_hide_schools %}
+                  <td>
+                  {% if dl.college_school[0] %}
+                    {{ dl.college_school|join(', ') }}
+                  {% endif %}
+                  </td>
+                {% endif %}
+                {% if not hp_df_hide_admin %}
+                  <td>
+                  {% if dl.admin_department[0] %}
+                    {{ dl.admin_department|join(', ') }}
+                  {% endif %}
+                  </td>
+                {% endif %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <div class="silc-grid">
+          <div class="silc-grid__col silc-grid__col--12-medium">
+            <p>No upcoming deadlines.</p>
+          </div>
+        </div>
+      {% endif %}
+
+  {% if hp_show_wrapper %}
+    </div>
+  {% endif %}
+</section>

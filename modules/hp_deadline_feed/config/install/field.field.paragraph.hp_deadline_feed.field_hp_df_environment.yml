@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_df_environment
+    - paragraphs.paragraphs_type.hp_deadline_feed
+  module:
+    - options
+id: paragraph.hp_deadline_feed.field_hp_df_environment
+field_name: field_hp_df_environment
+entity_type: paragraph
+bundle: hp_deadline_feed
+label: Environment
+description: 'Choose which environment to pull Howard Deadlines from, normally, this should be "Production" unless you are testing deadlines on another environment.'
+required: false
+translatable: false
+default_value:
+  -
+    value: prod
+default_value_callback: ''
+settings: {  }
+field_type: list_string

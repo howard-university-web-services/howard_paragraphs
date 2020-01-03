@@ -1,0 +1,117 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_deadline_feed.field_hp_df_dl_admin_category
+    - field.field.paragraph.hp_deadline_feed.field_hp_df_dl_schools_colleg
+    - field.field.paragraph.hp_deadline_feed.field_hp_df_environment
+    - field.field.paragraph.hp_deadline_feed.field_hp_df_hide_admin
+    - field.field.paragraph.hp_deadline_feed.field_hp_df_hide_schools
+    - field.field.paragraph.hp_deadline_feed.field_hp_df_hide_time
+    - field.field.paragraph.hp_deadline_feed.field_hp_df_number_to_disp
+    - field.field.paragraph.hp_deadline_feed.field_hp_df_title
+    - paragraphs.paragraphs_type.hp_deadline_feed
+  module:
+    - external_data_source
+    - field_group
+third_party_settings:
+  field_group:
+    group_display_options:
+      children:
+        - field_hp_df_number_to_disp
+        - field_hp_df_hide_time
+        - field_hp_df_hide_schools
+        - field_hp_df_hide_admin
+      parent_name: ''
+      weight: 1
+      format_type: details
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        open: false
+        required_fields: true
+      label: 'Display Options'
+    group_filtering_options:
+      children:
+        - field_hp_df_environment
+        - field_hp_df_dl_admin_category
+        - field_hp_df_dl_schools_colleg
+      parent_name: ''
+      weight: 2
+      format_type: details
+      region: content
+      format_settings:
+        description: 'This allows you to narrow down which deadlines from calendar.howard.edu you wish to display. Remember that this feed displays upcoming deadlines only, not past deadlines.'
+        required_fields: true
+        id: ''
+        classes: ''
+        open: false
+      label: 'Deadline Filtering Options'
+id: paragraph.hp_deadline_feed.default
+targetEntityType: paragraph
+bundle: hp_deadline_feed
+mode: default
+content:
+  field_hp_df_dl_admin_category:
+    weight: 4
+    settings:
+      size: 1
+      placeholder: ''
+    third_party_settings: {  }
+    type: external_data_source_select_widget
+    region: content
+  field_hp_df_dl_schools_colleg:
+    weight: 5
+    settings:
+      size: 1
+      placeholder: ''
+    third_party_settings: {  }
+    type: external_data_source_select_widget
+    region: content
+  field_hp_df_environment:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_hp_df_hide_admin:
+    weight: 5
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_hp_df_hide_schools:
+    weight: 4
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_hp_df_hide_time:
+    weight: 3
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_hp_df_number_to_disp:
+    weight: 2
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_hp_df_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
