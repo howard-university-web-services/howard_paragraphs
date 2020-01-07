@@ -11,16 +11,13 @@
   {% if hp_show_wrapper %}
     <div class="compartment">
   {% endif %}
-
-
-    <div class="announcements">
-      <div class="block-header">
-        <div class="block-header__title"><span class=" block-header__icon icon-paper"></span><h2>Articles</h2>
+      <div class="announcements">
+        <div class="block-header">
+          <div class="block-header__title"><span class=" block-header__icon icon-paper"></span><h2>Articles</h2>
+          </div>
         </div>
+        {{ hp_articles_feed }}
       </div>
-
-      {{ hp_articles_feed }}
-
   {% if hp_show_wrapper %}
     </div>
   {% endif %}
