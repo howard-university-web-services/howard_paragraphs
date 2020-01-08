@@ -1,13 +1,10 @@
 <?php
-
 /**
  * @file
  * hp_graphs module file.
  */
-
  use Drupal\Core\Routing\RouteMatchInterface;
  use Drupal\paragraphs\Entity\Paragraph;
-
  /**
  * Implements hook_help().
  *
@@ -31,7 +28,6 @@ function hp_graph_help($route_name, RouteMatchInterface $route_match) {
   }
   return NULL;
 }
-
  /**
   * Implements hook_theme().
   * Lets us define our paragraphs templates in this module.
@@ -46,8 +42,3 @@ function hp_graph_help($route_name, RouteMatchInterface $route_match) {
     ]
    ];
  }
-
-
-
-
-
