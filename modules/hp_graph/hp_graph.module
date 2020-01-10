@@ -34,7 +34,6 @@ function hp_graph_help($route_name, RouteMatchInterface $route_match) {
 /**
  * Implements hook_theme().
  *
-
  * @inheritdoc
  */
 
