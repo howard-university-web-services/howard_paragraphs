@@ -1,11 +1,13 @@
 <?php
+
 /**
  * @file
- * hp_graphs module file.
+ * Hp_graphs module file.
  */
- use Drupal\Core\Routing\RouteMatchInterface;
- use Drupal\paragraphs\Entity\Paragraph;
- /**
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
  * Implements hook_help().
  *
  * @inheritdoc
@@ -28,17 +30,23 @@ function hp_graph_help($route_name, RouteMatchInterface $route_match) {
   }
   return NULL;
 }
- /**
-  * Implements hook_theme().
-  * Lets us define our paragraphs templates in this module.
-  */
- function hp_graph_theme($existing, $type, $theme, $path) {
-   return [
-     'paragraph__hp_graph' => [
-       'base hook' => 'paragraph',
-     ],
-     'paragraph__hp_graph_field' => [
+
+/**
+ * Implements hook_theme().
+ *
+ * @inheritdoc
+ */
+
+/**
+ * Lets us define our paragraphs templates in this module.
+ */
+function hp_graph_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__hp_graph' => [
       'base hook' => 'paragraph',
-    ]
-   ];
- }
+    ],
+    'paragraph__hp_graph_field' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
