@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: lKMHkq11Dvz22qYOybMXA1gkROsCSI2ec8MgXXs8IEE
+id: hp_graph
+label: 'HP Graph'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

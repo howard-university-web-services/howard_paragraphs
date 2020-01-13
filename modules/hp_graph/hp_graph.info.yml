@@ -1,0 +1,7 @@
+name: 'Howard Paragraphs: Graph'
+type: module
+description: Provides a paragraphs bundle for embedding Graphs  as a Kitchen Sink Widget.
+core: '8.x'
+package: Howard University
+dependencies:
+  - howard_paragraphs

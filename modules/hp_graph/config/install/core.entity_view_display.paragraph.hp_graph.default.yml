@@ -1,0 +1,56 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_graph.field_hp_graph_data
+    - field.field.paragraph.hp_graph.field_hp_graph_description
+    - field.field.paragraph.hp_graph.field_hp_graph_link
+    - field.field.paragraph.hp_graph.field_hp_graph_title
+    - paragraphs.paragraphs_type.hp_graph
+  module:
+    - entity_reference_revisions
+    - link
+_core:
+  default_config_hash: miRnq2vKSfrQVcSXeMqvjpygYYyafa61ZLE0i0gYVYw
+id: paragraph.hp_graph.default
+targetEntityType: paragraph
+bundle: hp_graph
+mode: default
+content:
+  field_hp_graph_data:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_hp_graph_description:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_hp_graph_link:
+    weight: 3
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_hp_graph_title:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

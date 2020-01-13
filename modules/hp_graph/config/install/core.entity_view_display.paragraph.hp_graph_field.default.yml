@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_graph_field.field_hp_graph_label
+    - field.field.paragraph.hp_graph_field.field_hp_graph_percent
+    - paragraphs.paragraphs_type.hp_graph_field
+_core:
+  default_config_hash: 8pl0QlNYo9Lgqr3RTTcTJZjHBr_n7bzjwUU0s7jUUVI
+id: paragraph.hp_graph_field.default
+targetEntityType: paragraph
+bundle: hp_graph_field
+mode: default
+content:
+  field_hp_graph_label:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_hp_graph_percent:
+    weight: 0
+    label: hidden
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+hidden: {  }

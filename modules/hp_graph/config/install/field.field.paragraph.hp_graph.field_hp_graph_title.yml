@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_graph_title
+    - paragraphs.paragraphs_type.hp_graph
+_core:
+  default_config_hash: sp63CeeEZ8tqfWhIMr6hhHpMcljhCBLjazjiQYLfdVA
+id: paragraph.hp_graph.field_hp_graph_title
+field_name: field_hp_graph_title
+entity_type: paragraph
+bundle: hp_graph
+label: Title
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
