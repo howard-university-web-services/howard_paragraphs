@@ -1,16 +1,23 @@
-<div class="timeline">
-    <div>
-        {% if content.field_timeline_title is not null %}
-            <h1>{{ content.field_timeline_title[0] }}</h1>
-        {% endif %}
-
-        {% if content.field_timeline_text is not null %}
-            <p>{{ content.field_timeline_text[0] }}</p>
-        {% endif %}
-    </div>
-    {% for i in 0..content.field_hp_timeline_field|length %}
-        {% if content.field_hp_timeline_field[i] is not null %}
-           {{ content.field_hp_timeline_field[i] }}
-        {% endif %}
-	{% endfor %}
-</div>
+<section class="section--padded-top section--padded-bottom"  aria-label="Timeline">
+    {% if hp_show_wrapper %}
+        <section class="compartment">
+    {% endif %}
+            <div>
+                {% if content.field_timeline_title is not null %}
+                    <p class="lead-in">{{ content.field_timeline_title[0] }}</p>
+                {% endif %}
+                {% if content.field_timeline_text is not null %}
+                    <p>{{ content.field_timeline_text[0] }}</p>
+                {% endif %}
+            </div>
+            <div class="timeline">
+                {% for i in 0..content.field_hp_timeline_field|length %}
+                    {% if content.field_hp_timeline_field[i] is not null %}
+                    {{ content.field_hp_timeline_field[i] }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+    {% if hp_show_wrapper %}
+        </section>
+    {% endif %}
+</section
