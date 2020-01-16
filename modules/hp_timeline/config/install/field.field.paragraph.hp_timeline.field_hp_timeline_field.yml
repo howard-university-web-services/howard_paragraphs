@@ -1,0 +1,42 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_timeline_field
+    - paragraphs.paragraphs_type.hp_timeline
+    - paragraphs.paragraphs_type.hp_timeline_field
+  module:
+    - entity_reference_revisions
+id: paragraph.hp_timeline.field_hp_timeline_field
+field_name: field_hp_timeline_field
+entity_type: paragraph
+bundle: hp_timeline
+label: 'Timeline Event'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      hp_timeline_field: hp_timeline_field
+    target_bundles_drag_drop:
+      cavalla_photos:
+        weight: 6
+        enabled: false
+      hp_graph:
+        weight: 7
+        enabled: false
+      hp_graph_field:
+        weight: 8
+        enabled: false
+      hp_timeline:
+        weight: 9
+        enabled: false
+      hp_timeline_field:
+        enabled: true
+        weight: 10
+field_type: entity_reference_revisions

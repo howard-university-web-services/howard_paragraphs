@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_timeline_field_desc
+    - paragraphs.paragraphs_type.hp_timeline_field
+id: paragraph.hp_timeline_field.field_hp_timeline_field_desc
+field_name: field_hp_timeline_field_desc
+entity_type: paragraph
+bundle: hp_timeline_field
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

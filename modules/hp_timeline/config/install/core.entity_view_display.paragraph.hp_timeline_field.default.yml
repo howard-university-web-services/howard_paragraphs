@@ -1,0 +1,40 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_timeline_field.field_hp_timeline_field_datetime
+    - field.field.paragraph.hp_timeline_field.field_hp_timeline_field_desc
+    - field.field.paragraph.hp_timeline_field.field_hp_timeline_field_title
+    - paragraphs.paragraphs_type.hp_timeline_field
+  module:
+    - datetime
+id: paragraph.hp_timeline_field.default
+targetEntityType: paragraph
+bundle: hp_timeline_field
+mode: default
+content:
+  field_hp_timeline_field_datetime:
+    weight: 0
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_hp_timeline_field_desc:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_hp_timeline_field_title:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }
