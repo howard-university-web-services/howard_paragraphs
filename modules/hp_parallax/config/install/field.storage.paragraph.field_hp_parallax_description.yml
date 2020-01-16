@@ -1,0 +1,19 @@
+uuid: 711378e4-5cd1-4032-b1ed-16c8ef94fcea
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - text
+id: paragraph.field_hp_parallax_description
+field_name: field_hp_parallax_description
+entity_type: paragraph
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

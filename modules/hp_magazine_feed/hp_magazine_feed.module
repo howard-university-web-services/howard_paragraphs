@@ -2,14 +2,12 @@
 
 /**
  * @file
- * hp_magazine_feed module file.
+ * Hp_magazine_feed module file.
  */
 
- use Drupal\Core\Routing\RouteMatchInterface;
- use Drupal\paragraphs\Entity\Paragraph;
- use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
 
- /**
+/**
  * Implements hook_help().
  *
  * @inheritdoc
@@ -35,87 +33,86 @@ function hp_magazine_feed_help($route_name, RouteMatchInterface $route_match) {
 
 /**
  * Implements hook_preprocess_paragraph().
+ *
  * @param $variables
- * This sets variables for getting articles, and then gets articles.
+ *   This sets variables for getting articles, and then gets articles.
  */
 function hp_magazine_feed_preprocess_paragraph__hp_magazine_feed(&$variables) {
-  // UUID to pass for cache
+  // UUID to pass for cache.
   $uuid = $variables['elements']['#paragraph']->uuid->value;
 
-  // Check on env to get events from
+  // Check on env to get events from.
   $env = $variables['elements']['#paragraph']->field_hp_mf_environment->value;
   $env_url = 'https://magazine.howard.edu';
-  if($env == 'stg') {
+  if ($env == 'stg') {
     $env_url = 'http://stg.magazine.howard.edu';
-  } elseif($env == 'dev') {
+  }
+  elseif ($env == 'dev') {
     $env_url = 'http://dev.magazine.howard.edu';
   }
 
-  // Check on categories filter
-  $category = null;
-  if(isset($variables['elements']['#paragraph']->field_hp_mf_article_category->value)) {
+  // Check on categories filter.
+  $category = NULL;
+  if (isset($variables['elements']['#paragraph']->field_hp_mf_article_category->value)) {
     $category = $variables['elements']['#paragraph']->field_hp_mf_article_category->value;
-    // Decode string workaround due to bug in core or external_data_source
-    $category = str_replace('id=','',$category);
+    // Decode string workaround due to bug in core or external_data_source.
+    $category = str_replace('id=', '', $category);
   }
 
-  // Check on admin categories filter
-  $admin_category = null;
-  if(isset($variables['elements']['#paragraph']->field_hp_mf_article_admin_catego->value)) {
+  // Check on admin categories filter.
+  $admin_category = NULL;
+  if (isset($variables['elements']['#paragraph']->field_hp_mf_article_admin_catego->value)) {
     $admin_category = $variables['elements']['#paragraph']->field_hp_mf_article_admin_catego->value;
-    // Decode string workaround due to bug in core or external_data_source
-    $admin_category = str_replace('id=','',$admin_category);
+    // Decode string workaround due to bug in core or external_data_source.
+    $admin_category = str_replace('id=', '', $admin_category);
   }
 
-  // Get articles
+  // Get articles.
   $variables['hp_mf_articles'] = _hp_magazine_feed_get_articles($env_url, $category, $admin_category, 3, 1, $uuid);
-  
+
 }
 
- /**
-  * Implements hook_theme().
-  * Lets us define our paragraphs templates in this module.
-  */
- function hp_magazine_feed_theme($existing, $type, $theme, $path) {
-   return [
-     'paragraph__hp_magazine_feed' => [
-       'base hook' => 'paragraph',
-     ]
-   ];
- }
-
+/**
+ * Implements hook_theme().
+ * Lets us define our paragraphs templates in this module.
+ */
+function hp_magazine_feed_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__hp_magazine_feed' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
 
 /**
-* CUSTOM FUNCTIONS
-*
-*/
-
-
- /**
- * Gets articles from magazine, and displays.
- *
+ * CUSTOM FUNCTIONS.
  */
- function _hp_magazine_feed_get_articles($env_url = 'https://magazine.howard.edu', $category = null, $admin_category = null, $range = 3, $page = 1, $id = 'default') {
-   if ($cache = \Drupal::cache()->get('hp_magazine_feed--' . $id . '-' . $range)) {
-     return $cache->data;
-   }
-   else {
-     $currentDate = date('Y-m-d');
-     $url = $env_url . "/api/articles?sort=-created&range=" . $range . "&page=" . $page;
-     if(isset($category)) {
-       $url .= "&filter[categories][value][]=" . $category;
-     }
-     if(isset($admin_category)) {
-       $url .= "&filter[admin_categories][value][]=" . $admin_category;
-     }
-     $result = file_get_contents($url);
-     $result = json_decode($result, true);
-     $result = $result['data'];
-     if($result) {
-       \Drupal::cache()->set('hp_magazine_feed--' . $id. '-' . $range, $result, time() + 7200);
-       return $result;
-     } else {
-       return null;
-     }
-   }
- }
+
+/**
+ * Gets articles from magazine, and displays.
+ */
+function _hp_magazine_feed_get_articles($env_url = 'https://magazine.howard.edu', $category = NULL, $admin_category = NULL, $range = 3, $page = 1, $id = 'default') {
+  if ($cache = \Drupal::cache()->get('hp_magazine_feed--' . $id . '-' . $range)) {
+    return $cache->data;
+  }
+  else {
+    $currentDate = date('Y-m-d');
+    $url = $env_url . "/api/articles?sort=-created&range=" . $range . "&page=" . $page;
+    if (isset($category)) {
+      $url .= "&filter[categories][value][]=" . $category;
+    }
+    if (isset($admin_category)) {
+      $url .= "&filter[admin_categories][value][]=" . $admin_category;
+    }
+    $result = file_get_contents($url);
+    $result = json_decode($result, TRUE);
+    $result = $result['data'];
+    if ($result) {
+      \Drupal::cache()->set('hp_magazine_feed--' . $id . '-' . $range, $result, time() + 7200);
+      return $result;
+    }
+    else {
+      return NULL;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+uuid: 8668a432-611c-4475-99ae-11a15b773b7d
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+    - paragraphs
+id: paragraph.field_hp_parallax_bg_image
+field_name: field_hp_parallax_bg_image
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

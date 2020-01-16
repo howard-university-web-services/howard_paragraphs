@@ -2,14 +2,13 @@
 
 /**
  * @file
- * ip_media module file.
+ * Ip_media module file.
  */
 
- use Drupal\Core\Routing\RouteMatchInterface;
- use Drupal\paragraphs\Entity\Paragraph;
- use Drupal\media\Entity\Media;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\media\Entity\Media;
 
- /**
+/**
  * Implements hook_help().
  *
  * @inheritdoc
@@ -33,44 +32,45 @@ function hp_media_help($route_name, RouteMatchInterface $route_match) {
   return NULL;
 }
 
- /**
-  * Implements hook_theme().
-  * Lets us define our paragraphs templates in this module.
-  */
- function hp_media_theme($existing, $type, $theme, $path) {
-   return [
-     'paragraph__hp_media' => [
-       'base hook' => 'paragraph',
-     ],
-     'field__paragraph__field_hp_md_caption' => [
-       'base hook' => 'paragraph',
-     ],
-     'field__paragraph__field_hp_md_title' => [
-       'base hook' => 'paragraph',
-     ],
-     'field__paragraph__field_hp_md_media' => [
-       'base hook' => 'paragraph',
-     ]
-   ];
- }
+/**
+ * Implements hook_theme().
+ * Lets us define our paragraphs templates in this module.
+ */
+function hp_media_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__hp_media' => [
+      'base hook' => 'paragraph',
+    ],
+    'field__paragraph__field_hp_md_caption' => [
+      'base hook' => 'paragraph',
+    ],
+    'field__paragraph__field_hp_md_title' => [
+      'base hook' => 'paragraph',
+    ],
+    'field__paragraph__field_hp_md_media' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
 
- /**
-  * Implements hook_preprocess_paragraph().
-  * @param $variables
-  * This sets several classes needed for the card type.
-  */
- function hp_media_preprocess_paragraph__hp_media(&$variables) {
-     $paragraph = $variables['elements']['#paragraph'];
+/**
+ * Implements hook_preprocess_paragraph().
+ *
+ * @param $variables
+ *   This sets several classes needed for the card type.
+ */
+function hp_media_preprocess_paragraph__hp_media(&$variables) {
+  $paragraph = $variables['elements']['#paragraph'];
 
-     // Get media image URL
-     if ($paragraph->hasField('field_hp_md_media')) {
-       $media = $paragraph->get('field_hp_md_media')->getValue();
-       if ($media && !empty($media)) {
-         $entity = Media::load($media[0]['target_id']);
-         if($entity !== null) {
-          $variables['hp_media_type'] = $entity->bundle();
-         }
-       }
-     }
+  // Get media image URL.
+  if ($paragraph->hasField('field_hp_md_media')) {
+    $media = $paragraph->get('field_hp_md_media')->getValue();
+    if ($media && !empty($media)) {
+      $entity = Media::load($media[0]['target_id']);
+      if ($entity !== NULL) {
+        $variables['hp_media_type'] = $entity->bundle();
+      }
+    }
+  }
 
-   }
+}

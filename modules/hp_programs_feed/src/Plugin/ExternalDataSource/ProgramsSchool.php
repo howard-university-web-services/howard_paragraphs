@@ -40,8 +40,8 @@ class ProgramsSchool extends ExternalDataSourceBase {
   }
 
   /**
-   * setRequest
-   * Setting sent request
+   * SetRequest
+   * Setting sent request.
    *
    * @params Symfony\Component\HttpFoundation\Request $request
    */
@@ -50,8 +50,8 @@ class ProgramsSchool extends ExternalDataSourceBase {
   }
 
   /**
-   * getRequest
-   * getting sent request
+   * GetRequest
+   * getting sent request.
    *
    * @return \Symfony\Component\HttpFoundation\Request $request
    */
@@ -60,8 +60,9 @@ class ProgramsSchool extends ExternalDataSourceBase {
   }
 
   /**
-   * getResponse
-   * Call WS to retrieve data
+   * GetResponse
+   * Call WS to retrieve data.
+   *
    * @return array
    */
   public function getResponse() {
@@ -77,25 +78,26 @@ class ProgramsSchool extends ExternalDataSourceBase {
     else {
       $client = new Client();
       try {
-        // schools is the Schools endpoint on howard programs
+        // Schools is the Schools endpoint on howard programs.
         $response = $client->get('https://programs.howard.edu/api/schools/');
         $data = json_decode($response->getBody()->getContents());
         $data = $data->data;
-      } catch (GuzzleException $e) {
+      }
+      catch (GuzzleException $e) {
         watchdog_exception('external_data_source', $e->getMessage());
       }
-      //Caching result to avoid ws over use
+      // Caching result to avoid ws over use.
       \Drupal::cache()->set($cid, $data);
     }
     return $this->formatResponse($data);
   }
 
   /**
-   * formatResponse
+   * FormatResponse.
    *
    * @param array $response
-   * Formatting data retrieved from ws to match [{"value":"","label":""},
-   *   {"value":"", "label":""}] return array $collection retrieved suggestions
+   *   Formatting data retrieved from ws to match [{"value":"","label":""},
+   *   {"value":"", "label":""}] return array $collection retrieved suggestions.
    *
    * @return array $collection
    */
@@ -106,7 +108,7 @@ class ProgramsSchool extends ExternalDataSourceBase {
       $value = 'id=' . strval($entry->id);
       $collection[] = [
         'value' => $value,
-        'label' => t($entry->label)
+        'label' => t($entry->label),
       ];
     }
     return $collection;

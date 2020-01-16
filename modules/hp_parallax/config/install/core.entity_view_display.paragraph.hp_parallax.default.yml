@@ -1,0 +1,66 @@
+uuid: 30853af4-2fe1-43a7-8054-16c84e13b9af
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_parallax.field_hp_parallax_bg_image
+    - field.field.paragraph.hp_parallax.field_hp_parallax_description
+    - field.field.paragraph.hp_parallax.field_hp_parallax_left_align
+    - field.field.paragraph.hp_parallax.field_hp_parallax_link
+    - field.field.paragraph.hp_parallax.field_hp_parallax_title
+    - paragraphs.paragraphs_type.hp_parallax
+  module:
+    - link
+    - text
+id: paragraph.hp_parallax.default
+targetEntityType: paragraph
+bundle: hp_parallax
+mode: default
+content:
+  field_hp_parallax_bg_image:
+    type: entity_reference_entity_view
+    weight: 5
+    label: hidden
+    settings:
+      link: false
+      view_mode: default
+    third_party_settings: {  }
+    region: content
+  field_hp_parallax_description:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_hp_parallax_left_align:
+    weight: 2
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_hp_parallax_link:
+    weight: 3
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_hp_parallax_title:
+    weight: 4
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

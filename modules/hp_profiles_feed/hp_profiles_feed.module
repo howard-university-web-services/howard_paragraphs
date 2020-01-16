@@ -2,14 +2,12 @@
 
 /**
  * @file
- * ip_button_link module file.
+ * Ip_button_link module file.
  */
 
- use Drupal\Core\Routing\RouteMatchInterface;
- use Drupal\paragraphs\Entity\Paragraph;
- use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
 
- /**
+/**
  * Implements hook_help().
  *
  * @inheritdoc
@@ -35,110 +33,109 @@ function hp_profiles_feed_help($route_name, RouteMatchInterface $route_match) {
 
 /**
  * Implements hook_preprocess_paragraph().
+ *
  * @param $variables
- * This sets variables for getting events, and then gets events.
+ *   This sets variables for getting events, and then gets events.
  */
 function hp_profiles_feed_preprocess_paragraph__hp_profiles_feed(&$variables) {
-  // UUID to pass for cache
+  // UUID to pass for cache.
   $uuid = $variables['elements']['#paragraph']->uuid->value;
 
-  // Check on env to get events from
+  // Check on env to get events from.
   $env = $variables['elements']['#paragraph']->field_hp_pf_environment->value;
   $env_url = 'https://profiles.howard.edu';
-  if($env == 'stg') {
+  if ($env == 'stg') {
     $env_url = 'http://stg.profiles.howard.edu';
-  } elseif($env == 'dev') {
+  }
+  elseif ($env == 'dev') {
     $env_url = 'http://dev.profiles.howard.edu';
   }
   $variables['hp_pf_env_url'] = $env_url;
 
-  // Check on department
-  $department = null;
-  if(isset($variables['elements']['#paragraph']->field_hp_pf_profiles_department->value)) {
+  // Check on department.
+  $department = NULL;
+  if (isset($variables['elements']['#paragraph']->field_hp_pf_profiles_department->value)) {
     $department = $variables['elements']['#paragraph']->field_hp_pf_profiles_department->value;
-    // Decode string workaround due to bug in core or external_data_source
-    $department = str_replace('id=','',$department);
+    // Decode string workaround due to bug in core or external_data_source.
+    $department = str_replace('id=', '', $department);
   }
 
-  // Check on level
-  $level = null;
-  if(isset($variables['elements']['#paragraph']->field_hp_pf_level->value)) {
+  // Check on level.
+  $level = NULL;
+  if (isset($variables['elements']['#paragraph']->field_hp_pf_level->value)) {
     $level = $variables['elements']['#paragraph']->field_hp_pf_level->value;
   }
 
-  // Check for the hierachy dropdown
+  // Check for the hierachy dropdown.
   $flatten = 0;
-  if(isset($variables['elements']['#paragraph']->field_sort_by->value)) {
+  if (isset($variables['elements']['#paragraph']->field_sort_by->value)) {
     $flatten = $variables['elements']['#paragraph']->field_sort_by->value;
   }
 
-  // Get profiles
+  // Get profiles.
   $variables['hp_pf_profiles'] = _hp_profiles_feed_get_profiles($env_url, $department, $level, $flatten, 50, 1, $uuid);
 
 }
 
- /**
-  * Implements hook_theme().
-  * Lets us define our paragraphs templates in this module.
-  */
- function hp_profiles_feed_theme($existing, $type, $theme, $path) {
-   return [
-     'paragraph__hp_profiles_feed' => [
-       'base hook' => 'paragraph',
-     ]
-   ];
- }
-
-
 /**
-* CUSTOM FUNCTIONS
-*
-*/
-
-
- /**
- * Gets people from profiles site, and displays.
- *
+ * Implements hook_theme().
+ * Lets us define our paragraphs templates in this module.
  */
- function _hp_profiles_feed_get_profiles($env_url = 'https://profiles.howard.edu', $department = null, $level = null, $flatten=0, $range = 50, $page = 1, $id = 'default') {
-   if ($cache = \Drupal::cache()->get('hp_profiles_feed--' . $id)) {
-     return $cache->data;
-   }
-   else {
-     $currentDate = date('Y-m-d');
-     $url = $env_url . "/api/profilesearch/%20?filter[public][value]=1&sort=search_api_aggregation_1&range=" . $range . "&page=" . $page;
-     if(isset($department)) {
-       $url .= "&filter[taxonomy_3][value][]=" . $department;
-     }
-     if(isset($level)) {
-       $url .= "&filter[department_role][value][]=" . $level;
-     }
-     if ($flatten) {
-        $result1 = file_get_contents($url);
-        $result2 = json_decode($result1, true);
-        $result = $result2['data'];
-     } else {
-        $result_1 = file_get_contents($url . '&filter[department_role_feature][value][]=1');
-        $result_2 = file_get_contents($url . '&filter[department_role_feature][value][]=0');
-        $result_1 = json_decode($result_1, true);
-        $result_2 = json_decode($result_2, true);
-        $result = array_merge($result_1['data'], $result_2['data']);
-     }
-     if($result) {
-       \Drupal::cache()->set('hp_profiles_feed--' . $id, $result, time() + 7200);
-       return $result;
-     } else {
-       return null;
-     }
-   }
- }
-
- // UPDATES
-//////////////////////////////////////////////////////
-
+function hp_profiles_feed_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__hp_profiles_feed' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
 
 /**
- * Updates to add a dropbox to flatten feed hierachy 
+ * CUSTOM FUNCTIONS.
+ */
+
+/**
+ * Gets people from profiles site, and displays.
+ */
+function _hp_profiles_feed_get_profiles($env_url = 'https://profiles.howard.edu', $department = NULL, $level = NULL, $flatten = 0, $range = 50, $page = 1, $id = 'default') {
+  if ($cache = \Drupal::cache()->get('hp_profiles_feed--' . $id)) {
+    return $cache->data;
+  }
+  else {
+    $currentDate = date('Y-m-d');
+    $url = $env_url . "/api/profilesearch/%20?filter[public][value]=1&sort=search_api_aggregation_1&range=" . $range . "&page=" . $page;
+    if (isset($department)) {
+      $url .= "&filter[taxonomy_3][value][]=" . $department;
+    }
+    if (isset($level)) {
+      $url .= "&filter[department_role][value][]=" . $level;
+    }
+    if ($flatten) {
+      $result1 = file_get_contents($url);
+      $result2 = json_decode($result1, TRUE);
+      $result = $result2['data'];
+    }
+    else {
+      $result_1 = file_get_contents($url . '&filter[department_role_feature][value][]=1');
+      $result_2 = file_get_contents($url . '&filter[department_role_feature][value][]=0');
+      $result_1 = json_decode($result_1, TRUE);
+      $result_2 = json_decode($result_2, TRUE);
+      $result = array_merge($result_1['data'], $result_2['data']);
+    }
+    if ($result) {
+      \Drupal::cache()->set('hp_profiles_feed--' . $id, $result, time() + 7200);
+      return $result;
+    }
+    else {
+      return NULL;
+    }
+  }
+}
+
+// UPDATES
+// .
+
+/**
+ * Updates to add a dropbox to flatten feed hierachy .
  */
 function hp_profiles_feed_update_8002() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_profiles_feed');

@@ -1,0 +1,21 @@
+uuid: a1c4a0dc-bce5-45ec-b557-591d8006b0ee
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_parallax_description
+    - paragraphs.paragraphs_type.hp_parallax
+  module:
+    - text
+id: paragraph.hp_parallax.field_hp_parallax_description
+field_name: field_hp_parallax_description
+entity_type: paragraph
+bundle: hp_parallax
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

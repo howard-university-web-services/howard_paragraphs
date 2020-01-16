@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_df_hide_schools
+    - paragraphs.paragraphs_type.hp_deadline_feed
+id: paragraph.hp_deadline_feed.field_hp_df_hide_schools
+field_name: field_hp_df_hide_schools
+entity_type: paragraph
+bundle: hp_deadline_feed
+label: 'Hide Schools / Colleges column'
+description: 'Selecting "Hide Schools / Colleges column" will allow you to hide the column on the table display.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

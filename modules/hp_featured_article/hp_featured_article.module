@@ -2,16 +2,15 @@
 
 /**
  * @file
- * ip_views_embed module file.
+ * Hp_featured_article module file.
  */
 
- use Drupal\Core\Routing\RouteMatchInterface;
- use Drupal\paragraphs\Entity\Paragraph;
- use Drupal\node\Entity\Node;
- use Drupal\media\Entity\Media;
- use Drupal\image\Entity\ImageStyle;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\node\Entity\Node;
+use Drupal\media\Entity\Media;
+use Drupal\image\Entity\ImageStyle;
 
- /**
+/**
  * Implements hook_help().
  *
  * @inheritdoc
@@ -35,56 +34,52 @@ function hp_featured_article_help($route_name, RouteMatchInterface $route_match)
   return NULL;
 }
 
- /**
-  * Implements hook_theme().
-  * Lets us define our paragraphs templates in this module.
-  */
- function hp_featured_article_theme($existing, $type, $theme, $path) {
-   return [
-     'paragraph__hp_featured_article' => [
-       'base hook' => 'paragraph',
-     ]
-   ];
- }
+/**
+ * Implements hook_theme().
+ *
+ * Let's us define our paragraphs templates in this module.
+ */
+function hp_featured_article_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__hp_featured_article' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
 
- /**
-  * Implements hook_preprocess_paragraph().
-  * @param $variables
-  * This sets classes needed for the button/link type.
-  */
- function hp_featured_article_preprocess_paragraph__hp_featured_article(&$variables) {
-     $paragraph = $variables['elements']['#paragraph'];
-
-     // Get media image URL
-     if ($paragraph->hasField('field_hp_fa_article')) {
-       $article = $paragraph->get('field_hp_fa_article')->getValue();
-       if ($article && !empty($article)) {
-         $entity = Node::load($article[0]['target_id']);
-
-         // Title
-         $variables['hp_fa_title'] = $entity->getTitle();
-
-         // Summary
-         $variables['hp_fa_summary'] = ['#markup' => text_summary(strip_tags($entity->body->value))];
-         if(isset($entity->body->summary) && $entity->body->summary !== '') {
-            $variables['hp_fa_summary'] = ['#markup' => $entity->body->summary];
-         }
-
-         // Link
-         $variables['hp_fa_link'] = $entity->toUrl()->toString();
-
-         // Get media image URL
-         if ($entity->hasField('field_hc_featured_image')) {
-           $featured_image = $entity->get('field_hc_featured_image')->getValue();
-           if ($featured_image && !empty($featured_image)) {
-             $image = Media::load($featured_image[0]['target_id']);
-             if(isset($image->field_media_image->entity)) {
-               $variables['hp_fa_image'] = ImageStyle::load('large')->buildUrl($image->field_media_image->entity->getFileUri());
-             }
-           }
-         }
-
-       }
-     }
-
-   }
+/**
+ * Implements hook_preprocess_paragraph().
+ *
+ *   This sets classes needed for the button/link type.
+ */
+function hp_featured_article_preprocess_paragraph__hp_featured_article(&$variables) {
+  $paragraph = $variables['elements']['#paragraph'];
+  // Get media image URL.
+  if ($paragraph->hasField('field_hp_fa_article')) {
+    $article = $paragraph->get('field_hp_fa_article')->getValue();
+    if ($article && !empty($article)) {
+      $entity = Node::load($article[0]['target_id']);
+      // Title.
+      $variables['hp_fa_title'] = $entity->getTitle();
+      // Summary.
+      $variables['hp_fa_summary'] = ['#markup' => text_summary(strip_tags($entity->body->value))];
+      if (isset($entity->body->summary) && $entity->body->summary !== '') {
+        $variables['hp_fa_summary'] = ['#markup' => $entity->body->summary];
+      }
+      // Link.
+      $variables['hp_fa_link'] = $entity->toUrl()->toString();
+      // Get media image URL.
+      if ($entity->hasField('field_hc_featured_image')) {
+        $featured_image = $entity->get('field_hc_featured_image')->getValue();
+        if ($featured_image && !empty($featured_image)) {
+          $image = Media::load($featured_image[0]['target_id']);
+          if (isset($image->field_media_image->entity)) {
+            if ($image->field_media_image->entity->getFileUri() !== NULL) {
+              $variables['hp_fa_image'] = ImageStyle::load('large')->buildUrl($image->field_media_image->entity->getFileUri());
+            }
+          }
+        }
+      }
+    }
+  }
+}

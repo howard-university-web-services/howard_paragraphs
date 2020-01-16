@@ -2,14 +2,12 @@
 
 /**
  * @file
- * ip_button_link module file.
+ * Ip_button_link module file.
  */
 
- use Drupal\Core\Routing\RouteMatchInterface;
- use Drupal\paragraphs\Entity\Paragraph;
- use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
 
- /**
+/**
  * Implements hook_help().
  *
  * @inheritdoc
@@ -35,108 +33,104 @@ function hp_events_feed_help($route_name, RouteMatchInterface $route_match) {
 
 /**
  * Implements hook_preprocess_paragraph().
+ *
  * @param $variables
- * This sets variables for getting events, and then gets events.
+ *   This sets variables for getting events, and then gets events.
  */
 function hp_events_feed_preprocess_paragraph__hp_events_feed(&$variables) {
-  // UUID to pass for cache
+  // UUID to pass for cache.
   $uuid = $variables['elements']['#paragraph']->uuid->value;
 
-  // Check on env to get events from
+  // Check on env to get events from.
   $env = $variables['elements']['#paragraph']->field_hp_ef_environment->value;
   $env_url = 'https://calendar.howard.edu';
-  if($env == 'stg') {
+  if ($env == 'stg') {
     $env_url = 'http://stg.calendar.howard.edu';
-  } elseif($env == 'dev') {
+  }
+  elseif ($env == 'dev') {
     $env_url = 'http://dev.calendar.howard.edu';
   }
   $variables['hp_ef_env_url'] = $env_url;
 
-  // Check on categories filter
-  $category = null;
-  if(isset($variables['elements']['#paragraph']->field_hp_ef_event_category->value)) {
+  // Check on categories filter.
+  $category = NULL;
+  if (isset($variables['elements']['#paragraph']->field_hp_ef_event_category->value)) {
     $category = $variables['elements']['#paragraph']->field_hp_ef_event_category->value;
-    // Decode strring workaround due to bug in core or external_data_source
-    $category = str_replace('id=','',$category);
+    // Decode strring workaround due to bug in core or external_data_source.
+    $category = str_replace('id=', '', $category);
   }
 
-  // Check on admin categories filter
-  $admin_category = null;
-  if(isset($variables['elements']['#paragraph']->field_hp_ef_event_admin_category->value)) {
+  // Check on admin categories filter.
+  $admin_category = NULL;
+  if (isset($variables['elements']['#paragraph']->field_hp_ef_event_admin_category->value)) {
     $admin_category = $variables['elements']['#paragraph']->field_hp_ef_event_admin_category->value;
-    // Decode string workaround due to bug in core or external_data_source
-    $admin_category = str_replace('id=','',$admin_category);
+    // Decode string workaround due to bug in core or external_data_source.
+    $admin_category = str_replace('id=', '', $admin_category);
   }
 
-  // Check on Schools and Colleges filter
-  $schools_colleges = null;
-  if(isset($variables['elements']['#paragraph']->field_hp_ef_event_schools_colleg->value)) {
+  // Check on Schools and Colleges filter.
+  $schools_colleges = NULL;
+  if (isset($variables['elements']['#paragraph']->field_hp_ef_event_schools_colleg->value)) {
     $schools_colleges = $variables['elements']['#paragraph']->field_hp_ef_event_schools_colleg->value;
-    // Decode string workaround due to bug in core or external_data_source
-    $schools_colleges = str_replace('id=','',$schools_colleges);
+    // Decode string workaround due to bug in core or external_data_source.
+    $schools_colleges = str_replace('id=', '', $schools_colleges);
   }
 
-  // Get events
+  // Get events.
   $variables['hp_ef_events'] = _hp_events_feed_get_events($env_url, $category, $admin_category, $schools_colleges, 3, 1, $uuid);
-
 
 }
 
- /**
-  * Implements hook_theme().
-  * Lets us define our paragraphs templates in this module.
-  */
- function hp_events_feed_theme($existing, $type, $theme, $path) {
-   return [
-     'paragraph__hp_events_feed' => [
-       'base hook' => 'paragraph',
-     ]
-   ];
- }
-
+/**
+ * Implements hook_theme().
+ * Lets us define our paragraphs templates in this module.
+ */
+function hp_events_feed_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__hp_events_feed' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
 
 /**
-* CUSTOM FUNCTIONS
-*
-*/
-
-
- /**
- * Gets events from calendar, and displays.
- *
+ * CUSTOM FUNCTIONS.
  */
- function _hp_events_feed_get_events($env_url = 'https://calendar.howard.edu', $category = null, $admin_category = null, $schools_colleges = null, $range = 3, $page = 1, $id = 'default') {
-   if ($cache = \Drupal::cache()->get('hp_events_feed--' . $id)) {
-     return $cache->data;
-   }
-   else {
-     $currentDate = date('Y-m-d');
-     $url = $env_url . "/api/events/?fields=id,label,date,uri&range=" . $range . "&page=" . $page . "&filter[date][value][0]=" . $currentDate . "%2016:00:00&filter[date][operator][0]='>'";
-     if(isset($category)) {
-       $url .= "&filter[taxonomy_3][value][0]=" . $category . "&filter[taxonomy_3][operator][0]='IN'";
-     }
-     if(isset($admin_category)) {
-       $url .= "&filter[taxonomy_5][value][0]=" . $admin_category . "&filter[taxonomy_5][operator][0]='IN'";
-     }
-     if(isset($schools_colleges)) {
-       $url .= "&filter[taxonomy_1][value][0]=" . $schools_colleges . "&filter[taxonomy_1][operator][0]='IN'";
-     }
-     $result = file_get_contents($url);
-     $result = json_decode($result, true);
-     $result = $result['data'];
-     if($result) {
-       \Drupal::cache()->set('hp_events_feed--' . $id, $result, time() + 7200);
-       return $result;
-     } else {
-       return null;
-     }
-   }
- }
 
+/**
+ * Gets events from calendar, and displays.
+ */
+function _hp_events_feed_get_events($env_url = 'https://calendar.howard.edu', $category = NULL, $admin_category = NULL, $schools_colleges = NULL, $range = 3, $page = 1, $id = 'default') {
+  if ($cache = \Drupal::cache()->get('hp_events_feed--' . $id)) {
+    return $cache->data;
+  }
+  else {
+    $currentDate = date('Y-m-d');
+    $url = $env_url . "/api/events/?fields=id,label,date,uri&range=" . $range . "&page=" . $page . "&filter[date][value][0]=" . $currentDate . "%2016:00:00&filter[date][operator][0]='>'";
+    if (isset($category)) {
+      $url .= "&filter[taxonomy_3][value][0]=" . $category . "&filter[taxonomy_3][operator][0]='IN'";
+    }
+    if (isset($admin_category)) {
+      $url .= "&filter[taxonomy_5][value][0]=" . $admin_category . "&filter[taxonomy_5][operator][0]='IN'";
+    }
+    if (isset($schools_colleges)) {
+      $url .= "&filter[taxonomy_1][value][0]=" . $schools_colleges . "&filter[taxonomy_1][operator][0]='IN'";
+    }
+    $result = file_get_contents($url);
+    $result = json_decode($result, TRUE);
+    $result = $result['data'];
+    if ($result) {
+      \Drupal::cache()->set('hp_events_feed--' . $id, $result, time() + 7200);
+      return $result;
+    }
+    else {
+      return NULL;
+    }
+  }
+}
 
- // UPDATES
-//////////////////////////////////////////////////////
-
+// UPDATES
+// .
 
 /**
  * Add schools and colleges optional filter.

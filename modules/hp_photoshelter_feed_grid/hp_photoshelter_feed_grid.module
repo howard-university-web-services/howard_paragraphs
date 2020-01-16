@@ -2,16 +2,13 @@
 
 /**
  * @file
- * ip_button_link module file.
+ * Ip_button_link module file.
  */
 
- use Drupal\Core\Routing\RouteMatchInterface;
- use Drupal\paragraphs\Entity\Paragraph;
- use Drupal\media\Entity\Media;
- use Drupal\image\Entity\ImageStyle;
- use Drupal\Component\Serialization\Json;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Component\Serialization\Json;
 
- /**
+/**
  * Implements hook_help().
  *
  * @inheritdoc
@@ -37,45 +34,44 @@ function hp_photoshelter_feed_grid_help($route_name, RouteMatchInterface $route_
 
 /**
  * Implements hook_preprocess_paragraph().
+ *
  * @param $variables
- * This sets variables for getting events, and then gets events.
+ *   This sets variables for getting events, and then gets events.
  */
 function hp_photoshelter_feed_grid_preprocess_paragraph__hp_photoshelter_feed_grid(&$variables) {
 
-    $gallery_id=$variables['content']['field_hp_pfg_photoshelter_id']['#items']->getValue()[0]['value'];
+  $gallery_id = $variables['content']['field_hp_pfg_photoshelter_id']['#items']->getValue()[0]['value'];
 
-    //append the campus code to the url so you can dynamically use the url.
-    $url = "https://howardu.photoshelter.com/psapi/v3/gallery/". $gallery_id ."/images?api_key=zrGovI0ChPc&extend={%22Image%22:{%22fields%22:%22image_id%22,%22params%22:{}},%22Iptc%22:{%22fields%22:%22caption,headline,title,display_caption%22,%22params%22:{}},%22ImageLink%22:{%22params%22:{%22image_size%22:%22800x800%22}}}";
-    //retreive and parse the json from URL.
-    try {
-        $response = \Drupal::httpClient()->get($url);
-        $data = (string) $response->getBody();
-        if (empty($data)) {
-            return FALSE;
-        }
+  // Append the campus code to the url so you can dynamically use the url.
+  $url = "https://howardu.photoshelter.com/psapi/v3/gallery/" . $gallery_id . "/images?api_key=zrGovI0ChPc&extend={%22Image%22:{%22fields%22:%22image_id%22,%22params%22:{}},%22Iptc%22:{%22fields%22:%22caption,headline,title,display_caption%22,%22params%22:{}},%22ImageLink%22:{%22params%22:{%22image_size%22:%22800x800%22}}}";
+  // Retreive and parse the json from URL.
+  try {
+    $response = \Drupal::httpClient()->get($url);
+    $data = (string) $response->getBody();
+    if (empty($data)) {
+      return FALSE;
     }
-    catch (RequestException $e) {
-        return FALSE;
-    }
-    $decoded_json = Json::decode($data);
- 
-    $variables['images'] = $decoded_json['data']['GalleryImage'];
+  }
+  catch (RequestException $e) {
+    return FALSE;
+  }
+  $decoded_json = Json::decode($data);
+
+  $variables['images'] = $decoded_json['data']['GalleryImage'];
 }
 
- /**
-  * Implements hook_theme().
-  * Lets us define our paragraphs templates in this module.
-  */
- function hp_photoshelter_feed_grid_theme($existing, $type, $theme, $path) {
-   return [
-     'paragraph__hp_photoshelter_feed_grid' => [
-       'base hook' => 'paragraph',
-     ],
-   ];
- }
+/**
+ * Implements hook_theme().
+ * Lets us define our paragraphs templates in this module.
+ */
+function hp_photoshelter_feed_grid_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__hp_photoshelter_feed_grid' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
 
- /**
-* CUSTOM FUNCTIONS
-*
+/**
+ * CUSTOM FUNCTIONS.
 */
-

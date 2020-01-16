@@ -1,0 +1,9 @@
+uuid: 78d58b14-4a25-4876-9473-a8370beb94b1
+langcode: en
+status: true
+dependencies: {  }
+id: hp_parallax
+label: 'HP Parallax'
+icon_uuid: null
+description: 'Provides a Kitchen Sink Widget for adding an parallax scroll effect to an image and text '
+behavior_plugins: {  }

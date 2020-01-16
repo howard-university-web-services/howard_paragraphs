@@ -2,17 +2,17 @@
 
 /**
  * @file
- * hp_facebook_feed module file.
+ * Hp_facebook_feed module file.
  */
 
- require "vendor/autoload.php";
+require "vendor/autoload.php";
 
- use Facebook\Facebook;
- use Drupal\Core\Routing\RouteMatchInterface;
- use Drupal\paragraphs\Entity\Paragraph;
- use Drupal\Core\Form\FormStateInterface;
+use Facebook\Exceptions\FacebookSDKException;
+use Facebook\Exceptions\FacebookResponseException;
+use Facebook\Facebook;
+use Drupal\Core\Routing\RouteMatchInterface;
 
- /**
+/**
  * Implements hook_help().
  *
  * @inheritdoc
@@ -38,104 +38,104 @@ function hp_facebook_feed_help($route_name, RouteMatchInterface $route_match) {
 
 /**
  * Implements hook_preprocess_paragraph().
+ *
  * @param $variables
- * This sets variables for getting events, and then gets events.
+ *   This sets variables for getting events, and then gets events.
  */
 function hp_facebook_feed_preprocess_paragraph__hp_facebook_feed(&$variables) {
 
-  // Check on desired count
+  // Check on desired count.
   $count = 1;
-  if(isset($variables['elements']['#paragraph']->field_hp_ff_count->value)) {
+  if (isset($variables['elements']['#paragraph']->field_hp_ff_count->value)) {
     $count = $variables['elements']['#paragraph']->field_hp_ff_count->value;
   }
 
   // Page ID
   // See https://findmyfbid.com
   $page_id = '38238012184';
-  if(isset($variables['elements']['#paragraph']->field_hp_ff_page_id->value)) {
+  if (isset($variables['elements']['#paragraph']->field_hp_ff_page_id->value)) {
     $page_id = $variables['elements']['#paragraph']->field_hp_ff_page_id->value;
   }
-  
+
   // Token
   // See https://stackoverflow.com/questions/17197970/facebook-permanent-page-access-token
   $token = 'EAAFL8Gp7E6kBAHg6V4x4jj9UoR8ZCilFfURT71ZB3CmaKmeeA9xuGwjMdUNB1CMizjxFP6c6ZBmkngvwnYAzpiXOIHfZB1p0XuRqUJKvGKxXPG6nZAvmlvZAmMIjyTRHZA63nr7SzND51ZBLJNyPiP9hz0yetmnQA3Te2hnVo4ZBe4QZDZD';
-  if(isset($variables['elements']['#paragraph']->field_hp_ff_token->value)) {
+  if (isset($variables['elements']['#paragraph']->field_hp_ff_token->value)) {
     $token = $variables['elements']['#paragraph']->field_hp_ff_token->value;
   }
 
-  // App ID
+  // App ID.
   $app_id = '364970927395753';
-  if(isset($variables['elements']['#paragraph']->field_hp_ff_app->value)) {
+  if (isset($variables['elements']['#paragraph']->field_hp_ff_app->value)) {
     $app_id = $variables['elements']['#paragraph']->field_hp_ff_app->value;
   }
 
-  // App Secret
+  // App Secret.
   $app_secret = '56fd4fe70662198f5602df3c5578c9f5';
-  if(isset($variables['elements']['#paragraph']->field_hp_ff_app_secret->value)) {
+  if (isset($variables['elements']['#paragraph']->field_hp_ff_app_secret->value)) {
     $app_secret = $variables['elements']['#paragraph']->field_hp_ff_app_secret->value;
   }
 
-  // Get posts
+  // Get posts.
   $variables['hp_ff_posts'] = _hp_facebook_feed_get_posts($count, $token, $page_id, $app_id, $app_secret);
 
 }
 
- /**
-  * Implements hook_theme().
-  * Lets us define our paragraphs templates in this module.
-  */
- function hp_facebook_feed_theme($existing, $type, $theme, $path) {
-   return [
-     'paragraph__hp_facebook_feed' => [
-       'base hook' => 'paragraph',
-     ]
-   ];
- }
-
+/**
+ * Implements hook_theme().
+ * Lets us define our paragraphs templates in this module.
+ */
+function hp_facebook_feed_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__hp_facebook_feed' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
 
 /**
-* CUSTOM FUNCTIONS
-*
-*/
-
-
- /**
- * Gets posts from facebook, and displays.
- *
+ * CUSTOM FUNCTIONS.
  */
- function _hp_facebook_feed_get_posts( $count, $token, $page_id, $app_id, $app_secret) {
-     
-   // Get cache if it's there.
-   if ($cache = \Drupal::cache()->get('hp_facebook_feed--' . $token . '-' . $count)) {
-     return $cache->data;
-   } else {
+
+/**
+ * Gets posts from facebook, and displays.
+ */
+function _hp_facebook_feed_get_posts($count, $token, $page_id, $app_id, $app_secret) {
+
+  // Get cache if it's there.
+  if ($cache = \Drupal::cache()->get('hp_facebook_feed--' . $token . '-' . $count)) {
+    return $cache->data;
+  }
+  else {
 
     // Uses Facebook PHP SDK, attached via composer, see readme.
-    // see https://developers.facebook.com/docs/graph-api/reference/v3.2/user/feed for fields/etc
-
-  
+    // see https://developers.facebook.com/docs/graph-api/reference/v3.2/user/feed for fields/etc.
     $fb = new Facebook([
       'app_id' => $app_id,
-      'app_secret' => $app_secret
+      'app_secret' => $app_secret,
     ]);
-      
+
     $endpoint = '/' . $page_id . '/posts?fields=picture,full_picture,message,message_tags,permalink_url,link,created_time&limit=' . $count;
 
     try {
       // Test keys/etc here first so fails gracefully.
-      $test_access = $fb->get('/'.$page_id.'/feed', $token);
-    } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+      $test_access = $fb->get('/' . $page_id . '/feed', $token);
+    }
+    catch (FacebookResponseException $e) {
       $result['error'] = 'Graph returned an error: ' . $e->getMessage();
-    } catch(\Facebook\Exceptions\FacebookSDKException $e) {
+    }
+    catch (FacebookSDKException $e) {
       $result['error'] = 'Facebook SDK returned an error: ' . $e->getMessage();
     }
 
-    if($test_access) {
+    if ($test_access) {
       try {
         $response = $fb->get($endpoint, $token);
-      } catch(Facebook\Exceptions\FacebookResponseException $e) {
+      }
+      catch (FacebookResponseException $e) {
         $result['error'] = 'Graph returned an error: ' . $e->getMessage();
-      } catch(Facebook\Exceptions\FacebookSDKException $e) {
+      }
+      catch (FacebookSDKException $e) {
         $result['error'] = 'Facebook SDK returned an error: ' . $e->getMessage();
       }
 
@@ -146,32 +146,32 @@ function hp_facebook_feed_preprocess_paragraph__hp_facebook_feed(&$variables) {
       }
 
       // Parse results to reformat if needed.
-      foreach($result['results'] as $key => $sts) {
+      foreach ($result['results'] as $key => $sts) {
         $sts = _hp_facebook_feed_parse_message($sts);
         $result['results'][$key] = $sts;
       }
 
-    } 
-
-    // Set cache
-    if($result) {
-      \Drupal::cache()->set('hp_facebook_feed--' . $token . '-' . $count, $result, time() + 900);
-      return $result;
-    } else {
-      return null;
     }
 
-   }
- }
+    // Set cache.
+    if ($result) {
+      \Drupal::cache()->set('hp_facebook_feed--' . $token . '-' . $count, $result, time() + 900);
+      return $result;
+    }
+    else {
+      return NULL;
+    }
 
- /**
+  }
+}
+
+/**
  * Parses post to make adjustments.
- * 
  */
-function _hp_facebook_feed_parse_message( &$sts ) {
+function _hp_facebook_feed_parse_message(&$sts) {
   $date = $sts['created_time']->format("F j, Y");
   $sts['formatted_date'] = $date;
   $msg = $sts['message'];
-  $sts['message'] = strlen($msg) > 125 ? substr($msg, 0, 125)."..." : $msg;
+  $sts['message'] = strlen($msg) > 125 ? substr($msg, 0, 125) . "..." : $msg;
   return $sts;
 }
