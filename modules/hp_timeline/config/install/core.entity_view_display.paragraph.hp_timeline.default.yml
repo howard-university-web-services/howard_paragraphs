@@ -1,0 +1,40 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_timeline.field_hp_timeline_field
+    - field.field.paragraph.hp_timeline.field_hp_timeline_text
+    - field.field.paragraph.hp_timeline.field_hp_timeline_title
+    - paragraphs.paragraphs_type.hp_timeline
+  module:
+    - entity_reference_revisions
+id: paragraph.hp_timeline.default
+targetEntityType: paragraph
+bundle: hp_timeline
+mode: default
+content:
+  field_hp_timeline_field:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_hp_timeline_text:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_hp_timeline_title:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }
