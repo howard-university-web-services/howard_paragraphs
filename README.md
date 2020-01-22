@@ -52,6 +52,7 @@ The following submodules are available:
 - Promo Space: Paragraphs integration of a Promotional Space for use in Howard projects
 - Table: Paragraphs integration of tablefield module for use in Howard projects, and set up to use tablesaw js
 - Testimonial: Paragraphs integration of testimonials for use in Howard projects
+- Timeline: Paragraphs integration of a timeline for use in Howard projects
 - Twitter Feed: Paragraphs integration of a twitter Feed for Howard projects
 - Views Embed: Paragraphs integration of viewfield module for use in Howard projects
 - Webform Embed: Paragraphs integration of webform module for use in Howard projects
