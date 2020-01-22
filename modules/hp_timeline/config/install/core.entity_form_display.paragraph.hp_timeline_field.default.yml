@@ -13,9 +13,20 @@ third_party_settings:
   field_group:
     group_hp_timeline_field_event:
       children:
+        - field_hp_timeline_field_datetime
+      parent_name: ''
+      weight: 1
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: false
+        required_fields: true
+      label: Event
+    group_hp_timeline_introdcution:
+      children:
         - field_hp_timeline_field_title
         - field_hp_timeline_field_desc
-        - field_hp_timeline_field_datetime
       parent_name: ''
       weight: 0
       format_type: details
@@ -24,7 +35,7 @@ third_party_settings:
         classes: ''
         open: false
         required_fields: true
-      label: Event
+      label: Introduction
 id: paragraph.hp_timeline_field.default
 targetEntityType: paragraph
 bundle: hp_timeline_field

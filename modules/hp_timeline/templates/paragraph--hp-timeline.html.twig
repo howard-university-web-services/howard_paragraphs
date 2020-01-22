@@ -3,17 +3,17 @@
         <section class="compartment">
     {% endif %}
             <div>
-                {% if content.field_timeline_title is not null %}
-                    <p class="lead-in">{{ content.field_timeline_title[0] }}</p>
+                {% if content.field_hp_timeline_title is not null %}
+                    <p class="lead-in">{{ content.field_hp_timeline_title }}</p>
                 {% endif %}
-                {% if content.field_timeline_text is not null %}
-                    <p>{{ content.field_timeline_text[0] }}</p>
+                {% if content.field_hp_timeline_text is not null %}
+                    <p>{{ content.field_hp_timeline_text }}</p>
                 {% endif %}
             </div>
             <div class="timeline">
-                {% for i in 0..content.field_hp_timeline_field|length %}
-                    {% if content.field_hp_timeline_field[i] is not null %}
-                    {{ content.field_hp_timeline_field[i] }}
+                {% for key, item in content.field_hp_timeline_field %}
+                    {% if content.field_hp_timeline_field[item] is not null %}
+                        {{ content.field_hp_timeline_field[item] }}
                     {% endif %}
                 {% endfor %}
             </div>

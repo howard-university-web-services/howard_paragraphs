@@ -3,8 +3,8 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.hp_timeline.field_hp_timeline_field
-    - field.field.paragraph.hp_timeline.field_timeline_text
-    - field.field.paragraph.hp_timeline.field_timeline_title
+    - field.field.paragraph.hp_timeline.field_hp_timeline_text
+    - field.field.paragraph.hp_timeline.field_hp_timeline_title
     - paragraphs.paragraphs_type.hp_timeline
   module:
     - field_group
@@ -13,22 +13,23 @@ third_party_settings:
   field_group:
     group_timeline_introduction:
       children:
-        - field_timeline_title
-        - field_timeline_text
+        - field_hp_timeline_title
+        - field_hp_timeline_text
       parent_name: ''
       weight: 0
       format_type: details
       format_settings:
+        label: Introduction
+        required_fields: true
         id: ''
         classes: ''
         open: false
-        required_fields: true
-      label: 'Timeline Introduction'
+      label: Introduction
     group_timeline_events:
       children:
         - field_hp_timeline_field
       parent_name: ''
-      weight: 1
+      weight: 3
       format_type: details
       format_settings:
         id: ''
@@ -53,16 +54,16 @@ content:
       default_paragraph_type: ''
     third_party_settings: {  }
     region: content
-  field_timeline_text:
-    weight: 3
+  field_hp_timeline_text:
+    weight: 2
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
     region: content
-  field_timeline_title:
-    weight: 2
+  field_hp_timeline_title:
+    weight: 1
     settings:
       size: 60
       placeholder: ''
