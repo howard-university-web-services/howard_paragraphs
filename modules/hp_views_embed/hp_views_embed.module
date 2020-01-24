@@ -48,3 +48,23 @@ function hp_views_embed_theme($existing, $type, $theme, $path) {
     ],
   ];
 }
+
+/**
+ * Implements hook_field_WIDGET_TYPE_paragraphs_form_alter().
+ *
+ * Adds helper text to the paragraph. May need to switch to hp_views_embed_field_widget_paragraphs_form_alter in the future.
+ */
+function hp_views_embed_field_widget_entity_reference_paragraphs_form_alter(&$element, &$form_state, $context) {
+  if ($element['#paragraph_type'] == 'ip_views_embed') {
+    // Tips text from idfive.
+    $markup = '<h3>ADMINISTRATOR USE ONLY!</h3>';
+    $markup .= '<p>This widget is primarily designed for administrators to add specially crafted views, mainly as overview, and search pages. These should not be modified or changed without express knowledge of what these views do, how they work, and why they are there.</p>';
+    $markup .= '<p><a target="_blank" href="/admin/help/hp_views_embed">Views Embed Help</a></p>';
+    $element['ip_views_embed_tips'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Views Embed Widget: ADMINISTRATOR USE ONLY!'),
+      '#weight' => -1000,
+    ];
+    $element['ip_views_embed_tips']['#markup'] = $markup;
+  }
+}
