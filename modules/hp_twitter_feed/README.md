@@ -16,8 +16,14 @@ The following fields are available on this KS widget:
  - Count: The number of tweets wanted.
  - Username: the desired twitter user to pull tweets from. Defaults to "howardu".
 
-## Twitter specifics
-This KS widget is hardcoded to pull from an app created on the howardu account.
+This widget has a configuration page at admin/config/hp_twitter_feed/settings which takes credentials for the Twitter app accessing the feed. The fields required are:
+- Consumer key
+- Consumer Secret
+- Access Token
+- Access Token Secret
+
+These credentials can be obtained from the Twitter Account Developer portal.
+
 
 ## Markup Overrides
 - You may override paragraphs templates by copying them into the client theme.

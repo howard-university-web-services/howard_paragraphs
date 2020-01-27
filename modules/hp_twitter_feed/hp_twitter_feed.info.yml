@@ -8,3 +8,5 @@ package: Howard University
 dependencies:
   - entity_reference_revisions
   - howard_paragraphs
+
+configure: hp_twitter_feed.settings

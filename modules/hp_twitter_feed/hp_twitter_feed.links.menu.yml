@@ -1,0 +1,5 @@
+hp_twitter_feed.settings:
+  title: 'Configure HP Twitter Feed Module'
+  parent: system.admin_config_services
+  description: 'Add credentials for twitter feed module'
+  route_name: hp_twitter_feed.settings

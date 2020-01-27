@@ -1,0 +1,7 @@
+hp_twitter_feed.settings:
+  path: '/admin/config/hp_twitter_feed/settings'
+  defaults:
+    _form: '\Drupal\hp_twitter_feed\Form\HpTwitterFeedSettingsForm'
+    _title: 'HP Twitter Feed Settings'
+  requirements:
+    _permission: 'administer site configuration'
