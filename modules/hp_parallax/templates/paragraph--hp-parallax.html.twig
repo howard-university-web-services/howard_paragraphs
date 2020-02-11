@@ -8,9 +8,11 @@
 				{%  if float_left == 1 %}
 				<div class="featurettes_text float_left">
 					<aside class="featurette">
-						<h1 class="featurette-heading">{{-content.field_hp_parallax_title[0]-}}</h1>
-						<p class="lead "> {{-content.field_hp_parallax_description[0]-}}</p>
-						{%  if true in content.field_hp_parallax_link[0] %}
+						<p class="lead-in">{{ content.field_hp_parallax_title }}</p>
+						{%  if true in content.field_hp_parallax_link %}
+							{{ content.field_hp_parallax_description }}
+						{% endif %}
+						{%  if true in content.field_hp_parallax_link %}
 						<a class="btn" href="{% spaceless %}{{-content.field_hp_parallax_link[0]['#url']-}}{% endspaceless %}">{{-content.field_hp_parallax_link[0]['#title']-}}</a>
 						{% endif %}
 					</aside>
@@ -26,9 +28,11 @@
 				</div>
 				<div class="featurettes_text float_right">
 					<aside class="featurette">
-						<h1 class="featurette-heading">{{-content.field_hp_parallax_title[0]-}}</h1>
-						<p class="lead">{{-content.field_hp_parallax_description[0]-}}</p>
-						{%  if true in content.field_hp_parallax_link[0] %}
+						<p class="lead-in">{{ content.field_hp_parallax_title }}</p>
+						{%  if true in content.field_hp_parallax_link %}
+							{{ content.field_hp_parallax_description }}
+						{% endif %}
+						{%  if true in content.field_hp_parallax_link %}
 						<a class="btn" href="{% spaceless %}{{-content.field_hp_parallax_link[0]['#url']-}}{% endspaceless %}">{{-content.field_hp_parallax_link[0]['#title']-}}</a>
 						{% endif %}
 					</aside>
