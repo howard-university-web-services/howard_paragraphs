@@ -11,11 +11,7 @@
                 {% endif %}
             </div>
             <div class="timeline">
-                {% for key, item in content.field_hp_timeline_field %}
-                    {% if content.field_hp_timeline_field[item] is not null %}
-                        {{ content.field_hp_timeline_field[item] }}
-                    {% endif %}
-                {% endfor %}
+                {{ content.field_hp_timeline_field }}
             </div>
     {% if hp_show_wrapper %}
         </section>
