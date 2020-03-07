@@ -118,8 +118,8 @@ function _hp_news_feed_get_news($env_url = 'https://newsroom.howard.edu', $categ
     return $cache->data;
   }
   else {
-    $currentDate = date('Y-m-d');
-    $url = $env_url . "/api/articlesearch/%20?sort=-publication_date&fields=id,label,publication_date_formatted,image,uri,summary&range=" . $range . "&page=" . $page . "&filter[publication_date][value][]=" . $currentDate . "%2023:59:59&filter[publication_date][operator]='<='&filter[exclude_from_main_feed][value]=1&filter[exclude_from_main_feed][operator]='!='";
+    $currentDate = date('Y-m-d', strtotime(' +1 day'));
+    $url = $env_url . "/api/articlesearch/%20?sort=-publication_date&fields=id,label,publication_date_formatted,image,uri,summary&range=" . $range . "&page=" . $page . "&filter[publication_date][value][]=" . $currentDate . "%2000:00:00&filter[publication_date][operator]='<='&filter[exclude_from_main_feed][value]=1&filter[exclude_from_main_feed][operator]='!='";
     if (isset($category)) {
       $url .= "&filter[taxonomy_3][value][]=" . $category;
     }
