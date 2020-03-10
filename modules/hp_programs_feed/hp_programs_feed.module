@@ -114,7 +114,7 @@ function _hp_programs_feed_get_programs($env_url = 'https://programs.howard.edu'
       $url .= "&filter[related_school][value][]=" . $school;
     }
     if (isset($subject)) {
-      $url .= "&filter[taxonomy_5][value][]=" . $subject;
+      $url .= "&filter[program_subject][value][]=" . $subject;
     }
     $result = file_get_contents($url);
     $result = json_decode($result, TRUE);
