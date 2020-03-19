@@ -13,14 +13,14 @@ use Drupal\views\Views;
  *
  * @inheritdoc
  */
-function hp_announcements_help($route_name, RouteMatchInterface $route_match) {
+function hp_announcements_help($route_name, RouteMatchInterface $route_match)
+{
   switch ($route_name) {
     case 'help.page.hp_announcements':
       $text = file_get_contents(dirname(__FILE__) . "/README.md");
       if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
         return '<pre>' . $text . '</pre>';
-      }
-      else {
+      } else {
         // Use the Markdown filter to render the README.
         $filter_manager = \Drupal::service('plugin.manager.filter');
         $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
@@ -36,7 +36,8 @@ function hp_announcements_help($route_name, RouteMatchInterface $route_match) {
  * Implements hook_theme().
  * Lets us define our paragraphs templates in this module.
  */
-function hp_announcements_theme($existing, $type, $theme, $path) {
+function hp_announcements_theme($existing, $type, $theme, $path)
+{
   return [
     'paragraph__hp_announcements' => [
       'base hook' => 'paragraph',
@@ -50,7 +51,8 @@ function hp_announcements_theme($existing, $type, $theme, $path) {
  * @param $variables
  *   This sets classes needed for the button/link type.
  */
-function hp_announcements_preprocess_paragraph__hp_announcements(&$variables) {
+function hp_announcements_preprocess_paragraph__hp_announcements(&$variables)
+{
 
   // Load the view results.
   $values = [];
@@ -75,7 +77,6 @@ function hp_announcements_preprocess_paragraph__hp_announcements(&$variables) {
 
   // Title.
   $variables['hp_an_title'] = $variables['elements']['#paragraph']->field_hp_an_title->value ? $variables['elements']['#paragraph']->field_hp_an_title->value : "Announcements";
-
 }
 
 // UPDATES
@@ -84,6 +85,15 @@ function hp_announcements_preprocess_paragraph__hp_announcements(&$variables) {
 /**
  * Updates to allow title.
  */
-function hp_announcements_update_8001() {
+function hp_announcements_update_8001()
+{
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_announcements');
+}
+
+/**
+ * Updates to sort view and change cache.
+ */
+function hp_announcements_update_8002()
+{
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_announcements');
 }
