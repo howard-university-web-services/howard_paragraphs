@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_help().
@@ -51,9 +52,7 @@ function hp_articles_theme($existing, $type, $theme, $path) {
 
 /**
  * Implements hook_preprocess_paragraph().
- *
- * @param $variables
- *   This sets classes needed for the button/link type.
+ *  This sets classes needed for the button/link type.
  */
 function hp_articles_preprocess_paragraph__hp_articles(&$variables) {
 
@@ -63,6 +62,39 @@ function hp_articles_preprocess_paragraph__hp_articles(&$variables) {
     $filter = $variables['elements']['#paragraph']->field_hp_af_article_category_fil->target_id;
   }
 
+  $article_count = NULL;
+  if ($variables['elements']['#paragraph']->field_hp_af_article_count->value) {
+    $article_count = $variables['elements']['#paragraph']->field_hp_af_article_count->value;
+  }
+
+  $config = \Drupal::service('config.factory')->getEditable('hp_articles.settings');
+  $config->set('hp_article_count', $article_count)
+    ->save();
+
   $variables['hp_articles_feed'] = views_embed_view('hp_articles_ks_feed', 'hp_articles_block', $filter);
 
+}
+
+/**
+ * Implements hook views_pre_view().
+ * Display set number of articles.
+ */
+function hp_articles_views_pre_view(ViewExecutable $view) {
+  $config = \Drupal::config('hp_articles.settings');
+  $article_count = $config->get('hp_article_count');
+
+  if ($view->id() == 'hp_articles_ks_feed' && $view->current_display == 'hp_articles_block') {
+    $view->setItemsPerPage($article_count);
+    $pager = $view->display_handler->getOption('pager');
+    $pager['type'] = 'some';
+    $view->display_handler->setOption('pager', $pager);
+  }
+}
+
+/**
+ * Implements hook update()
+ * Updates to allow categories.
+ */
+function hp_articles_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_articles');
 }

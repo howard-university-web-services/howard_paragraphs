@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_af_article_count
+    - paragraphs.paragraphs_type.hp_articles
+id: paragraph.hp_articles.field_hp_af_article_count
+field_name: field_hp_af_article_count
+entity_type: paragraph
+bundle: hp_articles
+label: 'Article Count'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: 100
+  prefix: ''
+  suffix: ''
+field_type: integer
