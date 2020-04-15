@@ -106,7 +106,7 @@ function _hp_events_feed_get_events($env_url = 'https://calendar.howard.edu', $c
   }
   else {
     $currentDate = date('Y-m-d');
-    $url = $env_url . "/api/events/?fields=id,label,date,uri&range=" . $range . "&page=" . $page . "&filter[date][value][0]=" . $currentDate . "%2016:00:00&filter[date][operator][0]='>'";
+    $url = $env_url . "/api/events/?fields=id,label,date,uri&range=" . $range . "&sort=date&page=" . $page . "&filter[date][value][0]=" . $currentDate . "%2016:00:00&filter[date][operator][0]='>'";
     if (isset($category)) {
       $url .= "&filter[taxonomy_3][value][0]=" . $category . "&filter[taxonomy_3][operator][0]='IN'";
     }
