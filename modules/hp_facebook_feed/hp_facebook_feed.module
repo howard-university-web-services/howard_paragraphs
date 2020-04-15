@@ -115,6 +115,7 @@ function _hp_facebook_feed_get_posts($count, $token, $page_id, $app_id, $app_sec
       'app_secret' => $app_secret,
     ]);
 
+    $test_access = NULL;
     $endpoint = '/' . $page_id . '/posts?fields=picture,full_picture,message,message_tags,permalink_url,link,created_time&limit=' . $count;
 
     try {
