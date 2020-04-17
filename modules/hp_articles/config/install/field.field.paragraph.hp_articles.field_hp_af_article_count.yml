@@ -9,7 +9,7 @@ field_name: field_hp_af_article_count
 entity_type: paragraph
 bundle: hp_articles
 label: 'Article Count'
-description: ''
+description: 'Determines the number of articles to display.'
 required: false
 translatable: false
 default_value: {  }
