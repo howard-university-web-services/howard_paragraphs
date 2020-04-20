@@ -62,7 +62,7 @@ function hp_articles_preprocess_paragraph__hp_articles(&$variables) {
       $filter = $variables['elements']['#paragraph']->field_hp_af_article_category_fil->target_id;
   }
 
-  $article_count = NULL;
+  $article_count = 10;
   if ($variables['elements']['#paragraph']->field_hp_af_article_count->value) {
       $article_count = $variables['elements']['#paragraph']->field_hp_af_article_count->value;
   }
