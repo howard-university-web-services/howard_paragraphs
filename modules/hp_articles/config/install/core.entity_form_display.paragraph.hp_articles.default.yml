@@ -3,7 +3,10 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.hp_articles.field_hp_af_article_category_fil
+    - field.field.paragraph.hp_articles.field_hp_af_article_count
     - paragraphs.paragraphs_type.hp_articles
+_core:
+  default_config_hash: 1HOMeFnc0VT-EBNELhGj1viZFg_xPcliMoWXFz1HoqY
 id: paragraph.hp_articles.default
 targetEntityType: paragraph
 bundle: hp_articles
@@ -14,6 +17,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
+  field_hp_af_article_count:
+    weight: 1
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
     region: content
 hidden:
   created: true
