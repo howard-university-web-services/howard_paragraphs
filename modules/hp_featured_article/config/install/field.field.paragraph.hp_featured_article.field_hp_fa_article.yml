@@ -11,7 +11,7 @@ entity_type: paragraph
 bundle: hp_featured_article
 label: Article
 description: 'Choose an article to feature.'
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''

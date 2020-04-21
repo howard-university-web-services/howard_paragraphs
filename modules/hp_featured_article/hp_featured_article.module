@@ -15,14 +15,14 @@ use Drupal\image\Entity\ImageStyle;
  *
  * @inheritdoc
  */
-function hp_featured_article_help($route_name, RouteMatchInterface $route_match) {
+function hp_featured_article_help($route_name, RouteMatchInterface $route_match)
+{
   switch ($route_name) {
     case 'help.page.hp_featured_article':
       $text = file_get_contents(dirname(__FILE__) . "/README.md");
       if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
         return '<pre>' . $text . '</pre>';
-      }
-      else {
+      } else {
         // Use the Markdown filter to render the README.
         $filter_manager = \Drupal::service('plugin.manager.filter');
         $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
@@ -39,7 +39,8 @@ function hp_featured_article_help($route_name, RouteMatchInterface $route_match)
  *
  * Let's us define our paragraphs templates in this module.
  */
-function hp_featured_article_theme($existing, $type, $theme, $path) {
+function hp_featured_article_theme($existing, $type, $theme, $path)
+{
   return [
     'paragraph__hp_featured_article' => [
       'base hook' => 'paragraph',
@@ -52,34 +53,48 @@ function hp_featured_article_theme($existing, $type, $theme, $path) {
  *
  *   This sets classes needed for the button/link type.
  */
-function hp_featured_article_preprocess_paragraph__hp_featured_article(&$variables) {
+function hp_featured_article_preprocess_paragraph__hp_featured_article(&$variables)
+{
   $paragraph = $variables['elements']['#paragraph'];
   // Get media image URL.
   if ($paragraph->hasField('field_hp_fa_article')) {
     $article = $paragraph->get('field_hp_fa_article')->getValue();
     if ($article && !empty($article)) {
       $entity = Node::load($article[0]['target_id']);
-      // Title.
-      $variables['hp_fa_title'] = $entity->getTitle();
-      // Summary.
-      $variables['hp_fa_summary'] = ['#markup' => text_summary(strip_tags($entity->body->value))];
-      if (isset($entity->body->summary) && $entity->body->summary !== '') {
-        $variables['hp_fa_summary'] = ['#markup' => $entity->body->summary];
-      }
-      // Link.
-      $variables['hp_fa_link'] = $entity->toUrl()->toString();
-      // Get media image URL.
-      if ($entity->hasField('field_hc_featured_image')) {
-        $featured_image = $entity->get('field_hc_featured_image')->getValue();
-        if ($featured_image && !empty($featured_image)) {
-          $image = Media::load($featured_image[0]['target_id']);
-          if (isset($image->field_media_image->entity)) {
-            if ($image->field_media_image->entity->getFileUri() !== NULL) {
-              $variables['hp_fa_image'] = ImageStyle::load('large')->buildUrl($image->field_media_image->entity->getFileUri());
+      if (isset($entity)) {
+        // Title.
+        $variables['hp_fa_title'] = $entity->getTitle();
+        // Summary.
+        $variables['hp_fa_summary'] = ['#markup' => text_summary(strip_tags($entity->body->value))];
+        if (isset($entity->body->summary) && $entity->body->summary !== '') {
+          $variables['hp_fa_summary'] = ['#markup' => $entity->body->summary];
+        }
+        // Link.
+        $variables['hp_fa_link'] = $entity->toUrl()->toString();
+        // Get media image URL.
+        if ($entity->hasField('field_hc_featured_image')) {
+          $featured_image = $entity->get('field_hc_featured_image')->getValue();
+          if ($featured_image && !empty($featured_image)) {
+            $image = Media::load($featured_image[0]['target_id']);
+            if (isset($image->field_media_image->entity)) {
+              if ($image->field_media_image->entity->getFileUri() !== NULL) {
+                $variables['hp_fa_image'] = ImageStyle::load('large')->buildUrl($image->field_media_image->entity->getFileUri());
+              }
             }
           }
         }
       }
     }
   }
+}
+
+// UPDATES
+// .
+
+/**
+ * Make article field required and check for entity before display.
+ */
+function hp_featured_article_update_8001()
+{
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_featured_article');
 }
