@@ -35,22 +35,16 @@ function hp_programs_feed_help($route_name, RouteMatchInterface $route_match) {
  * Implements hook_preprocess_paragraph().
  *
  * @param $variables
- *   This sets variables for getting events, and then gets events.
+ *   This sets variables for getting events, and which are then passed to JS.
  */
 function hp_programs_feed_preprocess_paragraph__hp_programs_feed(&$variables) {
-  // UUID to pass for cache.
-  $uuid = $variables['elements']['#paragraph']->uuid->value;
 
   // Check on env to get events from.
-  $env = $variables['elements']['#paragraph']->field_hp_pgf_environment->value;
-  $env_url = 'https://programs.howard.edu';
-  if ($env == 'stg') {
-    $env_url = 'http://stg.programs.howard.edu';
+  $env = 'prod';
+  if (isset($variables['elements']['#paragraph']->field_hp_pgf_environment->value)) {
+    $env = $variables['elements']['#paragraph']->field_hp_pgf_environment->value;
   }
-  elseif ($env == 'dev') {
-    $env_url = 'http://dev.programs.howard.edu';
-  }
-  $variables['hp_pgf_env_url'] = $env_url;
+  $variables['hp_pgf_env_url'] = $env;
 
   // Check on Degree Classifications filter.
   $degree_classification = NULL;
@@ -59,6 +53,7 @@ function hp_programs_feed_preprocess_paragraph__hp_programs_feed(&$variables) {
     // Decode string workaround due to bug in core or external_data_source.
     $degree_classification = str_replace('id=', '', $degree_classification);
   }
+  $variables['hp_pgf_degree'] = $degree_classification;
 
   // Check on schools filter.
   $school = NULL;
@@ -67,6 +62,7 @@ function hp_programs_feed_preprocess_paragraph__hp_programs_feed(&$variables) {
     // Decode string workaround due to bug in core or external_data_source.
     $school = str_replace('id=', '', $school);
   }
+  $variables['hp_pgf_school'] = $school;
 
   // Check on subject filter.
   $subject = NULL;
@@ -75,14 +71,13 @@ function hp_programs_feed_preprocess_paragraph__hp_programs_feed(&$variables) {
     // Decode string workaround due to bug in core or external_data_source.
     $subject = str_replace('id=', '', $subject);
   }
-
-  // Get programs.
-  $variables['hp_pgf_programs'] = _hp_programs_feed_get_programs($env_url, $degree_classification, $school, $subject, $uuid);
+  $variables['hp_pgf_subject'] = $subject;
 
 }
 
 /**
  * Implements hook_theme().
+ *
  * Lets us define our paragraphs templates in this module.
  */
 function hp_programs_feed_theme($existing, $type, $theme, $path) {
@@ -91,40 +86,4 @@ function hp_programs_feed_theme($existing, $type, $theme, $path) {
       'base hook' => 'paragraph',
     ],
   ];
-}
-
-/**
- * CUSTOM FUNCTIONS.
- */
-
-/**
- * Gets programs from programs.howard.edu, and displays.
- */
-function _hp_programs_feed_get_programs($env_url = 'https://programs.howard.edu', $degree_classification = NULL, $school = NULL, $subject = NULL, $id = 'default') {
-  if ($cache = \Drupal::cache()->get('hp_programs_feed--' . $id . '-' . $range)) {
-    return $cache->data;
-  }
-  else {
-    $currentDate = date('Y-m-d');
-    $url = $env_url . "/api/programs?sort=label";
-    if (isset($degree_classification)) {
-      $url .= "&filter[degree_classification][value][]=" . $degree_classification;
-    }
-    if (isset($school)) {
-      $url .= "&filter[related_school][value][]=" . $school;
-    }
-    if (isset($subject)) {
-      $url .= "&filter[program_subject][value][]=" . $subject;
-    }
-    $result = file_get_contents($url);
-    $result = json_decode($result, TRUE);
-    $result = $result['data'];
-    if ($result) {
-      \Drupal::cache()->set('hp_programs_feed--' . $id . '-' . $range, $result, time() + 7200);
-      return $result;
-    }
-    else {
-      return NULL;
-    }
-  }
 }

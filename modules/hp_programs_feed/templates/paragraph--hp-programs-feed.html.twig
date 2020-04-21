@@ -8,33 +8,19 @@
 #}
 
 <section class="section--padded-top section--padded-bottom hp-programs-feed" aria-label="Programs Feed">
-  <div class="programs section--blue">
+  <div class="program-finder">
     {% if content.field_hp_pgf_title %}
-      <h2 class="header--h2 header--white">{{ content.field_hp_pgf_title }}</h2>
+      <h2 class="program-finder__heading header--h2">{{ content.field_hp_pgf_title }}</h2>
     {% endif %}
     {{ content.field_hp_pgf_text }}
-    <div class="programs__nav">
-        {% if content.field_hp_pgf_subtitle %}
-          <h4>{{ content.field_hp_pgf_subtitle }}</h4>
-        {% endif %}
-        {% if hp_pgf_programs[0] %}
-          <nav>
-            <ul>
-              <div class="silc-grid silc-grid--collapse">
-                {% for program in hp_pgf_programs %}
-                <div class="silc-grid__col silc-grid__col--4-table silc-grid__col--6-small">
-                  <a href="{{ program.master_link.url }}" class="fancy-link fancy-link--light">
-                    <span>{{ program.label }}</span>
-                  </a>
-                  <span class="hp-programs-feed--meta">{{ program.related_degrees }} {{ program.program_type }}</span>
-                </div>
-                {% endfor %}
-              </div>
-            </ul>
-          </nav>
-        {% else %}
-          <p>Sorry, no programs match that criteria.</p>
-        {% endif %}
+    {% if content.field_hp_pgf_subtitle %}
+      <h3 class="program-finder__nav-heading">{{ content.field_hp_pgf_subtitle }}</h3>
+    {% endif %}
+    <div class="program-finder-app">
+      <program-finder env="{{ hp_pgf_env_url }}" degree="{{ hp_pgf_degree }}" school="{{ hp_pgf_school }}" subject="{{ hp_pgf_subject }}"/>
     </div>
+    <noscript>
+      <p>Sorry, Javascript is required to use the program finder.</p>
+    </noscript>
   </div>
-</sction>
+</section>
