@@ -13,7 +13,7 @@
   {% if hp_pg_program %}
 
     <!-- Intro -->
-    <div class="section--padded-bottom">
+    <div class="section--padded-bottom hp-html">
       <h2>{{ hp_pg_program.label }} | {{ hp_pg_program.degree_classification }}</h2>
       {% if hp_pg_program.lead_in %}
         <p class="lead-in lead-in--small">{{ hp_pg_program.lead_in }}</p>
@@ -24,7 +24,7 @@
     </div>
 
     <!-- Links -->
-    <div class="section--padded-bottom section--hide-print">
+    <div class="section--padded-bottom section--hide-print hp-html">
       {% if hp_pg_program.apply_link %}
         <a href="{{ hp_pg_program.apply_link.url }}" class="btn" target="_blank">
           <span class="btn__text">{{ hp_pg_program.apply_link.title }}</span>
@@ -47,7 +47,7 @@
 
     <!-- Contacts -->
     {% if hp_pg_program.contacts %}
-      <div class="section--padded-bottom">
+      <div class="section--padded-bottom hp-html">
         <div class="block-header">
           <div class="block-header__title">
             <span class=" block-header__icon icon-phone"></span>
@@ -80,7 +80,7 @@
 
     <!-- Video -->
     {% if hp_pg_video %}
-      <div class="section--padded-bottom">
+      <div class="section--padded-bottom hp-html">
         <div class="video">
           {% if hp_pg_program.featured_video_title %}
             <div class="block-header">
@@ -106,7 +106,7 @@
 
     <!-- Details -->
     {% if hp_pg_program.program_format or hp_pg_program.program_frequency or hp_pg_program.related_degrees or hp_pg_program.program_type or hp_pg_program.degree_classification or hp_pg_program.program_length or  hp_pg_program.program_tuition or hp_pg_program.total_students or hp_pg_program.total_alumni or hp_pg_program.related_professions %}
-      <div class="section--padded-bottom">
+      <div class="section--padded-bottom hp-html">
         <div class="block-header">
           <div class="block-header__title">
             <span class="block-header__icon icon-info"></span>
@@ -150,7 +150,7 @@
 
     <!-- Documents -->
     {% if hp_pg_program.program_documents %}
-      <div class="section--padded-bottom">
+      <div class="section--padded-bottom hp-html">
         <div class="block-header">
           <div class="block-header__title">
             <span class="block-header__icon icon-news"></span>
@@ -167,7 +167,7 @@
 
     <!-- Admission Requirements -->
     {% if hp_pg_program.admission_requirements or hp_pg_program.admission_requirements_international %}
-      <div class="section--padded-bottom">
+      <div class="section--padded-bottom hp-html">
         <div class="block-header">
           <div class="block-header__title">
             <h3 class="h2">Admission Requirements</h3>
@@ -183,7 +183,7 @@
 
     <!-- Degree Requirements -->
     {% if hp_pg_program.degree_requirements %}
-      <div class="section--padded-bottom">
+      <div class="section--padded-bottom hp-html">
         <h4>Degree Requirements</h4>
         {{ hp_pg_program.degree_requirements|raw }}
       </div>
@@ -191,32 +191,32 @@
 
     <!-- PPI -->
     {% if hp_pg_program.personal_potential_index %}
-      <div class="section--padded-bottom">
-        <h4>Degree Requirements</h4>
+      <div class="section--padded-bottom hp-html">
+        <h4>Personal Potential Index</h4>
         {{ hp_pg_program.personal_potential_index|raw }}
       </div>
     {% endif %}
 
     <!-- Admission to Candidacy -->
     {% if hp_pg_program.admission_to_candidacy %}
-      <div class="section--padded-bottom">
-        <h4>Degree Requirements</h4>
+      <div class="section--padded-bottom hp-html">
+        <h4>Admission to Candidacy</h4>
         {{ hp_pg_program.admission_to_candidacy|raw }}
       </div>
     {% endif %}
 
     <!-- Residency Requirements -->
     {% if hp_pg_program.residence_requirements %}
-      <div class="section--padded-bottom">
-        <h4>Degree Requirements</h4>
+      <div class="section--padded-bottom hp-html">
+        <h4>Residence Requirements</h4>
         {{ hp_pg_program.residence_requirements|raw }}
       </div>
     {% endif %}
 
     <!-- Caution to Prospective Students -->
     {% if hp_pg_program.caution_to_prospective_students %}
-      <div class="section--padded-bottom">
-        <h4>Degree Requirements</h4>
+      <div class="section--padded-bottom hp-html">
+        <h4>Caution to Prospective Students</h4>
         {{ hp_pg_program.caution_to_prospective_students|raw }}
       </div>
     {% endif %}
@@ -281,7 +281,7 @@
 
     <!-- Resources -->
     {% if hp_pg_program.resources %}
-      <div class="section--padded-bottom">
+      <div class="section--padded-bottom hp-html">
         <div class="block-header">
           <div class="block-header__title">
             <h3 class="h2">Program Resources</h3>
