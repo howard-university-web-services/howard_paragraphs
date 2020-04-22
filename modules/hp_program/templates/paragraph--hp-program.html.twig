@@ -9,7 +9,7 @@
 
 
 <section class="section--padded-top section--padded-bottom section--program" aria-label="Program">
-    
+
   {% if hp_pg_program %}
 
     <!-- Intro -->
@@ -56,21 +56,23 @@
         </div>
         <div class="silc-grid">
           {% for contact in hp_pg_program.contacts %}
-          <div class="silc-grid__col silc-grid__col--4-medium">
-            <h4>{{ contact.name }}</h4>
-            {% if contact.title %}
-              <span>Title: {{ contact.title }}</span>
-            {% endif %}
-            {% if contact.position %}
-              <span>Position: {{ contact.position }}</span>
-            {% endif %}
-            {% if contact.phone %}
-              <span>Phone: {{ contact.phone }}</span>
-            {% endif %}
-            {% if contact.email %}
-              <span>Email: <a href="mailto:{{ contact.email }}">Email</a></span>
-            {% endif %}
-          </div>
+            <div class="silc-grid__col silc-grid__col--4-medium">
+              <h4>{{ contact.name }}</h4>
+              {% if contact.title %}
+                <span>{{ contact.title }}</span><br/>
+              {% endif %}
+              {% if contact.position %}
+                <span>{{ contact.position }}</span><br/>
+              {% endif %}
+              {% if contact.phone %}
+                <span>{{ contact.phone }}</span><br/>
+              {% endif %}
+              {% if contact.email %}
+                <span>
+                  <a href="mailto:{{ contact.email }}">Email</a>
+                </span><br/>
+              {% endif %}
+            </div>
           {% endfor %}
         </div>
       </div>
@@ -101,7 +103,7 @@
         </div>
       </div>
     {% endif %}
-    
+
     <!-- Details -->
     {% if hp_pg_program.program_format or hp_pg_program.program_frequency or hp_pg_program.related_degrees or hp_pg_program.program_type or hp_pg_program.degree_classification or hp_pg_program.program_length or  hp_pg_program.program_tuition or hp_pg_program.total_students or hp_pg_program.total_alumni or hp_pg_program.related_professions %}
       <div class="section--padded-bottom">
@@ -292,7 +294,7 @@
         </ul>
       </div>
     {% endif %}
-    
+
   {% else %}
 
     <p>Sorry, there was an error in fetching this program.</p>
