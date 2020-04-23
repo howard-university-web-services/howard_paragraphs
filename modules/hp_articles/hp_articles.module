@@ -89,6 +89,6 @@ function hp_articles_views_pre_view(ViewExecutable $view , $display_id, array &$
  * Implements hook update()
  * Updates to allow categories.
  */
-function hp_articles_update_8001() {
+function hp_articles_update_8002() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_articles');
 }
