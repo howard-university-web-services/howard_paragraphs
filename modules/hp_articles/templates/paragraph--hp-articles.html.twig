@@ -7,18 +7,20 @@
  */
 #}
 
-<section class="section--padded-top section--padded-bottom" aria-label="Featured Article">
-  {% if hp_show_wrapper %}
-    <div class="compartment">
-  {% endif %}
-      <div class="announcements">
-        <div class="block-header">
-          <div class="block-header__title"><span class=" block-header__icon icon-paper"></span><h2>Articles</h2>
-          </div>
-        </div>
-        {{ hp_articles_feed }}
-      </div>
-  {% if hp_show_wrapper %}
-    </div>
-  {% endif %}
+<section class="section--padded-top section--padded-bottom" aria-label="Articles">
+	{% if hp_show_wrapper %}
+		<div class="compartment">
+		{% endif %}
+		<div class="announcements">
+			<div class="block-header">
+				<div class="block-header__title">
+					<span class=" block-header__icon icon-paper"></span>
+					<h2>{{ content.field_hp_af_article_title }}</h2>
+				</div>
+			</div>
+			{{ hp_articles_feed }}
+		</div>
+		{% if hp_show_wrapper %}
+		</div>
+	{% endif %}
 </section>

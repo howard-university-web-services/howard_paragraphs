@@ -13,14 +13,14 @@ use Drupal\views\ViewExecutable;
  *
  * @inheritdoc
  */
-function hp_articles_help($route_name, RouteMatchInterface $route_match) {
+function hp_articles_help($route_name, RouteMatchInterface $route_match)
+{
   switch ($route_name) {
     case 'help.page.hp_articles':
       $text = file_get_contents(dirname(__FILE__) . "/README.md");
       if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
         return '<pre>' . $text . '</pre>';
-      }
-      else {
+      } else {
         // Use the Markdown filter to render the README.
         $filter_manager = \Drupal::service('plugin.manager.filter');
         $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
@@ -36,7 +36,8 @@ function hp_articles_help($route_name, RouteMatchInterface $route_match) {
  * Implements hook_theme().
  * Lets us define our paragraphs templates in this module.
  */
-function hp_articles_theme($existing, $type, $theme, $path) {
+function hp_articles_theme($existing, $type, $theme, $path)
+{
   return [
     'paragraph__hp_articles' => [
       'base hook' => 'paragraph',
@@ -54,34 +55,35 @@ function hp_articles_theme($existing, $type, $theme, $path) {
  * Implements hook_preprocess_paragraph().
  *  This sets classes needed for the button/link type.
  */
-function hp_articles_preprocess_paragraph__hp_articles(&$variables) {
+function hp_articles_preprocess_paragraph__hp_articles(&$variables)
+{
 
   // Get Taxonomy, if present.
   $filter = NULL;
   if ($variables['elements']['#paragraph']->field_hp_af_article_category_fil->target_id) {
-      $filter = $variables['elements']['#paragraph']->field_hp_af_article_category_fil->target_id;
+    $filter = $variables['elements']['#paragraph']->field_hp_af_article_category_fil->target_id;
   }
 
   $article_count = 10;
   if ($variables['elements']['#paragraph']->field_hp_af_article_count->value) {
-      $article_count = $variables['elements']['#paragraph']->field_hp_af_article_count->value;
+    $article_count = $variables['elements']['#paragraph']->field_hp_af_article_count->value;
   }
 
-  $variables['hp_articles_feed'] = views_embed_view('hp_articles_ks_feed', 'hp_articles_block', $filter , $article_count );
-
+  $variables['hp_articles_feed'] = views_embed_view('hp_articles_ks_feed', 'hp_articles_block', $filter, $article_count);
 }
 
 /**
  * Implements hook views_pre_view().
  * Display sets number of articles.
  */
-function hp_articles_views_pre_view(ViewExecutable $view , $display_id, array &$args) {
+function hp_articles_views_pre_view(ViewExecutable $view, $display_id, array &$args)
+{
   if ($view->id() == 'hp_articles_ks_feed' && $view->current_display == 'hp_articles_block') {
-      $view->setItemsPerPage($args[1]);
-      // remove pager
-      $pager = $view->display_handler->getOption('pager');
-      $pager['type'] = 'some';
-      $view->display_handler->setOption('pager', $pager);
+    $view->setItemsPerPage($args[1]);
+    // remove pager
+    $pager = $view->display_handler->getOption('pager');
+    $pager['type'] = 'some';
+    $view->display_handler->setOption('pager', $pager);
   }
 }
 
@@ -89,6 +91,16 @@ function hp_articles_views_pre_view(ViewExecutable $view , $display_id, array &$
  * Implements hook update()
  * Updates to allow categories.
  */
-function hp_articles_update_8001() {
+function hp_articles_update_8002()
+{
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_articles');
+}
+
+/**
+ * Implements hook update()
+ * Updates to allow title of block.
+ */
+function hp_articles_update_8003()
+{
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_articles');
 }
