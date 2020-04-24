@@ -4,16 +4,17 @@ dependencies:
   config:
     - field.field.paragraph.hp_articles.field_hp_af_article_category_fil
     - field.field.paragraph.hp_articles.field_hp_af_article_count
+    - field.field.paragraph.hp_articles.field_hp_af_article_title
     - paragraphs.paragraphs_type.hp_articles
 _core:
-  default_config_hash: zmxlAsbwqruqtRKba-HkNRDH8dCjnRr-eYTf7wN0bAU
+  default_config_hash: o6ZVN_Su1jEu_UTa1_ngPlFsbio786qCuM7dZLBPJL4
 id: paragraph.hp_articles.default
 targetEntityType: paragraph
 bundle: hp_articles
 mode: default
 content:
   field_hp_af_article_category_fil:
-    weight: 0
+    weight: 1
     label: above
     settings:
       link: true
@@ -21,12 +22,20 @@ content:
     type: entity_reference_label
     region: content
   field_hp_af_article_count:
-    weight: 1
+    weight: 2
     label: above
     settings:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
     type: number_integer
+    region: content
+  field_hp_af_article_title:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
     region: content
 hidden: {  }
