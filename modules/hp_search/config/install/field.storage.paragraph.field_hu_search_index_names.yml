@@ -1,0 +1,21 @@
+uuid: 633881d7-5156-4318-96c7-9bbb27d648cc
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_hu_search_index_names
+field_name: field_hu_search_index_names
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values: {  }
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 3
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

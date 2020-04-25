@@ -1,0 +1,12 @@
+name: 'Howard Paragraphs: Search'
+type: module
+description: Provides Howard Univeristy search functionality accross multiple websites as a Kitchen Sink Widget.
+version: '8.x-1.0'
+core: '8.x'
+
+package: Howard University
+dependencies:
+  - entity_reference_revisions
+  - howard_paragraphs
+  - drupal:search_api
+  - drupal:search_api_solr

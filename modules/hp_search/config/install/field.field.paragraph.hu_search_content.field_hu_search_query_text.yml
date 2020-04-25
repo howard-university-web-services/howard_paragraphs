@@ -1,0 +1,19 @@
+uuid: 46a5fac7-cb33-4ccb-8f96-e48fd0279e27
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hu_search_query_text
+    - paragraphs.paragraphs_type.hu_search_content
+id: paragraph.hu_search_content.field_hu_search_query_text
+field_name: field_hu_search_query_text
+entity_type: paragraph
+bundle: hu_search_content
+label: 'HU Search Query Text'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,21 @@
+uuid: be2bb2bf-613e-4990-9a40-cdc1fe7fcb06
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hu_search_index_names
+    - paragraphs.paragraphs_type.hu_search_content
+  module:
+    - options
+id: paragraph.hu_search_content.field_hu_search_index_names
+field_name: field_hu_search_index_names
+entity_type: paragraph
+bundle: hu_search_content
+label: 'HU Search Index Names'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

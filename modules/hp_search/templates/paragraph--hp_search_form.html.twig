@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * HP Search paragraph form.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<section class="section--padded-top section--padded-bottom">
+    {% if hp_show_wrapper %}
+    <div class="compartment">
+    {% endif %}
+
+      {% if content.field_hu_search_form_title[0] %}
+        <div class="block-header">
+            <div class="block-header__title">
+                <h2>{{ content.field_hu_search_form_title }}</h2>
+            </div>
+        </div>
+      {% endif %}
+	  <div class="block-header">
+            <form class="paragraph-form" method="GET" onsubmit="process_hu_search_request()">
+                {% for solrIndexTuple in content.field_hu_search_index_names %}
+				<!-- Render Tabs -->
+				<input type="checkbox" name="indexIds" value="{{ solrIndexTuple }}"/>
+				{% endfor %}
+				<input type="text" name="queryText"/>
+				<input type="submit" value="Search"/>
+            </form>
+        </div>
+
+    {% if hp_show_wrapper %}
+    </div>
+    {% endif %}
+</section>

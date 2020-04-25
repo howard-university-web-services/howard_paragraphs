@@ -1,0 +1,103 @@
+<?php
+
+/**
+ * Implements hook_help().
+ *
+ * @inheritdoc
+ */
+function hp_search_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.hp_search':
+      $text = file_get_contents(dirname(__FILE__) . "/README.md");
+      if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        return '<pre>' . $text . '</pre>';
+      }
+      else {
+        // Use the Markdown filter to render the README.
+        $filter_manager = \Drupal::service('plugin.manager.filter');
+        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $config = ['settings' => $settings];
+        $filter = $filter_manager->createInstance('markdown', $config);
+        return $filter->process($text, 'en');
+      }
+      break;
+  }
+
+  return NULL;
+}
+
+/**
+ * Implements hook_theme().
+ * Lets us define our paragraphs templates in this module.
+ */
+function hp_search_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__hp_search' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ *
+ * @param $variables
+ *   This sets variables required to render the search form.
+ */
+function hp_search_preprocess_paragraph__hp_search_form(&$variables)
+{
+	// Get paragraph Id.
+	$paragraphId = $variables['elements']['#paragraph']->uuid->value;
+	
+	// Get search form info.
+	$variables['hu_search_form_info'] = \Drupal::formBuilder()->getForm('form-namespace');
+}
+
+/**
+ * Queries a Search API Slor index with the given query text.
+ *
+ * @param $queryText
+ *    Text to search for.
+ * @param $indexId
+ *    Index Id to query.
+ */
+function get_query_results($queryText, $indexId)
+{
+	$index = \Drupal\search_api\Entity\Index::load($indexId);
+	$query = $index->query();
+
+	// Change the parse mode for the search.
+	$parse_mode = \Drupal::service('plugin.manager.search_api.parse_mode')
+	  ->createInstance('direct');
+	$parse_mode->setConjunction('OR');
+	$query->setParseMode($parse_mode);
+
+	// Set fulltext search keywords and fields.
+	$query->keys($queryText);
+	$query->setFulltextFields(['title', 'name', 'body']);
+
+	// Set additional conditions.
+	$query->addCondition('status', 1);
+
+	// Add more complex conditions.
+	/*$time = \Drupal::service('datetime.time')->getRequestTime();
+	$conditions = $query->createConditionGroup('OR');
+	$conditions->addCondition('search_api_datasource', 'entity:node', '<>')
+	  ->addCondition('created', $time - 7 * 24 * 3600, '>=');
+	$query->addConditionGroup($conditions);*/
+
+	// Do paging.
+	$query->range(20, 10);
+
+	// Add sorting.
+	$query->sort('search_api_relevance', 'DESC');
+
+	// Set one or more tags for the query.
+	// @see hook_search_api_query_TAG_alter()
+	// @see hook_search_api_results_TAG_alter()
+	$query->addTag('custom_search');
+
+	// Execute the search.
+	$results = $query->execute();
+	return $results->getResultItems();
+}

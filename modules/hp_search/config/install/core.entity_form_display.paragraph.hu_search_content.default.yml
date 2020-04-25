@@ -1,0 +1,39 @@
+uuid: 24c5f825-7685-4411-85c9-9a475c93f4db
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hu_search_content.field_hu_search_form_title
+    - field.field.paragraph.hu_search_content.field_hu_search_index_names
+    - field.field.paragraph.hu_search_content.field_hu_search_query_text
+    - paragraphs.paragraphs_type.hu_search_content
+id: paragraph.hu_search_content.default
+targetEntityType: paragraph
+bundle: hu_search_content
+mode: default
+content:
+  field_hu_search_form_title:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_hu_search_index_names:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_hu_search_query_text:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true

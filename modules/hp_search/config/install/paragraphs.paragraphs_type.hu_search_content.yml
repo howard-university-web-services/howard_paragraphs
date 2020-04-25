@@ -1,0 +1,10 @@
+uuid: 6dd5f341-e687-4e32-9496-117bfce89f7c
+langcode: en
+status: true
+dependencies: {  }
+id: hu_search_content
+label: 'HU Search Content'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

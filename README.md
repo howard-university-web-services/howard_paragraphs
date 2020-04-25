@@ -57,6 +57,7 @@ The following submodules are available:
 - Views Embed: Paragraphs integration of viewfield module for use in Howard projects
 - Webform Embed: Paragraphs integration of webform module for use in Howard projects
 - WYSIWYG Text Filter UL: Provides a filter to add ICL markup to UL's embedded in a WYSIWYG.
+- Search: Enables Howard Univeristy search functionality accross multiple websites.
 
 ## Configuration Overrides
 
