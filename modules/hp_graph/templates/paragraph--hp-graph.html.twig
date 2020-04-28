@@ -14,8 +14,12 @@
 			<section class="hp_graph_bundle">
 				<div class="text col">
 					<aside class="text_wrapper">
+						{%  if true in content.field_hp_graph_title[0] %}
 						<p class="lead-in">{{ content.field_hp_graph_title[0] }}</h1>
+						{% endif %}
+						{%  if true in content.field_hp_graph_description[0] %}
 						<p>{{ content.field_hp_graph_description[0] }}</p>
+						{% endif %}
 					</aside>
 				</div>
 				<div class="graph col">
@@ -25,11 +29,11 @@
 						{% endif %}
 					{% endfor %}
 				</div>
-				<div class="hyperlink">
 				{%  if true in content.field_hp_graph_link[0] %}
+				<div class="hyperlink">
 					<a class="btn" href="{% spaceless %}{{-content.field_hp_graph_link[0]['#url']-}}{% endspaceless %}">{{ content.field_hp_graph_link[0]['#title'] }}</a>
-				{% endif %}
 				</div>
+				{% endif %}
 			</section>
 	{% if hp_show_wrapper %}
         </section>
