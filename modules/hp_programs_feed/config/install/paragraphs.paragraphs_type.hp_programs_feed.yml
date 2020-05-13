@@ -1,6 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
+_core:
+  default_config_hash: MCFjmqPST5wTvS047-xl8G7ekHi63eq3Wq3nUPlhXuI
 id: hp_programs_feed
 label: 'HP Programs Feed'
 icon_uuid: null

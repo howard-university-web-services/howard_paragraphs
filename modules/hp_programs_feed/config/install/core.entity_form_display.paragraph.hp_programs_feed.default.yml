@@ -5,6 +5,9 @@ dependencies:
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_degree_classificati
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_environment
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_school
+    - field.field.paragraph.hp_programs_feed.field_hp_pgf_show_degree_filter
+    - field.field.paragraph.hp_programs_feed.field_hp_pgf_show_school_filter
+    - field.field.paragraph.hp_programs_feed.field_hp_pgf_show_subject_filter
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_subject
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_subtitle
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_text
@@ -12,7 +15,27 @@ dependencies:
     - paragraphs.paragraphs_type.hp_programs_feed
   module:
     - external_data_source
+    - field_group
     - text
+third_party_settings:
+  field_group:
+    group_filters:
+      children:
+        - field_hp_pgf_show_degree_filter
+        - field_hp_pgf_show_school_filter
+        - field_hp_pgf_show_subject_filter
+      parent_name: ''
+      weight: 7
+      format_type: fieldset
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: Filters
+_core:
+  default_config_hash: ONs7bmIPtj6KUt-xdLImU7ahPqLyegss_cn5GrXVtpE
 id: paragraph.hp_programs_feed.default
 targetEntityType: paragraph
 bundle: hp_programs_feed
@@ -39,6 +62,27 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: external_data_source_select_widget
+    region: content
+  field_hp_pgf_show_degree_filter:
+    weight: 8
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_hp_pgf_show_school_filter:
+    weight: 9
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_hp_pgf_show_subject_filter:
+    weight: 10
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
     region: content
   field_hp_pgf_subject:
     weight: 6

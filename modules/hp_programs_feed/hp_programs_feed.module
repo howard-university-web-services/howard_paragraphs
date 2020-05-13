@@ -73,6 +73,27 @@ function hp_programs_feed_preprocess_paragraph__hp_programs_feed(&$variables) {
   }
   $variables['hp_pgf_subject'] = $subject;
 
+  // Degree Filter
+  $show_degree_filter = 'false';
+  if (isset($variables['elements']['#paragraph']->field_hp_pgf_show_degree_filter->value) && $variables['elements']['#paragraph']->field_hp_pgf_show_degree_filter->value == 1) {
+    $show_degree_filter = 'true';
+  }
+  $variables['hp_pgf_show_degree_filter'] = $show_degree_filter;
+
+  // School Filter
+  $show_school_filter = 'false';
+  if (isset($variables['elements']['#paragraph']->field_hp_pgf_show_school_filter->value) && $variables['elements']['#paragraph']->field_hp_pgf_show_school_filter->value == 1) {
+    $show_school_filter = 'true';
+  }
+  $variables['hp_pgf_show_school_filter'] = $show_school_filter;
+
+  // Subject Filter
+  $show_subject_filter = 'false';
+  if (isset($variables['elements']['#paragraph']->field_hp_pgf_show_subject_filter->value) && $variables['elements']['#paragraph']->field_hp_pgf_show_subject_filter->value == 1) {
+    $show_subject_filter = 'true';
+  }
+  $variables['hp_pgf_show_subject_filter'] = $show_subject_filter;
+
 }
 
 /**
@@ -86,4 +107,14 @@ function hp_programs_feed_theme($existing, $type, $theme, $path) {
       'base hook' => 'paragraph',
     ],
   ];
+}
+
+
+// UPDATES
+
+/**
+ * Updates to allow unlimited showing/hiding filters.
+ */
+function hp_programs_feed_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_programs_feed');
 }
