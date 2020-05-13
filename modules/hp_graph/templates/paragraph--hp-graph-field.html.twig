@@ -7,12 +7,15 @@
  */
 #}
 
-<section>
+<div>
 	<div class="hp_graph_container">
-		<span class="percent-label">{{ content.field_hp_graph_label[0] }}-{{ content.field_hp_graph_percent[0] }}%</span>
-		<span class="label" >{{ content.field_hp_graph_label[0] }}</span>
+		<span class="percent-label">{{ content.field_hp_graph_label[0] }}</span>
 		<div class="hp_graph_skills hp_graph_percent" style="width:{{-content.field_hp_graph_percent[0]-}}%; height:{{-content.field_hp_graph_percent[0]-}}%">
 			<span class="percent">{{ content.field_hp_graph_percent[0] }}%</span>
 		</div>
 	</div>
-</section>
+	<div class="hp_graph_percent_container">
+		<p class="lead-in">{{ content.field_hp_graph_percent[0] }}%</p>
+		<span class="label" >{{ content.field_hp_graph_label[0] }}</span>
+	</div>
+</div>
