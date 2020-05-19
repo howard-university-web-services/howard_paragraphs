@@ -12,14 +12,14 @@ use Drupal\Core\Routing\RouteMatchInterface;
  *
  * @inheritdoc
  */
-function hp_news_feed_help($route_name, RouteMatchInterface $route_match) {
+function hp_news_feed_help($route_name, RouteMatchInterface $route_match)
+{
   switch ($route_name) {
     case 'help.page.hp_news_feed':
       $text = file_get_contents(dirname(__FILE__) . "/README.md");
       if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
         return '<pre>' . $text . '</pre>';
-      }
-      else {
+      } else {
         // Use the Markdown filter to render the README.
         $filter_manager = \Drupal::service('plugin.manager.filter');
         $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
@@ -37,7 +37,8 @@ function hp_news_feed_help($route_name, RouteMatchInterface $route_match) {
  * @param $variables
  *   This sets variables for getting events, and then gets events.
  */
-function hp_news_feed_preprocess_paragraph__hp_news_feed(&$variables) {
+function hp_news_feed_preprocess_paragraph__hp_news_feed(&$variables)
+{
   // UUID to pass for cache.
   $uuid = $variables['elements']['#paragraph']->uuid->value;
 
@@ -46,8 +47,7 @@ function hp_news_feed_preprocess_paragraph__hp_news_feed(&$variables) {
   $env_url = 'https://newsroom.howard.edu';
   if ($env == 'stg') {
     $env_url = 'http://stg.newsroom.howard.edu';
-  }
-  elseif ($env == 'dev') {
+  } elseif ($env == 'dev') {
     $env_url = 'http://dev.newsroom.howard.edu';
   }
   $variables['hp_nf_env_url'] = $env_url;
@@ -77,6 +77,14 @@ function hp_news_feed_preprocess_paragraph__hp_news_feed(&$variables) {
     $schools_colleges = str_replace('id=', '', $schools_colleges);
   }
 
+  // Check on Howard Forward filter.
+  $howard_forward = NULL;
+  if (isset($variables['elements']['#paragraph']->field_hp_nf_news_howard_forward->value)) {
+    $howard_forward = $variables['elements']['#paragraph']->field_hp_nf_news_howard_forward->value;
+    // Decode string workaround due to bug in core or external_data_source.
+    $howard_forward = str_replace('id=', '', $howard_forward);
+  }
+
   // Get the desired type of feed.
   $feed_type = $variables['elements']['#paragraph']->field_hp_nf_feed_type->value;
   $variables['hp_nf_type'] = $feed_type;
@@ -84,21 +92,19 @@ function hp_news_feed_preprocess_paragraph__hp_news_feed(&$variables) {
   // Get news.
   if ($feed_type == 'three_w_images') {
     $variables['hp_nf_news'] = _hp_news_feed_get_news($env_url, $category, $admin_category, $schools_colleges, 3, 1, $uuid);
-  }
-  elseif ($feed_type == 'three_w_one_featured') {
+  } elseif ($feed_type == 'three_w_one_featured') {
     $variables['hp_nf_news'] = _hp_news_feed_get_news($env_url, $category, $admin_category, $schools_colleges, 4, 1, $uuid);
-  }
-  elseif ($feed_type == 'four_w_one_featured') {
+  } elseif ($feed_type == 'four_w_one_featured') {
     $variables['hp_nf_news'] = _hp_news_feed_get_news($env_url, $category, $admin_category, $schools_colleges, 5, 1, $uuid);
   }
-
 }
 
 /**
  * Implements hook_theme().
  * Lets us define our paragraphs templates in this module.
  */
-function hp_news_feed_theme($existing, $type, $theme, $path) {
+function hp_news_feed_theme($existing, $type, $theme, $path)
+{
   return [
     'paragraph__hp_news_feed' => [
       'base hook' => 'paragraph',
@@ -113,11 +119,11 @@ function hp_news_feed_theme($existing, $type, $theme, $path) {
 /**
  * Gets articles from newsroom, and displays.
  */
-function _hp_news_feed_get_news($env_url = 'https://newsroom.howard.edu', $category = NULL, $admin_category = NULL, $schools_colleges = NULL, $range = 3, $page = 1, $id = 'default') {
+function _hp_news_feed_get_news($env_url = 'https://newsroom.howard.edu', $category = NULL, $admin_category = NULL, $schools_colleges = NULL, $range = 3, $page = 1, $id = 'default')
+{
   if ($cache = \Drupal::cache()->get('hp_news_feed--' . $id . '-' . $range)) {
     return $cache->data;
-  }
-  else {
+  } else {
     $currentDate = date('Y-m-d', strtotime(' +1 day'));
     $url = $env_url . "/api/articlesearch/%20?sort=-publication_date&fields=id,label,publication_date_formatted,image,uri,summary&range=" . $range . "&page=" . $page . "&filter[publication_date][value][]=" . $currentDate . "%2000:00:00&filter[publication_date][operator]='<='&filter[exclude_from_main_feed][value]=1&filter[exclude_from_main_feed][operator]='!='";
     if (isset($category)) {
@@ -129,14 +135,16 @@ function _hp_news_feed_get_news($env_url = 'https://newsroom.howard.edu', $categ
     if (isset($schools_colleges)) {
       $url .= "&filter[taxonomy_1][value][]=" . $schools_colleges;
     }
+    if (isset($howard_forward)) {
+      $url .= "&filter[taxonomy_9][value][]=" . $howard_forward;
+    }
     $result = file_get_contents($url);
     $result = json_decode($result, TRUE);
     $result = $result['data'];
     if ($result) {
       \Drupal::cache()->set('hp_news_feed--' . $id . '-' . $range, $result, time() + 7200);
       return $result;
-    }
-    else {
+    } else {
       return NULL;
     }
   }
@@ -148,6 +156,15 @@ function _hp_news_feed_get_news($env_url = 'https://newsroom.howard.edu', $categ
 /**
  * Add schools and colleges optional filter.
  */
-function hp_news_feed_update_8001() {
+function hp_news_feed_update_8001()
+{
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_news_feed');
+}
+
+/**
+ * Add howard forward optional filter.
+ */
+function hp_news_feed_update_8002()
+{
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_news_feed');
 }

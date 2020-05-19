@@ -7,6 +7,7 @@ dependencies:
     - field.field.paragraph.hp_news_feed.field_hp_nf_link
     - field.field.paragraph.hp_news_feed.field_hp_nf_news_admin_category
     - field.field.paragraph.hp_news_feed.field_hp_nf_news_category
+    - field.field.paragraph.hp_news_feed.field_hp_nf_news_howard_forward
     - field.field.paragraph.hp_news_feed.field_hp_nf_news_schools_college
     - field.field.paragraph.hp_news_feed.field_hp_nf_title
     - paragraphs.paragraphs_type.hp_news_feed
@@ -14,7 +15,7 @@ dependencies:
     - external_data_source
     - link_target
 _core:
-  default_config_hash: bqcxjdoxDV42k-BKwu3tvG_FxxUqireMnfiztJVKpEE
+  default_config_hash: t0cLjvsokP4H-7LXdnCPskKVrevAXD-MUFE9AGCfbZ4
 id: paragraph.hp_news_feed.default
 targetEntityType: paragraph
 bundle: hp_news_feed
@@ -51,6 +52,14 @@ content:
     region: content
   field_hp_nf_news_category:
     weight: 4
+    settings:
+      size: 1
+      placeholder: ''
+    third_party_settings: {  }
+    type: external_data_source_select_widget
+    region: content
+  field_hp_nf_news_howard_forward:
+    weight: 7
     settings:
       size: 1
       placeholder: ''
