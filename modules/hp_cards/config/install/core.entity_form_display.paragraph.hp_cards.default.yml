@@ -3,10 +3,13 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.hp_cards.field_hp_cd_cards
+    - field.field.paragraph.hp_cards.field_hp_cd_head
     - field.field.paragraph.hp_cards.field_hp_cd_layout
     - paragraphs.paragraphs_type.hp_cards
   module:
     - paragraphs
+_core:
+  default_config_hash: u-MZ-Iz5A4NNffMcdq82fxk6hvW4ZU2tbIAOq4ofu9c
 id: paragraph.hp_cards.default
 targetEntityType: paragraph
 bundle: hp_cards
@@ -14,7 +17,7 @@ mode: default
 content:
   field_hp_cd_cards:
     type: entity_reference_paragraphs
-    weight: 1
+    weight: 2
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -24,8 +27,16 @@ content:
       default_paragraph_type: ''
     third_party_settings: {  }
     region: content
-  field_hp_cd_layout:
+  field_hp_cd_head:
     weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_hp_cd_layout:
+    weight: 1
     settings: {  }
     third_party_settings: {  }
     type: options_select

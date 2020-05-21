@@ -8,21 +8,23 @@
 #}
 
 {% if content.field_hp_cd_cards %}
-  <section class="section--padded-top section--padded-bottom news-and-events ks-cards">
-    {% if hp_show_wrapper %}
-      <div class="compartment">
-    {% endif %}
+	<section class="section--padded-top section--padded-bottom news-and-events ks-cards">
+		{% if hp_show_wrapper %}
+			<div class="compartment">
+			{% endif %}
+			{% if content.field_hp_cd_head %}
+				<h2 class="ks-cards__header">{{ content.field_hp_cd_head }}</h2>
+			{% endif %}
+			<div class="{{ hp_card_wrapper_class }}">
+				<div class="silc-grid">
 
-        <div class="{{ hp_card_wrapper_class }}">
-          <div class="silc-grid">
+					{{ content.field_hp_cd_cards }}
 
-            {{ content.field_hp_cd_cards }}
+				</div>
+			</div>
 
-          </div>
-        </div>
-
-    {% if hp_show_wrapper %}
-      </div>
-    {% endif %}
-  </section>
+			{% if hp_show_wrapper %}
+			</div>
+		{% endif %}
+	</section>
 {% endif %}

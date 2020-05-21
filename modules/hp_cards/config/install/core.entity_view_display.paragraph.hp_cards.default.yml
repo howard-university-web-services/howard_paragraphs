@@ -3,11 +3,14 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.hp_cards.field_hp_cd_cards
+    - field.field.paragraph.hp_cards.field_hp_cd_head
     - field.field.paragraph.hp_cards.field_hp_cd_layout
     - paragraphs.paragraphs_type.hp_cards
   module:
     - entity_reference_revisions
     - options
+_core:
+  default_config_hash: '-6cJV1hGsZW-t8_2qdIeQTEDmdlmYHb_8nFUwSWZ9w8'
 id: paragraph.hp_cards.default
 targetEntityType: paragraph
 bundle: hp_cards
@@ -15,15 +18,23 @@ mode: default
 content:
   field_hp_cd_cards:
     type: entity_reference_revisions_entity_view
-    weight: 1
+    weight: 2
     label: above
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
     region: content
-  field_hp_cd_layout:
+  field_hp_cd_head:
     weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_hp_cd_layout:
+    weight: 1
     label: above
     settings: {  }
     third_party_settings: {  }

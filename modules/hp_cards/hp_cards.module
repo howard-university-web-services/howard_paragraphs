@@ -14,14 +14,14 @@ use Drupal\image\Entity\ImageStyle;
  *
  * @inheritdoc
  */
-function hp_cards_help($route_name, RouteMatchInterface $route_match) {
+function hp_cards_help($route_name, RouteMatchInterface $route_match)
+{
   switch ($route_name) {
     case 'help.page.hp_cards':
       $text = file_get_contents(dirname(__FILE__) . "/README.md");
       if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
         return '<pre>' . $text . '</pre>';
-      }
-      else {
+      } else {
         // Use the Markdown filter to render the README.
         $filter_manager = \Drupal::service('plugin.manager.filter');
         $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
@@ -39,7 +39,8 @@ function hp_cards_help($route_name, RouteMatchInterface $route_match) {
  * @param $variables
  *   This sets several classes needed for the card type.
  */
-function hp_cards_preprocess_paragraph__hp_cards(&$variables) {
+function hp_cards_preprocess_paragraph__hp_cards(&$variables)
+{
   // Set classes for card type.
   $layout = $variables['elements']['#paragraph']->field_hp_cd_layout->value;
 
@@ -47,8 +48,7 @@ function hp_cards_preprocess_paragraph__hp_cards(&$variables) {
   $variables['hp_card_wrapper_class'] = 'announcements';
   if ($layout == 'card_with_image') {
     $variables['hp_card_wrapper_class'] = 'news-and-events';
-  }
-  elseif ($layout == 'text_only') {
+  } elseif ($layout == 'text_only') {
     $variables['hp_card_wrapper_class'] = 'announcements';
   }
 }
@@ -59,7 +59,8 @@ function hp_cards_preprocess_paragraph__hp_cards(&$variables) {
  * @param $variables
  *   This sets several classes needed for the card type.
  */
-function hp_cards_preprocess_paragraph__hp_card(&$variables) {
+function hp_cards_preprocess_paragraph__hp_card(&$variables)
+{
   $paragraph = $variables['elements']['#paragraph'];
 
   // Get layout from parent.
@@ -79,8 +80,7 @@ function hp_cards_preprocess_paragraph__hp_card(&$variables) {
         $variables['hp_card_class'] = 'news-and-events__block news-and-events__block-link';
       }
     }
-  }
-  elseif ($layout == 'text_only') {
+  } elseif ($layout == 'text_only') {
     $variables['hp_card_class'] = 'announcements__block';
   }
 
@@ -94,14 +94,14 @@ function hp_cards_preprocess_paragraph__hp_card(&$variables) {
       }
     }
   }
-
 }
 
 /**
  * Implements hook_theme().
  * Lets us define our paragraphs templates in this module.
  */
-function hp_cards_theme($existing, $type, $theme, $path) {
+function hp_cards_theme($existing, $type, $theme, $path)
+{
   return [
     'paragraph__hp_card' => [
       'base hook' => 'paragraph',
@@ -127,6 +127,14 @@ function hp_cards_theme($existing, $type, $theme, $path) {
 /**
  * Updates to allow unlimited cards.
  */
-function hp_cards_update_8001() {
+function hp_cards_update_8001()
+{
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_cards');
+}
+/**
+ * Update to add optional card group header.
+ */
+function hp_cards_update_8002()
+{
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_cards');
 }
