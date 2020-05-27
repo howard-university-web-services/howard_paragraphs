@@ -6,10 +6,12 @@
 			<div class="parallax_text {{ (float_left == 1 ) ? 'float_left' : '' }}">
 				<aside class="parallax_text_container">
 					<p class="lead-in">{{ content.field_hp_parallax_title }}</p>
-					{%  if true in content.field_hp_parallax_link %}
+
+					{%  if true in content.field_hp_parallax_description %}
 					{{ content.field_hp_parallax_description }}
 					{% endif %}
-					{%  if true in content.field_hp_parallax_link %}
+
+					{%  if true in content.field_hp_parallax_link[0] %}
 					<a class="btn" href="{% spaceless %}{{-content.field_hp_parallax_link[0]['#url']-}}{% endspaceless %}">{{-content.field_hp_parallax_link[0]['#title']-}}</a>
 					{% endif %}
 				</aside>
