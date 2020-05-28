@@ -91,11 +91,11 @@ function hp_news_feed_preprocess_paragraph__hp_news_feed(&$variables)
 
   // Get news.
   if ($feed_type == 'three_w_images') {
-    $variables['hp_nf_news'] = _hp_news_feed_get_news($env_url, $category, $admin_category, $schools_colleges, 3, 1, $uuid);
+    $variables['hp_nf_news'] = _hp_news_feed_get_news($env_url, $category, $admin_category, $schools_colleges, $howard_forward, 3, 1, $uuid);
   } elseif ($feed_type == 'three_w_one_featured') {
-    $variables['hp_nf_news'] = _hp_news_feed_get_news($env_url, $category, $admin_category, $schools_colleges, 4, 1, $uuid);
+    $variables['hp_nf_news'] = _hp_news_feed_get_news($env_url, $category, $admin_category, $schools_colleges, $howard_forward, 4, 1, $uuid);
   } elseif ($feed_type == 'four_w_one_featured') {
-    $variables['hp_nf_news'] = _hp_news_feed_get_news($env_url, $category, $admin_category, $schools_colleges, 5, 1, $uuid);
+    $variables['hp_nf_news'] = _hp_news_feed_get_news($env_url, $category, $admin_category, $schools_colleges, $howard_forward, 5, 1, $uuid);
   }
 }
 
@@ -119,7 +119,7 @@ function hp_news_feed_theme($existing, $type, $theme, $path)
 /**
  * Gets articles from newsroom, and displays.
  */
-function _hp_news_feed_get_news($env_url = 'https://newsroom.howard.edu', $category = NULL, $admin_category = NULL, $schools_colleges = NULL, $range = 3, $page = 1, $id = 'default')
+function _hp_news_feed_get_news($env_url = 'https://newsroom.howard.edu', $category = NULL, $admin_category = NULL, $schools_colleges = NULL, $howard_forward = NULL, $range = 3, $page = 1, $id = 'default')
 {
   if ($cache = \Drupal::cache()->get('hp_news_feed--' . $id . '-' . $range)) {
     return $cache->data;
