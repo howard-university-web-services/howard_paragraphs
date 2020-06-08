@@ -5,8 +5,6 @@
  * Hp_facebook_feed module file.
  */
 
-require "vendor/autoload.php";
-
 use Facebook\Exceptions\FacebookSDKException;
 use Facebook\Exceptions\FacebookResponseException;
 use Facebook\Facebook;

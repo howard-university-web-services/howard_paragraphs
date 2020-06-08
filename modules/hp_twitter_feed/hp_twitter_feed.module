@@ -5,8 +5,6 @@
  * Hp_twitter_feed module file.
  */
 
-require "vendor/autoload.php";
-
 use Abraham\TwitterOAuth\TwitterOAuth;
 use Drupal\Core\Routing\RouteMatchInterface;
 
@@ -47,7 +45,7 @@ function hp_twitter_feed_preprocess_paragraph__hp_twitter_feed(&$variables)
   $count = $variables['elements']['#paragraph']->field_hp_tf_count->value;
   $username = $variables['elements']['#paragraph']->field_hp_tf_username->value;
 
-  // If twitter key/etc are overrridden we could add fields/etc here.
+  // If twitter key/etc are overridden we could add fields/etc here.
   // Get tweets.
   $variables['hp_tf_tweets'] = _hp_twitter_feed_get_tweets($username, $count);
 }
@@ -99,7 +97,7 @@ function _hp_twitter_feed_get_tweets(
       $result['error'] = $resp->errors[0]->message;
     } else {
       $result['results'] = $resp;
-      // Parse text because twitter adds links/etc seperately.
+      // Parse text because twitter adds links/etc separately.
       foreach ($result['results'] as $key => $tweet) {
         $tweet = _hp_twitter_feed_parse_message($tweet);
         $result['results'][$key] = $tweet;
