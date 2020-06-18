@@ -43,7 +43,7 @@ function hp_photoshelter_feed_preprocess_paragraph__hp_photoshelter_feed(&$varia
   $gallery_id = $variables['content']['field_photoshelter_id']['#items']->getValue()[0]['value'];
 
   // Append the campus code to the url so you can dynamically use the url.
-  $url = "https://howardu.photoshelter.com/psapi/v3/gallery/" . $gallery_id . "/images?api_key=zrGovI0ChPc&extend={%22Image%22:{%22fields%22:%22image_id%22,%22params%22:{}},%22Iptc%22:{%22fields%22:%22caption,headline,title,display_caption%22,%22params%22:{}}}";
+  $url = "https://howardu.photoshelter.com/psapi/v3/gallery/" . $gallery_id . "/images?api_key=zrGovI0ChPc&extend={%22Image%22:{%22fields%22:%22image_id%22,%22params%22:{}},%22Iptc%22:{%22fields%22:%22caption,headline,title,display_caption%22,%22params%22:{}},%22ImageLink%22:{%22params%22:{%22image_size%22:%22800x800%22}}}";
   // Retreive and parse the json from URL.
   try {
     $response = \Drupal::httpClient()->get($url);
