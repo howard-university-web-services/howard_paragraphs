@@ -12,7 +12,7 @@
 		{% if hp_show_wrapper %}
 			<div class="compartment">
 			{% endif %}
-			{% if content.field_hp_cd_head %}
+			{% if content.field_hp_cd_head|render|trim is not empty %}
 				<h2 class="ks-cards__header">{{ content.field_hp_cd_head }}</h2>
 			{% endif %}
 			<div class="{{ hp_card_wrapper_class }}">
