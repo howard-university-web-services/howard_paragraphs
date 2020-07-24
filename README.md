@@ -33,7 +33,8 @@ The following submodules are available:
 - Carousel with Caption: Paragraphs integration of a Carousel with Caption for use in Howard projects
 - Carousel with Modal: Paragraphs integration of a Carousel with Modal for use in Howard projects
 - Deadline Feed: Paragraphs integration of Deadline Feed (from calendar.howard.edu) for Howard projects
-- Embed: Paragraphs integration of the ability to add iframes/js/etc Howard projects
+- Divider: Paragraphs integration of a simple content divider for Howard projects
+- Embed: Paragraphs integration of the ability to add iframes/js/etc for Howard projects
 - Events Feed: Paragraphs integration of Events Feed (from calendar.howard.edu) for Howard projects
 - Facebook Feed: Paragraphs integration of a Facebook Feed for Howard projects
 - Featured Article: Paragraphs integration of the ability to add Featured Articles in Howard projects

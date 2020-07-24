@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_divider
+label: 'HP Divider'
+icon_uuid: null
+icon_default: null
+description: 'This paragraph bundle allows you to add a divider between content.'
+behavior_plugins: {  }
