@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_pgf_show_prof_filter
+    - paragraphs.paragraphs_type.hp_programs_feed
+id: paragraph.hp_programs_feed.field_hp_pgf_show_prof_filter
+field_name: field_hp_pgf_show_prof_filter
+entity_type: paragraph
+bundle: hp_programs_feed
+label: 'Show Professions Filter'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

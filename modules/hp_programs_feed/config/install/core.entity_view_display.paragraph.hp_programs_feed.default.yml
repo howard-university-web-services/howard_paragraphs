@@ -4,8 +4,10 @@ dependencies:
   config:
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_degree_classificati
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_environment
+    - field.field.paragraph.hp_programs_feed.field_hp_pgf_profession
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_school
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_show_degree_filter
+    - field.field.paragraph.hp_programs_feed.field_hp_pgf_show_prof_filter
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_show_school_filter
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_show_subject_filter
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_subject
@@ -18,7 +20,7 @@ dependencies:
     - options
     - text
 _core:
-  default_config_hash: yKGxaZS_6dRJpsNlDpbxMqT8y3_BdYHChKQWlvVoEGU
+  default_config_hash: Y4Q11ZBo67Y0tnwEjjlnFrmrRuZHf7yTw8uSVwBZ-q0
 id: paragraph.hp_programs_feed.default
 targetEntityType: paragraph
 bundle: hp_programs_feed
@@ -38,6 +40,13 @@ content:
     third_party_settings: {  }
     type: list_default
     region: content
+  field_hp_pgf_profession:
+    weight: 10
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: external_data_source_formatter
+    region: content
   field_hp_pgf_school:
     weight: 1
     label: hidden
@@ -47,6 +56,16 @@ content:
     region: content
   field_hp_pgf_show_degree_filter:
     weight: 7
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_hp_pgf_show_prof_filter:
+    weight: 11
     label: above
     settings:
       format: default

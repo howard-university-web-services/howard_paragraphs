@@ -4,8 +4,10 @@ dependencies:
   config:
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_degree_classificati
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_environment
+    - field.field.paragraph.hp_programs_feed.field_hp_pgf_profession
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_school
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_show_degree_filter
+    - field.field.paragraph.hp_programs_feed.field_hp_pgf_show_prof_filter
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_show_school_filter
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_show_subject_filter
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_subject
@@ -24,8 +26,9 @@ third_party_settings:
         - field_hp_pgf_show_degree_filter
         - field_hp_pgf_show_school_filter
         - field_hp_pgf_show_subject_filter
+        - field_hp_pgf_show_prof_filter
       parent_name: ''
-      weight: 7
+      weight: 8
       format_type: fieldset
       region: content
       format_settings:
@@ -35,7 +38,7 @@ third_party_settings:
         required_fields: true
       label: Filters
 _core:
-  default_config_hash: ONs7bmIPtj6KUt-xdLImU7ahPqLyegss_cn5GrXVtpE
+  default_config_hash: Ly0PAMthRHwOwU6WWaEvGlZpyc18wrUMkTiCvp5Acng
 id: paragraph.hp_programs_feed.default
 targetEntityType: paragraph
 bundle: hp_programs_feed
@@ -55,6 +58,14 @@ content:
     third_party_settings: {  }
     type: options_select
     region: content
+  field_hp_pgf_profession:
+    weight: 7
+    settings:
+      size: 1
+      placeholder: ''
+    third_party_settings: {  }
+    type: external_data_source_select_widget
+    region: content
   field_hp_pgf_school:
     weight: 5
     settings:
@@ -65,6 +76,13 @@ content:
     region: content
   field_hp_pgf_show_degree_filter:
     weight: 8
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_hp_pgf_show_prof_filter:
+    weight: 11
     settings:
       display_label: true
     third_party_settings: {  }
