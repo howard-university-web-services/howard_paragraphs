@@ -14,8 +14,7 @@ use Drupal\image\Entity\ImageStyle;
  *
  * @inheritdoc
  */
-function hp_cards_help($route_name, RouteMatchInterface $route_match)
-{
+function hp_cards_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
     case 'help.page.hp_cards':
       $text = file_get_contents(dirname(__FILE__) . "/README.md");
@@ -39,17 +38,22 @@ function hp_cards_help($route_name, RouteMatchInterface $route_match)
  * @param $variables
  *   This sets several classes needed for the card type.
  */
-function hp_cards_preprocess_paragraph__hp_cards(&$variables)
-{
+function hp_cards_preprocess_paragraph__hp_cards(&$variables) {
   // Set classes for card type.
   $layout = $variables['elements']['#paragraph']->field_hp_cd_layout->value;
+  $variables['hp_card_layout'] = $layout;
 
   // Default to text_only class.
+  $variables['hp_card_group_wrapper_class'] = 'news-and-events';
   $variables['hp_card_wrapper_class'] = 'announcements';
   if ($layout == 'card_with_image') {
     $variables['hp_card_wrapper_class'] = 'news-and-events';
-  } elseif ($layout == 'text_only') {
-    $variables['hp_card_wrapper_class'] = 'announcements';
+  } elseif ($layout == 'sponsor') {
+    $variables['hp_card_group_wrapper_class'] = NULL;
+    $variables['hp_card_wrapper_class'] = 'sponsors sponsors--logos';
+  } elseif ($layout == 'person') {
+    $variables['hp_card_group_wrapper_class'] = NULL;
+    $variables['hp_card_wrapper_class'] = 'sponsors sponsors--people';
   }
 }
 
@@ -59,8 +63,7 @@ function hp_cards_preprocess_paragraph__hp_cards(&$variables)
  * @param $variables
  *   This sets several classes needed for the card type.
  */
-function hp_cards_preprocess_paragraph__hp_card(&$variables)
-{
+function hp_cards_preprocess_paragraph__hp_card(&$variables) {
   $paragraph = $variables['elements']['#paragraph'];
 
   // Get layout from parent.
@@ -70,8 +73,7 @@ function hp_cards_preprocess_paragraph__hp_card(&$variables)
   // Set layout Var.
   $variables['hp_card_layout'] = $layout;
 
-  // Default to text_only class.
-  $variables['hp_card_class'] = 'announcements__block';
+  // Adjust card class for image cards, if link present or not.
   if ($layout == 'card_with_image') {
     $variables['hp_card_class'] = 'news-and-events__block';
     if ($paragraph->hasField('field_hp_cd_link')) {
@@ -80,17 +82,19 @@ function hp_cards_preprocess_paragraph__hp_card(&$variables)
         $variables['hp_card_class'] = 'news-and-events__block news-and-events__block-link';
       }
     }
-  } elseif ($layout == 'text_only') {
-    $variables['hp_card_class'] = 'announcements__block';
   }
 
-  // Get media image URL.
+  // Get card media image URL.
   if ($paragraph->hasField('field_hp_cd_image')) {
-    $hero_image = $paragraph->get('field_hp_cd_image')->getValue();
-    if ($hero_image && !empty($hero_image)) {
-      $entity = Media::load($hero_image[0]['target_id']);
+    $image_style = 'large';
+    if ($layout == 'person') {
+      $image_style = 'hc_large_480_480_cropped';
+    }
+    $card_image = $paragraph->get('field_hp_cd_image')->getValue();
+    if ($card_image && !empty($card_image)) {
+      $entity = Media::load($card_image[0]['target_id']);
       if (isset($entity->field_media_image->entity)) {
-        $variables['hp_card_image'] = ImageStyle::load('large')->buildUrl($entity->field_media_image->entity->getFileUri());
+        $variables['hp_card_image'] = ImageStyle::load($image_style)->buildUrl($entity->field_media_image->entity->getFileUri());
       }
     }
   }
@@ -100,8 +104,7 @@ function hp_cards_preprocess_paragraph__hp_card(&$variables)
  * Implements hook_theme().
  * Lets us define our paragraphs templates in this module.
  */
-function hp_cards_theme($existing, $type, $theme, $path)
-{
+function hp_cards_theme($existing, $type, $theme, $path) {
   return [
     'paragraph__hp_card' => [
       'base hook' => 'paragraph',
@@ -122,19 +125,22 @@ function hp_cards_theme($existing, $type, $theme, $path)
 }
 
 // UPDATES
-// .
 
 /**
  * Updates to allow unlimited cards.
  */
-function hp_cards_update_8001()
-{
+function hp_cards_update_8001() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_cards');
 }
 /**
  * Update to add optional card group header.
  */
-function hp_cards_update_8002()
-{
+function hp_cards_update_8002() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_cards');
+}
+/**
+ * Update to add person/logo layout types.
+ */
+function hp_cards_update_8003() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_cards');
 }

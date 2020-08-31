@@ -12,10 +12,16 @@ settings:
   allowed_values:
     -
       value: card_with_image
-      label: 'Card with Image'
+      label: 'General Card with Image'
     -
       value: text_only
-      label: 'Text Only'
+      label: 'General Text Only Card'
+    -
+      value: sponsor
+      label: 'Sponsor Specific'
+    -
+      value: person
+      label: 'Person Specific'
   allowed_values_function: ''
 module: options
 locked: false

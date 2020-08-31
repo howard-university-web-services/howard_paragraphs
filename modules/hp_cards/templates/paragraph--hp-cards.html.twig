@@ -7,21 +7,47 @@
  */
 #}
 
+{%
+  set classes = [
+    'section--padded-top',
+		'section--padded-bottom',
+		'ks-cards',
+		hp_card_group_wrapper_class ? hp_card_group_wrapper_class|clean_class,
+  ]
+%}
+
 {% if content.field_hp_cd_cards %}
-	<section class="section--padded-top section--padded-bottom news-and-events ks-cards">
+	<section{{attributes.addClass(classes)}}>
 		{% if hp_show_wrapper %}
 			<div class="compartment">
 			{% endif %}
-			{% if content.field_hp_cd_head|render|trim is not empty %}
-				<h2 class="ks-cards__header">{{ content.field_hp_cd_head }}</h2>
-			{% endif %}
-			<div class="{{ hp_card_wrapper_class }}">
-				<div class="silc-grid">
 
-					{{ content.field_hp_cd_cards }}
-
+			{% if (hp_card_layout == 'card_with_image') or (hp_card_layout == 'text_only') %}
+				{# General text, or image cards layouts #}
+				{% if content.field_hp_cd_head|render|trim is not empty %}
+					<h2 class="ks-cards__header">{{ content.field_hp_cd_head }}</h2>
+				{% endif %}
+				<div class="{{ hp_card_wrapper_class }}">
+					<div class="silc-grid">
+						{{ content.field_hp_cd_cards }}
+					</div>
 				</div>
-			</div>
+			{% elseif (hp_card_layout == 'sponsor') or (hp_card_layout == 'person') %}
+				{# Sponsor or person specific layouts #}
+				<div class="{{ hp_card_wrapper_class }}">
+					{% if content.field_hp_cd_head|render|trim is not empty %}
+						<div class="block-header block-header--">
+							<div class="block-header__title">
+								<span class="block-header__icon icon-our-people"></span>
+								<h2>{{ content.field_hp_cd_head }}</h2>
+							</div>
+						</div>
+					{% endif %}
+					<div class="silc-grid">
+						{{ content.field_hp_cd_cards }}
+					</div>
+				</div>
+			{% endif %}
 
 			{% if hp_show_wrapper %}
 			</div>

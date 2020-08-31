@@ -11,7 +11,7 @@ field_name: field_hp_cd_layout
 entity_type: paragraph
 bundle: hp_cards
 label: Layout
-description: 'Please choose which layout you would like for this callout.'
+description: "Please choose which layout you would like for these cards.\r\n<ul>\r\n<li>General Card with Image: General cards, with text, static image, title, and link.</li>\r\n<li>General Text Only Card: General cards, with text, title, and link. </li>\r\n<li>Sponsor Specific: Optimizes cards to be a more specific layout, aimed at showcasing \"sponsors\" or \"logos\", with text, static image, title, and link.</li>\r\n<li>Person Specific: Optimizes cards to be a more specific layout, aimed at showcasing \"people\", with text, static image, title, and link.</li>\r\n</ul>"
 required: true
 translatable: false
 default_value:

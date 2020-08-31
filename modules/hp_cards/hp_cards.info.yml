@@ -11,3 +11,4 @@ dependencies:
   - link_target
   - entity_browser
   - media_entity_browser
+  - focal_point

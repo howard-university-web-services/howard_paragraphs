@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: hc_large_480_480_cropped
+label: 'HC Large (480×480) cropped'
+effects:
+  d22be3a7-9667-4673-8156-9352300b08ca:
+    uuid: d22be3a7-9667-4673-8156-9352300b08ca
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 480
+      height: 480
+      crop_type: focal_point
+pipeline: __default__

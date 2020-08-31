@@ -7,44 +7,55 @@
  */
 #}
 
+{% if hp_card_layout == 'card_with_image' %}
+	{# General card with image layout #}
+	<div class="silc-grid__col silc-grid__col--4-medium">
+		{% if content.field_hp_cd_link[0]['#url'] %}
+			<a href="{{ content.field_hp_cd_link[0]['#url'] }}" class="{{ hp_card_class }}" {% if content.field_hp_cd_link[0]['#options'].attributes.target %} target="{{ content.field_hp_cd_link[0]['#options'].attributes.target }}" {% endif %}>
+			{% else %}
+				<div class="{{ hp_card_class }}">
+				{% endif %}
+				<div class="news-and-events__img" style="background-image:url({{ hp_card_image }})"></div>
+				<div class="news-and-events__desc">
+					<h3 class="news-and-events__title header--h3-small">{{ content.field_hp_cd_title }}</h3>
+					<div class="body-text--small">{{ content.field_hp_cd_text }}</div>
+				</div>
+				{% if content.field_hp_cd_link[0]['#url'] %}
+				</a>
+		{% else %}
+			</div>
+		{% endif %}
+	</div>
+{% elseif (hp_card_layout == 'sponsor') or (hp_card_layout == 'person') %}
+	{# Sponsor or person specific layouts #}
+	<div class="silc-grid__col silc-grid__col--6 silc-grid__col--4-small silc-grid__col--3-medium-l">
+		<a href="{{ content.field_hp_cd_link[0]['#url'] }}" class="sponsors__card">
+			<div class="sponsors__card-image">
+				<img src="{{ hp_card_image }}" alt="{{ content.field_hp_cd_title }}">
+			</div>
+			<div class="sponsors__card-title">{{ content.field_hp_cd_title }}</div>
+			{% if content.field_hp_cd_text %}
+				<div class="sponsors__card-text">{{ content.field_hp_cd_text }}</div>
+			{% endif %}
+		</a>
+	</div>
+{% else %}
+	{# Text only layout #}
+	<div class="silc-grid__col silc-grid__col--4-medium">
+		<div class="announcements__block">
+			{% if content.field_hp_cd_title %}
+				<h3 class="announcements__title">{{ content.field_hp_cd_title }}</h3>
+			{% endif %}
+			{{ content.field_hp_cd_text }}
+			{% if content.field_hp_cd_link[0]['#url'] %}
+				<a href="{{ content.field_hp_cd_link[0]['#url'] }}" class="fancy-link" {% if content.field_hp_cd_link[0]['#options'].attributes.target %} target="{{ content.field_hp_cd_link[0]['#options'].attributes.target }}" {% endif %}>
+					<span>{{ content.field_hp_cd_link[0]['#title'] }}</span>
+					<span class="icon-arrow-right"></span>
+				</a>
+			{%  endif %}
+		</div>
+	</div>
+{% endif %}
 
-<div class="silc-grid__col silc-grid__col--4-medium">
-
-  {% if hp_card_layout == 'card_with_image' %}
-    {% if content.field_hp_cd_link[0]['#url'] %}
-      <a href="{{ content.field_hp_cd_link[0]['#url'] }}" class="{{ hp_card_class }}" {% if content.field_hp_cd_link[0]['#options'].attributes.target %} target="{{ content.field_hp_cd_link[0]['#options'].attributes.target }}"{% endif %}>
-    {% else %}
-      <div class="{{ hp_card_class }}">
-    {% endif %}
-      <div class="news-and-events__img" style="background-image:url({{ hp_card_image }})"></div>
-      <div class="news-and-events__desc">
-        <h3 class="news-and-events__title header--h3-small">{{ content.field_hp_cd_title }}</h3>
-        <div class="body-text--small">{{ content.field_hp_cd_text }}</div>
-      </div>
-    {% if content.field_hp_cd_link[0]['#url'] %}
-      </a>
-    {% else %}
-      </div>
-    {% endif %}
-
-  {% else %}
-
-    <div class="{{ hp_card_class }}">
-      {% if content.field_hp_cd_title %}
-        <h3 class="announcements__title">{{ content.field_hp_cd_title }}</h3>
-      {% endif %}
-      {{ content.field_hp_cd_text }}
-      {% if content.field_hp_cd_link[0]['#url'] %}
-        <a href="{{ content.field_hp_cd_link[0]['#url'] }}" class="fancy-link" {% if content.field_hp_cd_link[0]['#options'].attributes.target %} target="{{ content.field_hp_cd_link[0]['#options'].attributes.target }}"{% endif %}>
-          <span>{{ content.field_hp_cd_link[0]['#title'] }}</span>
-          <span class="icon-arrow-right"></span>
-        </a>
-      {%  endif %}
-    </div>
-
-  {% endif %}
-
-  <!-- Render without, so quickedit/etc works -->
-  {{ content|without('field_hp_cd_title', 'field_hp_cd_text', 'field_hp_cd_image', 'field_hp_cd_link') }}
-
-</div>
+{# Render without, so quickedit/etc works #}
+{{ content|without('field_hp_cd_title', 'field_hp_cd_text', 'field_hp_cd_image', 'field_hp_cd_link') }}
