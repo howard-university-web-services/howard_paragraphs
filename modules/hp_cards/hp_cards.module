@@ -144,3 +144,9 @@ function hp_cards_update_8002() {
 function hp_cards_update_8003() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_cards');
 }
+/**
+ * Fix heading config error.
+ */
+function hp_cards_update_8004() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_cards');
+}

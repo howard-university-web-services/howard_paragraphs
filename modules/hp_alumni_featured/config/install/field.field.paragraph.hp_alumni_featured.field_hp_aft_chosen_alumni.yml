@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_aft_chosen_alumni
+    - paragraphs.paragraphs_type.hp_alumni_featured
+id: paragraph.hp_alumni_featured.field_hp_aft_chosen_alumni
+field_name: field_hp_aft_chosen_alumni
+entity_type: paragraph
+bundle: hp_alumni_featured
+label: 'Chosen People'
+description: 'This field allows you to manually specify the ID of individual profiles to feature. These ID''s are the node ID of the profile, in profiles.howard.edu.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -29,21 +29,29 @@
 {% elseif (hp_card_layout == 'sponsor') or (hp_card_layout == 'person') %}
 	{# Sponsor or person specific layouts #}
 	<div class="silc-grid__col silc-grid__col--6 silc-grid__col--4-small silc-grid__col--3-medium-l">
-		<a href="{{ content.field_hp_cd_link[0]['#url'] }}" class="sponsors__card">
+		{% if content.field_hp_cd_link|render %}
+				<a href="{{ content.field_hp_cd_link[0]['#url'] }}" class="sponsors__card">
+		{% else %}
+				<div class="sponsors__card">
+		{% endif %}
 			<div class="sponsors__card-image">
 				<img src="{{ hp_card_image }}" alt="{{ content.field_hp_cd_title }}">
 			</div>
 			<div class="sponsors__card-title">{{ content.field_hp_cd_title }}</div>
-			{% if content.field_hp_cd_text %}
+			{% if content.field_hp_cd_text|render %}
 				<div class="sponsors__card-text">{{ content.field_hp_cd_text }}</div>
 			{% endif %}
-		</a>
+		{% if content.field_hp_cd_link|render %}
+			</a>
+		{% else %}
+			</div>>
+		{% endif %}
 	</div>
 {% else %}
 	{# Text only layout #}
 	<div class="silc-grid__col silc-grid__col--4-medium">
 		<div class="announcements__block">
-			{% if content.field_hp_cd_title %}
+			{% if content.field_hp_cd_title|render %}
 				<h3 class="announcements__title">{{ content.field_hp_cd_title }}</h3>
 			{% endif %}
 			{{ content.field_hp_cd_text }}

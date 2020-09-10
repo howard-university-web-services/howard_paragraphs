@@ -8,7 +8,7 @@ id: paragraph.hp_cards.field_hp_cd_head
 field_name: field_hp_cd_head
 entity_type: paragraph
 bundle: hp_cards
-label: Head
+label: Headline
 description: 'Headline/Title for the card group.'
 required: false
 translatable: false

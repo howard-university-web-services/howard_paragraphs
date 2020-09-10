@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_pf_environment
+    - paragraphs.paragraphs_type.hp_alumni_featured
+  module:
+    - options
+id: paragraph.hp_alumni_featured.field_hp_pf_environment
+field_name: field_hp_pf_environment
+entity_type: paragraph
+bundle: hp_alumni_featured
+label: Environment
+description: 'Choose which environment to pull Featured Students and Alumni from, normally, this should be "Production" unless you are testing events on another environment.'
+required: true
+translatable: true
+default_value:
+  -
+    value: prod
+default_value_callback: ''
+settings: {  }
+field_type: list_string

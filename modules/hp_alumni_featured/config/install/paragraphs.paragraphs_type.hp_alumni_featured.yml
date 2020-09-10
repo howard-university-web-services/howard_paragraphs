@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 4Br1anjLnDaxnImIlUbC73EcO7Z6Biwh1yIEEZn2ycw
+id: hp_alumni_featured
+label: 'HP Featured Student and Alumni Featured (DSWS Use Only)'
+icon_uuid: null
+icon_default: null
+description: 'This is a curated list of Featured Student and Alumni Profiles from profiles.howard.edu. It should only be enabled and used by DSWS, or users briefed and approved by DSWS.'
+behavior_plugins: {  }

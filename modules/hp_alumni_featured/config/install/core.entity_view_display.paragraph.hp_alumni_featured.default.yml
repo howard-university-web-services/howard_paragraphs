@@ -1,0 +1,51 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_alumni_featured.field_hp_af_display_links_modal
+    - field.field.paragraph.hp_alumni_featured.field_hp_aft_chosen_alumni
+    - field.field.paragraph.hp_alumni_featured.field_hp_aft_title
+    - field.field.paragraph.hp_alumni_featured.field_hp_pf_environment
+    - paragraphs.paragraphs_type.hp_alumni_featured
+  module:
+    - options
+id: paragraph.hp_alumni_featured.default
+targetEntityType: paragraph
+bundle: hp_alumni_featured
+mode: default
+content:
+  field_hp_af_display_links_modal:
+    weight: 3
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_hp_aft_chosen_alumni:
+    weight: 2
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_hp_aft_title:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_hp_pf_environment:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+hidden: {  }

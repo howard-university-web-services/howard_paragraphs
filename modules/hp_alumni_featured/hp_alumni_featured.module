@@ -1,0 +1,102 @@
+<?php
+
+/**
+ * @file
+ * Hp_alumni_featured module file.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ *
+ * @inheritdoc
+ */
+function hp_alumni_featured_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.hp_alumni_featured':
+      $text = file_get_contents(dirname(__FILE__) . "/README.md");
+      if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        return '<pre>' . $text . '</pre>';
+      }
+      else {
+        // Use the Markdown filter to render the README.
+        $filter_manager = \Drupal::service('plugin.manager.filter');
+        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $config = ['settings' => $settings];
+        $filter = $filter_manager->createInstance('markdown', $config);
+        return $filter->process($text, 'en');
+      }
+  }
+  return NULL;
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ *
+ * @param $variables
+ *   This sets variables for getting events, and then gets events.
+ */
+function hp_alumni_featured_preprocess_paragraph__hp_alumni_featured(&$variables) {
+
+  // Unique Cache ID.
+  $uuid = $variables['elements']['#paragraph']->uuid->value;
+  $cid = 'hp_alumni_featured--' . $uuid;
+
+  // Check on env to get events from.
+  $env = $variables['elements']['#paragraph']->field_hp_pf_environment->value;
+  $env_url = 'https://profiles.howard.edu';
+  if ($env == 'stg') {
+    $env_url = 'http://stg.profiles.howard.edu';
+  }
+  elseif ($env == 'dev') {
+    $env_url = 'http://dev.profiles.howard.edu';
+  }
+  $variables['hp_aft_env_url'] = $env_url;
+
+  // Get profiles.
+  $feat_alumni = $variables['elements']['#paragraph']->get('field_hp_aft_chosen_alumni')->getValue();
+  $variables['hp_aft_profiles'] = _hp_alumni_featured_get_profiles($env_url, $feat_alumni, $cid);
+
+}
+
+/**
+ * Implements hook_theme().
+ * Lets us define our paragraphs templates in this module.
+ */
+function hp_alumni_featured_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__hp_alumni_featured' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
+
+/**
+ * CUSTOM FUNCTIONS.
+ */
+
+/**
+ * Gets defined students and alumni (by ID) from profiles site, and displays.
+ */
+function _hp_alumni_featured_get_profiles($env, $chosen, $cid) {
+  if ($cache = \Drupal::cache()->get($cid)) {
+    return $cache->data;
+  }
+  else {
+    $profiles = [];
+    foreach ($chosen as $key => $value) {
+      $url = $env . "/api/featured?filter[id][value][0]=" . $value['value'] . "&filter[id][operator][0]==";
+      $result = file_get_contents($url);
+      $result = json_decode($result, TRUE);
+      $profiles[$key] = $result['data'][0];
+    }
+    if ($profiles) {
+      \Drupal::cache()->set($cid, $profiles, time() + 900);
+      return $profiles;
+    }
+    else {
+      return NULL;
+    }
+  }
+}
