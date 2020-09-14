@@ -145,9 +145,11 @@ function _hp_facebook_feed_get_posts($count, $token, $page_id, $app_id, $app_sec
       }
 
       // Parse results to reformat if needed.
-      foreach ($result['results'] as $key => $sts) {
-        $sts = _hp_facebook_feed_parse_message($sts);
-        $result['results'][$key] = $sts;
+      if(isset($result['results'])) {
+        foreach ($result['results'] as $key => $sts) {
+          $sts = _hp_facebook_feed_parse_message($sts);
+          $result['results'][$key] = $sts;
+        }
       }
 
     }
