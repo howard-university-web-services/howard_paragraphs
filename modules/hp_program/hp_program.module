@@ -154,8 +154,8 @@ function _hp_program_get_faculty($program = NULL, $id = 'default') {
     $tax_url = "https://profiles.howard.edu/api/taxonomy_5?filter[program_id]=" . $program;
     $tax_result = file_get_contents($tax_url);
     $tax_result = json_decode($tax_result, TRUE);
-    $tax_result = $tax_result['data'][0]['id'];
-    if ($tax_result) {
+    if (isset($tax_result['data'][0])) {
+      $tax_result = $tax_result['data'][0]['id'];
       $url = "https://profiles.howard.edu/api/profilesearch/%20?sort=last_name&filter[public][value]=1&range=100&filter[taxonomy_5][value][]=" . $tax_result;
       $result = file_get_contents($url);
       $result = json_decode($result, TRUE);
