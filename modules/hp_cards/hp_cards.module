@@ -68,8 +68,10 @@ function hp_cards_preprocess_paragraph__hp_card(&$variables) {
 
   // Get layout from parent.
   $cards = $paragraph->getParentEntity();
-  $layout = $cards->field_hp_cd_layout->value;
-
+  $layout = '';
+  if ($cards->hasField('field_hp_cd_layout')) {
+    $layout = $cards->field_hp_cd_layout->value;
+  }
   // Set layout Var.
   $variables['hp_card_layout'] = $layout;
 
