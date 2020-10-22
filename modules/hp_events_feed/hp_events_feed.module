@@ -44,6 +44,7 @@ function hp_events_feed_preprocess_paragraph__hp_events_feed(&$variables) {
   // Check on env to get events from.
   $env = $variables['elements']['#paragraph']->field_hp_ef_environment->value;
   $env_url = 'https://calendar.howard.edu';
+
   if ($env == 'stg') {
     $env_url = 'http://stg.calendar.howard.edu';
   }
@@ -76,8 +77,16 @@ function hp_events_feed_preprocess_paragraph__hp_events_feed(&$variables) {
     $schools_colleges = str_replace('id=', '', $schools_colleges);
   }
 
+  $total = 3;
+  // Recalulate total based on rows and columns.
+  if ($variables['elements']['#paragraph']->hasField('field_hp_ef_event_rows')) {
+    $cols = 3;
+    $rows = $variables['elements']['#paragraph']->field_hp_ef_event_rows->value;
+    $total = $cols * $rows;
+  }
+  
   // Get events.
-  $variables['hp_ef_events'] = _hp_events_feed_get_events($env_url, $category, $admin_category, $schools_colleges, 3, 1, $uuid);
+  $variables['hp_ef_events'] = _hp_events_feed_get_events($env_url, $category, $admin_category, $schools_colleges, $total, 1, $uuid);
 
 }
 
@@ -127,14 +136,4 @@ function _hp_events_feed_get_events($env_url = 'https://calendar.howard.edu', $c
       return NULL;
     }
   }
-}
-
-// UPDATES
-// .
-
-/**
- * Add schools and colleges optional filter.
- */
-function hp_events_feed_update_8001() {
-  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_events_feed');
 }

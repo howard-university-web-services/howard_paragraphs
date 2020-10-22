@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for the HP Events Feed module.
+ */
+
+/**
+ * Add schools and colleges optional filter.
+ */
+function hp_events_feed_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_events_feed');
+}
+
+/**
+ * Add rows field.
+ */
+function hp_events_feed_update_8002() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_events_feed');
+}
