@@ -48,7 +48,7 @@ function hp_carousel_with_caption_preprocess_paragraph__hp_carousel_with_caption
     if ($hero_image && !empty($hero_image)) {
       $entity = Media::load($hero_image[0]['target_id']);
       if (isset($entity->field_media_image->entity)) {
-        $variables['hp_cc_image'] = ImageStyle::load('hc_carousel_image')->buildUrl($entity->field_media_image->entity->getFileUri());
+        $variables['hp_cc_image'] = ImageStyle::load('hc_carousel_caption_image')->buildUrl($entity->field_media_image->entity->getFileUri());
       }
     }
   }
@@ -71,4 +71,13 @@ function hp_carousel_with_caption_theme($existing, $type, $theme, $path) {
       'base hook' => 'paragraph',
     ],
   ];
+}
+
+// UPDATES
+
+/**
+ * Updates to allow optional link title.
+ */
+function hp_carousel_with_caption_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_carousel_with_caption');
 }

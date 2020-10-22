@@ -5,7 +5,6 @@
 #}
 
 {% for item in items %}
-
   {% set title = item.content['#title'] %}
   {% if item.content['#url']|render == title %}
     {% set title = 'Read More' %}

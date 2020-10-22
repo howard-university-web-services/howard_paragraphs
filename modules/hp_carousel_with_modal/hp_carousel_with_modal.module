@@ -49,6 +49,7 @@ function hp_carousel_with_modal_preprocess_paragraph__hp_carousel_with_modal_sli
       $entity = Media::load($hero_image[0]['target_id']);
       if (isset($entity->field_media_image->entity)) {
         $variables['hp_cm_image'] = ImageStyle::load('hc_carousel_image')->buildUrl($entity->field_media_image->entity->getFileUri());
+        $variables['hp_cm_image_full'] = ImageStyle::load('hc_carousel_image_full')->buildUrl($entity->field_media_image->entity->getFileUri());
       }
     }
   }
