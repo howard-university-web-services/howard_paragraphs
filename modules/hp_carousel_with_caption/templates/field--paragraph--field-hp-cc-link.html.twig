@@ -5,8 +5,14 @@
 #}
 
 {% for item in items %}
-  <a href="{{ item.content['#url'] }}" class="fancy-link"{% if item.content['#options'].attributes.target %} target="{{ item.content['#options'].attributes.target }}"{% endif %}>
-    <span>Read More</span>
+
+  {% set title = item.content['#title'] %}
+  {% if item.content['#url']|render == title %}
+    {% set title = 'Read More' %}
+  {% endif %}
+
+  <a href="{{ item.content['#url'] }}" class="fancy-link" {% if item.content['#options'].attributes.target %} target="{{ item.content['#options'].attributes.target }}" {% endif %}>
+    <span>{{ title }}</span>
     <span class="icon-arrow-right"></span>
   </a>
 {% endfor %}
