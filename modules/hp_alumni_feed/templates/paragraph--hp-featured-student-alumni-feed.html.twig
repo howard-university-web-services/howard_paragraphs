@@ -37,16 +37,18 @@
             {% endif %}
               <h3>{{ prsn.label}}</h3>
               {% if prsn.classification == 'student' or prsn.classification == 'stem_scholars' %}
-                {% if prsn.year_graduated %}<h4>Class of {{ prsn.year_graduated }}</h4>{% endif %}
-                {% if prsn.degree_earned %}<h5>{{ prsn.degree_earned }}</h5>{% endif %}
+                {% if prsn.title %}<h4>{{ prsn.title }}</h4>{% endif %}
+                {% if prsn.year_graduated %}<h5>Class of {{ prsn.year_graduated }}</h5>{% endif %}
+                {% if prsn.degree_earned %}<h6>{{ prsn.degree_earned }}</h6>{% endif %}
               {% endif %}
               {% if prsn.classification == 'faculty' %}
                 {% if prsn.title %}<h4>{{ prsn.title }}</h4>{% endif %}
                 {% if prsn.affiliation %}<h5>{{ prsn.affiliation }}</h5>{% endif %}
               {% endif %}
               {% if prsn.classification == 'alumni' or prsn.classification == 'iconic_alumni' %}
-                {% if prsn.year_graduated %}<h4>Class of {{ prsn.year_graduated }}</h4>{% endif %}
-                {% if prsn.title %}<h5>{{ prsn.title }}</h5>{% endif %}
+                {% if prsn.title %}<h4>{{ prsn.title }}</h4>{% endif %}
+                {% if prsn.year_graduated %}<h5>Class of {{ prsn.year_graduated }}</h5>{% endif %}
+                {% if prsn.degree_earned %}<h6>{{ prsn.degree_earned }}</h6>{% endif %}
               {% endif %}
             </div>
             <div class="faculty-profile__btn">
