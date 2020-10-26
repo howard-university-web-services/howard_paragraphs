@@ -3,6 +3,7 @@
 namespace Drupal\howard_paragraphs\Services;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 /**
  * Class HowardNewsService.
@@ -51,7 +52,12 @@ class HowardNewsService {
       \Drupal::logger('Howard News API')->error($message);
       return;
     }
-    return $result['data'];
+    if ($result['data']) {
+      return $result['data'];
+    }
+    else {
+      return;
+    }
   }
 
 }
