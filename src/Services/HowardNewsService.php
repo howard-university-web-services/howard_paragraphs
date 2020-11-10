@@ -20,7 +20,7 @@ class HowardNewsService {
   public $alertsEndpoint;
 
   /**
-   * Constructs a new AmericanClientService object.
+   * Constructs a new HowardNewsService object.
    */
   public function __construct(Client $client) {
     $this->client = $client;
