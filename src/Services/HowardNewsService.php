@@ -34,7 +34,7 @@ class HowardNewsService {
    * Public method to return Howard Announcements.
    */
   public function getAnnouncements() {
-    $url = $this->alertsEndpoint . '&filter[alert_type]=announcement';
+    $url = $this->alertsEndpoint . '&filter[alert_type]=announcement&sort=start_date';
     $json = $this->getData($url);
     return $json;
   }
