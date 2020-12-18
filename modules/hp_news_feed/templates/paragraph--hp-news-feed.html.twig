@@ -8,7 +8,7 @@
  */
 #}
 
-{% if hp_nf_type == 'four_w_one_featured' %}
+{% if hp_nf_type == 'four_w_one_featured' or hp_nf_type == 'twenty_wo_images' %}
   <section class="section--padded-top section--padded-bottom news-and-events news-and-events--department">
 {% else %}
   <section class="section--padded-top section--padded-bottom news-and-events">
@@ -40,7 +40,6 @@
               <div class="silc-grid__col silc-grid__col--4-medium">
                 <a href="{{ hp_nf_env_url }}/newsroom/article/{{ evnt.id }}/{{ evnt.uri }}" class="news-and-events__block" target="_blank">
                   <div class="news-and-events__img news-and-events__img_portrait" style="background-image:url('{% if evnt.image.large %}{{ evnt.image.large }}{% else %}{{ hp_nf_default_image }}{% endif %}')"></div>
-                  
                   <div class="news-and-events__desc">
                     <span class="news-and-events__date">{{ evnt.publication_date_formatted }}</span>
                     <h3 class="news-and-events__title header--h3-small">{{ evnt.label }}</h3>
@@ -138,6 +137,20 @@
               {% endif %}
 
             {% endfor %}
+          </div>
+        {% elseif hp_nf_type == 'twenty_wo_images' %}
+
+          <div class="silc-grid">
+            <div class="silc-grid__col silc-grid__col--12-medium">
+            {% for evnt in hp_nf_news %}
+              <a href="{{ hp_nf_env_url }}/newsroom/article/{{ evnt.id }}/{{ evnt.uri }}" class="news-and-events__block" target="_blank">
+                <div class="news-and-events__desc">
+                  <span class="news-and-events__date">{{ evnt.publication_date_formatted }}</span>
+                  <h3 class="news-and-events__title header--h3-small">{{ evnt.label }}</h3>
+                </div>
+              </a>
+            {% endfor %}
+            </div>
           </div>
 
         {% endif %}

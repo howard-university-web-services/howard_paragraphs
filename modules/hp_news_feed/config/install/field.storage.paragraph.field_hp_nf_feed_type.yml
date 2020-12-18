@@ -19,6 +19,9 @@ settings:
     -
       value: four_w_one_featured
       label: 'One Featured Story, Four News Stories Without Images'
+    -
+      value: twenty_wo_images
+      label: 'Twenty News Stories Without Images'
   allowed_values_function: ''
 module: options
 locked: false

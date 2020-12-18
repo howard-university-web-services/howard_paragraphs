@@ -96,6 +96,8 @@ function hp_news_feed_preprocess_paragraph__hp_news_feed(&$variables)
     $variables['hp_nf_news'] = _hp_news_feed_get_news($env_url, $category, $admin_category, $schools_colleges, $howard_forward, 4, 1, $uuid);
   } elseif ($feed_type == 'four_w_one_featured') {
     $variables['hp_nf_news'] = _hp_news_feed_get_news($env_url, $category, $admin_category, $schools_colleges, $howard_forward, 5, 1, $uuid);
+  } elseif ($feed_type == 'twenty_wo_images') {
+    $variables['hp_nf_news'] = _hp_news_feed_get_news($env_url, $category, $admin_category, $schools_colleges, $howard_forward, 20, 1, $uuid);
   }
 }
 
@@ -165,6 +167,14 @@ function hp_news_feed_update_8001()
  * Add howard forward optional filter.
  */
 function hp_news_feed_update_8002()
+{
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_news_feed');
+}
+
+/**
+ * Add new news feed option.
+ */
+function hp_news_feed_update_8003()
 {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_news_feed');
 }
