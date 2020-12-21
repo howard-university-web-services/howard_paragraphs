@@ -35,20 +35,18 @@
             {% else %}
               <div class="faculty-profile__img" style="background-image:url('https://profiles.howard.edu/sites/all/modules/idfive_profile_api/assets/images/avatar.jpg')"></div>
             {% endif %}
-              <h3>{{ prsn.label}}</h3>
-              {% if prsn.classification == 'student' or prsn.classification == 'stem_scholars' %}
-                {% if prsn.title %}<h4>{{ prsn.title }}</h4>{% endif %}
-                {% if prsn.year_graduated %}<h5>Class of {{ prsn.year_graduated }}</h5>{% endif %}
-                {% if prsn.degree_earned %}<h6>{{ prsn.degree_earned }}</h6>{% endif %}
-              {% endif %}
+              <h3>{{ prsn.label }}</h3>
               {% if prsn.classification == 'faculty' %}
-                {% if prsn.title %}<h4>{{ prsn.title }}</h4>{% endif %}
-                {% if prsn.affiliation %}<h5>{{ prsn.affiliation }}</h5>{% endif %}
-              {% endif %}
-              {% if prsn.classification == 'alumni' or prsn.classification == 'iconic_alumni' %}
-                {% if prsn.title %}<h4>{{ prsn.title }}</h4>{% endif %}
-                {% if prsn.year_graduated %}<h5>Class of {{ prsn.year_graduated }}</h5>{% endif %}
-                {% if prsn.degree_earned %}<h6>{{ prsn.degree_earned }}</h6>{% endif %}
+                <p>
+                  {% if prsn.title %}{{ prsn.title }}{% endif %}
+                  {% if prsn.affiliation %}, {{ prsn.affiliation }}{% endif %}
+                </p>
+              {% else %}
+                <p>
+                  {% if prsn.title %}{{ prsn.title }}{% endif %}
+                  {% if prsn.year_graduated %}, Class of {{ prsn.year_graduated }}{% endif %}
+                  {% if prsn.degree_earned %}, {{ prsn.degree_earned }}{% endif %}
+                </p>
               {% endif %}
             </div>
             <div class="faculty-profile__btn">

@@ -1,6 +1,6 @@
 # Howard Paragraphs Alumni Featured
 
-Paragraphs integration of a Profiles Feed (from profiles.howard.edu) for Howard projects. Essentially, this module pulls a feed of profiles from profiles.howard.edu, with optional filter parameters available, in order to feature faculty and staff by department.
+Paragraphs integration of a Profiles Feed (from profiles.howard.edu) for Howard projects. Essentially, this module pulls a specific alumni from profiles.howard.edu, by ID. It is for advanced users only, such as DSWS.
 
 This module contains markup only (no js or css), those should be provided in the client theme, loaded via the idfive Component Library:
 

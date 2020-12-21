@@ -1,4 +1,3 @@
-uuid: b8729100-963b-4839-841d-4b6650496bc8
 langcode: en
 status: true
 dependencies:
@@ -6,18 +5,21 @@ dependencies:
     - field.field.paragraph.hp_featured_student_alumni_feed.field_hp_af_alumni_admin_categor
     - field.field.paragraph.hp_featured_student_alumni_feed.field_hp_af_display_links_modal
     - field.field.paragraph.hp_featured_student_alumni_feed.field_hp_af_feed_type
+    - field.field.paragraph.hp_featured_student_alumni_feed.field_hp_af_show_quote
     - field.field.paragraph.hp_featured_student_alumni_feed.field_hp_af_title
     - field.field.paragraph.hp_featured_student_alumni_feed.field_hp_pf_environment
     - paragraphs.paragraphs_type.hp_featured_student_alumni_feed
   module:
     - external_data_source
+_core:
+  default_config_hash: iIqK5EQW2y_ei1ikp0JF9gWZ0wvOj3c4SYsLscKr5JU
 id: paragraph.hp_featured_student_alumni_feed.default
 targetEntityType: paragraph
 bundle: hp_featured_student_alumni_feed
 mode: default
 content:
   field_hp_af_alumni_admin_categor:
-    weight: 4
+    weight: 5
     settings:
       size: 1
       placeholder: ''
@@ -32,10 +34,17 @@ content:
     type: boolean_checkbox
     region: content
   field_hp_af_feed_type:
-    weight: 3
+    weight: 4
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
+  field_hp_af_show_quote:
+    weight: 2
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
     region: content
   field_hp_af_title:
     weight: 0
@@ -46,7 +55,7 @@ content:
     type: string_textfield
     region: content
   field_hp_pf_environment:
-    weight: 2
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     type: options_select

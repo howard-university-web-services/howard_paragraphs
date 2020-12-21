@@ -1,4 +1,3 @@
-uuid: be5bfe47-1190-4d8e-a864-f50f267d1ccb
 langcode: en
 status: true
 dependencies:
@@ -6,12 +5,15 @@ dependencies:
     - field.field.paragraph.hp_featured_student_alumni_feed.field_hp_af_alumni_admin_categor
     - field.field.paragraph.hp_featured_student_alumni_feed.field_hp_af_display_links_modal
     - field.field.paragraph.hp_featured_student_alumni_feed.field_hp_af_feed_type
+    - field.field.paragraph.hp_featured_student_alumni_feed.field_hp_af_show_quote
     - field.field.paragraph.hp_featured_student_alumni_feed.field_hp_af_title
     - field.field.paragraph.hp_featured_student_alumni_feed.field_hp_pf_environment
     - paragraphs.paragraphs_type.hp_featured_student_alumni_feed
   module:
     - external_data_source
     - options
+_core:
+  default_config_hash: I2ILTZB8kr1aGyiVo1ppHx7OJw9BFQeNzDoQ1XCqueU
 id: paragraph.hp_featured_student_alumni_feed.default
 targetEntityType: paragraph
 bundle: hp_featured_student_alumni_feed
@@ -40,6 +42,16 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
+  field_hp_af_show_quote:
+    weight: 5
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
     region: content
   field_hp_af_title:
     weight: 3

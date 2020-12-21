@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_af_show_quote
+    - paragraphs.paragraphs_type.hp_featured_student_alumni_feed
+id: paragraph.hp_featured_student_alumni_feed.field_hp_af_show_quote
+field_name: field_hp_af_show_quote
+entity_type: paragraph
+bundle: hp_featured_student_alumni_feed
+label: 'Show Quote'
+description: 'If chosen, a quote related to the person will be shown in the feed.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

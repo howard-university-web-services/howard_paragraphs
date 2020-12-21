@@ -141,3 +141,10 @@ function _hp_alumni_feed_get_profiles($env_url = 'https://profiles.howard.edu', 
 function hp_alumni_feed_update_8001() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_alumni_feed');
 }
+
+/**
+ * Updates to show/hide quote.
+ */
+function hp_alumni_feed_update_8002() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_alumni_feed');
+}
