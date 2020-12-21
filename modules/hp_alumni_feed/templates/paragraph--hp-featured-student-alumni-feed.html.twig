@@ -41,15 +41,24 @@
                   <hr>
                 </div>
               {% endif %}
-              <h3>{{ prsn.label}}</h3>
-              {% if prsn.classification == 'faculty' %}
-                {% if prsn.title %}<h4>{{ prsn.title }}</h4>{% endif %}
-                {% if prsn.affiliation %}<p>{{ prsn.affiliation }}</p>{% endif %}
-              {% else %}
-                <p>{% if prsn.title %}{{ prsn.title }}{% endif %}
-                {% if prsn.year_graduated %}, Class of {{ prsn.year_graduated }}{% endif %}
-                {% if prsn.degree_earned %}, {{ prsn.degree_earned }}{% endif %}</p>
+              <h3>{{ prsn.label }}</h3>
+              {% set person_meta = [] %}
+              {% if prsn.title %}
+                {% set person_meta = person_meta|merge([prsn.title]) %}
               {% endif %}
+              {% if prsn.classification == 'faculty' %}
+                {% if prsn.affiliation %}
+                  {% set person_meta = person_meta|merge([prsn.affiliation]) %}
+                {% endif %}
+              {% else %}
+                {% if prsn.year_graduated %}
+                  {% set person_meta = person_meta|merge(['Class of ' ~ prsn.year_graduated]) %}
+                {% endif %}
+                {% if prsn.degree_earned %}
+                  {% set person_meta = person_meta|merge([prsn.degree_earned]) %}
+                {% endif %}
+              {% endif %}
+              <p>{{ person_meta|join(', ') }}</p>
             </div>
             <div class="faculty-profile__btn">
               {% if content.field_hp_af_display_links_modal[0]['#markup'] == 'On' %}

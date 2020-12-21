@@ -36,18 +36,23 @@
               <div class="faculty-profile__img" style="background-image:url('https://profiles.howard.edu/sites/all/modules/idfive_profile_api/assets/images/avatar.jpg')"></div>
             {% endif %}
               <h3>{{ prsn.label }}</h3>
-              {% if prsn.classification == 'faculty' %}
-                <p>
-                  {% if prsn.title %}{{ prsn.title }}{% endif %}
-                  {% if prsn.affiliation %}, {{ prsn.affiliation }}{% endif %}
-                </p>
-              {% else %}
-                <p>
-                  {% if prsn.title %}{{ prsn.title }}{% endif %}
-                  {% if prsn.year_graduated %}, Class of {{ prsn.year_graduated }}{% endif %}
-                  {% if prsn.degree_earned %}, {{ prsn.degree_earned }}{% endif %}
-                </p>
+              {% set person_meta = [] %}
+              {% if prsn.title %}
+                {% set person_meta = person_meta|merge([prsn.title]) %}
               {% endif %}
+              {% if prsn.classification == 'faculty' %}
+                {% if prsn.affiliation %}
+                  {% set person_meta = person_meta|merge([prsn.affiliation]) %}
+                {% endif %}
+              {% else %}
+                {% if prsn.year_graduated %}
+                  {% set person_meta = person_meta|merge(['Class of ' ~ prsn.year_graduated]) %}
+                {% endif %}
+                {% if prsn.degree_earned %}
+                  {% set person_meta = person_meta|merge([prsn.degree_earned]) %}
+                {% endif %}
+              {% endif %}
+              <p>{{ person_meta|join(', ') }}</p>
             </div>
             <div class="faculty-profile__btn">
               {% if content.field_hp_af_display_links_modal[0]['#markup'] == 'On' %}
