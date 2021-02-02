@@ -11,7 +11,7 @@ field_name: field_hp_pgf_environment
 entity_type: paragraph
 bundle: hp_programs_feed
 label: Environment
-description: 'Choose which environment to pull Howard Programs from, normally, this should be "Production" unless you are testing programs on another environment.'
+description: 'Choose which environment to pull Howard Programs from, normally, this should be "Production" unless you are testing programs on another environment. Note that this is only for the programs themselves, all taxonomy terms, used as filters below, are pulled from production.'
 required: true
 translatable: false
 default_value:

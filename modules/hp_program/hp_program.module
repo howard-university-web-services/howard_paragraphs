@@ -51,12 +51,6 @@ function hp_program_preprocess_paragraph__hp_program(&$variables) {
   // Get related faculty.
   $variables['hp_pg_faculty'] = _hp_program_get_faculty($program, $uuid);
 
-  // Get video for preproccessing.
-  $video = NULL;
-  if (isset($variables['hp_pg_program']['featured_video']['type'])) {
-    $video = $variables['hp_pg_program']['featured_video'];
-  }
-  $variables['hp_pg_video'] = _hp_program_proccess_video($video, $uuid);
 }
 
 /**
@@ -74,38 +68,6 @@ function hp_program_theme($existing, $type, $theme, $path) {
 /**
  * CUSTOM FUNCTIONS.
  */
-
-/**
- * Proccesses vimeo and youtube video into an embed.
- */
-function _hp_program_proccess_video($video = NULL, $id = 'default') {
-  if ($cache = \Drupal::cache()->get('hp_program_video--' . $id)) {
-    return $cache->data;
-  }
-  else {
-    if (isset($video)) {
-
-      $type = $video['type'];
-      $id = $video['id'];
-
-      if ($type == 'video/vimeo') {
-        // Get vimeo ID.
-        $vimeoId = str_replace("vimeo://v/", "", $id);
-        $result = '<iframe id="iframe-' . $vimeoId . '" src="https://player.vimeo.com/video/' . $vimeoId . '?color=c9ff23&badge=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
-      }
-      elseif ($type == 'video/youtube') {
-        // Get YT ID.
-        $youtubeId = str_replace("youtube://v/", "", $id);
-        $result = '<iframe id="iframe-' . $youtubeId . '" src="https://www.youtube.com/embed/' . $youtubeId . '" width="560" height="315" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
-      }
-      \Drupal::cache()->set('hp_program_video--' . $id, $result, time() + 7200);
-      return $result;
-    }
-    else {
-      return NULL;
-    }
-  }
-}
 
 /**
  * Gets program from programs.howard.edu, and displays.
