@@ -82,6 +82,15 @@ function hp_programs_feed_preprocess_paragraph__hp_programs_feed(&$variables) {
   }
   $variables['hp_pgf_profession'] = $profession;
 
+  // Check on type filter.
+  $type = NULL;
+  if (isset($variables['elements']['#paragraph']->field_hp_pgf_type->value)) {
+    $type = $variables['elements']['#paragraph']->field_hp_pgf_type->value;
+    // Decode string workaround due to bug in core or external_data_source.
+    $type = str_replace('id=', '', $type);
+  }
+  $variables['hp_pgf_type'] = $type;
+
   // Degree Filter
   $show_degree_filter = 'false';
   if (isset($variables['elements']['#paragraph']->field_hp_pgf_show_degree_filter->value) && $variables['elements']['#paragraph']->field_hp_pgf_show_degree_filter->value == 1) {
@@ -110,6 +119,13 @@ function hp_programs_feed_preprocess_paragraph__hp_programs_feed(&$variables) {
   }
   $variables['hp_pgf_show_profession_filter'] = $show_profession_filter;
 
+  // Type Filter
+  $show_type_filter = 'false';
+  if (isset($variables['elements']['#paragraph']->field_hp_pgf_show_type_filter->value) && $variables['elements']['#paragraph']->field_hp_pgf_show_type_filter->value == 1) {
+    $show_type_filter = 'true';
+  }
+  $variables['hp_pgf_show_type_filter'] = $show_type_filter;
+
 }
 
 /**
@@ -125,7 +141,6 @@ function hp_programs_feed_theme($existing, $type, $theme, $path) {
   ];
 }
 
-
 // UPDATES
 
 /**
@@ -139,5 +154,12 @@ function hp_programs_feed_update_8001() {
  * Updates to allow related professions.
  */
 function hp_programs_feed_update_8002() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_programs_feed');
+}
+
+/**
+ * Updates to allow new type filter, new d8 endpoints.
+ */
+function hp_programs_feed_update_8003() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_programs_feed');
 }

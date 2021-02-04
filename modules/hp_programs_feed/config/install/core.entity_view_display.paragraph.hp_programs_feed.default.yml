@@ -10,17 +10,19 @@ dependencies:
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_show_prof_filter
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_show_school_filter
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_show_subject_filter
+    - field.field.paragraph.hp_programs_feed.field_hp_pgf_show_type_filter
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_subject
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_subtitle
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_text
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_title
+    - field.field.paragraph.hp_programs_feed.field_hp_pgf_type
     - paragraphs.paragraphs_type.hp_programs_feed
   module:
     - external_data_source
     - options
     - text
 _core:
-  default_config_hash: Y4Q11ZBo67Y0tnwEjjlnFrmrRuZHf7yTw8uSVwBZ-q0
+  default_config_hash: dGV3TikKBloDGlT0cVpVyteA45gWlOd1Qi1Cj8Ite5w
 id: paragraph.hp_programs_feed.default
 targetEntityType: paragraph
 bundle: hp_programs_feed
@@ -42,7 +44,7 @@ content:
     region: content
   field_hp_pgf_profession:
     weight: 10
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: external_data_source_formatter
@@ -56,7 +58,7 @@ content:
     region: content
   field_hp_pgf_show_degree_filter:
     weight: 7
-    label: above
+    label: hidden
     settings:
       format: default
       format_custom_false: ''
@@ -66,7 +68,7 @@ content:
     region: content
   field_hp_pgf_show_prof_filter:
     weight: 11
-    label: above
+    label: hidden
     settings:
       format: default
       format_custom_false: ''
@@ -76,7 +78,7 @@ content:
     region: content
   field_hp_pgf_show_school_filter:
     weight: 8
-    label: above
+    label: hidden
     settings:
       format: default
       format_custom_false: ''
@@ -86,7 +88,17 @@ content:
     region: content
   field_hp_pgf_show_subject_filter:
     weight: 9
-    label: above
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_hp_pgf_show_type_filter:
+    weight: 12
+    label: hidden
     settings:
       format: default
       format_custom_false: ''
@@ -123,5 +135,12 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_hp_pgf_type:
+    weight: 13
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: external_data_source_formatter
     region: content
 hidden: {  }

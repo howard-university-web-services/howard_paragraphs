@@ -10,10 +10,12 @@ dependencies:
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_show_prof_filter
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_show_school_filter
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_show_subject_filter
+    - field.field.paragraph.hp_programs_feed.field_hp_pgf_show_type_filter
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_subject
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_subtitle
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_text
     - field.field.paragraph.hp_programs_feed.field_hp_pgf_title
+    - field.field.paragraph.hp_programs_feed.field_hp_pgf_type
     - paragraphs.paragraphs_type.hp_programs_feed
   module:
     - external_data_source
@@ -27,18 +29,36 @@ third_party_settings:
         - field_hp_pgf_show_school_filter
         - field_hp_pgf_show_subject_filter
         - field_hp_pgf_show_prof_filter
+        - field_hp_pgf_show_type_filter
       parent_name: ''
-      weight: 8
+      weight: 10
+      format_type: fieldset
+      region: content
+      format_settings:
+        description: 'By choosing terms here, you can add expose these terms to the end-user in order for them to filter results on the fly.'
+        required_fields: true
+        id: ''
+        classes: ''
+      label: 'Expose Filters to site vistors'
+    group_prefilter_results:
+      children:
+        - field_hp_pgf_degree_classificati
+        - field_hp_pgf_school
+        - field_hp_pgf_subject
+        - field_hp_pgf_profession
+        - field_hp_pgf_type
+      parent_name: ''
+      weight: 9
       format_type: fieldset
       region: content
       format_settings:
         id: ''
         classes: ''
-        description: ''
+        description: 'By choosing terms here, you can prefilter results by terms available on programs.howard.edu.'
         required_fields: true
-      label: Filters
+      label: 'Prefilter Results'
 _core:
-  default_config_hash: Ly0PAMthRHwOwU6WWaEvGlZpyc18wrUMkTiCvp5Acng
+  default_config_hash: I7T6g4P7wmMJPmdGxzbMO7hMb8P1oS-I0u3Xuc6C-5c
 id: paragraph.hp_programs_feed.default
 targetEntityType: paragraph
 bundle: hp_programs_feed
@@ -102,6 +122,13 @@ content:
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
+  field_hp_pgf_show_type_filter:
+    weight: 12
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
   field_hp_pgf_subject:
     weight: 6
     settings:
@@ -133,6 +160,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_hp_pgf_type:
+    weight: 8
+    settings:
+      size: 1
+      placeholder: ''
+    third_party_settings: {  }
+    type: external_data_source_select_widget
     region: content
 hidden:
   created: true
