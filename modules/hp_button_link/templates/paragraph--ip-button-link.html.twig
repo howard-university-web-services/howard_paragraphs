@@ -7,7 +7,14 @@
  */
 #}
 
-<section aria-label="Button or Link">
+{%
+  set classes = [
+    "hp_button_link",
+    "hp_button_link--" ~ ip_bl_type
+  ]
+%}
+
+<section {{ attributes.addClass(classes) }} aria-label="Button or Link">
   {% if hp_show_wrapper %}
     <div class="compartment">
   {% endif %}
