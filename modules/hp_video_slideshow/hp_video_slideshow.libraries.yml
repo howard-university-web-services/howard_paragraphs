@@ -1,0 +1,12 @@
+styling:
+  version: VERSION
+  css:
+    theme:
+      'build/css/styles.css': {}
+  js:
+    '//code.jquery.com/jquery-3.3.1.min.js': { type: external, minified: true }
+    '//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js': { type: external, minified: true }
+    '//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js': { type: external, minified: true }
+    '//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js': { type: external, minified: true }
+    '//malsup.github.com/jquery.cycle.all.js': { type: external }
+    'build/js/scripts.js': {}

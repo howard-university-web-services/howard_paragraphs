@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * HP Video Slide Show paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<section class="section--padded-top section--padded-bottom" aria-label="Video Slide Show">
+  {% if hp_show_wrapper %}
+    <div class="compartment">
+  {% endif %}
+
+    {% if content.field_hp_vs_title[0] %}
+      <div class="block-header">
+          <div class="block-header__title">
+              <span class="block-header__icon icon-picture"></span>
+              <h2>{{ content.field_hp_vs_title }}</h2>
+          </div>
+      </div>
+    {% endif %}
+
+    <div class="slideshow--wrapper">
+      <div class="slideshow">
+        {{ content.field_hp_vs_video_slides }}
+      </div>
+    </div>
+	<div id="slideshow-nav"></div>
+
+    <!-- Render without, so quickedit/etc works -->
+    {{ content|without('field_hp_vs_video_slides', 'field_hp_vs_title') }}
+
+  {% if hp_show_wrapper %}
+    </div>
+  {% endif %}
+</section>

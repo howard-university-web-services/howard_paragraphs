@@ -1,0 +1,23 @@
+uuid: 5e1f2987-9424-4c1a-9c03-76af33309fb8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_vs_video_url
+    - paragraphs.paragraphs_type.hp_video_slide
+  module:
+    - link
+id: paragraph.hp_video_slide.field_hp_vs_video_url
+field_name: field_hp_vs_video_url
+entity_type: paragraph
+bundle: hp_video_slide
+label: 'Video URL'
+description: 'Vimeo video URL to render for this slide.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 16
+  title: 0
+field_type: link

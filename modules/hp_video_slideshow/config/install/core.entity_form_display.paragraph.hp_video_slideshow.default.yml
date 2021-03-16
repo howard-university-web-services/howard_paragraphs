@@ -1,0 +1,38 @@
+uuid: 845eae3b-1148-480d-abad-0c0b927c90c7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_video_slideshow.field_hp_vs_title
+    - field.field.paragraph.hp_video_slideshow.field_hp_vs_video_slides
+    - paragraphs.paragraphs_type.hp_video_slideshow
+  module:
+    - paragraphs
+id: paragraph.hp_video_slideshow.default
+targetEntityType: paragraph
+bundle: hp_video_slideshow
+mode: default
+content:
+  field_hp_vs_title:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_hp_vs_video_slides:
+    type: entity_reference_paragraphs
+    weight: 3
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  status: true

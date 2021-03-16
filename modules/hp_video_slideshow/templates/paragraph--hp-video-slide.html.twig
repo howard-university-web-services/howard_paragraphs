@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * HP Video Slide Show Slide paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<div class="video-container">
+    <video muted>
+        <source src="{{ hp_vs_video_url }}" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    {% if content.field_hp_vs_caption[0] %}
+        <div class="video-text">
+            {{ content.field_hp_vs_caption }}
+        </div>
+    {% endif %}
+</div>

@@ -56,6 +56,7 @@ The following submodules are available:
 - Testimonial: Paragraphs integration of testimonials for use in Howard projects
 - Timeline: Paragraphs integration of a timeline for use in Howard projects
 - Twitter Feed: Paragraphs integration of a twitter Feed for Howard projects
+- Video Slide Show: Provides a paragraphs bundle for rendering a video slide show as a Kitchen Sink widget in Howard projects.
 - Views Embed: Paragraphs integration of viewfield module for use in Howard projects
 - Webform Embed: Paragraphs integration of webform module for use in Howard projects
 - WYSIWYG Text Filter UL: Provides a filter to add ICL markup to UL's embedded in a WYSIWYG.

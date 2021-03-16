@@ -1,0 +1,19 @@
+uuid: 48e70ee0-de81-4b22-97ba-1499b744eb38
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - paragraphs
+id: paragraph.field_hp_vs_video_url
+field_name: field_hp_vs_video_url
+entity_type: paragraph
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

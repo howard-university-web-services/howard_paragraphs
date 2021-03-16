@@ -1,0 +1,10 @@
+uuid: e41a8001-2b1d-4ad6-a66f-413459d19a10
+langcode: en
+status: true
+dependencies: {  }
+id: hp_video_slide
+label: 'HP Video Slide'
+icon_uuid: null
+icon_default: null
+description: 'A slide instance for a HP video slide show.'
+behavior_plugins: {  }
