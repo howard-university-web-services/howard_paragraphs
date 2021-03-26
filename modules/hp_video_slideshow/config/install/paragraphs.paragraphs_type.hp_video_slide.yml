@@ -1,6 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
+_core:
+  default_config_hash: MBcv2H6g728SVxU1fAxjV3ML7Ni3BkNYiFYt36arxjw
 id: hp_video_slide
 label: 'HP Video Slide'
 icon_uuid: null

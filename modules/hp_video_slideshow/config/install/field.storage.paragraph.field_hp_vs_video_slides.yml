@@ -4,6 +4,8 @@ dependencies:
   module:
     - entity_reference_revisions
     - paragraphs
+_core:
+  default_config_hash: dHLWI3mMfuw3TNpWSiR555OcP6lK1sYm1hLcFAWp7GA
 id: paragraph.field_hp_vs_video_slides
 field_name: field_hp_vs_video_slides
 entity_type: paragraph

@@ -3,10 +3,10 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.hp_video_slide.field_hp_vs_caption
-    - field.field.paragraph.hp_video_slide.field_hp_vs_video_url
+    - field.field.paragraph.hp_video_slide.field_hp_vs_video_id
     - paragraphs.paragraphs_type.hp_video_slide
-  module:
-    - link
+_core:
+  default_config_hash: TQe4fGVl0sn3TyvC2XnQwvId_OxOfAc0KLsZNIQyOak
 id: paragraph.hp_video_slide.default
 targetEntityType: paragraph
 bundle: hp_video_slide
@@ -20,13 +20,12 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_hp_vs_video_url:
-    weight: 0
+  field_hp_vs_video_id:
+    weight: 2
     settings:
-      placeholder_url: ''
-      placeholder_title: ''
+      placeholder: ''
     third_party_settings: {  }
-    type: link_default
+    type: number
     region: content
 hidden:
   created: true

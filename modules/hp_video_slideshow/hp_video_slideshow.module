@@ -64,9 +64,9 @@ function hp_video_slideshow_preprocess_paragraph__hp_video_slide(&$variables)
 {
     // Get video URL.
     $paragraph = $variables['elements']['#paragraph'];
-    if ($paragraph->hasField('field_hp_vs_video_url'))
+    if ($paragraph->hasField('field_hp_vs_video_id'))
     {
-        $variables['hp_vs_video_url'] = $paragraph->get('field_hp_vs_video_url')->first()->getUrl();
+        $variables['hp_vs_video_id'] = $paragraph->get('field_hp_vs_video_id')->first()->value;
     }
 }
 
@@ -79,6 +79,7 @@ function hp_video_slideshow_theme($existing, $type, $theme, $path)
     $result = [
         'paragraph__hp_video_slideshow' => [ 'base hook' => 'paragraph' ],
         'paragraph__hp_video_slide' => [ 'base hook' => 'paragraph' ],
+        'field__paragraph__field_hp_vs_caption' => [ 'base hook' => 'paragraph' ],
     ];
 
     return $result;

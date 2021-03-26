@@ -9,6 +9,8 @@ dependencies:
   module:
     - entity_reference_revisions
     - image
+_core:
+  default_config_hash: sNpFI00qibUP7YaWy_4-A9R7IIyhtck4YpSh6HmrelE
 id: paragraph.hp_video_slideshow.default
 targetEntityType: paragraph
 bundle: hp_video_slideshow

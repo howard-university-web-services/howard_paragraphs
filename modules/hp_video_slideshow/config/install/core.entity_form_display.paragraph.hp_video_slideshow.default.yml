@@ -10,6 +10,8 @@ dependencies:
   module:
     - image
     - paragraphs
+_core:
+  default_config_hash: LX4FEKfVCvTZzMALFdy0lMA5tbX-jPJYWsRqJNOBhaY
 id: paragraph.hp_video_slideshow.default
 targetEntityType: paragraph
 bundle: hp_video_slideshow
@@ -37,10 +39,10 @@ content:
     settings:
       title: Paragraph
       title_plural: Paragraphs
-      edit_mode: open
+      edit_mode: preview
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: ''
+      default_paragraph_type: hp_video_slide
     third_party_settings: {  }
     region: content
 hidden:

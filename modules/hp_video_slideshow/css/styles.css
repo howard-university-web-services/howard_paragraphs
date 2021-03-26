@@ -15,6 +15,12 @@
     bottom: 0;
     right: 0;
 
+    /* Expand and center fallback image */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+
     /* In case the image fails to load */
     background-color:rgba(0,58,99,1);
 
@@ -61,12 +67,7 @@
     height: 100%;
     overflow: hidden;
     visibility:hidden;
-
-    /* Expand and center fallback image */
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-attachment: fixed;
+	background-color:rgba(0,58,99,1);
 }
 
 .hp_video_slideshow--video-container iframe
@@ -84,17 +85,19 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+
+    /* Hide until the video loads */
+    display:none;
 }
 
 .hp_video_slideshow--video-container .hp_video_slideshow--video-text
 {
     position: absolute;
     bottom: 10%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    color:rgba(255,255,255,1);
-    z-index:99;
-    font-family: segoe ui light;
-    font-size:220px;
-    max-width:50%;
+    width:100%;
+    text-align:center;
+    z-index:2000;
+    font-size:100px;
+    color:#ffffff;
+    display:none;
 }

@@ -6,6 +6,8 @@ dependencies:
     - paragraphs.paragraphs_type.hp_video_slideshow
   module:
     - image
+_core:
+  default_config_hash: J2CkS3SQR3rFtALBRyih_EnouchTWx9dVhyGrzl4zwA
 id: paragraph.hp_video_slideshow.field_hp_vs_fallback_img
 field_name: field_hp_vs_fallback_img
 entity_type: paragraph

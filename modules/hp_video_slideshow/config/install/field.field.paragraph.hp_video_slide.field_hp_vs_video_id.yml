@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_vs_video_id
+    - paragraphs.paragraphs_type.hp_video_slide
+id: paragraph.hp_video_slide.field_hp_vs_video_id
+field_name: field_hp_vs_video_id
+entity_type: paragraph
+bundle: hp_video_slide
+label: 'Vimeo Video Id'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer
