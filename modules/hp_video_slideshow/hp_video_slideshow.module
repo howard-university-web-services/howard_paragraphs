@@ -12,23 +12,29 @@ use Drupal\Core\Routing\RouteMatchInterface;
  *
  * @inheritdoc
  */
-function hp_video_slideshow_help($route_name, RouteMatchInterface $route_match) {
-  switch ($route_name) {
-    case 'help.page.hp_video_slideshow':
-      $text = file_get_contents(dirname(__FILE__) . "/README.md");
-      if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
-        return '<pre>' . $text . '</pre>';
-      }
-      else {
-        // Use the Markdown filter to render the README.
-        $filter_manager = \Drupal::service('plugin.manager.filter');
-        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
-        $config = ['settings' => $settings];
-        $filter = $filter_manager->createInstance('markdown', $config);
-        return $filter->process($text, 'en');
-      }
-  }
-  return NULL;
+function hp_video_slideshow_help($route_name, RouteMatchInterface $route_match)
+{
+    switch ($route_name)
+    {
+        case 'help.page.hp_video_slideshow':
+            $text = file_get_contents(dirname(__FILE__) . "/README.md");
+            if (!\Drupal::moduleHandler()->moduleExists('markdown'))
+            {
+                return '<pre>' . $text . '</pre>';
+            }
+            else
+            {
+                // Use the Markdown filter to render the README.
+                $filter_manager = \Drupal::service('plugin.manager.filter');
+                $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+                $config = ['settings' => $settings];
+                $filter = $filter_manager->createInstance('markdown', $config);
+
+                return $filter->process($text, 'en');
+            }
+    }
+
+    return NULL;
 }
 
 /**
@@ -36,33 +42,44 @@ function hp_video_slideshow_help($route_name, RouteMatchInterface $route_match) 
  *
  * @param $variables
  */
-function hp_video_slideshow_preprocess_paragraph__hp_video_slide(&$variables) {
-  $paragraph = $variables['elements']['#paragraph'];
+function hp_video_slideshow_preprocess_paragraph__hp_video_slideshow(&$variables)
+{
+    // Add paragraph resources.
+    $variables['#attached']['library'][] = 'hp_video_slideshow/resources';
 
-  // Get video URL.
-  if ($paragraph->hasField('field_hp_vs_video_url')) {
-    $variables['hp_vs_video_url'] = $paragraph->get('field_hp_vs_video_url')->first()->getUrl();
-  }
+    // Get fallback image URL.
+    $paragraph = $variables['elements']['#paragraph'];
+    if ($paragraph->hasField('field_hp_vs_fallback_img'))
+    {
+        $variables['hp_vs_fallback_img_url'] = $paragraph->get('field_hp_vs_fallback_img')->first()->entity->url();
+    }
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ *
+ * @param $variables
+ */
+function hp_video_slideshow_preprocess_paragraph__hp_video_slide(&$variables)
+{
+    // Get video URL.
+    $paragraph = $variables['elements']['#paragraph'];
+    if ($paragraph->hasField('field_hp_vs_video_url'))
+    {
+        $variables['hp_vs_video_url'] = $paragraph->get('field_hp_vs_video_url')->first()->getUrl();
+    }
 }
 
 /**
  * Implements hook_theme().
  * Lets us define our paragraphs templates in this module.
  */
-function hp_video_slideshow_theme($existing, $type, $theme, $path) {
-  return [
-    'paragraph__hp_video_slideshow' => [
-      'base hook' => 'paragraph',
-    ],
-    'paragraph__hp_video_slide' => [
-      'base hook' => 'paragraph',
-    ],
-  ];
-}
+function hp_video_slideshow_theme($existing, $type, $theme, $path)
+{
+    $result = [
+        'paragraph__hp_video_slideshow' => [ 'base hook' => 'paragraph' ],
+        'paragraph__hp_video_slide' => [ 'base hook' => 'paragraph' ],
+    ];
 
-/**
- * Updates to allow optional link title.
- */
-function hp_video_slideshow_update_8001() {
-  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_video_slideshow');
+    return $result;
 }

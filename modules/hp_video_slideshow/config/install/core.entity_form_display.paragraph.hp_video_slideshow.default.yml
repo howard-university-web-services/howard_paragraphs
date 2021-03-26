@@ -1,18 +1,28 @@
-uuid: 845eae3b-1148-480d-abad-0c0b927c90c7
 langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.hp_video_slideshow.field_hp_vs_fallback_img
     - field.field.paragraph.hp_video_slideshow.field_hp_vs_title
     - field.field.paragraph.hp_video_slideshow.field_hp_vs_video_slides
+    - image.style.thumbnail
     - paragraphs.paragraphs_type.hp_video_slideshow
   module:
+    - image
     - paragraphs
 id: paragraph.hp_video_slideshow.default
 targetEntityType: paragraph
 bundle: hp_video_slideshow
 mode: default
 content:
+  field_hp_vs_fallback_img:
+    weight: 4
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
   field_hp_vs_title:
     weight: 2
     settings:

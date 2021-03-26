@@ -7,13 +7,10 @@
  */
 #}
 
-<div class="video-container">
-    <video muted>
-        <source src="{{ hp_vs_video_url }}" type="video/mp4">
-        Your browser does not support HTML5 video.
-    </video>
+<div class="hp_video_slideshow--video-container">
+    <iframe src="{{ hp_vs_video_url }}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
     {% if content.field_hp_vs_caption[0] %}
-        <div class="video-text">
+        <div class="hp_video_slideshow--video-text">
             {{ content.field_hp_vs_caption }}
         </div>
     {% endif %}

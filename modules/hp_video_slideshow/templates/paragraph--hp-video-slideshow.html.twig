@@ -8,10 +8,7 @@
 #}
 
 <section class="section--padded-top section--padded-bottom" aria-label="Video Slide Show">
-  {% if hp_show_wrapper %}
-    <div class="compartment">
-  {% endif %}
-
+    {# /*Standard Title Rending*/ #}
     {% if content.field_hp_vs_title[0] %}
       <div class="block-header">
           <div class="block-header__title">
@@ -21,17 +18,11 @@
       </div>
     {% endif %}
 
-    <div class="slideshow--wrapper">
-      <div class="slideshow">
+    {# /*Render Video Container and Navigation*/ #}
+    <div class="hp_video_slideshow--slideshow-wrapper">
+      <div class="hp_video_slideshow--slideshow" style="background-image: url('{{ hp_vs_fallback_img_url }}')">
         {{ content.field_hp_vs_video_slides }}
       </div>
+      <div class="hp_video_slideshow--slideshow-nav"></div>
     </div>
-	<div id="slideshow-nav"></div>
-
-    <!-- Render without, so quickedit/etc works -->
-    {{ content|without('field_hp_vs_video_slides', 'field_hp_vs_title') }}
-
-  {% if hp_show_wrapper %}
-    </div>
-  {% endif %}
 </section>
