@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.field.paragraph.hp_video_slideshow.field_hp_vs_fallback_img
     - field.field.paragraph.hp_video_slideshow.field_hp_vs_title
+    - field.field.paragraph.hp_video_slideshow.field_hp_vs_use_padding
     - field.field.paragraph.hp_video_slideshow.field_hp_vs_video_slides
     - paragraphs.paragraphs_type.hp_video_slideshow
   module:
@@ -32,6 +33,16 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_hp_vs_use_padding:
+    weight: 5
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
     region: content
   field_hp_vs_video_slides:
     type: entity_reference_revisions_entity_view

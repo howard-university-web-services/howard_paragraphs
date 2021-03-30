@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_vs_use_padding
+    - paragraphs.paragraphs_type.hp_video_slideshow
+id: paragraph.hp_video_slideshow.field_hp_vs_use_padding
+field_name: field_hp_vs_use_padding
+entity_type: paragraph
+bundle: hp_video_slideshow
+label: 'Use Padding'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
