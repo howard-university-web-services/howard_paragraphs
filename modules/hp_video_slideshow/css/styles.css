@@ -3,7 +3,7 @@
     /* 16:9 aspect ratio, default for Vimeo videos */
     position: relative;
     width: 100%;
-    padding-top: 56.25%;
+    padding-top: min(calc(100vh - 115px), 56.25%);
     overflow: hidden;
 }
 
@@ -69,6 +69,7 @@
     height: 100%;
     visibility:hidden;
     background-color:rgba(0,58,99,1);
+    background-image: linear-gradient(#002A47, rgba(0,58,99,1));
 }
 
 .hp_video_slideshow--video-container iframe
@@ -98,43 +99,11 @@
     width:100%;
     text-align:center;
     z-index:2000;
-    font-size:400%;
+    font-size:550%;
     color:#ffffff;
     display:none;
 
     /* From Howard theme */
     font-family: Eau, "Open Sans", sans-serif;
     text-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
-}
-
-@media only screen and (min-width: 1400px)
-{
-    .hp_video_slideshow--slideshow-wrapper
-    {
-        padding-top: min(700px, 56.25%);
-    }
-}
-
-@media only screen and (min-width: 1600px)
-{
-    .hp_video_slideshow--slideshow-wrapper
-    {
-        padding-top: min(825px, 56.25%);
-    }
-}
-
-@media only screen and (min-width: 1800px)
-{
-    .hp_video_slideshow--slideshow-wrapper
-    {
-        padding-top: min(950px, 56.25%);
-    }
-}
-
-@media only screen and (min-width: 2000px)
-{
-    .hp_video_slideshow--slideshow-wrapper
-    {
-        padding-top: min(1100px, 56.25%);
-    }
 }
