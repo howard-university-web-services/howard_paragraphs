@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_af_article_type_filter
+    - paragraphs.paragraphs_type.hp_articles
+  module:
+    - options
+id: paragraph.hp_articles.field_hp_af_article_type_filter
+field_name: field_hp_af_article_type_filter
+entity_type: paragraph
+bundle: hp_articles
+label: 'Article Type Filter'
+description: 'You may optionally choose to display internal or external articles only.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,22 +1,41 @@
 {#
 /**
- * @file
- * Theme override for feed of articles.
- *
- * @see template_preprocess_views_view_fields()
- */
+* @file
+* Theme override for feed of articles.
+*
+* @see template_preprocess_views_view_fields()
+*/
 #}
 
 <div class="silc-grid__col silc-grid__col--4-medium">
-    <a href="{{ path('entity.node.canonical', {'node': fields.nid.content|render|striptags|trim}) }}" class="news-and-events__block">
-        <div class="news-and-events__img" style="background-image:url('{{ fields.field_media_image.content|render|striptags|trim }}')"></div>
-        <div class="news-and-events__desc">
-            <span class="news-and-events__date">{{ fields.created.content }}</span>
-            <h3 class="news-and-events__title header--h3-small">{{ fields.title.content }}</h3>
-            <p class="body-text--small">{{ fields.body.content }}</p>
-            <p class="body-text--small">
-                <strong>Category:</strong>
-                {{ fields.field_hc_article_category.content }}</p>
-        </div>
-    </a>
+    {% if fields.field_hc_article_type.content == 'External Article' %}
+        <a href="{{ fields.field_hc_article_link.content }}" class="news-and-events__block" target="_blank">
+            <div class="news-and-events__desc">
+                <span class="news-and-events__date">{{ fields.field_hc_article_dateline.content }}</span>
+                <h3 class="news-and-events__title header--h3-small">{{ fields.title.content }}</h3>
+                <p class="body-text--small">{{ fields.field_hc_article_source.content }}</p>
+                {% if fields.field_hc_article_category.content %}
+                    <p class="body-text--small">
+                        <strong>Category:</strong>
+                        {{ fields.field_hc_article_category.content }}
+                    </p>
+                {% endif %}
+            </div>
+        </a>
+    {% else %}
+        <a href="{{ path('entity.node.canonical', {'node': fields.nid.content|render|striptags|trim}) }}" class="news-and-events__block">
+            <div class="news-and-events__img" style="background-image:url('{{ fields.field_media_image.content|render|striptags|trim }}')"></div>
+            <div class="news-and-events__desc">
+                <span class="news-and-events__date">{{ fields.created.content }}</span>
+                <h3 class="news-and-events__title header--h3-small">{{ fields.title.content }}</h3>
+                <p class="body-text--small">{{ fields.body.content }}</p>
+                {% if fields.field_hc_article_category.content %}
+                    <p class="body-text--small">
+                        <strong>Category:</strong>
+                        {{ fields.field_hc_article_category.content }}
+                    </p>
+                {% endif %}
+            </div>
+        </a>
+    {% endif %}
 </div>

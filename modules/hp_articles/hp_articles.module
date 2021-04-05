@@ -55,10 +55,15 @@ function hp_articles_theme($existing, $type, $theme, $path)
  * Implements hook_preprocess_paragraph().
  *  This sets classes needed for the button/link type.
  */
-function hp_articles_preprocess_paragraph__hp_articles(&$variables)
-{
+function hp_articles_preprocess_paragraph__hp_articles(&$variables) {
 
-  // Get Taxonomy, if present.
+  // Get Article Type, if present.
+  $type = NULL;
+  if ($variables['elements']['#paragraph']->field_hp_af_article_type_filter->value) {
+    $type = $variables['elements']['#paragraph']->field_hp_af_article_type_filter->value;
+  }
+
+  // Get Category Taxonomy, if present.
   $filter = NULL;
   if ($variables['elements']['#paragraph']->field_hp_af_article_category_fil->target_id) {
     $filter = $variables['elements']['#paragraph']->field_hp_af_article_category_fil->target_id;
@@ -69,7 +74,7 @@ function hp_articles_preprocess_paragraph__hp_articles(&$variables)
     $article_count = $variables['elements']['#paragraph']->field_hp_af_article_count->value;
   }
 
-  $variables['hp_articles_feed'] = views_embed_view('hp_articles_ks_feed', 'hp_articles_block', $filter, $article_count);
+  $variables['hp_articles_feed'] = views_embed_view('hp_articles_ks_feed', 'hp_articles_block', $type, $filter, $article_count);
 }
 
 /**
@@ -101,6 +106,15 @@ function hp_articles_update_8002()
  * Updates to allow title of block.
  */
 function hp_articles_update_8003()
+{
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_articles');
+}
+
+/**
+ * Implements hook update()
+ * Updates to allow choice of internal or external article type.
+ */
+function hp_articles_update_8004()
 {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_articles');
 }

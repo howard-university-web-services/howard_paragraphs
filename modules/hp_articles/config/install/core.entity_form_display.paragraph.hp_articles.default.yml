@@ -5,22 +5,23 @@ dependencies:
     - field.field.paragraph.hp_articles.field_hp_af_article_category_fil
     - field.field.paragraph.hp_articles.field_hp_af_article_count
     - field.field.paragraph.hp_articles.field_hp_af_article_title
+    - field.field.paragraph.hp_articles.field_hp_af_article_type_filter
     - paragraphs.paragraphs_type.hp_articles
 _core:
-  default_config_hash: WUC1VWl61CXradM_DflqzLSvLegIO3skUGGXIqS2vao
+  default_config_hash: EY6bQNMn5d9ys7PRFRBbQd6JH2G6EgWl0Vq4H2-t5kg
 id: paragraph.hp_articles.default
 targetEntityType: paragraph
 bundle: hp_articles
 mode: default
 content:
   field_hp_af_article_category_fil:
-    weight: 1
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_hp_af_article_count:
-    weight: 2
+    weight: 3
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -33,6 +34,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_hp_af_article_type_filter:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
 hidden:
   created: true

@@ -5,9 +5,12 @@ dependencies:
     - field.field.paragraph.hp_articles.field_hp_af_article_category_fil
     - field.field.paragraph.hp_articles.field_hp_af_article_count
     - field.field.paragraph.hp_articles.field_hp_af_article_title
+    - field.field.paragraph.hp_articles.field_hp_af_article_type_filter
     - paragraphs.paragraphs_type.hp_articles
+  module:
+    - options
 _core:
-  default_config_hash: o6ZVN_Su1jEu_UTa1_ngPlFsbio786qCuM7dZLBPJL4
+  default_config_hash: KcdVkZftnOqrSLLEt-6_pLZeGWUzzHQ2RM2Rfy1jdpc
 id: paragraph.hp_articles.default
 targetEntityType: paragraph
 bundle: hp_articles
@@ -37,5 +40,12 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_hp_af_article_type_filter:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
     region: content
 hidden: {  }
