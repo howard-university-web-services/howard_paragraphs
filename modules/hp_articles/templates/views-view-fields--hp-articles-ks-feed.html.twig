@@ -13,10 +13,15 @@
             <div class="news-and-events__desc">
                 <span class="news-and-events__date">{{ fields.field_hc_article_dateline.content }}</span>
                 <h3 class="news-and-events__title header--h3-small">{{ fields.title.content }}</h3>
-                <p class="body-text--small">{{ fields.field_hc_article_source.content }}</p>
+                {% if fields.field_hc_article_source.content %}
+                    <p class="body-text--small">
+                        <strong>Source: </strong>
+                        {{ fields.field_hc_article_source.content }}
+                    </p>
+                {% endif %}
                 {% if fields.field_hc_article_category.content %}
                     <p class="body-text--small">
-                        <strong>Category:</strong>
+                        <strong>Category: </strong>
                         {{ fields.field_hc_article_category.content }}
                     </p>
                 {% endif %}
