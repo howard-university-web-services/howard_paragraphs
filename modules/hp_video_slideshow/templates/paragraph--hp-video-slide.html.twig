@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * HP Video Slide Show Slide paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<div class="hp_video_slideshow--video-container">
+    <iframe src="//player.vimeo.com/video/{{ hp_vs_video_id }}?controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
+    {% if content.field_hp_vs_caption[0] %}
+        {{ content.field_hp_vs_caption }}
+    {% endif %}
+</div>

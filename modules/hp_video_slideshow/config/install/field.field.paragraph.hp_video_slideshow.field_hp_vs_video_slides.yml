@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_vs_video_slides
+    - paragraphs.paragraphs_type.hp_video_slide
+    - paragraphs.paragraphs_type.hp_video_slideshow
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: IUyk18rU2kYZMdvYqVerSDXD2WDfJSc6gPih77WE4Rg
+id: paragraph.hp_video_slideshow.field_hp_vs_video_slides
+field_name: field_hp_vs_video_slides
+entity_type: paragraph
+bundle: hp_video_slideshow
+label: 'Video Slides'
+description: 'A collection of video slides.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      hp_video_slide: hp_video_slide
+    target_bundles_drag_drop:
+      hp_video_slide:
+        enabled: true
+        weight: 3
+      hp_video_slideshow:
+        weight: 4
+        enabled: false
+field_type: entity_reference_revisions

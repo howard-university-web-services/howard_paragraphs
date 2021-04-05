@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * HP Video Slide Show paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<section class="{% if content.field_hp_vs_use_padding[0].value %}section--padded-top section--padded-bottom{% endif %}" aria-label="Video Slide Show">
+    {# /*Standard Title Rending*/ #}
+    {% if content.field_hp_vs_title[0] %}
+      <div class="block-header">
+          <div class="block-header__title">
+              <span class="block-header__icon icon-picture"></span>
+              <h2>{{ content.field_hp_vs_title }}</h2>
+          </div>
+      </div>
+    {% endif %}
+
+    {# /*Render Video Container and Navigation*/ #}
+    <div class="hp_video_slideshow--slideshow-wrapper">
+      <div class="hp_video_slideshow--slideshow" style="background-image: url('{{ hp_vs_fallback_img_url }}')">
+        {{ content.field_hp_vs_video_slides }}
+      </div>
+      <div class="hp_video_slideshow--slideshow-nav"></div>
+    </div>
+</section>

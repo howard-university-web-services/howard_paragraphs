@@ -1,0 +1,109 @@
+.hp_video_slideshow--slideshow-wrapper
+{
+    /* 16:9 aspect ratio, default for Vimeo videos */
+    position: relative;
+    width: 100%;
+    padding-top: min(calc(100vh - 115px), 56.25%);
+    overflow: hidden;
+}
+
+.hp_video_slideshow--slideshow
+{
+    /* Fill wrapper/container */
+    position:  absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    /* Expand and center fallback image */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+
+    /* In case the image fails to load */
+    background-color:rgba(0,58,99,1);
+
+    /* Shadow for effect (optional) */
+    -webkit-box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.5);
+}
+
+.hp_video_slideshow--slideshow-nav
+{
+    width: 100%;
+    background-color:#002A47;
+    text-align:center;
+    position:absolute;
+    bottom:-1px;
+    left:0;
+    z-index:99;
+}
+
+.hp_video_slideshow--slideshow-nav a
+{
+    background-color:#ffffff;
+    display:inline-block;
+    height:12px;
+    width:12px;
+    border-radius:6px;
+    margin:10px 15px;
+    font-size: 0;
+    vertical-align: middle;
+}
+
+.hp_video_slideshow--slideshow-nav a.activeSlide,
+.hp_video_slideshow--slideshow-nav a:hover
+{
+    background-color:#e51937;
+}
+
+.hp_video_slideshow--video-container
+{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    visibility:hidden;
+    background-color:rgba(0,58,99,1);
+    background-image: linear-gradient(#002A47, rgba(0,58,99,1));
+}
+
+.hp_video_slideshow--video-container iframe
+{
+    /* Make video to at least 100% wide and tall */
+    min-width: 100%;
+    min-height: 100%;
+
+    /* Setting width & height to auto prevents the browser from stretching or squishing the video */
+    width: auto;
+    height: auto;
+
+    /* Center the video */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    /* Hide until the video loads */
+    display:none;
+}
+
+.hp_video_slideshow--video-container .hp_video_slideshow--video-text
+{
+    position: absolute;
+    bottom: 10%;
+    width:100%;
+    text-align:center;
+    z-index:2000;
+    font-size:550%;
+    color:#ffffff;
+    display:none;
+
+    /* From Howard theme */
+    font-family: Eau, "Open Sans", sans-serif;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+}

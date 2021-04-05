@@ -1,0 +1,12 @@
+name: 'Howard Paragraphs: Video Slide Show'
+type: module
+description: Provides a paragraphs bundle for rendering a video slide show as a Kitchen Sink widget in Howard projects.
+version: '8.x-1.0'
+core: '8.x'
+core_version_requirement: ^8 || ^9
+
+package: Howard University
+
+dependencies:
+  - howard_paragraphs
+  - entity_reference_revisions

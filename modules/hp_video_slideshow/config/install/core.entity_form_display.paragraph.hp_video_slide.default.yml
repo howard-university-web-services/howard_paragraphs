@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_video_slide.field_hp_vs_caption
+    - field.field.paragraph.hp_video_slide.field_hp_vs_video_id
+    - paragraphs.paragraphs_type.hp_video_slide
+_core:
+  default_config_hash: TQe4fGVl0sn3TyvC2XnQwvId_OxOfAc0KLsZNIQyOak
+id: paragraph.hp_video_slide.default
+targetEntityType: paragraph
+bundle: hp_video_slide
+mode: default
+content:
+  field_hp_vs_caption:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_hp_vs_video_id:
+    weight: 2
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+hidden:
+  created: true
+  status: true

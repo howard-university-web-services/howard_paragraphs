@@ -1,0 +1,58 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_video_slideshow.field_hp_vs_fallback_img
+    - field.field.paragraph.hp_video_slideshow.field_hp_vs_title
+    - field.field.paragraph.hp_video_slideshow.field_hp_vs_use_padding
+    - field.field.paragraph.hp_video_slideshow.field_hp_vs_video_slides
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.hp_video_slideshow
+  module:
+    - image
+    - paragraphs
+_core:
+  default_config_hash: LX4FEKfVCvTZzMALFdy0lMA5tbX-jPJYWsRqJNOBhaY
+id: paragraph.hp_video_slideshow.default
+targetEntityType: paragraph
+bundle: hp_video_slideshow
+mode: default
+content:
+  field_hp_vs_fallback_img:
+    weight: 4
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_hp_vs_title:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_hp_vs_use_padding:
+    weight: 5
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_hp_vs_video_slides:
+    type: entity_reference_paragraphs
+    weight: 3
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: preview
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: hp_video_slide
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  status: true
