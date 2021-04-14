@@ -79,13 +79,13 @@ function hp_articles_preprocess_paragraph__hp_articles(&$variables) {
 
 /**
  * Implements hook views_pre_view().
- * Display sets number of articles.
+ * Display sets number of articles on view to what was chosen in the widget.
  */
 function hp_articles_views_pre_view(ViewExecutable $view, $display_id, array &$args)
 {
   if ($view->id() == 'hp_articles_ks_feed' && $view->current_display == 'hp_articles_block') {
-    $view->setItemsPerPage($args[1]);
-    // remove pager
+    $view->setItemsPerPage($args[2]);
+    // Remove pager
     $pager = $view->display_handler->getOption('pager');
     $pager['type'] = 'some';
     $view->display_handler->setOption('pager', $pager);
