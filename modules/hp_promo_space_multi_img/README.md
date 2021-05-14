@@ -1,8 +1,8 @@
-# Howard Paragraphs Promotional Space
+# Howard Paragraphs Promotional Space with Multiple Images
 
-Paragraphs integration of a Promotional Space for use in Howard projects:
+Paragraphs integration of a Promotional Space with Multiple Images for use in Howard projects:
 
-This module contains markup only (no js or css), those should be provided in the client theme, loaded via the idfive Component Library:
+This module contains no style releated markup, structual only (no js or css), those should be provided in the client theme, loaded via the idfive Component Library:
 
  - [idfive Component Library](https://bitbucket.org/idfivellc/idfive-component-library)
  - [idfive Component Library D8 Theme](https://bitbucket.org/idfivellc/idfive-component-library-d8-theme)

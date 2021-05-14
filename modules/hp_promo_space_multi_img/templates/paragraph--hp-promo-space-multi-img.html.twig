@@ -1,24 +1,20 @@
 {#
 /**
  * @file
- * HP Promo Space paragraph bundle.
+ * HP Promo Space with Multiple Images paragraph bundle.
  *
  * @ingroup themeable
  */
 #}
 
-<section class="section--padded-top section--padded-bottom" aria-label="Promotional Space">
+<section class="section--padded-top section--padded-bottom hp_promo_space_multi_img" aria-label="Promotional Space">
   {% if hp_show_wrapper %}
     <div class="compartment">
   {% endif %}
 
       <div class="promotional-space">
         <div class="silc-grid silc-grid--collapse">
-          {% if hp_promo_image %}
-            <div class="silc-grid__col silc-grid__col--6-medium">
-          {% else %}
-            <div class="silc-grid__col silc-grid__col--12-medium">
-          {% endif %}
+            <div class="silc-grid__col silc-grid__col--4-medium">
             <h2 class="header--h2">{{ content.field_hp_promo_title }}</h2>
             {{ content.field_hp_promo_text }}
             {% for key, item in content.field_hp_promo_links if key|first != '#' %}
@@ -27,12 +23,15 @@
                   <span class="icon-arrow-right"></span>
                 </a>
             {% endfor %}
-          </div>
-          {% if hp_promo_image %}
-            <div class="silc-grid__col silc-grid__col--6-medium">
-              <div class="section-content__img" style="background-image:url('{{ hp_promo_image }}')"></div>
             </div>
-          {% endif %}
+            <div class="silc-grid__col silc-grid__col--8-medium">
+              <div class="image silc-grid__col silc-grid__col--4-medium" style="background-image:url('{{ hp_promo_image_1 }}')"></div>
+              <div class="image silc-grid__col silc-grid__col--4-medium" style="background-image:url('{{ hp_promo_image_2 }}')"></div>
+              <div class="image silc-grid__col silc-grid__col--4-medium" style="background-image:url('{{ hp_promo_image_3 }}')"></div>
+              <div class="image silc-grid__col silc-grid__col--4-medium" style="background-image:url('{{ hp_promo_image_4 }}')"></div>
+              <div class="image silc-grid__col silc-grid__col--4-medium" style="background-image:url('{{ hp_promo_image_5 }}')"></div>
+              <div class="image silc-grid__col silc-grid__col--4-medium" style="background-image:url('{{ hp_promo_image_6 }}')"></div>
+            </div>
         </div>
       </div>
 

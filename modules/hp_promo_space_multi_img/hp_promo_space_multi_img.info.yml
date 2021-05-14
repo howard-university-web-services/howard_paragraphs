@@ -1,11 +1,10 @@
 name: 'Howard Paragraphs: Promotional Space with Multiple Images'
 type: module
-description: Provides a paragraphs bundle for embedding a promotional space as a Kitchen Sink Widget.
+description: Provides a paragraphs bundle for embedding a promotional space with multiple images as a Kitchen Sink Widget.
 version: '8.x-1.0'
 core: '8.x'
 core_version_requirement: ^8 || ^9
 
 package: Howard University
 dependencies:
-  - howard_paragraphs
   - hp_promo_space
