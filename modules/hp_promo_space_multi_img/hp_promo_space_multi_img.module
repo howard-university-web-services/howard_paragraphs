@@ -1,0 +1,72 @@
+<?php
+
+/**
+ * @file
+ * Hp_promo_space module file.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\media\Entity\Media;
+use Drupal\image\Entity\ImageStyle;
+
+/**
+ * Implements hook_help().
+ *
+ * @inheritdoc
+ */
+function hp_promo_space_multi_img_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.hp_promo_space':
+      $text = file_get_contents(dirname(__FILE__) . "/README.md");
+      if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        return '<pre>' . $text . '</pre>';
+      }
+      else {
+        // Use the Markdown filter to render the README.
+        $filter_manager = \Drupal::service('plugin.manager.filter');
+        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $config = ['settings' => $settings];
+        $filter = $filter_manager->createInstance('markdown', $config);
+        return $filter->process($text, 'en');
+      }
+  }
+  return NULL;
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ *
+ *   This sets a url for the image.
+ */
+function hp_promo_space_multi_img_preprocess_paragraph__hp_promo_space_multi_img(&$variables) {
+	
+  // Add paragraph resources.
+  $variables['#attached']['library'][] = 'hp_promo_space_multi_img/resources';
+  
+  $paragraph = $variables['elements']['#paragraph'];
+  // Get media image URL.
+  if ($paragraph->hasField('field_hp_promo_image')) {
+    $bkrd_image = $paragraph->get('field_hp_promo_image')->getValue();
+    if ($bkrd_image && !empty($bkrd_image)) {
+      $entity = Media::load($bkrd_image[0]['target_id']);
+      if (isset($entity->field_media_image->entity)) {
+        if ($entity->field_media_image->entity->getFileUri() !== NULL) {
+          $variables['hp_promo_image'] = ImageStyle::load('large')->buildUrl($entity->field_media_image->entity->getFileUri());
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_theme().
+ *
+ * Let's us define our paragraphs templates in this module.
+ */
+function hp_promo_space_multi_img_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__hp_promo_space' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
