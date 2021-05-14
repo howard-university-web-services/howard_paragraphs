@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_announcements
+label: 'HP Announcements'
+icon_uuid: null
+description: 'This Paragraph type provides a way to embed any announcements within the site.'
+behavior_plugins: {  }

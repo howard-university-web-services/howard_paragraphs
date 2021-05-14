@@ -1,0 +1,33 @@
+uuid: cf403970-d80f-41d5-8676-2094604216db
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_announcements.field_hp_an_feed_type
+    - field.field.paragraph.hp_announcements.field_hp_an_title
+    - paragraphs.paragraphs_type.hp_announcements
+_core:
+  default_config_hash: N1GSqyO2LuoY6IcvO9LQgg3nnsZ74-pS4oGisLqL1Xk
+id: paragraph.hp_announcements.default
+targetEntityType: paragraph
+bundle: hp_announcements
+mode: default
+content:
+  field_hp_an_feed_type:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_hp_an_title:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true
