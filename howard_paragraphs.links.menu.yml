@@ -1,0 +1,5 @@
+howard_paragraphs.clear_external_content:
+  title: 'Clear Howard External Content'
+  parent: system.admin_config_services
+  description: 'Clear external content feeds manually, if required.'
+  route_name: howard_paragraphs.clear_external_content

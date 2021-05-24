@@ -1,8 +1,8 @@
 howard_paragraphs.clear_external_content:
-  path: '/admin/clear_external_content/95B592BD88AB97599215CD7DDA3B8A41'
+  path: '/admin/config/clear_howard_external_content'
   defaults:
     _controller: '\Drupal\howard_paragraphs\Controller\HowardExternalContentCacheClear::bootstrapCacheClear'
     _title: 'Clear all Howard University external content feeds'
   methods:  [GET]
   requirements:
-    _access: 'TRUE'
+    _permission: 'administer site configuration'

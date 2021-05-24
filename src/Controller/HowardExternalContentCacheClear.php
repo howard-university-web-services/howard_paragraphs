@@ -7,14 +7,14 @@ use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\Core\Cache\Cache;
 
 /**
- * Controller routines for calendar notification routes.
+ * Controller that helps load and clear external content feed caches for Howard websites.
  */
 class HowardExternalContentCacheClear extends ControllerBase {
 
   /**
    * Gets paragraphs that contain external content feeds.
    */
-  public function clearExternalContent() {
+  public static function clearExternalContent() {
     $query = \Drupal::entityQuery('paragraph')
     ->condition('type', [
       'hp_twitter_feed',
@@ -45,7 +45,7 @@ class HowardExternalContentCacheClear extends ControllerBase {
   }
 
   /**
-   * Returns a simple page.
+   * Returns a simple page, when functionality is run manually.
    *
    * @return array
    *   A simple renderable array.

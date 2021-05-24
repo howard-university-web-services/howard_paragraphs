@@ -61,6 +61,12 @@ The following submodules are available:
 - Webform Embed: Paragraphs integration of webform module for use in Howard projects
 - WYSIWYG Text Filter UL: Provides a filter to add ICL markup to UL's embedded in a WYSIWYG.
 
+## CRON and External Content
+
+This module also provides a hook_cron(), to load external paragraph feeds, and invalidate caches when cron is run. This is so things like news and events feeds will update in a timely fashion, without resorting to clearing caches for all sites. This functionality can alo be run directly from the UI, if needed, by visiting [Clear all Howard University external content feeds](/admin/config/clear_howard_external_content).
+
+Ideally, this gets run via an acquia scheduled job, every three hours or similar: `bash /var/www/html/${AH_SITE_NAME}/scripts/hal_sites.sh core-cron`.
+
 ## Configuration Overrides
 
 This module is designed so that config can be overridden locally. Essentially, the config provides a "starter" when installing the module, that can be modified per site. If config is "added to" after initial install, a manual config resync will likely need to be done. Something like:

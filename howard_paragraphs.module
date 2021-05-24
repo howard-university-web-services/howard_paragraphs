@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\howard_paragraphs\Controller\HowardExternalContentCacheClear;
 
 /**
  * Implements hook_help().
@@ -72,4 +73,15 @@ function howard_paragraphs_theme($existing, $type, $theme, $path)
       ],
     ],
   ];
+}
+
+/**
+ * Implements hook_cron().
+ *
+ * We implement hook_cron() to kick off clearing caches on external feed paragraphs.
+ *
+ */
+function howard_paragraphs_cron() {
+  // Load and clear cache for all howard paragraphs marked as external.
+  HowardExternalContentCacheClear::clearExternalContent();
 }
