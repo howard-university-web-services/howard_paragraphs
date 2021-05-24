@@ -1,0 +1,9 @@
+<h2>External Content Caches Cleared</h2>
+<p>The following caches, which relate to hu_paragraphs kitchen sink widgets that reference extrnal API calls, have been invalidated. This should clear with varnish next time the CRON is run.</p>
+<ul>
+  {% for cid in cids %}
+    {% for cache in cid %}
+      <li>{{ cache }}</li>
+    {% endfor %}
+  {% endfor %}
+</ul>

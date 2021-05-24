@@ -64,5 +64,12 @@ function howard_paragraphs_theme($existing, $type, $theme, $path)
     'field__entity_reference_revisions' => [
       'base hook' => 'paragraph',
     ],
+    'external_content_cache_clear' => [
+      'template' => 'external-content-cache-clear',
+      'path' => $path . '/templates',
+      'variables' => [
+        'cids' => NULL,
+      ],
+    ],
   ];
 }
