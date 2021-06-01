@@ -104,6 +104,14 @@
     display:none;
 
     /* From Howard theme */
-    font-family: Eau, "Open Sans", sans-serif;
+    font-family: "Open Sans", sans-serif;
     text-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+}
+
+@media screen and (max-width: 700px)
+{
+    .hp_video_slideshow--video-container .hp_video_slideshow--video-text
+    {
+        font-size:300%;
+    }
 }

@@ -5,7 +5,7 @@ resources:
       'css/styles.css': {}
   js:
     '//player.vimeo.com/api/player.js': { type: external }
-    '//malsup.github.com/jquery.cycle.all.js': { type: external }
+    '//malsup.github.io/jquery.cycle.all.js': { type: external }
     'js/scripts.js': {}
   dependencies:
     - core/jquery
