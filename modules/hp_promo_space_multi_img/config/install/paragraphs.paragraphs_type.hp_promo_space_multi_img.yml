@@ -1,0 +1,10 @@
+uuid: cf96791c-d773-472e-99b3-e3ed468c036e
+langcode: en
+status: true
+dependencies: {  }
+id: hp_promo_space_multi_img
+label: 'HP Promotional Space with Multiple Images'
+icon_uuid: null
+icon_default: null
+description: 'This Paragraph type provides a means to add a Promotional Space with Multiple Images into the Kitchen Sink Widgets.'
+behavior_plugins: {  }

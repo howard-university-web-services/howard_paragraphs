@@ -1,8 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: hp_promo_space
-label: 'HP Promotional Space'
-icon_uuid: null
-description: 'This Paragraph type provides a means to add a Promotional Space into the Kitchen Sink Widgets.'
-behavior_plugins: {  }

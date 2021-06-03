@@ -1,15 +1,17 @@
+uuid: 5f248e3d-d93d-4db8-92cf-c2896a20ef8b
 langcode: en
 status: true
 dependencies:
   module:
-    - link
     - paragraphs
-id: paragraph.field_hp_promo_links
-field_name: field_hp_promo_links
+    - text
+id: paragraph.field_hp_promo_image_3_text
+field_name: field_hp_promo_image_3_text
 entity_type: paragraph
-type: link
-settings: {  }
-module: link
+type: text
+settings:
+  max_length: 255
+module: text
 locked: false
 cardinality: 1
 translatable: true

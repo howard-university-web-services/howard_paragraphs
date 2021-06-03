@@ -1,14 +1,16 @@
+uuid: 3d0651e2-7e41-41a2-827e-d6187a7a21d1
 langcode: en
 status: true
 dependencies:
   module:
     - paragraphs
     - text
-id: paragraph.field_hp_promo_text
-field_name: field_hp_promo_text
+id: paragraph.field_hp_promo_image_4_text
+field_name: field_hp_promo_image_4_text
 entity_type: paragraph
-type: text_long
-settings: {  }
+type: text
+settings:
+  max_length: 255
 module: text
 locked: false
 cardinality: 1

@@ -1,17 +1,17 @@
+uuid: 9950e5fc-7fd3-46eb-b739-acc7802785d9
 langcode: en
 status: true
 dependencies:
   module:
     - paragraphs
-id: paragraph.field_hp_promo_title
-field_name: field_hp_promo_title
+    - text
+id: paragraph.field_hp_promo_image_1_text
+field_name: field_hp_promo_image_1_text
 entity_type: paragraph
-type: string
+type: text
 settings:
   max_length: 255
-  is_ascii: false
-  case_sensitive: false
-module: core
+module: text
 locked: false
 cardinality: 1
 translatable: true
