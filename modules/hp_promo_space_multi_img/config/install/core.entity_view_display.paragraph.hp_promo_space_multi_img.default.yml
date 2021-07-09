@@ -1,4 +1,3 @@
-uuid: 0bf7a90a-0cdd-407c-ab75-e64edd197b3e
 langcode: en
 status: true
 dependencies:
@@ -20,16 +19,9 @@ dependencies:
     - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_title
     - paragraphs.paragraphs_type.hp_promo_space_multi_img
   module:
-    - field_layout
     - image
-    - layout_discovery
     - link
     - text
-third_party_settings:
-  field_layout:
-    id: layout_onecol
-    settings:
-      label: ''
 id: paragraph.hp_promo_space_multi_img.default
 targetEntityType: paragraph
 bundle: hp_promo_space_multi_img
