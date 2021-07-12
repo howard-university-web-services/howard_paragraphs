@@ -1,0 +1,129 @@
+<?php
+
+/**
+ * @file
+ * hp_promo_space_multi_img module file.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ *
+ * @inheritdoc
+ */
+function hp_promo_space_multi_img_help($route_name, RouteMatchInterface $route_match)
+{
+    switch ($route_name)
+    {
+        case 'help.page.hp_promo_space_multi_img':
+            $text = file_get_contents(dirname(__FILE__) . "/README.md");
+            if (!\Drupal::moduleHandler()->moduleExists('markdown'))
+            {
+                return '<pre>' . $text . '</pre>';
+            }
+            else
+            {
+                // Use the Markdown filter to render the README.
+                $filter_manager = \Drupal::service('plugin.manager.filter');
+                $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+                $config = ['settings' => $settings];
+                $filter = $filter_manager->createInstance('markdown', $config);
+
+                return $filter->process($text, 'en');
+            }
+    }
+
+    return NULL;
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ *
+ *   This sets a url for the image.
+ */
+function hp_promo_space_multi_img_preprocess_paragraph__hp_promo_space_multi_img(&$variables)
+{
+    // Add paragraph resources.
+    $variables['#attached']['library'][] = 'hp_promo_space_multi_img/resources';
+
+    // Get fallback image URL.
+    $paragraph = $variables['elements']['#paragraph'];
+    $variables['hp_promo_title'] = $paragraph->get('field_hp_promo_title')->value;
+    $variables['hp_promo_links'] = $paragraph->get('field_hp_promo_links');
+    $variables['hp_promo_text'] = $paragraph->get('field_hp_promo_text')->value;
+
+    if ($paragraph->hasField('field_hp_promo_image_1'))
+    {
+        $variables['hp_promo_image_1'] = $paragraph->get('field_hp_promo_image_1')->first()->entity->url();
+
+        if ($paragraph->hasField('field_hp_promo_image_1_text'))
+        {
+            $variables['hp_promo_image_1_text'] = $paragraph->get('field_hp_promo_image_1_text')->value;
+        }
+    }
+
+    if ($paragraph->hasField('field_hp_promo_image_2'))
+    {
+        $variables['hp_promo_image_2'] = $paragraph->get('field_hp_promo_image_2')->first()->entity->url();
+
+        if ($paragraph->hasField('field_hp_promo_image_2_text'))
+        {
+            $variables['hp_promo_image_2_text'] = $paragraph->get('field_hp_promo_image_2_text')->value;
+        }
+    }
+
+    if ($paragraph->hasField('field_hp_promo_image_3'))
+    {
+        $variables['hp_promo_image_3'] = $paragraph->get('field_hp_promo_image_3')->first()->entity->url();
+
+        if ($paragraph->hasField('field_hp_promo_image_3_text'))
+        {
+            $variables['hp_promo_image_3_text'] = $paragraph->get('field_hp_promo_image_3_text')->value;
+        }
+    }
+
+    if ($paragraph->hasField('field_hp_promo_image_4'))
+    {
+        $variables['hp_promo_image_4'] = $paragraph->get('field_hp_promo_image_4')->first()->entity->url();
+
+        if ($paragraph->hasField('field_hp_promo_image_4_text'))
+        {
+            $variables['hp_promo_image_4_text'] = $paragraph->get('field_hp_promo_image_4_text')->value;
+        }
+    }
+
+    if ($paragraph->hasField('field_hp_promo_image_5'))
+    {
+        $variables['hp_promo_image_5'] = $paragraph->get('field_hp_promo_image_5')->first()->entity->url();
+
+        if ($paragraph->hasField('field_hp_promo_image_5_text'))
+        {
+            $variables['hp_promo_image_5_text'] = $paragraph->get('field_hp_promo_image_5_text')->value;
+        }
+    }
+
+    if ($paragraph->hasField('field_hp_promo_image_6'))
+    {
+        $variables['hp_promo_image_6'] = $paragraph->get('field_hp_promo_image_6')->first()->entity->url();
+
+        if ($paragraph->hasField('field_hp_promo_image_6_text'))
+        {
+            $variables['hp_promo_image_6_text'] = $paragraph->get('field_hp_promo_image_6_text')->value;
+        }
+    }
+}
+
+/**
+ * Implements hook_theme().
+ *
+ * Let's us define our paragraphs templates in this module.
+ */
+function hp_promo_space_multi_img_theme($existing, $type, $theme, $path)
+{
+    $result = [
+        'paragraph__hp_promo_space_multi_img' => [ 'base hook' => 'paragraph' ],
+    ];
+
+    return $result;
+}

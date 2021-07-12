@@ -1,0 +1,153 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_1
+    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_1_text
+    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_2
+    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_2_text
+    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_3
+    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_3_text
+    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_4
+    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_4_text
+    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_5
+    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_5_text
+    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_6
+    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_6_text
+    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_links
+    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_text
+    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_title
+    - paragraphs.paragraphs_type.hp_promo_space_multi_img
+  module:
+    - image
+    - link
+    - text
+id: paragraph.hp_promo_space_multi_img.default
+targetEntityType: paragraph
+bundle: hp_promo_space_multi_img
+mode: default
+content:
+  field_hp_promo_image_1:
+    weight: 3
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_hp_promo_image_1_text:
+    weight: 10
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_hp_promo_image_2:
+    weight: 4
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_hp_promo_image_2_text:
+    weight: 11
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_hp_promo_image_3:
+    weight: 5
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_hp_promo_image_3_text:
+    weight: 12
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_hp_promo_image_4:
+    weight: 6
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_hp_promo_image_4_text:
+    weight: 13
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_hp_promo_image_5:
+    weight: 8
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_hp_promo_image_5_text:
+    weight: 14
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_hp_promo_image_6:
+    weight: 9
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_hp_promo_image_6_text:
+    weight: 15
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_hp_promo_links:
+    weight: 1
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_hp_promo_text:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_hp_promo_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

@@ -52,6 +52,7 @@ The following submodules are available:
 - Program: Paragraphs integration of embedding a Program (from programs.howard.edu) for Howard projects
 - Programs Feed Paragraphs integration of embedding a Programs Feed (from programs.howard.edu) for Howard projects
 - Promo Space: Paragraphs integration of a Promotional Space for use in Howard projects
+- Promo Space with Multiple Images: Paragraphs integration of a Promotional Space for use in Howard projects
 - Table: Paragraphs integration of tablefield module for use in Howard projects, and set up to use tablesaw js
 - Testimonial: Paragraphs integration of testimonials for use in Howard projects
 - Timeline: Paragraphs integration of a timeline for use in Howard projects
