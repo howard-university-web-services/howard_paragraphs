@@ -66,7 +66,8 @@ function hp_video_slideshow_preprocess_paragraph__hp_video_slide(&$variables)
     $paragraph = $variables['elements']['#paragraph'];
     if ($paragraph->hasField('field_hp_vs_video_id'))
     {
-        $variables['hp_vs_video_id'] = $paragraph->get('field_hp_vs_video_id')->first()->value;
+      // Temp remove until d9 fix tested
+      //  $variables['hp_vs_video_id'] = $paragraph->get('field_hp_vs_video_id')->first()->value;
     }
 }
 
