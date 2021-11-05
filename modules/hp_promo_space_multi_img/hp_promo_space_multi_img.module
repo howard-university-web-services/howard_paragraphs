@@ -55,7 +55,7 @@ function hp_promo_space_multi_img_preprocess_paragraph__hp_promo_space_multi_img
 
     if ($paragraph->hasField('field_hp_promo_image_1'))
     {
-        $variables['hp_promo_image_1'] = $paragraph->get('field_hp_promo_image_1')->first()->entity->url();
+        $variables['hp_promo_image_1'] = $paragraph->get('field_hp_promo_image_1')->first()->entity->createFileUrl();
 
         if ($paragraph->hasField('field_hp_promo_image_1_text'))
         {
@@ -65,7 +65,7 @@ function hp_promo_space_multi_img_preprocess_paragraph__hp_promo_space_multi_img
 
     if ($paragraph->hasField('field_hp_promo_image_2'))
     {
-        $variables['hp_promo_image_2'] = $paragraph->get('field_hp_promo_image_2')->first()->entity->url();
+        $variables['hp_promo_image_2'] = $paragraph->get('field_hp_promo_image_2')->first()->entity->createFileUrl();
 
         if ($paragraph->hasField('field_hp_promo_image_2_text'))
         {
@@ -75,7 +75,7 @@ function hp_promo_space_multi_img_preprocess_paragraph__hp_promo_space_multi_img
 
     if ($paragraph->hasField('field_hp_promo_image_3'))
     {
-        $variables['hp_promo_image_3'] = $paragraph->get('field_hp_promo_image_3')->first()->entity->url();
+        $variables['hp_promo_image_3'] = $paragraph->get('field_hp_promo_image_3')->first()->entity->createFileUrl();
 
         if ($paragraph->hasField('field_hp_promo_image_3_text'))
         {
@@ -85,7 +85,7 @@ function hp_promo_space_multi_img_preprocess_paragraph__hp_promo_space_multi_img
 
     if ($paragraph->hasField('field_hp_promo_image_4'))
     {
-        $variables['hp_promo_image_4'] = $paragraph->get('field_hp_promo_image_4')->first()->entity->url();
+        $variables['hp_promo_image_4'] = $paragraph->get('field_hp_promo_image_4')->first()->entity->createFileUrl();
 
         if ($paragraph->hasField('field_hp_promo_image_4_text'))
         {
@@ -95,7 +95,7 @@ function hp_promo_space_multi_img_preprocess_paragraph__hp_promo_space_multi_img
 
     if ($paragraph->hasField('field_hp_promo_image_5'))
     {
-        $variables['hp_promo_image_5'] = $paragraph->get('field_hp_promo_image_5')->first()->entity->url();
+        $variables['hp_promo_image_5'] = $paragraph->get('field_hp_promo_image_5')->first()->entity->createFileUrl();
 
         if ($paragraph->hasField('field_hp_promo_image_5_text'))
         {
@@ -105,7 +105,7 @@ function hp_promo_space_multi_img_preprocess_paragraph__hp_promo_space_multi_img
 
     if ($paragraph->hasField('field_hp_promo_image_6'))
     {
-        $variables['hp_promo_image_6'] = $paragraph->get('field_hp_promo_image_6')->first()->entity->url();
+        $variables['hp_promo_image_6'] = $paragraph->get('field_hp_promo_image_6')->first()->entity->createFileUrl();
 
         if ($paragraph->hasField('field_hp_promo_image_6_text'))
         {
