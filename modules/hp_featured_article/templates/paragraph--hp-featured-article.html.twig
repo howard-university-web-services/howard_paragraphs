@@ -6,8 +6,17 @@
  * @ingroup themeable
  */
 #}
+
+{%
+  set classes = [
+    'section--padded-top',
+    'section--padded-bottom',
+		'hp-featured-article'
+  ]
+%}
+
 {% if hp_fa_title %}
-	<section class="section--padded-top section--padded-bottom hp-featured-article" aria-label="Featured Article">
+	<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Featured Article">
 		{% if hp_show_wrapper %}
 			<div class="compartment">
 			{% endif %}

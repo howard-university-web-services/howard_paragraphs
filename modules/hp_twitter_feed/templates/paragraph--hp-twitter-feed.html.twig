@@ -7,14 +7,17 @@
  */
 #}
 
-<section aria-label="Twitter Feed">
-  
+{%
+  set classes = []
+%}
+
+<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Twitter feed">
   <div class="facebook-twitter-feed">
     <div class="compartment">
       <div class="silc-grid">
         {% if hp_tf_tweets.results %}
           {% for tweet in hp_tf_tweets.results %}
-            <div class="silc-grid__col silc-grid__col--1-medium"> 
+            <div class="silc-grid__col silc-grid__col--1-medium">
               {% if loop.first %}
                 <a class="social-links__item" href="https://twitter.com/{{ tweet.user.screen_name }}" target="_blank">
                   <i class="icon-twitter"><span class="visible-for-screen-readers">Twitter</span></i>
@@ -37,5 +40,4 @@
       </div>
     </div>
   </div>
-
 </section>

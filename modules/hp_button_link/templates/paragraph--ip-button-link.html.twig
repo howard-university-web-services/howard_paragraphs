@@ -14,7 +14,7 @@
   ]
 %}
 
-<section {{ attributes.addClass(classes) }} aria-label="Button or Link">
+<section{{attributes.addClass(classes).setAttribute('id'.'hp-'~paragraph.id())}} aria-label="Button or link">
   {% if hp_show_wrapper %}
     <div class="compartment">
   {% endif %}

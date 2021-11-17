@@ -7,7 +7,14 @@
  */
 #}
 
-<section class="{% if content.field_hp_vs_use_padding[0].value %}section--padded-top section--padded-bottom{% endif %}" aria-label="Video Slide Show">
+{%
+  set classes = [
+    content.field_hp_vs_use_padding[0].value ? 'section--padded-top',
+    content.field_hp_vs_use_padding[0].value ? 'section--padded-bottom'
+  ]
+%}
+
+<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Video slideshow">
     {# /*Standard Title Rending*/ #}
     {% if content.field_hp_vs_title[0] %}
       <div class="block-header">

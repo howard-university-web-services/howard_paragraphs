@@ -1,16 +1,22 @@
 {#
 /**
  * @file
- * HP News Feed paragraph bundle.
- * Holds both the 3 col with image, and 1 featured/3 title layouts
+ * HP Magazine Feed paragraph bundle.
+ * Displays a feed from the Howard Magazine.
  *
  * @ingroup themeable
  */
 #}
 
+{%
+  set classes = [
+    'section--padded-top',
+    'section--padded-bottom',
+    'news-and-events'
+  ]
+%}
 
-<section class="section--padded-top section--padded-bottom news-and-events">
-
+<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Howard magazine articles">
   {% if hp_show_wrapper %}
     <div class="compartment">
   {% endif %}

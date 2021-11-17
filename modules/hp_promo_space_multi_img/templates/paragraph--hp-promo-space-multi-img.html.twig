@@ -7,7 +7,15 @@
  */
 #}
 
-<section class="section--padded-top section--padded-bottom hp_promo_space_multi_img" aria-label="Promotional Space">
+{%
+  set classes = [
+    'section--padded-top',
+    'section--padded-bottom',
+    'hp_promo_space_multi_img'
+  ]
+%}
+
+<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Promotional space">
   {% if hp_show_wrapper %}
     <div class="compartment">
   {% endif %}

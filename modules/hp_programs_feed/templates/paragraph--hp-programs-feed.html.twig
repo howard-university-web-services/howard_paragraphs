@@ -7,7 +7,15 @@
 */
 #}
 
-<section class="section--padded-top section--padded-bottom hp-programs-feed" aria-label="Programs Feed">
+{%
+  set classes = [
+    'section--padded-top',
+    'section--padded-bottom',
+		'hp-programs-feed'
+  ]
+%}
+
+<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Programs feed">
 	<div class="program-finder">
 		{% if content.field_hp_pgf_title|render %}
 			<h2 class="program-finder__heading header--h2">{{ content.field_hp_pgf_title }}</h2>

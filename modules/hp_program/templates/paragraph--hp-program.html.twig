@@ -7,9 +7,15 @@
  */
 #}
 
+{%
+  set classes = [
+    'section--padded-top',
+    'section--padded-bottom',
+    'section--program'
+  ]
+%}
 
-<section class="section--padded-top section--padded-bottom section--program" aria-label="Program">
-
+<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Program">
   {% if hp_pg_program %}
 
     {# Intro #}
@@ -270,9 +276,6 @@
     {% endif %}
 
   {% else %}
-
     <p>Sorry, there was an error in fetching this program.</p>
-
   {% endif %}
-
 </section>

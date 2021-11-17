@@ -1,4 +1,20 @@
-<section class="section--padded-top section--padded-bottom"  aria-label="Timeline">
+{#
+/**
+ * @file
+ * IP Timeline paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+{%
+  set classes = [
+    'section--padded-top',
+    'section--padded-bottom'
+  ]
+%}
+
+<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Timeline">
     {% if hp_show_wrapper %}
         <section class="compartment">
     {% endif %}

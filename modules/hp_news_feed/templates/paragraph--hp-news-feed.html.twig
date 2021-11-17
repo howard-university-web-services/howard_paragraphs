@@ -8,11 +8,16 @@
  */
 #}
 
-{% if hp_nf_type == 'four_w_one_featured' or hp_nf_type == 'twenty_wo_images' %}
-  <section class="section--padded-top section--padded-bottom news-and-events news-and-events--department">
-{% else %}
-  <section class="section--padded-top section--padded-bottom news-and-events">
-{% endif %}
+{%
+  set classes = [
+    'section--padded-top',
+    'section--padded-bottom',
+    'news-and-events',
+    (hp_nf_type == 'four_w_one_featured' or hp_nf_type == 'twenty_wo_images') ? 'news-and-events--department',
+  ]
+%}
+
+<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="News Feed">
   {% if hp_show_wrapper %}
     <div class="compartment">
   {% endif %}

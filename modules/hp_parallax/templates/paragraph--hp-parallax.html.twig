@@ -1,7 +1,23 @@
-<section class="section--padded-top section--padded-bottom"  aria-label="Parallax">
+{#
+/**
+ * @file
+ * HP Parallax paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+{%
+  set classes = [
+    'section--padded-top',
+    'section--padded-bottom'
+  ]
+%}
+
+<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Parallax">
 	{% if hp_show_wrapper %}
     <section class="compartment">
-    {% endif %}
+  {% endif %}
 		<div class=" hp_parallax_bundle" >
 			<div class="parallax_text {{ (float_left == 1 ) ? 'float_left' : '' }}">
 				<aside class="parallax_text_container">
@@ -22,5 +38,5 @@
 		</div>
 	{% if hp_show_wrapper %}
     </section>
-    {% endif %}
+  ß{% endif %}
 </section>

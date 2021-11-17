@@ -7,7 +7,14 @@
  */
 #}
 
-<section class="section--padded-top section--padded-bottom" aria-label="Testimonial">
+{%
+  set classes = [
+    'section--padded-top',
+    'section--padded-bottom'
+  ]
+%}
+
+<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Testimonial">
   {% if hp_show_wrapper %}
     <div class="compartment">
   {% endif %}
@@ -23,7 +30,7 @@
             </div>
           </div>
           <div class="silc-grid__col silc-grid__col--8-medium">
-            <div class="alumni-profile__quote">  
+            <div class="alumni-profile__quote">
               {{ content.field_hp_tst_intro }}
               {% if content.field_hp_tst_quote|render %}
                 <blockquote>

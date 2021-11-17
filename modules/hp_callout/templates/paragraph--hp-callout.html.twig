@@ -7,7 +7,11 @@
  */
 #}
 
-<section aria-label="Callout">
+{%
+  set classes = []
+%}
+
+<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Callout">
 
   {% if hp_call_type == 'standard' %}
 
@@ -16,14 +20,14 @@
         <div class="silc-grid silc-grid--collapse">
           <div class="silc-grid__col silc-grid__col--6-large">
             <h2>{{ content.field_hp_call_title }}</h2>
-            
+
             {% for key, item in content.field_hp_call_links if key|first != '#' %}
                 <a href="{{ content.field_hp_call_links[key]['#url'] }}" class="btn"{% if content.field_hp_call_links[key]['#options'].attributes.target %} target="{{ content.field_hp_call_links[key]['#options'].attributes.target }}"{% endif %}>
                   <span class="btn__text">{{ content.field_hp_call_links[key]['#title'] }}</span>
                   <span class="icon-arrow-right"></span>
                 </a>
             {% endfor %}
-            
+
           </div>
           <div class="silc-grid__col silc-grid__col--6-large"></div>
         </div>
@@ -44,7 +48,7 @@
             {% endfor %}
         </div>
     </div>
-    
+
   {% endif %}
 
 </section>

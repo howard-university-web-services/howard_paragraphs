@@ -7,7 +7,14 @@
  */
 #}
 
-<section class="section--padded-top section--padded-bottom" aria-label="Featured Announcements">
+{%
+  set classes = [
+    'section--padded-top',
+    'section--padded-bottom'
+  ]
+%}
+
+<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Featured announcements">
   {% if hp_show_wrapper %}
     <div class="compartment">
   {% endif %}
@@ -30,7 +37,7 @@
             {% elseif hp_an_type == 'two_column' %}
               <div class="silc-grid__col silc-grid__col--6-medium">
             {% endif %}
-            
+
                 <div class="announcements__block {% if ann.featured == '1' %}announcements__block--featured{% endif %}">
                   <h3 class="announcements__title">{{ ann.title }}</h3>
                   <p><span class="body-text--date">{{ ann.start_date|date("M d, Y") }}</span></p>
@@ -42,7 +49,7 @@
                         <span class="icon-arrow-right"></span>
                       </a>
                   {% endif %}
-            
+
                 </div>
               </div>
           {% endfor %}

@@ -7,7 +7,14 @@
  */
 #}
 
-<section class="section--padded-top section--padded-bottom" aria-label="Photoshelter Gallery">
+{%
+  set classes = [
+    'section--padded-top',
+    'section--padded-bottom'
+  ]
+%}
+
+<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Photoshelter gallery">
   {% if hp_show_wrapper %}
     <div class="compartment">
   {% endif %}

@@ -45,7 +45,7 @@
   ]
 %}
 {% block paragraph %}
-  <section{{ attributes.addClass(classes) }}>
+  <section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}}>
     <div class="compartment">
       {% block content %}
         {{ content }}
