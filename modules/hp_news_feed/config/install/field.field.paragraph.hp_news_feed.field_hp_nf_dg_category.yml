@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_nf_dg_category
+    - paragraphs.paragraphs_type.hp_news_feed
+  module:
+    - external_data_source
+id: paragraph.hp_news_feed.field_hp_nf_dg_category
+field_name: field_hp_nf_dg_category
+entity_type: paragraph
+bundle: hp_news_feed
+label: Category
+description: 'Filters articles by the Category taxonomy (tags) in thedig.howard.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: external_data_source

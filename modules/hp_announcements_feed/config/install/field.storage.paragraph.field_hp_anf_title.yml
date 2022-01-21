@@ -2,16 +2,16 @@ langcode: en
 status: true
 dependencies:
   module:
-    - link
     - paragraphs
-_core:
-  default_config_hash: GXelOlKiPFV2AzVw7iPf-49c8ymBh478SHl-fzK_fGc
-id: paragraph.field_hp_nf_link
-field_name: field_hp_nf_link
+id: paragraph.field_hp_anf_title
+field_name: field_hp_anf_title
 entity_type: paragraph
-type: link
-settings: {  }
-module: link
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
 locked: false
 cardinality: 1
 translatable: true

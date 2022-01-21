@@ -4,6 +4,8 @@ dependencies:
   module:
     - options
     - paragraphs
+_core:
+  default_config_hash: SBHc4dseXwqxP9Tj4hZutWv3J1ee8aSqwguhdIvkcBU
 id: paragraph.field_hp_nf_feed_type
 field_name: field_hp_nf_feed_type
 entity_type: paragraph

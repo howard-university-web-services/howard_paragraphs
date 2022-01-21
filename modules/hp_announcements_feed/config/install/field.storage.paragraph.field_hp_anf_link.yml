@@ -4,10 +4,8 @@ dependencies:
   module:
     - link
     - paragraphs
-_core:
-  default_config_hash: GXelOlKiPFV2AzVw7iPf-49c8ymBh478SHl-fzK_fGc
-id: paragraph.field_hp_nf_link
-field_name: field_hp_nf_link
+id: paragraph.field_hp_anf_link
+field_name: field_hp_anf_link
 entity_type: paragraph
 type: link
 settings: {  }

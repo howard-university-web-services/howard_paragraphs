@@ -1,0 +1,64 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_announcements_feed.field_hp_anf_category
+    - field.field.paragraph.hp_announcements_feed.field_hp_anf_environment
+    - field.field.paragraph.hp_announcements_feed.field_hp_anf_link
+    - field.field.paragraph.hp_announcements_feed.field_hp_anf_range
+    - field.field.paragraph.hp_announcements_feed.field_hp_anf_title
+    - field.field.paragraph.hp_announcements_feed.field_hp_anf_unit
+    - paragraphs.paragraphs_type.hp_announcements_feed
+  module:
+    - external_data_source
+    - link
+id: paragraph.hp_announcements_feed.default
+targetEntityType: paragraph
+bundle: hp_announcements_feed
+mode: default
+content:
+  field_hp_anf_category:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: external_data_source_formatter
+    region: content
+  field_hp_anf_link:
+    weight: 1
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_hp_anf_range:
+    weight: 4
+    label: hidden
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_hp_anf_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_hp_anf_unit:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: external_data_source_formatter
+    region: content
+hidden:
+  field_hp_anf_environment: true

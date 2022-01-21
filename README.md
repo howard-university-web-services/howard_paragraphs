@@ -26,7 +26,8 @@ The following submodules are available:
 - Accordion: Paragraphs integration of the silc accordion library for use in Howard projects
 - Alumni Featured: Provides a paragraphs bundle for embedding curated Featured Students and Alumni from profiles.howard.edu as a Kitchen Sink Widget
 - Alumni Feed: Provides a paragraphs bundle for embedding feeds of Featured Students and Alumni from profiles.howard.edu as a Kitchen Sink Widget
-- Announcements: Paragraphs integration of the ability to add Announcements in Howard projects
+- Announcements: Paragraphs integration of the ability to add local Announcements in Howard projects
+- Announcements Feed: Paragraphs integration of the ability to add Announcements from the dig, in Howard projects
 - Articles: Paragraphs integration of the ability to add a feed of Articles in Howard client projects
 - Button/Link: Paragraphs integration of buttons/Links for use in Howard projects
 - Callout: Paragraphs integration of callout with image for use in Howard projects
@@ -44,7 +45,7 @@ The following submodules are available:
 - Instagram Feed: Paragraphs integration of a Instagram Feed for Howard projects
 - Magazine Feed: Paragraphs integration of Magazine Feed (from magazine.howard.edu) for Howard projects
 - Media: Paragraphs integration of media for use in Howard projects
-- News Feed: Paragraphs integration of News Feed (from newsroom.howard.edu) for Howard projects
+- News Feed: Paragraphs integration of News Feed (from thedig.howard.edu) for Howard projects
 - Parallax: Paragraphs integration of parallax scrolling for use in Howard projects
 - Photoshelter Feed: Paragraphs integration of Photoshelter Feed into a carousel with modal front end
 - Photoshelter Feed Grid: Paragraphs integration of Photoshelter Feed into a silc grid.

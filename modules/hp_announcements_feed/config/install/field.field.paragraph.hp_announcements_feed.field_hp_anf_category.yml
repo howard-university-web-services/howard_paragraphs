@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_anf_category
+    - paragraphs.paragraphs_type.hp_announcements_feed
+  module:
+    - external_data_source
+id: paragraph.hp_announcements_feed.field_hp_anf_category
+field_name: field_hp_anf_category
+entity_type: paragraph
+bundle: hp_announcements_feed
+label: Category
+description: 'Optionally, filter this feed by category. Filters announcements by the Announcement Category taxonomy (announcement_category) in the dig.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: external_data_source

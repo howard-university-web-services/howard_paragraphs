@@ -44,43 +44,51 @@ function hp_news_feed_preprocess_paragraph__hp_news_feed(&$variables)
 
   // Check on env to get events from.
   $env = $variables['elements']['#paragraph']->field_hp_nf_environment->value;
-  $env_url = 'https://newsroom.howard.edu';
+  $env_url = 'https://thedig.howard.edu';
   if ($env == 'stg') {
-    $env_url = 'http://stg.newsroom.howard.edu';
+    $env_url = 'https://stg.thedig.howard.edu';
   } elseif ($env == 'dev') {
-    $env_url = 'http://dev.newsroom.howard.edu';
+    $env_url = 'https://dev.thedig.howard.edu';
   }
   $variables['hp_nf_env_url'] = $env_url;
   $variables['hp_nf_default_image'] = '/' . drupal_get_path('module', 'hp_news_feed') . '/assets/hp_news_feed_default.jpg';
 
   // Check on categories filter.
   $category = NULL;
-  if (isset($variables['elements']['#paragraph']->field_hp_nf_news_category->value)) {
-    $category = $variables['elements']['#paragraph']->field_hp_nf_news_category->value;
+  if (isset($variables['elements']['#paragraph']->field_hp_nf_dg_category->value)) {
+    $category = $variables['elements']['#paragraph']->field_hp_nf_dg_category->value;
     // Decode string workaround due to bug in core or external_data_source.
     $category = str_replace('id=', '', $category);
   }
 
-  // Check on admin categories filter.
-  $admin_category = NULL;
-  if (isset($variables['elements']['#paragraph']->field_hp_nf_news_admin_category->value)) {
-    $admin_category = $variables['elements']['#paragraph']->field_hp_nf_news_admin_category->value;
+  // Check on initiatives filter.
+  $initiatives = NULL;
+  if (isset($variables['elements']['#paragraph']->field_hp_nf_dg_initiative->value)) {
+    $initiatives = $variables['elements']['#paragraph']->field_hp_nf_dg_initiative->value;
     // Decode string workaround due to bug in core or external_data_source.
-    $admin_category = str_replace('id=', '', $admin_category);
+    $initiatives = str_replace('id=', '', $initiatives);
+  }
+
+  // Check on units filter.
+  $units = NULL;
+  if (isset($variables['elements']['#paragraph']->field_hp_nf_dg_unit->value)) {
+    $units = $variables['elements']['#paragraph']->field_hp_nf_dg_unit->value;
+    // Decode string workaround due to bug in core or external_data_source.
+    $units = str_replace('id=', '', $units);
   }
 
   // Check on Schools and Colleges filter.
   $schools_colleges = NULL;
-  if (isset($variables['elements']['#paragraph']->field_hp_nf_news_schools_college->value)) {
-    $schools_colleges = $variables['elements']['#paragraph']->field_hp_nf_news_schools_college->value;
+  if (isset($variables['elements']['#paragraph']->field_hp_nf_dg_schools_colleges->value)) {
+    $schools_colleges = $variables['elements']['#paragraph']->field_hp_nf_dg_schools_colleges->value;
     // Decode string workaround due to bug in core or external_data_source.
     $schools_colleges = str_replace('id=', '', $schools_colleges);
   }
 
   // Check on Howard Forward filter.
   $howard_forward = NULL;
-  if (isset($variables['elements']['#paragraph']->field_hp_nf_news_howard_forward->value)) {
-    $howard_forward = $variables['elements']['#paragraph']->field_hp_nf_news_howard_forward->value;
+  if (isset($variables['elements']['#paragraph']->field_hp_nf_dg_howard_forward->value)) {
+    $howard_forward = $variables['elements']['#paragraph']->field_hp_nf_dg_howard_forward->value;
     // Decode string workaround due to bug in core or external_data_source.
     $howard_forward = str_replace('id=', '', $howard_forward);
   }
@@ -91,13 +99,13 @@ function hp_news_feed_preprocess_paragraph__hp_news_feed(&$variables)
 
   // Get news.
   if ($feed_type == 'three_w_images') {
-    $variables['hp_nf_news'] = _hp_news_feed_get_news($env_url, $category, $admin_category, $schools_colleges, $howard_forward, 3, 1, $uuid);
+    $variables['hp_nf_news'] = \Drupal::service('howard.news')->getArticles($env_url, $category, $initiatives, $units, $schools_colleges, $howard_forward, 3, $uuid);
   } elseif ($feed_type == 'three_w_one_featured') {
-    $variables['hp_nf_news'] = _hp_news_feed_get_news($env_url, $category, $admin_category, $schools_colleges, $howard_forward, 4, 1, $uuid);
+    $variables['hp_nf_news'] = \Drupal::service('howard.news')->getArticles($env_url, $category, $initiatives, $units, $schools_colleges, $howard_forward, 4, $uuid);
   } elseif ($feed_type == 'four_w_one_featured') {
-    $variables['hp_nf_news'] = _hp_news_feed_get_news($env_url, $category, $admin_category, $schools_colleges, $howard_forward, 5, 1, $uuid);
+    $variables['hp_nf_news'] = \Drupal::service('howard.news')->getArticles($env_url, $category, $initiatives, $units, $schools_colleges, $howard_forward, 5, $uuid);
   } elseif ($feed_type == 'twenty_wo_images') {
-    $variables['hp_nf_news'] = _hp_news_feed_get_news($env_url, $category, $admin_category, $schools_colleges, $howard_forward, 20, 1, $uuid);
+    $variables['hp_nf_news'] = \Drupal::service('howard.news')->getArticles($env_url, $category, $initiatives, $units, $schools_colleges, $howard_forward, 20, $uuid);
   }
 }
 
@@ -114,43 +122,6 @@ function hp_news_feed_theme($existing, $type, $theme, $path)
   ];
 }
 
-/**
- * CUSTOM FUNCTIONS.
- */
-
-/**
- * Gets articles from newsroom, and displays.
- */
-function _hp_news_feed_get_news($env_url = 'https://newsroom.howard.edu', $category = NULL, $admin_category = NULL, $schools_colleges = NULL, $howard_forward = NULL, $range = 3, $page = 1, $id = 'default')
-{
-  if ($cache = \Drupal::cache()->get('hp_news_feed--' . $id . '-' . $range)) {
-    return $cache->data;
-  } else {
-    $currentDate = date('Y-m-d', strtotime(' +1 day'));
-    $url = $env_url . "/api/articlesearch/%20?sort=-publication_date&fields=id,label,publication_date_formatted,image,uri,summary&range=" . $range . "&page=" . $page . "&filter[publication_date][value][]=" . $currentDate . "%2000:00:00&filter[publication_date][operator]='<='&filter[exclude_from_main_feed][value]=1&filter[exclude_from_main_feed][operator]='!='";
-    if (isset($category)) {
-      $url .= "&filter[taxonomy_3][value][]=" . $category;
-    }
-    if (isset($admin_category)) {
-      $url .= "&filter[taxonomy_5][value][]=" . $admin_category;
-    }
-    if (isset($schools_colleges)) {
-      $url .= "&filter[taxonomy_1][value][]=" . $schools_colleges;
-    }
-    if (isset($howard_forward)) {
-      $url .= "&filter[taxonomy_9][value][]=" . $howard_forward;
-    }
-    $result = file_get_contents($url);
-    $result = json_decode($result, TRUE);
-    $result = $result['data'];
-    if ($result) {
-      \Drupal::cache()->set('hp_news_feed--' . $id . '-' . $range, $result, time() + 7200);
-      return $result;
-    } else {
-      return NULL;
-    }
-  }
-}
 
 // UPDATES
 // .
@@ -177,4 +148,28 @@ function hp_news_feed_update_8002()
 function hp_news_feed_update_8003()
 {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_news_feed');
+}
+
+/**
+ * Remove old newsroom fields and info, and re-add new fields, to go to the new dig.howard site.
+ */
+function hp_news_feed_update_8004()
+{
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_news_feed');
+  // Remove admin category field.
+  if (FieldConfig::loadByName('paragraph', 'hp_news_feed', 'field_hp_nf_news_admin_category') !== NULL ) {
+    FieldConfig::loadByName('paragraph', 'hp_news_feed', 'field_hp_nf_news_admin_category')->delete();
+  }
+  // Remove category field.
+  if (FieldConfig::loadByName('paragraph', 'hp_news_feed', 'field_hp_nf_news_category') !== NULL ) {
+    FieldConfig::loadByName('paragraph', 'hp_news_feed', 'field_hp_nf_news_category')->delete();
+  }
+  // Remove howard forward field.
+  if (FieldConfig::loadByName('paragraph', 'hp_news_feed', 'field_hp_nf_news_howard_forward') !== NULL ) {
+    FieldConfig::loadByName('paragraph', 'hp_news_feed', 'field_hp_nf_news_howard_forward')->delete();
+  }
+  // Remove schools colleges field.
+  if (FieldConfig::loadByName('paragraph', 'hp_news_feed', 'field_hp_nf_news_schools_college') !== NULL ) {
+    FieldConfig::loadByName('paragraph', 'hp_news_feed', 'field_hp_nf_news_schools_college')->delete();
+  }
 }

@@ -17,6 +17,7 @@ class HowardExternalContentCacheClear extends ControllerBase {
   public static function clearExternalContent() {
     $query = \Drupal::entityQuery('paragraph')
     ->condition('type', [
+      'hp_announcements_feed',
       'hp_twitter_feed',
       'hp_deadline_feed',
       'hp_events_feed',

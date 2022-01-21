@@ -6,6 +6,8 @@ dependencies:
     - paragraphs.paragraphs_type.hp_news_feed
   module:
     - link
+_core:
+  default_config_hash: sfDJvQlkxJrHRopV3whuNe_78J6pYcvA4lnO_2QEpHM
 id: paragraph.hp_news_feed.field_hp_nf_link
 field_name: field_hp_nf_link
 entity_type: paragraph
@@ -17,9 +19,11 @@ translatable: false
 default_value:
   -
     attributes: {  }
-    uri: 'https://newsroom.howard.edu'
+    uri: 'https://thedig.howard.edu'
+    options:
+      attributes:
+        target: ''
     title: 'View More News'
-    options: {  }
 default_value_callback: ''
 settings:
   link_type: 17

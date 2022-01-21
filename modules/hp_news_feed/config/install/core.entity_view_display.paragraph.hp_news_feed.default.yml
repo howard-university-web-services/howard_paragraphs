@@ -2,13 +2,14 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.hp_news_feed.field_hp_nf_dg_category
+    - field.field.paragraph.hp_news_feed.field_hp_nf_dg_howard_forward
+    - field.field.paragraph.hp_news_feed.field_hp_nf_dg_initiative
+    - field.field.paragraph.hp_news_feed.field_hp_nf_dg_schools_colleges
+    - field.field.paragraph.hp_news_feed.field_hp_nf_dg_unit
     - field.field.paragraph.hp_news_feed.field_hp_nf_environment
     - field.field.paragraph.hp_news_feed.field_hp_nf_feed_type
     - field.field.paragraph.hp_news_feed.field_hp_nf_link
-    - field.field.paragraph.hp_news_feed.field_hp_nf_news_admin_category
-    - field.field.paragraph.hp_news_feed.field_hp_nf_news_category
-    - field.field.paragraph.hp_news_feed.field_hp_nf_news_howard_forward
-    - field.field.paragraph.hp_news_feed.field_hp_nf_news_schools_college
     - field.field.paragraph.hp_news_feed.field_hp_nf_title
     - paragraphs.paragraphs_type.hp_news_feed
   module:
@@ -16,7 +17,7 @@ dependencies:
     - link
     - options
 _core:
-  default_config_hash: W_Fasoi7XTUHB2DlDY4HTwbsTaZyk7Rm2u2e7kAyz0I
+  default_config_hash: Pyk2EUQVzSlE8CuUu3EawqvqKipMvJc5Mg6EfpTnRNw
 id: paragraph.hp_news_feed.default
 targetEntityType: paragraph
 bundle: hp_news_feed
@@ -31,6 +32,41 @@ content:
     region: content
   field_hp_ef_event_category:
     weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: external_data_source_formatter
+    region: content
+  field_hp_nf_dg_category:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: external_data_source_formatter
+    region: content
+  field_hp_nf_dg_howard_forward:
+    weight: 7
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: external_data_source_formatter
+    region: content
+  field_hp_nf_dg_initiative:
+    weight: 4
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: external_data_source_formatter
+    region: content
+  field_hp_nf_dg_schools_colleges:
+    weight: 6
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: external_data_source_formatter
+    region: content
+  field_hp_nf_dg_unit:
+    weight: 5
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -54,34 +90,6 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
-    region: content
-  field_hp_nf_news_admin_category:
-    weight: 3
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: external_data_source_formatter
-    region: content
-  field_hp_nf_news_category:
-    type: external_data_source_formatter
-    weight: 5
-    region: content
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-  field_hp_nf_news_howard_forward:
-    weight: 6
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: external_data_source_formatter
-    region: content
-  field_hp_nf_news_schools_college:
-    weight: 4
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: external_data_source_formatter
     region: content
   field_hp_nf_title:
     weight: 1

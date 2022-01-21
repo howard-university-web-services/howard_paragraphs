@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_nf_dg_schools_colleges
+    - paragraphs.paragraphs_type.hp_news_feed
+  module:
+    - external_data_source
+id: paragraph.hp_news_feed.field_hp_nf_dg_schools_colleges
+field_name: field_hp_nf_dg_schools_colleges
+entity_type: paragraph
+bundle: hp_news_feed
+label: 'Schools and Colleges'
+description: 'Filters articles by the Schools and Colleges taxonomy (schools_and_colleges) in thedig.howard.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: external_data_source

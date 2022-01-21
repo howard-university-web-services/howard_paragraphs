@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Provides Drupal\external_data_source\Plugin\ExternalWsSource\NewsAdminCategories.
+ * Provides Drupal\external_data_source\Plugin\ExternalWsSource\NewsUnits.
  */
 
 namespace Drupal\hp_news_feed\Plugin\ExternalDataSource;
@@ -13,22 +13,22 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception as GuzzleException;
 
 /**
- * Provides a 'News Admin Categories' ExternalDataSource.
+ * Provides a 'Units' ExternalDataSource.
  *
  * @ExternalDataSource(
- *   id = "news_admin_categories",
- *   name = @Translation("News Admin Categories"),
- *   description = @Translation("This Plugin will gather a list of Howard News Admin Categories.")
+ *   id = "news_units",
+ *   name = @Translation("News Units"),
+ *   description = @Translation("This Plugin will gather a list of Howard News Units.")
  * )
  */
-class NewsAdminCategories extends ExternalDataSourceBase {
+class NewsUnits extends ExternalDataSourceBase {
 
   /**
    *
    * @return string
    */
   public function getPluginId() {
-    return 'news_admin_categories';
+    return 'news_units';
   }
 
   /**
@@ -36,7 +36,7 @@ class NewsAdminCategories extends ExternalDataSourceBase {
    * @return string
    */
   public function getPluginDefinition() {
-    return $this->t('This Plugin will gather a list of Howard News Admin Categories.');
+    return $this->t('This Plugin will gather a list of Howard News Units.');
   }
 
   /**
@@ -66,7 +66,7 @@ class NewsAdminCategories extends ExternalDataSourceBase {
    * @return array
    */
   public function getResponse() {
-    $cid = 'hp_news_feed_external_data_source_news_admin_categories';
+    $cid = 'hp_news_feed_external_data_source_news_units';
     if ($this->request && !is_null($this->request->get('q'))) {
       $this->q = $this->request->get('q');
       $cid = $cid . '_' . $this->request->get('q');
@@ -78,8 +78,8 @@ class NewsAdminCategories extends ExternalDataSourceBase {
     else {
       $client = new Client();
       try {
-        // taxonomy_5 is the admin category endpoint on howard newsroom.
-        $response = $client->get('https://newsroom.howard.edu/api/taxonomy_5/');
+        // taxonomy_1 is the schools/colleges endpoint on howard newsroom.
+        $response = $client->get('https://dev.thedig.howard.edu/jsonapi/taxonomy_term/campus_units_programs', ['verify' => FALSE]);
         $data = json_decode($response->getBody()->getContents());
         $data = $data->data;
       }
@@ -105,10 +105,11 @@ class NewsAdminCategories extends ExternalDataSourceBase {
     $collection = [];
     foreach ($response as $entry) {
       // Workaround to set as a text string, as a bug prevents from setting simply a number, even as string.
-      $value = 'id=' . strval($entry->id);
+      $value = 'id=' . strval($entry->attributes->drupal_internal__tid);
+      $name = $entry->attributes->name;
       $collection[] = [
         'value' => $value,
-        'label' => t($entry->label),
+        'label' => t($name),
       ];
     }
     // \Drupal::logger('hp_ec')->debug('response: ' . json_encode($collection) );

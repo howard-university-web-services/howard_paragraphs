@@ -6,6 +6,8 @@ dependencies:
     - paragraphs.paragraphs_type.hp_news_feed
   module:
     - options
+_core:
+  default_config_hash: NS8taZwfJkzTJenA5BQrsa5zotO0SWeasvVV1wgnTDo
 id: paragraph.hp_news_feed.field_hp_nf_environment
 field_name: field_hp_nf_environment
 entity_type: paragraph

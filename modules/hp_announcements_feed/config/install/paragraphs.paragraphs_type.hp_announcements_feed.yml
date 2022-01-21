@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_announcements_feed
+label: 'HP Announcements Feed'
+icon_uuid: null
+icon_default: null
+description: 'Provides a paragraphs bundle for embedding campus wide Announcements Feeds from the Dig as a Kitchen Sink Widget'
+behavior_plugins: {  }

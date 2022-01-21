@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_anf_unit
+    - paragraphs.paragraphs_type.hp_announcements_feed
+  module:
+    - external_data_source
+id: paragraph.hp_announcements_feed.field_hp_anf_unit
+field_name: field_hp_anf_unit
+entity_type: paragraph
+bundle: hp_announcements_feed
+label: 'Supporting Unit'
+description: 'Optionally, filter this feed by supporting unit. Filters announcements by the Announcement Sponsoring Unit taxonomy (announcement_sponsoring_unit) in the dig'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: external_data_source

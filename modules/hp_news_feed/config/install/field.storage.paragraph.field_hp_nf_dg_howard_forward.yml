@@ -4,12 +4,12 @@ dependencies:
   module:
     - external_data_source
     - paragraphs
-id: paragraph.field_hp_nf_news_admin_category
-field_name: field_hp_nf_news_admin_category
+id: paragraph.field_hp_nf_dg_howard_forward
+field_name: field_hp_nf_dg_howard_forward
 entity_type: paragraph
 type: external_data_source
 settings:
-  ws: news_admin_categories
+  ws: news_howard_forward
   count: '100'
   max_length: '255'
   is_ascii: false

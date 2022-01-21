@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Provides Drupal\external_data_source\Plugin\ExternalWsSource\NewsSchoolsColleges.
+ * Provides Drupal\external_data_source\Plugin\ExternalWsSource\NewsInitiatives.
  */
 
 namespace Drupal\hp_news_feed\Plugin\ExternalDataSource;
@@ -13,22 +13,22 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception as GuzzleException;
 
 /**
- * Provides a 'News Schools and Colleges' ExternalDataSource.
+ * Provides a 'Initiatives' ExternalDataSource.
  *
  * @ExternalDataSource(
- *   id = "news_schools_colleges",
- *   name = @Translation("News Schools and Colleges"),
- *   description = @Translation("This Plugin will gather a list of Howard News Schools and Colleges.")
+ *   id = "news_initiatives",
+ *   name = @Translation("News Initiatives"),
+ *   description = @Translation("This Plugin will gather a list of Howard News Initiatives.")
  * )
  */
-class NewsSchoolsColleges extends ExternalDataSourceBase {
+class NewsInitiatives extends ExternalDataSourceBase {
 
   /**
    *
    * @return string
    */
   public function getPluginId() {
-    return 'news_schools_colleges';
+    return 'news_initiatives';
   }
 
   /**
@@ -36,7 +36,7 @@ class NewsSchoolsColleges extends ExternalDataSourceBase {
    * @return string
    */
   public function getPluginDefinition() {
-    return $this->t('This Plugin will gather a list of Howard News Schools and Colleges.');
+    return $this->t('This Plugin will gather a list of Howard News Initiatives.');
   }
 
   /**
@@ -66,7 +66,7 @@ class NewsSchoolsColleges extends ExternalDataSourceBase {
    * @return array
    */
   public function getResponse() {
-    $cid = 'hp_news_feed_external_data_source_news_schools_colleges';
+    $cid = 'hp_news_feed_external_data_source_news_initiatives';
     if ($this->request && !is_null($this->request->get('q'))) {
       $this->q = $this->request->get('q');
       $cid = $cid . '_' . $this->request->get('q');
@@ -79,7 +79,7 @@ class NewsSchoolsColleges extends ExternalDataSourceBase {
       $client = new Client();
       try {
         // taxonomy_1 is the schools/colleges endpoint on howard newsroom.
-        $response = $client->get('https://dev.thedig.howard.edu/jsonapi/taxonomy_term/schools_and_colleges', ['verify' => FALSE]);
+        $response = $client->get('https://dev.thedig.howard.edu/jsonapi/taxonomy_term/university_events_initiatives_ca', ['verify' => FALSE]);
         $data = json_decode($response->getBody()->getContents());
         $data = $data->data;
       }

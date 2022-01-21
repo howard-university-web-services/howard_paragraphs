@@ -4,10 +4,8 @@ dependencies:
   module:
     - options
     - paragraphs
-_core:
-  default_config_hash: GHsQe6RVbtZEm7avqy8bZtIOlisqZ6KwdhAnZXAOCtc
-id: paragraph.field_hp_nf_environment
-field_name: field_hp_nf_environment
+id: paragraph.field_hp_anf_environment
+field_name: field_hp_anf_environment
 entity_type: paragraph
 type: list_string
 settings:

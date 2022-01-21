@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Provides Drupal\external_data_source\Plugin\ExternalWsSource\NewsSchoolsColleges.
+ * Provides Drupal\external_data_source\Plugin\ExternalWsSource\NewsAnnouncementUnit.
  */
 
-namespace Drupal\hp_news_feed\Plugin\ExternalDataSource;
+namespace Drupal\hp_announcements_feed\Plugin\ExternalDataSource;
 
 use Drupal\external_data_source\Plugin\ExternalDataSourceBase;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,22 +13,22 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception as GuzzleException;
 
 /**
- * Provides a 'News Schools and Colleges' ExternalDataSource.
+ * Provides a 'News Announcement Unit' ExternalDataSource.
  *
  * @ExternalDataSource(
- *   id = "news_schools_colleges",
- *   name = @Translation("News Schools and Colleges"),
- *   description = @Translation("This Plugin will gather a list of Howard News Schools and Colleges.")
+ *   id = "news_announcement_unit",
+ *   name = @Translation("News Announcement Sponsoring Unit"),
+ *   description = @Translation("This Plugin will gather a list of Howard News Announcement Sponsoring Units.")
  * )
  */
-class NewsSchoolsColleges extends ExternalDataSourceBase {
+class NewsAnnouncementUnit extends ExternalDataSourceBase {
 
   /**
    *
    * @return string
    */
   public function getPluginId() {
-    return 'news_schools_colleges';
+    return 'news_announcement_unit';
   }
 
   /**
@@ -36,7 +36,7 @@ class NewsSchoolsColleges extends ExternalDataSourceBase {
    * @return string
    */
   public function getPluginDefinition() {
-    return $this->t('This Plugin will gather a list of Howard News Schools and Colleges.');
+    return $this->t('This Plugin will gather a list of Howard News Announcement Sponsoring Units.');
   }
 
   /**
@@ -66,7 +66,7 @@ class NewsSchoolsColleges extends ExternalDataSourceBase {
    * @return array
    */
   public function getResponse() {
-    $cid = 'hp_news_feed_external_data_source_news_schools_colleges';
+    $cid = 'hp_announcements_feed_external_data_source_news_announcement_unit';
     if ($this->request && !is_null($this->request->get('q'))) {
       $this->q = $this->request->get('q');
       $cid = $cid . '_' . $this->request->get('q');
@@ -78,8 +78,7 @@ class NewsSchoolsColleges extends ExternalDataSourceBase {
     else {
       $client = new Client();
       try {
-        // taxonomy_1 is the schools/colleges endpoint on howard newsroom.
-        $response = $client->get('https://dev.thedig.howard.edu/jsonapi/taxonomy_term/schools_and_colleges', ['verify' => FALSE]);
+        $response = $client->get('https://dev.thedig.howard.edu/jsonapi/taxonomy_term/announcement_sponsoring_unit', ['verify' => FALSE]);
         $data = json_decode($response->getBody()->getContents());
         $data = $data->data;
       }

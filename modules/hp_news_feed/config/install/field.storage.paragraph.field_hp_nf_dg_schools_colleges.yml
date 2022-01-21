@@ -2,18 +2,19 @@ langcode: en
 status: true
 dependencies:
   module:
+    - external_data_source
     - paragraphs
-_core:
-  default_config_hash: zEIJd78qTxci7HN9sba3f5er95ExtswusI3HDylddpI
-id: paragraph.field_hp_nf_title
-field_name: field_hp_nf_title
+id: paragraph.field_hp_nf_dg_schools_colleges
+field_name: field_hp_nf_dg_schools_colleges
 entity_type: paragraph
-type: string
+type: external_data_source
 settings:
-  max_length: 255
+  ws: news_schools_colleges
+  count: '100'
+  max_length: '255'
   is_ascii: false
   case_sensitive: false
-module: core
+module: external_data_source
 locked: false
 cardinality: 1
 translatable: true

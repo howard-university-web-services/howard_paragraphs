@@ -4,12 +4,12 @@ dependencies:
   module:
     - external_data_source
     - paragraphs
-id: paragraph.field_hp_nf_news_schools_college
-field_name: field_hp_nf_news_schools_college
+id: paragraph.field_hp_nf_dg_unit
+field_name: field_hp_nf_dg_unit
 entity_type: paragraph
 type: external_data_source
 settings:
-  ws: news_schools_colleges
+  ws: news_units
   count: '100'
   max_length: '255'
   is_ascii: false
