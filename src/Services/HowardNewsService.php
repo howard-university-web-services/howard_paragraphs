@@ -28,7 +28,7 @@ class HowardNewsService {
     $this->client = $client;
     $this->currentTime = date("h:i:s");
     $this->currentDate = date("Y-m-d");
-    $this->apiEndpoint = 'https://dev.thedig.howard.edu';
+    $this->apiEndpoint = 'https://thedig.howard.edu';
     $this->notificationEndpoint = "/jsonapi/node/initiative?filter[start-date][condition][path]=field_alert_start_date&filter[start-date][condition][value]=" . $this->currentDate . "%20" . $this->currentTime . "&filter[start-date][condition][operator]=%3C%3D&filter[end-date][condition][path]=field_alert_end_date&filter[end-date][condition][value]=" . $this->currentDate . "%20" . $this->currentTime . "&filter[end-date][condition][operator]=%3E%3D";
     $this->articleEndpoint = "/jsonapi/node/article";
     $this->announcementEndpoint = "/jsonapi/node/announcement";
@@ -52,23 +52,21 @@ class HowardNewsService {
     //$url = $env_url . $this->articleEndpoint . "/api/articlesearch/%20?sort=-publication_date&fields=id,label,publication_date_formatted,image,uri,summary&range=" . $range . "&page=" . $page . "&filter[publication_date][value][]=" . $currentDate . "%2000:00:00&filter[publication_date][operator]='<='&filter[exclude_from_main_feed][value]=1&filter[exclude_from_main_feed][operator]='!='";
     $url = $env_url . $this->articleEndpoint . "?page[limit]=" . $range;
     if (isset($category)) {
-      $url .= $this->formatFilters('category', 'FIELD_NAME_HERE', $category);
+      $url .= $this->formatFilters('category', 'field_primary_tag', $category);
     }
     if (isset($initiatives)) {
-      $url .= $this->formatFilters('initiatives', 'FIELD_NAME_HERE', $initiatives);
+      $url .= $this->formatFilters('initiatives', 'field_event_initiative_campaign', $initiatives);
     }
     if (isset($units)) {
-      $url .= $this->formatFilters('units', 'FIELD_NAME_HERE', $units);
+      $url .= $this->formatFilters('units', '	field_campus_units_programs', $units);
     }
     if (isset($schools_colleges)) {
-      $url .= $this->formatFilters('schools', 'FIELD_NAME_HERE', $schools_colleges);
+      $url .= $this->formatFilters('schools', 'field_schools_and_colleges', $schools_colleges);
     }
     if (isset($howard_forward)) {
-      $url .= $this->formatFilters('forward', 'FIELD_NAME_HERE', $howard_forward);
+      $url .= $this->formatFilters('forward', 'field_howard_forward', $howard_forward);
     }
-    dsm($url);
     $json = $this->getData($id, $url);
-   //dsm($json);
     return $json;
   }
 

@@ -78,7 +78,7 @@ class NewsAnnouncementUnit extends ExternalDataSourceBase {
     else {
       $client = new Client();
       try {
-        $response = $client->get('https://dev.thedig.howard.edu/jsonapi/taxonomy_term/announcement_sponsoring_unit', ['verify' => FALSE]);
+        $response = $client->get('https://thedig.howard.edu/jsonapi/taxonomy_term/announcement_sponsoring_unit', ['verify' => FALSE]);
         $data = json_decode($response->getBody()->getContents());
         $data = $data->data;
       }

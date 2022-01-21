@@ -79,7 +79,7 @@ class NewsHowardForward extends ExternalDataSourceBase {
       $client = new Client();
       try {
         // taxonomy_1 is the schools/colleges endpoint on howard newsroom.
-        $response = $client->get('https://dev.thedig.howard.edu/jsonapi/taxonomy_term/howard_forward', ['verify' => FALSE]);
+        $response = $client->get('https://thedig.howard.edu/jsonapi/taxonomy_term/howard_forward', ['verify' => FALSE]);
         $data = json_decode($response->getBody()->getContents());
         $data = $data->data;
       }
