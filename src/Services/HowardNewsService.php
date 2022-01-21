@@ -40,7 +40,7 @@ class HowardNewsService {
   public function getNotifications() {
     $url = $this->apiEndpoint . $this->notificationEndpoint;
     $json = $this->getData('general_notifications', $url);
-    return $json;
+    return $json['data'];
   }
 
   /**
@@ -48,9 +48,8 @@ class HowardNewsService {
    */
   public function getArticles($env_url = 'https://thedig.howard.edu', $category = NULL, $initiatives = NULL, $units = NULL, $schools_colleges = NULL, $howard_forward = NULL, $range = 3, $id = 'default') {
 
-    // left off below
-    //$url = $env_url . $this->articleEndpoint . "/api/articlesearch/%20?sort=-publication_date&fields=id,label,publication_date_formatted,image,uri,summary&range=" . $range . "&page=" . $page . "&filter[publication_date][value][]=" . $currentDate . "%2000:00:00&filter[publication_date][operator]='<='&filter[exclude_from_main_feed][value]=1&filter[exclude_from_main_feed][operator]='!='";
-    $url = $env_url . $this->articleEndpoint . "?page[limit]=" . $range;
+    $url = $env_url . $this->articleEndpoint . "?page[limit]=" . $range . '&include=field_hero_image,field_hero_image.field_media_image,field_hero_image.field_media_image.uid';
+
     if (isset($category)) {
       $url .= $this->formatFilters('category', 'field_primary_tag', $category);
     }
@@ -67,6 +66,8 @@ class HowardNewsService {
       $url .= $this->formatFilters('forward', 'field_howard_forward', $howard_forward);
     }
     $json = $this->getData($id, $url);
+    $json = $this->formatArticles($json);
+
     return $json;
   }
 
@@ -84,7 +85,7 @@ class HowardNewsService {
       $url .= $this->formatFilters('af-unit', 'field_announcement_unit', $unit);
     }
     $json = $this->getData($id, $url);
-    return $json;
+    return $json['data'];
   }
 
   /**
@@ -95,6 +96,25 @@ class HowardNewsService {
     $filters .= '&filter[' . $id . '][condition][value]=' . $value;
     $filters .= '&filter[' . $id . '][condition][operator]=' . $operator;
     return $filters;
+  }
+
+  /**
+   * Public method to format articles to get an image.
+   */
+  public function formatArticles($json) {
+    foreach ($json['data'] as $key => $article) {
+      $image = [];
+      if (isset($article['relationships']['field_hero_image']['data']['id'])) {
+        $media_key = array_search($article['relationships']['field_hero_image']['data']['id'], array_column($json['included'], 'id'));
+        if (isset($json['included'][$key]['relationships']['field_media_image'])) {
+          $image['alt'] = $json['included'][$key]['relationships']['field_media_image']['data']['meta']['alt'];
+          $image_key = array_search($json['included'][$key]['relationships']['field_media_image']['data']['id'], array_column($json['included'], 'id'));
+          $image['uri'] = $json['included'][$image_key]['attributes']['image_style_uri'][0]['large'];
+        }
+      }
+      $json['data'][$key]['attributes']['image'] = $image;
+    }
+    return $json;
   }
 
   /**
@@ -114,8 +134,8 @@ class HowardNewsService {
         return;
       }
       if ($result['data']) {
-         \Drupal::cache()->set($cache_id, $result['data'], time() + 7200);
-        return $result['data'];
+         \Drupal::cache()->set($cache_id, $result, time() + 7200);
+        return $result;
       }
       else {
         return;
