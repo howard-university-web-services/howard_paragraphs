@@ -125,7 +125,7 @@ class HowardNewsService {
       return $cache->data;
     } else {
       try {
-        $request = $this->client->get($url, ['verify' => FALSE]);
+        $request = $this->client->get($url . '&filter[status][value]=1', ['verify' => FALSE]);
         $result = json_decode($request->getBody()->__toString(), TRUE);
       }
       catch (RequestException $e) {
