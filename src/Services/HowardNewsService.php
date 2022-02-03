@@ -48,7 +48,7 @@ class HowardNewsService {
    */
   public function getArticles($env_url = 'https://thedig.howard.edu', $category = NULL, $initiatives = NULL, $units = NULL, $schools_colleges = NULL, $howard_forward = NULL, $range = 3, $id = 'default') {
 
-    $url = $env_url . $this->articleEndpoint . "?page[limit]=" . $range . '&include=field_hero_image,field_hero_image.field_media_image,field_hero_image.field_media_image.uid';
+    $url = $env_url . $this->articleEndpoint . "?sort[sort-published][path]=field_date&sort[sort-published][direction]=DESC&page[limit]=" . $range . '&include=field_hero_image,field_hero_image.field_media_image,field_hero_image.field_media_image.uid';
 
     if (isset($category)) {
       $url .= $this->formatFilters('category', 'field_primary_tag', $category);
