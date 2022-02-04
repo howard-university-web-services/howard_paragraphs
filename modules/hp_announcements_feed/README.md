@@ -12,7 +12,7 @@ This module contains markup only (no js or css), those should be provided in the
 The following fields are available on this KS widget:
 
 - Title: Sets the title in the header bar. Defaults to "News".
-- Link: Sets the "View all Link" in the header bar, defaults to production newsroom (newsroom.howard.edu).
+- Link: Sets the "View all Link" in the header bar, defaults to production newsroom (thedig.howard.edu).
 - Feed Type: Choose which style of feed you wish to display.
 - Range: The max number of announcements to display. Between 3 and 30.
 - Environment: Choose which environment of the newsroom to pull news from. Defaults to production.
