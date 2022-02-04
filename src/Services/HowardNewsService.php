@@ -66,7 +66,19 @@ class HowardNewsService {
       $url .= $this->formatFilters('forward', 'field_howard_forward', $howard_forward);
     }
     $json = $this->getData($id, $url);
-    $json = $this->formatArticles($json);
+    $json = $this->formatArticles($json, 'large');
+
+    return $json;
+  }
+
+  /**
+   * Public method to return single Howard Article for the howard.edu homepage.
+   */
+  public function getHomeFeaturedArticles($env_url = 'https://thedig.howard.edu', $range = 1, $id = 'default') {
+
+    $url = $env_url . $this->articleEndpoint . "?filter[field_howard_homepage_feature]=1&sort[sort-published][path]=field_date&sort[sort-published][direction]=DESC&page[limit]=" . $range . '&include=field_hero_image,field_hero_image.field_media_image,field_hero_image.field_media_image.uid';
+    $json = $this->getData($id, $url);
+    $json = $this->formatArticles($json, 'dig_1920_x_1080');
 
     return $json;
   }
@@ -101,7 +113,7 @@ class HowardNewsService {
   /**
    * Public method to format articles to get an image.
    */
-  public function formatArticles($json) {
+  public function formatArticles($json, $style = 'large') {
     foreach ($json['data'] as $key => $article) {
       $image = [];
       if (isset($article['relationships']['field_hero_image']['data']['id'])) {
@@ -109,7 +121,7 @@ class HowardNewsService {
         if (isset($json['included'][$key]['relationships']['field_media_image'])) {
           $image['alt'] = $json['included'][$key]['relationships']['field_media_image']['data']['meta']['alt'];
           $image_key = array_search($json['included'][$key]['relationships']['field_media_image']['data']['id'], array_column($json['included'], 'id'));
-          $image['uri'] = $json['included'][$image_key]['attributes']['image_style_uri'][0]['large'];
+          $image['uri'] = $json['included'][$image_key]['attributes']['image_style_uri'][0][$style];
         }
       }
       $json['data'][$key]['attributes']['image'] = $image;
