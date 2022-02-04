@@ -121,9 +121,11 @@ class HowardNewsService {
         if (isset($json['included'][$key]['relationships']['field_media_image'])) {
           $image['alt'] = $json['included'][$key]['relationships']['field_media_image']['data']['meta']['alt'];
           $image_key = array_search($json['included'][$key]['relationships']['field_media_image']['data']['id'], array_column($json['included'], 'id'));
-          $image['uri'] = $json['included'][$image_key]['attributes']['image_style_uri'][0][$style];
+          $image_style = array_column($json['included'][$image_key]['attributes']['image_style_uri'], $style);
+          $image['uri'] = $image_style[0];
         }
       }
+
       $json['data'][$key]['attributes']['image'] = $image;
     }
     return $json;
