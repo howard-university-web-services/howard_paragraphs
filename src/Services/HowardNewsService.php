@@ -57,7 +57,7 @@ class HowardNewsService {
       $url .= $this->formatFilters('initiatives', 'field_event_initiative_campaign', $initiatives);
     }
     if (isset($units)) {
-      $url .= $this->formatFilters('units', '	field_campus_units_programs', $units);
+      $url .= $this->formatFilters('units', 'field_campus_units_programs', $units);
     }
     if (isset($schools_colleges)) {
       $url .= $this->formatFilters('schools', 'field_schools_and_colleges', $schools_colleges);
@@ -148,7 +148,7 @@ class HowardNewsService {
         return;
       }
       if ($result['data']) {
-         \Drupal::cache()->set($cache_id, $result, time() + 7200);
+        \Drupal::cache()->set($cache_id, $result, time() + 7200);
         return $result;
       }
       else {
