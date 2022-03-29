@@ -1,6 +1,6 @@
 name: 'Howard Paragraphs: Alumni Feed'
 type: module
-description: Provides a paragraphs bundle for embedding feeds of Featured Students and Alumni from profiles.howard.edu as a Kitchen Sink Widget.
+description: Provides a paragraphs bundle for embedding feeds of Featured Students and Alumni from thedig.howard.edu as a Kitchen Sink Widget.
 version: '8.x-1.0'
 core: '8.x'
 core_version_requirement: ^8 || ^9

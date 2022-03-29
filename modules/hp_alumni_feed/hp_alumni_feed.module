@@ -41,33 +41,34 @@ function hp_alumni_feed_preprocess_paragraph__hp_featured_student_alumni_feed(&$
   // UUID to pass for cache.
   $uuid = $variables['elements']['#paragraph']->uuid->value;
 
-  // Check on env to get events from.
+  // Check on env to get people from.
   $env = $variables['elements']['#paragraph']->field_hp_pf_environment->value;
-  $env_url = 'https://profiles.howard.edu';
+  $env_url = 'https://thedig.howard.edu';
   if ($env == 'stg') {
-    $env_url = 'http://stg.profiles.howard.edu';
+    $env_url = 'https://stg.thedig.howard.edu';
   }
   elseif ($env == 'dev') {
-    $env_url = 'http://dev.profiles.howard.edu';
+    $env_url = 'https://dev.thedig.howard.edu';
   }
-  $variables['hp_pf_env_url'] = $env_url;
-
-  // Check on Feed Type.
-  $type = NULL;
-  if (isset($variables['elements']['#paragraph']->field_hp_af_feed_type->value)) {
-    $type = $variables['elements']['#paragraph']->field_hp_af_feed_type->value;
-  }
+  $variables['hp_af_env_url'] = $env_url;
 
   // Check on admin categories filter.
-  $admin_category = NULL;
+  $category = NULL;
   if (isset($variables['elements']['#paragraph']->field_hp_af_alumni_admin_categor->value)) {
-    $admin_category = $variables['elements']['#paragraph']->field_hp_af_alumni_admin_categor->value;
+    $category = $variables['elements']['#paragraph']->field_hp_af_alumni_admin_categor->value;
     // Decode string workaround due to bug in core or external_data_source.
-    $admin_category = str_replace('id=', '', $admin_category);
+    $category = str_replace('id=', '', $category);
+  }
+
+  // Get the desired type of feed.
+  $feed_type = NULL;
+  if (isset($variables['elements']['#paragraph']->field_hp_af_feed_type->value)) {
+    $feed_type = $variables['elements']['#paragraph']->field_hp_af_feed_type->value;
+    $variables['hp_af_type'] = $feed_type;
   }
 
   // Get profiles.
-  $variables['hp_af_profiles'] = _hp_alumni_feed_get_profiles($env_url, $type, $admin_category, 50, $uuid);
+  $variables['hp_af_profiles'] = \Drupal::service('howard.news')->getPeople($env_url, NULL, $category, $feed_type, 50, $uuid);
 
 }
 
@@ -83,57 +84,8 @@ function hp_alumni_feed_theme($existing, $type, $theme, $path) {
   ];
 }
 
-/**
- * CUSTOM FUNCTIONS.
- */
-
-/**
- * Gets alumni from profiles site, and displays.
- */
-function _hp_alumni_feed_get_profiles($env_url = 'https://profiles.howard.edu', $type = NULL, $admin_category = NULL, $range = 50, $id = 'default') {
-  if ($cache = \Drupal::cache()->get('hp_alumni_feed--' . $id)) {
-    return $cache->data;
-  }
-  else {
-    $url = $env_url . "/api/featured?sort=last_name&range=" . $range;
-    if (isset($type)) {
-      if ($type == 'iconic_alumni') {
-        $url .= "&filter[classification]=iconic_alumni";
-      }
-      elseif ($type == 'students_only') {
-        $url .= "&filter[classification]=student";
-      }
-      elseif ($type == 'alumni_only') {
-        $url .= "&filter[classification]=alumni";
-      }
-      elseif ($type == 'faculty_only') {
-        $url .= "&filter[classification]=faculty";
-      }
-      elseif ($type == 'stem_scholars') {
-        $url .= "&filter[classification]=stem_scholars";
-      }
-      else {
-        $url .= "&filter[classification][value]=iconic_alumni&filter[classification][operator]=!=";
-      }
-    }
-    if (isset($admin_category)) {
-      $url .= "&filter[categories][value][0]=" . $admin_category . "&filter[categories][operator][0]='IN'";
-    }
-    $result = file_get_contents($url);
-    $result = json_decode($result, TRUE);
-    $result = $result['data'];
-    if ($result) {
-      \Drupal::cache()->set('hp_alumni_feed--' . $id, $result, time() + 7200);
-      return $result;
-    }
-    else {
-      return NULL;
-    }
-  }
-}
 
 // UPDATES
-// .
 
 /**
  * Updates to allow categories.

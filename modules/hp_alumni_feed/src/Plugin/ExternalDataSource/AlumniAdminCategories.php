@@ -36,7 +36,7 @@ class AlumniAdminCategories extends ExternalDataSourceBase {
    * @return string
    */
   public function getPluginDefinition() {
-    return $this->t('This Plugin will gather a list of Howard people Profile Featured Student and Alumni Admin Categories.');
+    return $this->t('This Plugin will gather a list of Howard Featured Student and Alumni Categories.');
   }
 
   /**
@@ -78,8 +78,8 @@ class AlumniAdminCategories extends ExternalDataSourceBase {
     else {
       $client = new Client();
       try {
-        // taxonomy_6 is the admin category endpoint on howard profiles for featured students/alumni.
-        $response = $client->get('https://profiles.howard.edu/api/taxonomy_6/');
+        // person_category is the admin category endpoint on thedig.howard for featured students/alumni.
+        $response = $client->get('https://thedig.howard.edu/jsonapi/taxonomy_term/person_category', ['verify' => FALSE]);
         $data = json_decode($response->getBody()->getContents());
         $data = $data->data;
       }
@@ -105,13 +105,14 @@ class AlumniAdminCategories extends ExternalDataSourceBase {
     $collection = [];
     foreach ($response as $entry) {
       // Workaround to set as a text string, as a bug prevents from setting simply a number, even as string.
-      $value = 'id=' . strval($entry->id);
+      $value = 'id=' . strval($entry->attributes->drupal_internal__tid);
+      $name = $entry->attributes->name;
       $collection[] = [
         'value' => $value,
-        'label' => t($entry->label),
+        'label' => t($name),
       ];
     }
-    // \Drupal::logger('hp_ec')->debug('response: ' . json_encode($collection) );
+
     return $collection;
   }
 
