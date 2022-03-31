@@ -28,7 +28,11 @@
 			</div>
 		{% endif %}
 
-		<div class="silc-grid modal--playlist">
+		{% if content.field_hp_af_display_links_modal[0]['#markup'] == 'On' %}
+			<div class="silc-grid modal--playlist">
+		{% else %}
+			<div class="silc-grid">
+		{% endif %}
 			{% for prsn in hp_af_profiles.data %}
 				<div class="silc-grid__col silc-grid__col--4-medium">
 					<div class="faculty-profile">
@@ -64,18 +68,21 @@
 							<p>{{ person_meta|join(', ') }}</p>
 						</div>
 						<div class="faculty-profile__btn">
-							<a href="javascript:;" data-micromodal-trigger="hp-alumni-feed-{{ prsn.id }}" class="fancy-link fancy-link--dark">
-								<span>View More<span class="visually-hidden">
-										about
-										{{ prsn.attributes.title }}</span>
-								</span>
-								<span class="icon-arrow-right"></span>
+							{% if content.field_hp_af_display_links_modal[0]['#markup'] == 'On' %}
+								<a href="javascript:;" data-micromodal-trigger="hp-alumni-feed-{{ prsn.id }}" class="fancy-link fancy-link--dark">
+								<span>View More<span class="visually-hidden"> about {{ prsn.attributes.title }}</span></span>
+							{% else %}
+								<a href="{{ hp_aft_env_url }}/node/{{ prsn.attributes.drupal_internal__nid}}" class="fancy-link fancy-link--dark" target="_blank">
+								<span>View Full Profile<span class="visually-hidden"> of {{ prsn.attributes.title }}</span></span>
+							{% endif %}
+							<span class="icon-arrow-right"></span>
 							</a>
 						</div>
 					</div>
 				</div>
 
 				{# Modal #}
+				{% if content.field_hp_af_display_links_modal[0]['#markup'] == 'On' %}
 				<div class="modal modal--in-playlist" id="hp-alumni-feed-{{ prsn.id }}" aria-hidden="true">
 					<div class="modal__overlay" tabindex="-1" data-micromodal-close>
 						<div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="hp-alumni-feed-{{ prsn.id }}-title">
@@ -133,6 +140,7 @@
 						</div>
 					</div>
 				</div>
+				{% endif %}
 
 			{% endfor %}
 
