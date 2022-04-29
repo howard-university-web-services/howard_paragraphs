@@ -68,7 +68,7 @@ function hp_announcements_feed_preprocess_paragraph__hp_announcements_feed(&$var
   // Check on sponsoring unit filter.
   $unit = NULL;
   if (isset($variables['elements']['#paragraph']->field_hp_anf_unit->value)) {
-    $howard_forward = $variables['elements']['#paragraph']->field_hp_anf_unit->value;
+    $unit = $variables['elements']['#paragraph']->field_hp_anf_unit->value;
     // Decode string workaround due to bug in core or external_data_source.
     $unit = str_replace('id=', '', $unit);
   }
