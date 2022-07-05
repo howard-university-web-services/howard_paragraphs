@@ -4,6 +4,8 @@ dependencies:
   config:
     - field.storage.paragraph.field_hp_pf_title
     - paragraphs.paragraphs_type.hp_profiles_feed
+_core:
+  default_config_hash: HAFCSHRTAkLydm2Qu246nPCW8LwTHph6eUlP3tTjVEo
 id: paragraph.hp_profiles_feed.field_hp_pf_title
 field_name: field_hp_pf_title
 entity_type: paragraph

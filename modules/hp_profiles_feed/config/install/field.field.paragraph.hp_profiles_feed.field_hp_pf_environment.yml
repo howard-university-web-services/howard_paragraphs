@@ -6,6 +6,8 @@ dependencies:
     - paragraphs.paragraphs_type.hp_profiles_feed
   module:
     - options
+_core:
+  default_config_hash: uKC1aZDFSkVu6J-q4yypOpoYwvnTK-GOUzyyDFXFEI8
 id: paragraph.hp_profiles_feed.field_hp_pf_environment
 field_name: field_hp_pf_environment
 entity_type: paragraph

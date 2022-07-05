@@ -2,3 +2,6 @@ services:
   howard.news:
     class: Drupal\howard_paragraphs\Services\HowardNewsService
     arguments: ['@http_client']
+  howard.profiles:
+    class: Drupal\howard_paragraphs\Services\HowardProfilesService
+    arguments: ['@http_client']

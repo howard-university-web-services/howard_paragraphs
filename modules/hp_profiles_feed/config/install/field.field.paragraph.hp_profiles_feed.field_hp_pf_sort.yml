@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_pf_sort
+    - paragraphs.paragraphs_type.hp_profiles_feed
+  module:
+    - options
+id: paragraph.hp_profiles_feed.field_hp_pf_sort
+field_name: field_hp_pf_sort
+entity_type: paragraph
+bundle: hp_profiles_feed
+label: Sort
+description: 'Please choose how you wish to sort the results.'
+required: false
+translatable: false
+default_value:
+  -
+    value: all
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -78,11 +78,10 @@ class ProfilesDepartments extends ExternalDataSourceBase {
     else {
       $client = new Client();
       try {
-        // taxonomy_3 is the category endpoint on howard calendar.
-        $response = $client->get('https://profiles.howard.edu/api/taxonomy_3/');
+        // department is the category endpoint on howard profiles.
+        $response = $client->get('https://profiles.howard.edu/api/departments', ['verify' => FALSE]);
         $data = json_decode($response->getBody()->getContents());
         $data = $data->data;
-        // dsm($data);
       }
       catch (GuzzleException $e) {
         watchdog_exception('external_data_source', $e->getMessage());
@@ -112,7 +111,6 @@ class ProfilesDepartments extends ExternalDataSourceBase {
         'label' => t($entry->label),
       ];
     }
-    // \Drupal::logger('hp_ec')->debug('response: ' . json_encode($collection) );
     return $collection;
   }
 

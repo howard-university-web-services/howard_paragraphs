@@ -3,54 +3,47 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.hp_profiles_feed.field_hp_pf_environment
-    - field.field.paragraph.hp_profiles_feed.field_hp_pf_level
     - field.field.paragraph.hp_profiles_feed.field_hp_pf_profiles_department
+    - field.field.paragraph.hp_profiles_feed.field_hp_pf_sort
     - field.field.paragraph.hp_profiles_feed.field_hp_pf_title
-    - field.field.paragraph.hp_profiles_feed.field_sort_by
     - paragraphs.paragraphs_type.hp_profiles_feed
   module:
     - external_data_source
 _core:
-  default_config_hash: vb2rpWBXyoqczprx8AyZtQgnvkhhUz0r1BDJg7IK9IU
+  default_config_hash: GgJUvJYmK2S2yHSaZsZQbIhwvBWlx8Y9KBkZSw063PA
 id: paragraph.hp_profiles_feed.default
 targetEntityType: paragraph
 bundle: hp_profiles_feed
 mode: default
 content:
   field_hp_pf_environment:
+    type: options_select
     weight: 1
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
-  field_hp_pf_level:
-    weight: 3
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
   field_hp_pf_profiles_department:
+    type: external_data_source_select_widget
     weight: 2
+    region: content
     settings:
       size: 1
       placeholder: ''
     third_party_settings: {  }
-    type: external_data_source_select_widget
+  field_hp_pf_sort:
+    type: options_select
+    weight: 4
     region: content
+    settings: {  }
+    third_party_settings: {  }
   field_hp_pf_title:
+    type: string_textfield
     weight: 0
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_sort_by:
-    weight: 4
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
 hidden:
   created: true
   status: true

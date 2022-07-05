@@ -30,29 +30,29 @@
 
       <div class="silc-grid">
 
-        {% for prsn in hp_pf_profiles %}
+        {% for prsn in hp_pf_profiles.data %}
           <div class="silc-grid__col silc-grid__col--4-medium">
             <div class="faculty-profile">
               <div class="faculty-profile__block">
-              {% if prsn.image.large %}
-                <div class="faculty-profile__img" style="background-image:url('{{ prsn.image.large }}')"></div>
+              {% if prsn.featured_image.image_styles.hc_large_480_480_cropped %}
+                <div class="faculty-profile__img" style="background-image:url('{{ prsn.featured_image.image_styles.hc_large_480_480_cropped }}')"></div>
               {% else %}
                 <div class="faculty-profile__img" style="background-image:url('https://profiles.howard.edu/sites/all/modules/idfive_profile_api/assets/images/avatar.jpg')"></div>
               {% endif %}
-                <h3>{{ prsn.first_name }} {{ prsn.last_name }}</h3>
+                <h3>{{ prsn.full_name }}</h3>
                 {% if prsn.pronoun %}
                   <h5><em>{{prsn.pronoun}}</em></h5>
                 {% endif %}
-                <h4>{{ prsn.position_title[0]|raw }}</h4>
-                <h5>{{ prsn.taxonomy_3[0]|raw }}</h5>
+                <h4>{{ prsn.affiliation.title }}</h4>
+                <h5>{{ prsn.affiliation.department }}</h5>
                 <div class="faculty-profile__divider"></div>
                 {% if prsn.show_email %}
                   <a href="mailto:{{ prsn.email }}" class=" faculty-profile__link faculty-profile__email"><span class="icon icon-envelope"></span>{{ prsn.email }}</a>
                 {% endif %}
               </div>
               <div class="faculty-profile__btn">
-                <a href="{{ hp_pf_env_url }}/profile/{{ prsn.id }}/{{ prsn.uri }}" class="fancy-link fancy-link--dark" target="_blank">
-                  <span>View Full Profile<span class="visually-hidden"> of {{ prsn.first_name }}</span></span>
+                <a href="{{ hp_pf_env_url }}{{ prsn.url }}" class="fancy-link fancy-link--dark" target="_blank">
+                  <span>View Full Profile<span class="visually-hidden"> of {{ prsn.full_name }}</span></span>
                   <span class="icon-arrow-right"></span>
                 </a>
               </div>

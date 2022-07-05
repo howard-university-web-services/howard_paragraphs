@@ -1,8 +1,10 @@
 langcode: en
 status: true
 dependencies: {  }
+_core:
+  default_config_hash: agt3XUKvoJggYRTPH5FUEC9TfYr1J0f5LWq77Kvc5rs
 id: hp_profiles_feed
 label: 'HP Profiles Feed'
 icon_uuid: null
-description: 'This is a feed of news profiles from profiles.howard.edu.'
+description: 'This is a feed of profiles from profiles.howard.edu.'
 behavior_plugins: {  }

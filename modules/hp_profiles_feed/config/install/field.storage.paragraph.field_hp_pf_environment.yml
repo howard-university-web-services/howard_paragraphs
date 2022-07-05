@@ -4,6 +4,8 @@ dependencies:
   module:
     - options
     - paragraphs
+_core:
+  default_config_hash: 8CT_N04zwgghxhvL3fpgbQdO1S2W95zgJPZvnqtlD7w
 id: paragraph.field_hp_pf_environment
 field_name: field_hp_pf_environment
 entity_type: paragraph

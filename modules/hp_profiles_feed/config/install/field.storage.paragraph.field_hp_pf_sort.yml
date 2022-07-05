@@ -4,21 +4,18 @@ dependencies:
   module:
     - options
     - paragraphs
-id: paragraph.field_hp_pf_level
-field_name: field_hp_pf_level
+id: paragraph.field_hp_pf_sort
+field_name: field_hp_pf_sort
 entity_type: paragraph
 type: list_string
 settings:
   allowed_values:
     -
-      value: leadership
-      label: Leadership
+      value: all
+      label: 'All profiles, in alphabetical order'
     -
-      value: faculty
-      label: Faculty
-    -
-      value: staff
-      label: Staff
+      value: leadership_first
+      label: 'All profiles, Department Leadership first, in alphabetical order'
   allowed_values_function: ''
 module: options
 locked: false

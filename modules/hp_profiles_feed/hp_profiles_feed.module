@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\field\Entity\FieldConfig;
 
 /**
  * Implements hook_help().
@@ -60,20 +61,14 @@ function hp_profiles_feed_preprocess_paragraph__hp_profiles_feed(&$variables) {
     $department = str_replace('id=', '', $department);
   }
 
-  // Check on level.
-  $level = NULL;
-  if (isset($variables['elements']['#paragraph']->field_hp_pf_level->value)) {
-    $level = $variables['elements']['#paragraph']->field_hp_pf_level->value;
-  }
-
-  // Check for the hierachy dropdown.
-  $flatten = 0;
-  if (isset($variables['elements']['#paragraph']->field_sort_by->value)) {
-    $flatten = $variables['elements']['#paragraph']->field_sort_by->value;
+  // Check for the prefered display sort.
+  $sort = 'all';
+  if (isset($variables['elements']['#paragraph']->field_hp_pf_sort->value)) {
+    $sort = $variables['elements']['#paragraph']->field_hp_pf_sort->value;
   }
 
   // Get profiles.
-  $variables['hp_pf_profiles'] = _hp_profiles_feed_get_profiles($env_url, $department, $level, $flatten, 50, 1, $uuid);
+  $variables['hp_pf_profiles'] = \Drupal::service('howard.profiles')->getProfiles($env_url, $sort, $department, $uuid);
 
 }
 
@@ -89,48 +84,6 @@ function hp_profiles_feed_theme($existing, $type, $theme, $path) {
   ];
 }
 
-/**
- * CUSTOM FUNCTIONS.
- */
-
-/**
- * Gets people from profiles site, and displays.
- */
-function _hp_profiles_feed_get_profiles($env_url = 'https://profiles.howard.edu', $department = NULL, $level = NULL, $flatten = 0, $range = 50, $page = 1, $id = 'default') {
-  if ($cache = \Drupal::cache()->get('hp_profiles_feed--' . $id)) {
-    return $cache->data;
-  }
-  else {
-    $currentDate = date('Y-m-d');
-    $url = $env_url . "/api/profilesearch/%20?filter[public][value]=1&sort=search_api_aggregation_1&range=" . $range . "&page=" . $page;
-    if (isset($department)) {
-      $url .= "&filter[taxonomy_3][value][]=" . $department;
-    }
-    if (isset($level)) {
-      $url .= "&filter[department_role][value][]=" . $level;
-    }
-    if ($flatten) {
-      $result1 = file_get_contents($url);
-      $result2 = json_decode($result1, TRUE);
-      $result = $result2['data'];
-    }
-    else {
-      $result_1 = file_get_contents($url . '&filter[department_role_feature][value][]=1');
-      $result_2 = file_get_contents($url . '&filter[department_role_feature][value][]=0');
-      $result_1 = json_decode($result_1, TRUE);
-      $result_2 = json_decode($result_2, TRUE);
-      $result = array_merge($result_1['data'], $result_2['data']);
-    }
-    if ($result) {
-      \Drupal::cache()->set('hp_profiles_feed--' . $id, $result, time() + 7200);
-      return $result;
-    }
-    else {
-      return NULL;
-    }
-  }
-}
-
 // UPDATES
 // .
 
@@ -139,4 +92,24 @@ function _hp_profiles_feed_get_profiles($env_url = 'https://profiles.howard.edu'
  */
 function hp_profiles_feed_update_8002() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_profiles_feed');
+}
+
+/**
+ * Remove old profiles fields and info, and re-add new fields, to go to the new profiles.howard site.
+ */
+function hp_profiles_feed_update_8003()
+{
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_profiles_feed');
+  // Remove old sort by field.
+  if (FieldConfig::loadByName('paragraph', 'hp_profiles_feed', 'field_sort_by') !== NULL ) {
+    FieldConfig::loadByName('paragraph', 'hp_profiles_feed', 'field_sort_by')->delete();
+  }
+  // Remove old level field.
+  if (FieldConfig::loadByName('paragraph', 'hp_profiles_feed', 'field_hp_pf_level') !== NULL ) {
+    FieldConfig::loadByName('paragraph', 'hp_profiles_feed', 'field_hp_pf_level')->delete();
+  }
+  // Remove old exclude leadership field.
+  if (FieldConfig::loadByName('paragraph', 'hp_profiles_feed', 'field_exclude_leadership') !== NULL ) {
+    FieldConfig::loadByName('paragraph', 'hp_profiles_feed', 'field_exclude_leadership')->delete();
+  }
 }
