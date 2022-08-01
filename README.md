@@ -24,7 +24,6 @@ This module, and sub-modules, contain markup only (no js or css), those should b
 The following submodules are available:
 
 - Accordion: Paragraphs integration of the silc accordion library for use in Howard projects
-- Alumni Featured: Provides a paragraphs bundle for embedding curated Featured Students and Alumni from profiles.howard.edu as a Kitchen Sink Widget
 - Alumni Feed: Provides a paragraphs bundle for embedding feeds of Featured Students and Alumni from profiles.howard.edu as a Kitchen Sink Widget
 - Announcements: Paragraphs integration of the ability to add local Announcements in Howard projects
 - Announcements Feed: Paragraphs integration of the ability to add Announcements from the dig, in Howard projects
@@ -39,6 +38,7 @@ The following submodules are available:
 - Embed: Paragraphs integration of the ability to add iframes/js/etc for Howard projects
 - Events Feed: Paragraphs integration of Events Feed (from calendar.howard.edu) for Howard projects
 - Facebook Feed: Paragraphs integration of a Facebook Feed for Howard projects
+- Featured People from thedig.howard.edu: Provides a paragraphs bundle for embedding curated Featured People from thedig.howard.edu as a Kitchen Sink Widget
 - Featured Article: Paragraphs integration of the ability to add Featured Articles in Howard projects
 - Graphs: Paragraphs integration of the ability to add custom graphs in Howard projects
 - HTML: Paragraphs integration of HTML for use in Howard projects
