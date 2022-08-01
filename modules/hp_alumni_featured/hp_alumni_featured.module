@@ -54,12 +54,21 @@ function hp_alumni_featured_preprocess_paragraph__hp_alumni_featured(&$variables
   }
   $variables['hp_aft_env_url'] = $env_url;
 
-  // Get profiles.
+  // Get profile ID's.
   $feat_alumni = $variables['elements']['#paragraph']->get('field_hp_aft_chosen_alumni')->getValue();
-
-  //$variables['hp_aft_profiles'] = _hp_alumni_featured_get_profiles($env_url, $feat_alumni, $cid);
-  $variables['hp_aft_profiles'] = \Drupal::service('howard.news')->getPeople($env_url, $feat_alumni, NULL, NULL, 50, $uuid);
-
+  // Get all profiles from thedig.
+  $raw_profiles = \Drupal::service('howard.news')->getPeople($env_url, $feat_alumni, NULL, NULL, 50, $uuid);
+  // Reorder the return from thedig, to match the order specified in drupal.
+  $ordered_profiles['data'] = [];
+  foreach($feat_alumni as $order) {
+    foreach ($raw_profiles['data'] as $item) {
+      if ($item['attributes']['drupal_internal__nid'] == $order['value']) {
+        $ordered_profiles['data'][] = $item;
+      }
+    }
+  }
+  // Set the variable to be the reordered array.
+  $variables['hp_aft_profiles'] = $ordered_profiles;
 }
 
 /**
@@ -72,4 +81,13 @@ function hp_alumni_featured_theme($existing, $type, $theme, $path) {
       'base hook' => 'paragraph',
     ],
   ];
+}
+
+// UPDATES
+
+/**
+ * Update to rename the widget to specify thedig.
+ */
+function hp_alumni_featured_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_alumni_featured');
 }
