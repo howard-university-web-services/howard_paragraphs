@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: hp_featured_student_alumni_feed
-label: 'HP Featured Student and Alumni Feed'
+label: 'HP Featured People from thedig.howard.edu Feed'
 icon_uuid: null
-description: 'This is a feed of Featured Student and Alumni Profiles from profiles.howard.edu.'
+description: 'This is a feed of Featured People from thedig.howard.edu.'
 behavior_plugins: {  }
