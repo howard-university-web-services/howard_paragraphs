@@ -21,7 +21,7 @@
         "abraham/twitteroauth": "*",
         "drupal/external_data_source": "*",
         "drupal/paragraphs": "*",
-        "drupal/tablefield": "*",
+        "drupal/tablefield": "^2.3",
         "drupal/viewsreference": "*",
         "drupal/webform": "*"
     },

@@ -151,11 +151,15 @@ class IdfiveParagraphsTablefieldFormatter extends FormatterBase {
 
         // Run the table through input filters.
         foreach ($tabledata as $row_key => $row) {
-          foreach ($row as $col_key => $cell) {
+          if (is_numeric($col_key)) {
             $tabledata[$row_key][$col_key] = [
               'data' => empty($table->format) ? $cell : check_markup($cell, $table->format),
               'class' => ['row_' . $row_key, 'col_' . $col_key],
             ];
+          }
+          else {
+            // Do not show special extra columns like weight.
+            unset($tabledata[$row_key][$col_key]);
           }
         }
 
