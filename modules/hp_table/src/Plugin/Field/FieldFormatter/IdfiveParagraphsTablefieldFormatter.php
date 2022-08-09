@@ -198,7 +198,12 @@ class IdfiveParagraphsTablefieldFormatter extends FormatterBase implements Conta
           '#attributes' => [
             'id' => 'tablefield-' . $entity_type . '-' . $entity_id . '-' . $field_name . '-' . $delta,
             'class' => [
-              'tablefield',
+              'table',
+              'table--theme-default',
+              'table--stacked',
+            ],
+            'data-tablesaw-mode' => [
+              'stack',
             ],
           ],
           '#caption' => $caption,
