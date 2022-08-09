@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file Custom formatter for tablefield, to add tablesaw classes/etc.
- */
-
-
 namespace Drupal\hp_table\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Extension\ModuleHandlerInterface;
@@ -16,6 +11,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Session\AccountProxy;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+// Use Drupal\tablefield\Utility\Tablefield;.
 
 /**
  * Plugin implementation of the default Tablefield formatter.
@@ -28,17 +24,20 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   }
  * )
  */
-class IdfiveParagraphsTablefieldFormatter extends FormatterBase {
 
- /**
+class IdfiveParagraphsTablefieldFormatter extends FormatterBase implements ContainerFactoryPluginInterface {
+  /**
    * Drupal\Core\Session\AccountProxy definition.
    *
    * @var \Drupal\Core\Session\AccountProxy
    */
   protected $currentUser;
-
-  protected $ModuleHandler;
-
+  /**
+   * The module handler.
+   *
+   * @var \Drupal\Core\Extension\ModuleHandlerInterface
+   */
+  protected $moduleHandler;
   /**
    * {@inheritdoc}
    */
@@ -55,7 +54,6 @@ class IdfiveParagraphsTablefieldFormatter extends FormatterBase {
     $this->currentUser = $currentUser;
     $this->ModuleHandler = $moduleHandler;
   }
-
   /**
    * {@inheritdoc}
    */
@@ -72,7 +70,6 @@ class IdfiveParagraphsTablefieldFormatter extends FormatterBase {
       $container->get('module_handler')
     );
   }
-
   /**
    * {@inheritdoc}
    */
@@ -82,7 +79,6 @@ class IdfiveParagraphsTablefieldFormatter extends FormatterBase {
       'column_header' => 0,
     ] + parent::defaultSettings();
   }
-
   /**
    * {@inheritdoc}
    */
@@ -92,82 +88,66 @@ class IdfiveParagraphsTablefieldFormatter extends FormatterBase {
       '#title' => $this->t('Display first row as a table header'),
       '#default_value' => $this->getSetting('row_header'),
     ];
-
     $elements['column_header'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Display first column as a table header'),
       '#default_value' => $this->getSetting('column_header'),
     ];
-
     return $elements;
   }
-
   /**
    * {@inheritdoc}
    */
   public function settingsSummary() {
     $summary = [];
-
     $row_header = $this->getSetting('row_header');
     $column_header = $this->getSetting('column_header');
-
     if ($row_header) {
       $summary[] = $this->t('First row as a table header');
     }
-
     if ($column_header) {
       $summary[] = $this->t('First column as a table header');
     }
-
     return $summary;
   }
-
   /**
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode = NULL) {
-
     $field = $items->getFieldDefinition();
     $field_name = $field->getName();
     $field_settings = $field->getSettings();
-
     $entity = $items->getEntity();
     $entity_type = $entity->getEntityTypeId();
     $entity_id = $entity->id();
-
     $row_header = $this->getSetting('row_header');
     $column_header = $this->getSetting('column_header');
-
     $elements = [];
     $header = [];
-
     foreach ($items as $delta => $table) {
-
       if (!empty($table->value)) {
         // Tablefield::rationalizeTable($table->value);.
         $tabledata = $table->value;
         $caption = $tabledata['caption'];
         unset($tabledata['caption']);
-
         // Run the table through input filters.
         foreach ($tabledata as $row_key => $row) {
-          if (is_numeric($col_key)) {
-            $tabledata[$row_key][$col_key] = [
-              'data' => empty($table->format) ? $cell : check_markup($cell, $table->format),
-              'class' => ['row_' . $row_key, 'col_' . $col_key],
-            ];
-          }
-          else {
-            // Do not show special extra columns like weight.
-            unset($tabledata[$row_key][$col_key]);
+          foreach ($row as $col_key => $cell) {
+            if (is_numeric($col_key)) {
+              $tabledata[$row_key][$col_key] = [
+                'data' => empty($table->format) ? $cell : check_markup($cell, $table->format),
+                'class' => ['row_' . $row_key, 'col_' . $col_key],
+              ];
+            }
+            else {
+              // Do not show special extra columns like weight.
+              unset($tabledata[$row_key][$col_key]);
+            }
           }
         }
-
         if ($row_header) {
-
           // Pull the header for theming.
           $header_data = array_shift($tabledata);
-
           // Check for an empty header, if so we don't want to theme it.
           $has_header = FALSE;
           foreach ($header_data as $cell) {
@@ -180,7 +160,6 @@ class IdfiveParagraphsTablefieldFormatter extends FormatterBase {
             $header = $header_data;
           }
         }
-
         if ($column_header) {
           foreach ($tabledata as $row_key => $row) {
             if (strlen($tabledata[$row_key][0]['data']) > 0) {
@@ -188,12 +167,9 @@ class IdfiveParagraphsTablefieldFormatter extends FormatterBase {
             }
           }
         }
-
         $render_array = [];
-
         // If the user has access to the csv export option, display it now.
         if ($field_settings['export'] && $entity_id && $this->currentUser->hasPermission('export tablefield')) {
-
           $route_params = [
             'entity_type' => $entity_type,
             'entity' => $entity_id,
@@ -201,9 +177,7 @@ class IdfiveParagraphsTablefieldFormatter extends FormatterBase {
             'langcode' => $items->getLangcode(),
             'delta' => $delta,
           ];
-
           $url = Url::fromRoute('tablefield.export', $route_params);
-
           $render_array['export'] = [
             '#type' => 'container',
             '#attributes' => [
@@ -217,7 +191,6 @@ class IdfiveParagraphsTablefieldFormatter extends FormatterBase {
             '#url' => $url,
           ];
         }
-
         $render_array['tablefield'] = [
           '#type' => 'table',
           '#header' => $header,
@@ -225,21 +198,14 @@ class IdfiveParagraphsTablefieldFormatter extends FormatterBase {
           '#attributes' => [
             'id' => 'tablefield-' . $entity_type . '-' . $entity_id . '-' . $field_name . '-' . $delta,
             'class' => [
-              'table',
-              'table--theme-default',
-              'table--stacked',
-            ],
-            'data-tablesaw-mode' => [
-              'stack',
+              'tablefield',
             ],
           ],
           '#caption' => $caption,
           '#prefix' => '<div id="tablefield-wrapper-' . $entity_type . '-' . $entity_id . '-' . $field_name . '-' . $delta . '" class="tablefield-wrapper">',
           '#suffix' => '</div>',
           '#responsive' => FALSE,
-
         ];
-
         // Extend render array if responsive_tables_filter module is enabled.
         if ($this->ModuleHandler->moduleExists('responsive_tables_filter')) {
           array_push($render_array['tablefield']['#attributes']['class'], 'tablesaw', 'tablesaw-stack');
@@ -248,12 +214,9 @@ class IdfiveParagraphsTablefieldFormatter extends FormatterBase {
             'library' => ['responsive_tables_filter/tablesaw-filter'],
           ];
         }
-
         $elements[$delta] = $render_array;
       }
-
     }
     return $elements;
   }
-
 }
