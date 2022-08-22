@@ -2,129 +2,76 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_1
     - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_1_text
-    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_2
     - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_2_text
-    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_3
     - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_3_text
-    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_4
     - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_4_text
-    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_5
     - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_5_text
-    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_6
     - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_image_6_text
     - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_links
+    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_media_img_1
+    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_media_img_2
+    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_media_img_3
+    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_media_img_4
+    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_media_img_5
+    - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_media_img_6
     - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_text
     - field.field.paragraph.hp_promo_space_multi_img.field_hp_promo_title
     - paragraphs.paragraphs_type.hp_promo_space_multi_img
   module:
-    - image
     - link
     - text
+_core:
+  default_config_hash: iMvazi9UXQaQXz1v8IGAOoL_NRhtV2i7dM-VOqlNYBc
 id: paragraph.hp_promo_space_multi_img.default
 targetEntityType: paragraph
 bundle: hp_promo_space_multi_img
 mode: default
 content:
-  field_hp_promo_image_1:
-    weight: 3
-    label: hidden
-    settings:
-      image_style: ''
-      image_link: ''
-    third_party_settings: {  }
-    type: image
-    region: content
   field_hp_promo_image_1_text:
-    weight: 10
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
-    region: content
-  field_hp_promo_image_2:
-    weight: 4
-    label: hidden
-    settings:
-      image_style: ''
-      image_link: ''
-    third_party_settings: {  }
-    type: image
+    weight: 3
     region: content
   field_hp_promo_image_2_text:
-    weight: 11
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
-    region: content
-  field_hp_promo_image_3:
-    weight: 5
-    label: hidden
-    settings:
-      image_style: ''
-      image_link: ''
-    third_party_settings: {  }
-    type: image
+    weight: 4
     region: content
   field_hp_promo_image_3_text:
-    weight: 12
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
-    region: content
-  field_hp_promo_image_4:
-    weight: 6
-    label: hidden
-    settings:
-      image_style: ''
-      image_link: ''
-    third_party_settings: {  }
-    type: image
+    weight: 5
     region: content
   field_hp_promo_image_4_text:
-    weight: 13
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
-    region: content
-  field_hp_promo_image_5:
-    weight: 8
-    label: hidden
-    settings:
-      image_style: ''
-      image_link: ''
-    third_party_settings: {  }
-    type: image
+    weight: 6
     region: content
   field_hp_promo_image_5_text:
-    weight: 14
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
-    region: content
-  field_hp_promo_image_6:
-    weight: 9
-    label: hidden
-    settings:
-      image_style: ''
-      image_link: ''
-    third_party_settings: {  }
-    type: image
+    weight: 7
     region: content
   field_hp_promo_image_6_text:
-    weight: 15
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 8
     region: content
   field_hp_promo_links:
-    weight: 1
+    type: link
     label: hidden
     settings:
       trim_length: 80
@@ -133,21 +80,69 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    type: link
+    weight: 1
+    region: content
+  field_hp_promo_media_img_1:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_hp_promo_media_img_2:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_hp_promo_media_img_3:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_hp_promo_media_img_4:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_hp_promo_media_img_5:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 13
+    region: content
+  field_hp_promo_media_img_6:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 14
     region: content
   field_hp_promo_text:
-    weight: 2
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 2
     region: content
   field_hp_promo_title:
-    weight: 0
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 0
     region: content
 hidden: {  }

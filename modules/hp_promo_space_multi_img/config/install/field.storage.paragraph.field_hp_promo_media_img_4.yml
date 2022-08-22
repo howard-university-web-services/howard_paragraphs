@@ -2,17 +2,15 @@ langcode: en
 status: true
 dependencies:
   module:
+    - media
     - paragraphs
-    - text
-_core:
-  default_config_hash: _Oi74qKskdCdkCSwS-kS_3cLBIMl-JEXZ7ZfqIdOs2s
-id: paragraph.field_hp_promo_image_4_text
-field_name: field_hp_promo_image_4_text
+id: paragraph.field_hp_promo_media_img_4
+field_name: field_hp_promo_media_img_4
 entity_type: paragraph
-type: text
+type: entity_reference
 settings:
-  max_length: 255
-module: text
+  target_type: media
+module: core
 locked: false
 cardinality: 1
 translatable: true

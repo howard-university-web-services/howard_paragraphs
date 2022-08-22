@@ -4,6 +4,8 @@ dependencies:
   config:
     - field.storage.paragraph.field_hp_promo_title
     - paragraphs.paragraphs_type.hp_promo_space_multi_img
+_core:
+  default_config_hash: wXkhHiZU4NfZLDXAy3ShKVqmbxrjvgfJK24SFwZw_3g
 id: paragraph.hp_promo_space_multi_img.field_hp_promo_title
 field_name: field_hp_promo_title
 entity_type: paragraph

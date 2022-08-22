@@ -6,6 +6,8 @@ dependencies:
     - paragraphs.paragraphs_type.hp_promo_space_multi_img
   module:
     - link
+_core:
+  default_config_hash: bbXsk8ZbtclBKPVuxgKIEwVj1ygtkAweYL_ZgCa1WOc
 id: paragraph.hp_promo_space_multi_img.field_hp_promo_links
 field_name: field_hp_promo_links
 entity_type: paragraph

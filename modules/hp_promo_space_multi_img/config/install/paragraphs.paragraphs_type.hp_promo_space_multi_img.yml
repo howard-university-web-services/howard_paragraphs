@@ -1,6 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
+_core:
+  default_config_hash: D9prTG3wHr9gxhWYdNO06an-_I3d13pSvTaHA9EVjEQ
 id: hp_promo_space_multi_img
 label: 'HP Promotional Space with Multiple Images'
 icon_uuid: null

@@ -4,6 +4,8 @@ dependencies:
   module:
     - paragraphs
     - text
+_core:
+  default_config_hash: zNLyiDAw4ibeFj1XzBSrF5dq_j1bUSDlBVe0QbWoSC0
 id: paragraph.field_hp_promo_image_5_text
 field_name: field_hp_promo_image_5_text
 entity_type: paragraph
