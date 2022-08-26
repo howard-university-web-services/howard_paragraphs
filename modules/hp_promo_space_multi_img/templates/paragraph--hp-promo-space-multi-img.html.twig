@@ -25,9 +25,9 @@
             <div class="silc-grid__col silc-grid__col--4-medium">
             <h2 class="header--h2">{{ hp_promo_title }}</h2>
             {{ hp_promo_text | raw }}
-            {% for key, item in hp_promo_links if key|first != '#' %}
-                <a href="{{ hp_promo_links[key]['#url'] }}" class="fancy-link"{% if hp_promo_links[key]['#options'].attributes.target %} target="{{ hp_promo_links[key]['#options'].attributes.target }}"{% endif %}>
-                  <span>{{ hp_promo_links[key]['#title'] }}</span>
+            {% for key, item in content.field_hp_promo_links if key|first != '#' %}
+                <a href="{{ content.field_hp_promo_links[key]['#url'] }}" class="fancy-link"{% if content.field_hp_promo_links[key]['#options'].attributes.target %} target="{{ content.field_hp_promo_links[key]['#options'].attributes.target }}"{% endif %}>
+                  <span>{{ content.field_hp_promo_links[key]['#title'] }}</span>
                   <span class="icon-arrow-right"></span>
                 </a>
             {% endfor %}
