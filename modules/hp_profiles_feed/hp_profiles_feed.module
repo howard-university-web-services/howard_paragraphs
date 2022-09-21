@@ -113,3 +113,10 @@ function hp_profiles_feed_update_8003()
     FieldConfig::loadByName('paragraph', 'hp_profiles_feed', 'field_exclude_leadership')->delete();
   }
 }
+
+/**
+ * Updates to help text for environment.
+ */
+function hp_profiles_feed_update_8004() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_profiles_feed');
+}

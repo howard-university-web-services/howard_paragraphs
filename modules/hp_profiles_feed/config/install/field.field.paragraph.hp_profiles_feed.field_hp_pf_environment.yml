@@ -13,7 +13,7 @@ field_name: field_hp_pf_environment
 entity_type: paragraph
 bundle: hp_profiles_feed
 label: Environment
-description: 'Choose which environment to pull Howard News from, normally, this should be "Production" unless you are testing events on another environment.'
+description: 'Choose which environment to pull Howard Profiles from, normally, this should be "Production" unless you are testing profiles on another environment.'
 required: true
 translatable: false
 default_value:
