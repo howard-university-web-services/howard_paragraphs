@@ -24,8 +24,12 @@
           <div class="silc-grid__col silc-grid__col--4-medium">
             <div class="alumni-profile__img" style="background-image:url('{{ hp_tst_image }}')">
               <div class="alumni-profile__caption">
+                {% if content.field_hp_tst_name|render %}
                 <h3>{{ content.field_hp_tst_name }}</h3>
+                {% endif %}
+                {% if content.field_hp_tst_title|render %}
                 <h4>{{ content.field_hp_tst_title }}</h4>
+                {% endif %}
               </div>
             </div>
           </div>
