@@ -22,17 +22,17 @@
 				<div class="text col">
 					<div class="text_wrapper">
 						{%  if true in content.field_hp_graph_title[0] %}
-						<p class="lead-in">{{ content.field_hp_graph_title[0] }}</h1>
+							<h2 class="lead-in">{{ content.field_hp_graph_title[0] }}</h2>
 						{% endif %}
 						{%  if true in content.field_hp_graph_description[0] %}
-						<p>{{ content.field_hp_graph_description[0] }}</p>
+							<p>{{ content.field_hp_graph_description[0] }}</p>
 						{% endif %}
 					</div>
 				</div>
 				<div class="graph col">
 					{% for i in 0..content.field_hp_graph_data|length %}
 						{% if content.field_hp_graph_data[i] is not null %}
-						{{ content.field_hp_graph_data[i] }}
+							{{ content.field_hp_graph_data[i] }}
 						{% endif %}
 					{% endfor %}
 				</div>
