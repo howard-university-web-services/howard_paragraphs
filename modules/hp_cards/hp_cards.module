@@ -88,8 +88,10 @@ function hp_cards_preprocess_paragraph__hp_card(&$variables) {
 
   // Get card media image URL.
   if ($paragraph->hasField('field_hp_cd_image')) {
+    // Large image style by default.
     $image_style = 'large';
     if ($layout == 'person') {
+      // Person style requires different image
       $image_style = 'hc_large_480_480_cropped';
     }
     $card_image = $paragraph->get('field_hp_cd_image')->getValue();
@@ -97,6 +99,7 @@ function hp_cards_preprocess_paragraph__hp_card(&$variables) {
       $entity = Media::load($card_image[0]['target_id']);
       if (isset($entity->field_media_image->entity)) {
         $variables['hp_card_image'] = ImageStyle::load($image_style)->buildUrl($entity->field_media_image->entity->getFileUri());
+        $variables['hp_card_alt'] = $entity->field_media_image->alt;
       }
     }
   }
