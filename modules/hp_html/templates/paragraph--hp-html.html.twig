@@ -26,13 +26,13 @@
         {% else %}
           <div class="silc-grid__col silc-grid__col--12-large hp-html--main">
         {% endif %}
-            {% if content.field_hp_html_lead_in  %}
-              <p class="lead-in">{{ content.field_hp_html_lead_in }}</p>
+            {% if content.field_hp_html_lead_in|render  %}
+              <h2 class="lead-in">{{ content.field_hp_html_lead_in }}</h2>
             {% endif %}
             {{ content.field_hp_html_body }}
           </div>
 
-          <!-- Sidebar if fields are present -->
+          {# Render sidebar if the fields are present #}
           {% if content.field_hp_html_show_sidebar[0]['#markup'] == 'On' %}
             <div class="silc-grid__col silc-grid__col--4-large">
               <div class="contact-box">
