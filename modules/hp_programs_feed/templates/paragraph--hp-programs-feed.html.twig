@@ -16,19 +16,25 @@
 %}
 
 <section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Programs feed">
-	<div class="program-finder">
-		{% if content.field_hp_pgf_title|render %}
-			<h2 class="program-finder__heading header--h2">{{ content.field_hp_pgf_title }}</h2>
+	{% if hp_show_wrapper %}
+		<div class="compartment">
 		{% endif %}
-		{{ content.field_hp_pgf_text }}
-		{% if content.field_hp_pgf_subtitle|render %}
-			<h3 class="program-finder__nav-heading">{{ content.field_hp_pgf_subtitle }}</h3>
-		{% endif %}
-		<div class="program-finder-app">
-			<program-finder env="{{ hp_pgf_env_url }}" degree="{{ hp_pgf_degree }}" school="{{ hp_pgf_school }}" subject="{{ hp_pgf_subject }}" profession="{{ hp_pgf_profession }}" type="{{ hp_pgf_type }}" :degree-filter="{{ hp_pgf_show_degree_filter }}" :school-filter="{{ hp_pgf_show_school_filter }}" :subject-filter="{{ hp_pgf_show_subject_filter }}" :profession-filter="{{ hp_pgf_show_profession_filter }}" :type-filter="{{ hp_pgf_show_type_filter }}"/>
+			<div class="program-finder">
+				{% if content.field_hp_pgf_title|render %}
+					<h2 class="program-finder__heading header--h2">{{ content.field_hp_pgf_title }}</h2>
+				{% endif %}
+				{{ content.field_hp_pgf_text }}
+				{% if content.field_hp_pgf_subtitle|render %}
+					<h3 class="program-finder__nav-heading">{{ content.field_hp_pgf_subtitle }}</h3>
+				{% endif %}
+				<div class="program-finder-app">
+					<program-finder env="{{ hp_pgf_env_url }}" degree="{{ hp_pgf_degree }}" school="{{ hp_pgf_school }}" subject="{{ hp_pgf_subject }}" profession="{{ hp_pgf_profession }}" type="{{ hp_pgf_type }}" :degree-filter="{{ hp_pgf_show_degree_filter }}" :school-filter="{{ hp_pgf_show_school_filter }}" :subject-filter="{{ hp_pgf_show_subject_filter }}" :profession-filter="{{ hp_pgf_show_profession_filter }}" :type-filter="{{ hp_pgf_show_type_filter }}"/>
+				</div>
+				<noscript>
+					<p>Sorry, Javascript is required to use the program finder.</p>
+				</noscript>
+			</div>
+		{% if hp_show_wrapper %}
 		</div>
-		<noscript>
-			<p>Sorry, Javascript is required to use the program finder.</p>
-		</noscript>
-	</div>
+	{% endif %}
 </section>
