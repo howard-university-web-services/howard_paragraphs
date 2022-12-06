@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.hp_magazine_feed.field_hp_mf_article_admin_catego
     - field.field.paragraph.hp_magazine_feed.field_hp_mf_article_category
     - field.field.paragraph.hp_magazine_feed.field_hp_mf_environment
     - field.field.paragraph.hp_magazine_feed.field_hp_mf_link
@@ -18,14 +17,6 @@ targetEntityType: paragraph
 bundle: hp_magazine_feed
 mode: default
 content:
-  field_hp_mf_article_admin_catego:
-    type: external_data_source_select_widget
-    weight: 4
-    region: content
-    settings:
-      size: 1
-      placeholder: ''
-    third_party_settings: {  }
   field_hp_mf_article_category:
     type: external_data_source_select_widget
     weight: 3

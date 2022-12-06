@@ -91,13 +91,25 @@ function hp_magazine_feed_update_8001()
 }
 
 /**
- * Update feed for new magazine.howard.edu site.
+ * Remove any instances of the old paragraph type, then re-install fresh.
  */
 function hp_magazine_feed_update_8002()
 {
-  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_magazine_feed');
-  // Remove admin category field.
-  if (FieldConfig::loadByName('paragraph', 'hp_magazine_feed', 'field_hp_mf_article_admin_catego') !== NULL ) {
-    FieldConfig::loadByName('paragraph', 'hp_magazine_feed', 'field_hp_mf_article_admin_catego')->delete();
+  // Delete existing paragraphs
+  $paragraphs = \Drupal::entityTypeManager()
+    ->getStorage('paragraph')
+    ->loadByProperties(array('type' => 'hp_magazine_feed')); // System name
+
+  foreach ($paragraphs as $paragraph) {
+      $paragraph->delete();
   }
+
+  // Delete bundle
+  $para_type = \Drupal::entityTypeManager()->getStorage('paragraphs_type')->load('hp_magazine_feed');
+  if($para_type !== NULL) {
+    $para_type->delete();
+  }   
+
+  // Re-install fresh
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_magazine_feed');
 }
