@@ -13,12 +13,9 @@ The following fields are available on this KS widget:
  - Link: Sets the "View all Link" in the header bar, defaults to production magazine (magazine.howard.edu).
  - Environment: Choose which environment of the magazine site to pull articles from. Defaults to production.
  - Article Category: Filters events by the Category taxonomy (category) in the calendar.
- - Article Admin Category: Filters events by the Administrative Category taxonomy (admin_categories) in the calendar.
 
-## Notes on profiles feed filtering
-If no optional filters are chosen, it will show a default feed, though we highly reccomend choosing a department.
-
-These filters are additive, meaning they will combine if you choose more than one. For example, if both "Article Category" and "Article Admin Category" are chosen, the query would say "Give me all articles tagged as catergory=x AND admin_category=y". Usually, only one should be chosen in order to have events refresh at a better rate.
+## Notes on magazine feed filtering
+If no optional filters are chosen, it will show a default feed, though we highly reccomend choosing a category.
 
 More information and documentation on the magazine API can be found in the idfive_magazine_api module on huenterprise.
 
