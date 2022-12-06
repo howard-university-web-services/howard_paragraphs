@@ -88,3 +88,15 @@ function hp_magazine_feed_update_8001()
 {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_magazine_feed');
 }
+
+/**
+ * Update feed for new magazine.howard.edu site.
+ */
+function hp_magazine_feed_update_8002()
+{
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_magazine_feed');
+  // Remove admin category field.
+  if (FieldConfig::loadByName('paragraph', 'hp_magazine_feed', 'field_hp_mf_article_admin_catego') !== NULL ) {
+    FieldConfig::loadByName('paragraph', 'hp_magazine_feed', 'field_hp_mf_article_admin_catego')->delete();
+  }
+}
