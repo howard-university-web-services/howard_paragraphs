@@ -19,6 +19,7 @@ class HowardNewsService {
   public $apiEndpoint;
   public $notificationEndpoint;
   public $articleEndpoint;
+  public $magazineArticleEndpoint;
   public $announcementEndpoint;
   public $personEndpoint;
 
@@ -32,6 +33,7 @@ class HowardNewsService {
     $this->apiEndpoint = 'https://thedig.howard.edu';
     $this->notificationEndpoint = "/jsonapi/node/initiative?filter[start-date][condition][path]=field_alert_start_date&filter[start-date][condition][value]=" . $this->currentDate . "%20" . $this->currentTime . "&filter[start-date][condition][operator]=%3C%3D&filter[end-date][condition][path]=field_alert_end_date&filter[end-date][condition][value]=" . $this->currentDate . "%20" . $this->currentTime . "&filter[end-date][condition][operator]=%3E%3D";
     $this->articleEndpoint = "/jsonapi/node/article";
+    $this->magazineArticleEndpoint = "/jsonapi/node/article";
     $this->announcementEndpoint = "/jsonapi/node/announcement";
     $this->personEndpoint = "/jsonapi/node/person";
   }
@@ -46,7 +48,7 @@ class HowardNewsService {
   }
 
   /**
-   * Public method to return Howard Articles.
+   * Public method to return Howard Dig Articles.
    */
   public function getArticles($env_url = 'https://thedig.howard.edu', $category = NULL, $initiatives = NULL, $units = NULL, $schools_colleges = NULL, $howard_forward = NULL, $range = 3, $id = 'default') {
 
@@ -78,7 +80,7 @@ class HowardNewsService {
   }
 
   /**
-   * Public method to return single Howard Article for the howard.edu homepage.
+   * Public method to return single Howard Dig Article for the howard.edu homepage.
    */
   public function getHomeFeaturedArticles($env_url = 'https://thedig.howard.edu', $range = 1, $id = 'default') {
 
@@ -86,6 +88,21 @@ class HowardNewsService {
     $json = $this->getData($id, $url);
     $json = $this->formatContentWithImages($json, 'dig_1920_x_1080', 'field_hero_image');
 
+    return $json;
+  }
+
+  /**
+   * Public method to return Howard Magazine Articles.
+   */
+  public function getMagazineArticles($env_url = 'https://magazine.howard.edu', $category = NULL, $range = 3, $id = 'default') {
+
+    $url = $env_url . $this->magazineArticleEndpoint . "?sort[sort-published][path]=field_date&sort[sort-published][direction]=DESC&page[limit]=" . $range . '&include=field_hero_image,field_hero_image.field_media_image,field_hero_image.field_media_image.uid';
+    // Filter for category.
+    if (isset($category)) {
+      $url .= $this->formatFilters('category', 'field_categories', $category);
+    }
+    $json = $this->getData($id, $url);
+    $json = $this->formatContentWithImages($json, 'large', 'field_hero_image');
     return $json;
   }
 

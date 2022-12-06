@@ -11,50 +11,52 @@ dependencies:
   module:
     - external_data_source
     - link_target
+_core:
+  default_config_hash: '-lupP7ivJAZs7hNlftwojOMD0QeV-eFPJ9AsFgI938g'
 id: paragraph.hp_magazine_feed.default
 targetEntityType: paragraph
 bundle: hp_magazine_feed
 mode: default
 content:
   field_hp_mf_article_admin_catego:
+    type: external_data_source_select_widget
     weight: 4
+    region: content
     settings:
       size: 1
       placeholder: ''
     third_party_settings: {  }
-    type: external_data_source_select_widget
-    region: content
   field_hp_mf_article_category:
+    type: external_data_source_select_widget
     weight: 3
+    region: content
     settings:
       size: 1
       placeholder: ''
     third_party_settings: {  }
-    type: external_data_source_select_widget
-    region: content
   field_hp_mf_environment:
+    type: options_select
     weight: 2
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_hp_mf_link:
+    type: link_target_field_widget
     weight: 1
+    region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
       link_target: ''
     third_party_settings: {  }
-    type: link_target_field_widget
-    region: content
   field_hp_mf_title:
+    type: string_textfield
     weight: 0
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
 hidden:
   created: true
   status: true

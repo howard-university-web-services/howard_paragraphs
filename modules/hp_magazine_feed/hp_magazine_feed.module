@@ -45,11 +45,13 @@ function hp_magazine_feed_preprocess_paragraph__hp_magazine_feed(&$variables) {
   $env = $variables['elements']['#paragraph']->field_hp_mf_environment->value;
   $env_url = 'https://magazine.howard.edu';
   if ($env == 'stg') {
-    $env_url = 'http://stg.magazine.howard.edu';
+    $env_url = 'https://stg.magazine.howard.edu';
   }
   elseif ($env == 'dev') {
-    $env_url = 'http://dev.magazine.howard.edu';
+    $env_url = 'https://dev.magazine.howard.edu';
   }
+  $variables['hp_mf_env_url'] = $env_url;
+  $variables['hp_mf_default_image'] = '/' . drupal_get_path('module', 'hp_news_feed') . '/assets/hp_news_feed_default.jpg';
 
   // Check on categories filter.
   $category = NULL;
@@ -59,16 +61,8 @@ function hp_magazine_feed_preprocess_paragraph__hp_magazine_feed(&$variables) {
     $category = str_replace('id=', '', $category);
   }
 
-  // Check on admin categories filter.
-  $admin_category = NULL;
-  if (isset($variables['elements']['#paragraph']->field_hp_mf_article_admin_catego->value)) {
-    $admin_category = $variables['elements']['#paragraph']->field_hp_mf_article_admin_catego->value;
-    // Decode string workaround due to bug in core or external_data_source.
-    $admin_category = str_replace('id=', '', $admin_category);
-  }
-
-  // Get articles.
-  $variables['hp_mf_articles'] = _hp_magazine_feed_get_articles($env_url, $category, $admin_category, 3, 1, $uuid);
+  // Get magazine articles.
+  $variables['hp_mf_articles'] = \Drupal::service('howard.news')->getMagazineArticles($env_url, $category, 3, $uuid);
 
 }
 
@@ -84,35 +78,13 @@ function hp_magazine_feed_theme($existing, $type, $theme, $path) {
   ];
 }
 
-/**
- * CUSTOM FUNCTIONS.
- */
+// UPDATES
+// .
 
 /**
- * Gets articles from magazine, and displays.
+ * Update feed for new magazine.howard.edu site.
  */
-function _hp_magazine_feed_get_articles($env_url = 'https://magazine.howard.edu', $category = NULL, $admin_category = NULL, $range = 3, $page = 1, $id = 'default') {
-  if ($cache = \Drupal::cache()->get('hp_magazine_feed--' . $id . '-' . $range)) {
-    return $cache->data;
-  }
-  else {
-    $currentDate = date('Y-m-d');
-    $url = $env_url . "/api/articles?sort=-created&range=" . $range . "&page=" . $page;
-    if (isset($category)) {
-      $url .= "&filter[categories][value][]=" . $category;
-    }
-    if (isset($admin_category)) {
-      $url .= "&filter[admin_categories][value][]=" . $admin_category;
-    }
-    $result = file_get_contents($url);
-    $result = json_decode($result, TRUE);
-    $result = $result['data'];
-    if ($result) {
-      \Drupal::cache()->set('hp_magazine_feed--' . $id . '-' . $range, $result, time() + 7200);
-      return $result;
-    }
-    else {
-      return NULL;
-    }
-  }
+function hp_magazine_feed_update_8001()
+{
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_magazine_feed');
 }

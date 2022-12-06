@@ -78,11 +78,10 @@ class MagazineCategories extends ExternalDataSourceBase {
     else {
       $client = new Client();
       try {
-        // taxonomy_3 is the category endpoint on howard calendar.
-        $response = $client->get('https://magazine.howard.edu/api/categories/');
+        // categories is the endpoint on magazine.howard.
+        $response = $client->get('https://magazine.howard.edu/jsonapi/taxonomy_term/categories', ['verify' => FALSE]);
         $data = json_decode($response->getBody()->getContents());
         $data = $data->data;
-        // dsm($data);
       }
       catch (GuzzleException $e) {
         watchdog_exception('external_data_source', $e->getMessage());
@@ -106,10 +105,11 @@ class MagazineCategories extends ExternalDataSourceBase {
     $collection = [];
     foreach ($response as $entry) {
       // Workaround to set as a text string, as a bug prevents from setting simply a number, even as string.
-      $value = 'id=' . strval($entry->id);
+      $value = 'id=' . strval($entry->attributes->drupal_internal__tid);
+      $name = $entry->attributes->name;
       $collection[] = [
         'value' => $value,
-        'label' => t($entry->label),
+        'label' => t($name),
       ];
     }
     // \Drupal::logger('hp_ec')->debug('response: ' . json_encode($collection) );

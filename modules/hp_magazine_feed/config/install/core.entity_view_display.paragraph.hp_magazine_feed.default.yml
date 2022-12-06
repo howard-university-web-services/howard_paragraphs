@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.hp_magazine_feed.field_hp_mf_article_admin_catego
     - field.field.paragraph.hp_magazine_feed.field_hp_mf_article_category
     - field.field.paragraph.hp_magazine_feed.field_hp_mf_environment
     - field.field.paragraph.hp_magazine_feed.field_hp_mf_link
@@ -12,34 +11,29 @@ dependencies:
     - external_data_source
     - link
     - options
+_core:
+  default_config_hash: _kuaFHZ2-cPvWt9bpnabdo3-Uo2xyUt88rC6BXF9uI0
 id: paragraph.hp_magazine_feed.default
 targetEntityType: paragraph
 bundle: hp_magazine_feed
 mode: default
 content:
-  field_hp_mf_article_admin_catego:
-    weight: 4
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: external_data_source_formatter
-    region: content
   field_hp_mf_article_category:
-    weight: 2
+    type: external_data_source_formatter
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: external_data_source_formatter
+    weight: 2
     region: content
   field_hp_mf_environment:
-    weight: 0
+    type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 0
     region: content
   field_hp_mf_link:
-    weight: 1
+    type: link
     label: above
     settings:
       trim_length: 80
@@ -48,14 +42,14 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    type: link
+    weight: 1
     region: content
   field_hp_mf_title:
-    weight: 3
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 3
     region: content
 hidden: {  }

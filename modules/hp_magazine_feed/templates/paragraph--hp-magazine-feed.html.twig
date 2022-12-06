@@ -35,16 +35,16 @@
         {% endif %}
       </div>
 
-      {% if hp_mf_articles[0] %}
+      {% if hp_mf_articles.data[0] %}
 
           <div class="silc-grid">
-            {% for evnt in hp_mf_articles %}
+            {% for evnt in hp_mf_articles.data %}
               <div class="silc-grid__col silc-grid__col--4-medium">
-                <a href="{{ evnt.url }}" class="news-and-events__block" target="_blank">
-                  <div class="news-and-events__img" style="background-image:url('{{ evnt.image.image_styles.large }}')"></div>
+                <a href="{{ hp_mf_env_url }}{{ evnt.attributes.path.alias }}" class="news-and-events__block" target="_blank">
+                  <div class="news-and-events__img" style="background-image:url('{% if evnt.attributes.image.uri %}{{ evnt.attributes.image.uri }}{% else %}{{ hp_mf_default_image }}{% endif %}')"></div>
                   <div class="news-and-events__desc">
-                    <h3 class="news-and-events__title header--h3-small">{{ evnt.label }}</h3>
-                    <p class="body-text--small">{{ evnt.body_trimmed }}</p>
+                    <h3 class="news-and-events__title header--h3-small">{{ evnt.attributes.title }}</h3>
+                    <p class="body-text--small">{{ evnt.attributes.field_summary }}</p>
                   </div>
                 </a>
               </div>
