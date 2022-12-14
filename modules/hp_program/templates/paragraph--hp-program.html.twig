@@ -201,45 +201,6 @@
       </div>
     {% endif %}
 
-    {# Faculty #}
-    {% if hp_pg_faculty %}
-      <div class="section--padded-bottom">
-        <div class="block-header">
-          <div class="block-header__title">
-            <span class="block-header__icon icon-our-people"></span>
-            <h3 class="h2">Faculty</h3>
-          </div>
-        </div>
-        <div class="silc-grid silc-grid--faculty">
-          {% for faculty in hp_pg_faculty %}
-            <div class="silc-grid__col silc-grid__col--4-medium">
-              <div class="faculty-profile">
-                <div class="faculty-profile__block">
-                  {% if faculty.image.thumbnail %}
-                    <div class="faculty-profile__img" style="background-image:url('{{ faculty.image.thumbnail }}')" role="img" aria-labelledby="faculty-profile-name--{{ faculty.id }}">
-                    </div>
-                  {% endif %}
-                  <h3 id="faculty-profile-name--{{ faculty.id }}">{{ faculty.first_name }} {{ faculty.last_name }}</h3>
-                  <h4>{{ faculty.position_title[0] }}</h4>
-                  <h5>{{ hp_pg_program.label }}</h5>
-                  <div class="faculty-profile__divider"></div>
-                  {% if faculty.show_email %}
-                    <a href="mailto:{{ faculty.email }}" class="faculty-profile__link faculty-profile__email"><span class=" icon icon-envelope"></span>{{ faculty.email }}</a>
-                  {% endif %}
-                </div>
-                <div class="faculty-profile__btn">
-                  <a href="https://profiles.howard.edu/profile/{{ faculty.id }}/{{ faculty.uri }}" class="fancy-link fancy-link--dark" target="_blank">
-                    <span>View Full Profile</span>
-                    <span class="icon-arrow-right"></span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-    {% endif %}
-
     {# Stats #}
     {% if hp_pg_program.statistics %}
       <div class="section--padded-bottom">

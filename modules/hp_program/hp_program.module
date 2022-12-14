@@ -48,8 +48,6 @@ function hp_program_preprocess_paragraph__hp_program(&$variables) {
   }
   // Get program.
   $variables['hp_pg_program'] = _hp_program_get_program($program, $uuid);
-  // Get related faculty.
-  $variables['hp_pg_faculty'] = _hp_program_get_faculty($program, $uuid);
 
 }
 
@@ -98,37 +96,6 @@ function _hp_program_get_program($program = NULL, $id = 'default') {
       }
       \Drupal::cache()->set('hp_program--' . $id, $result, time() + 7200);
       return $result;
-    }
-    else {
-      return NULL;
-    }
-  }
-}
-
-/**
- * Gets faculty for the program from profiles.howard.edu, and displays.
- */
-function _hp_program_get_faculty($program = NULL, $id = 'default') {
-  if ($cache = \Drupal::cache()->get('hp_program_faculty--' . $id)) {
-    return $cache->data;
-  }
-  else {
-    $tax_url = "https://profiles.howard.edu/api/taxonomy_5?filter[program_id]=" . $program;
-    $tax_result = file_get_contents($tax_url);
-    $tax_result = json_decode($tax_result, TRUE);
-    if (isset($tax_result['data'][0])) {
-      $tax_result = $tax_result['data'][0]['id'];
-      $url = "https://profiles.howard.edu/api/profilesearch/%20?sort=last_name&filter[public][value]=1&range=100&filter[taxonomy_5][value][]=" . $tax_result;
-      $result = file_get_contents($url);
-      $result = json_decode($result, TRUE);
-      $result = $result['data'];
-      if ($result) {
-        \Drupal::cache()->set('hp_program_faculty--' . $id, $result, time() + 7200);
-        return $result;
-      }
-      else {
-        return NULL;
-      }
     }
     else {
       return NULL;
