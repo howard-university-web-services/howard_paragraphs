@@ -43,11 +43,11 @@ function hp_twitter_feed_preprocess_paragraph__hp_twitter_feed(&$variables)
 
   // Check on desired count/user account.
   //$count = $variables['elements']['#paragraph']->field_hp_tf_count->value;
-  //$username = $variables['elements']['#paragraph']->field_hp_tf_username->value;
+  $username = $variables['elements']['#paragraph']->field_hp_tf_username->value;
 
   // If twitter key/etc are overridden we could add fields/etc here.
   // Get tweets.
-  //$variables['hp_tf_tweets'] = _hp_twitter_feed_get_tweets($username, $count);
+  $variables['hp_tf_name'] = $username;
 }
 
 /**
