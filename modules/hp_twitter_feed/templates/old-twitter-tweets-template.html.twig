@@ -1,0 +1,43 @@
+{#
+/**
+ * @file
+ * HP Twitter Feed paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+{%
+  set classes = []
+%}
+
+<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Twitter feed">
+  <div class="facebook-twitter-feed">
+    <div class="compartment">
+      <div class="silc-grid">
+        {% if hp_tf_tweets.results %}
+          {% for tweet in hp_tf_tweets.results %}
+            <div class="silc-grid__col silc-grid__col--1-medium">
+              {% if loop.first %}
+                <a class="social-links__item" href="https://twitter.com/{{ tweet.user.screen_name }}" target="_blank">
+                  <i class="icon-twitter"><span class="visible-for-screen-readers">Twitter</span></i>
+                </a>
+              {% endif %}
+            </div>
+            <div class="silc-grid__col silc-grid__col--11-medium">
+              <div class="facebook-twitter-feed__desc">
+                <p class="body-text--social-media">{{ tweet.text | raw }} </p>
+                  <a href="https://twitter.com/i/web/status/{{ tweet.id_str }}" target="_blank" class="fancy-link fancy-link--light">
+                    <span>View on Twitter</span>
+                    <span class="icon-arrow-right"></span>
+                  </a>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="social--error">Sorry, there was an error connecting to Twitter: {{ hp_tf_tweets.error }}</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
