@@ -61,6 +61,7 @@ The following submodules are available:
 - Video Slide Show: Provides a paragraphs bundle for rendering a video slide show as a Kitchen Sink widget in Howard projects.
 - Views Embed: Paragraphs integration of viewfield module for use in Howard projects
 - Webform Embed: Paragraphs integration of webform module for use in Howard projects
+- YouTube Playlist: Paragraphs integration of a YouTube playlist for use in Howard projects
 - WYSIWYG Text Filter UL: Provides a filter to add ICL markup to UL's embedded in a WYSIWYG.
 
 ## CRON and External Content

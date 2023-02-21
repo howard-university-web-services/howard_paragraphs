@@ -1,0 +1,4 @@
+services:
+  howard.youtube:
+    class: Drupal\hp_youtube_playlist\Services\HowardYoutubeService
+    arguments: ['@http_client']

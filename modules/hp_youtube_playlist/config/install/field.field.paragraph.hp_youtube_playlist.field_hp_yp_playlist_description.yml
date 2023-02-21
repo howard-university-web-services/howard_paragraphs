@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_yp_playlist_description
+    - paragraphs.paragraphs_type.hp_youtube_playlist
+id: paragraph.hp_youtube_playlist.field_hp_yp_playlist_description
+field_name: field_hp_yp_playlist_description
+entity_type: paragraph
+bundle: hp_youtube_playlist
+label: 'Playlist Description'
+description: 'Optional. Please add a description for this playlist.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

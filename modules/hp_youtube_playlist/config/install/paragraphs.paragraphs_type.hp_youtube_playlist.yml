@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_youtube_playlist
+label: 'HP YouTube Playlist'
+icon_uuid: null
+icon_default: null
+description: 'This Paragraph type allows the addition of YouTube Playlists content into the site.'
+behavior_plugins: {  }

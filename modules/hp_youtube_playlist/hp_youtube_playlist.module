@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * @file
+ * Hp_youtube_playlist module file.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ *
+ * @inheritdoc
+ */
+function hp_youtube_playlist_help($route_name, RouteMatchInterface $route_match)
+{
+  switch ($route_name) {
+    case 'help.page.hp_youtube_playlist':
+      $text = file_get_contents(dirname(__FILE__) . "/README.md");
+      if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        return '<pre>' . $text . '</pre>';
+      } else {
+        // Use the Markdown filter to render the README.
+        $filter_manager = \Drupal::service('plugin.manager.filter');
+        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $config = ['settings' => $settings];
+        $filter = $filter_manager->createInstance('markdown', $config);
+        return $filter->process($text, 'en');
+      }
+  }
+  return NULL;
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ *
+ * @param $variables
+ *   This sets variables for getting events, and then gets events.
+ */
+function hp_youtube_playlist_preprocess_paragraph__hp_youtube_playlist(&$variables)
+{
+  $variables['hp_yp_type'] = $variables['elements']['#paragraph']->field_hp_yp_display_type->value;
+  $playlist_id = $variables['elements']['#paragraph']->field_hp_yp_playlist_id->value;
+  $variables['hp_yp_playlist'] = \Drupal::service('howard.youtube')->getPlaylist($playlist_id);
+  $variables['hp_yp_playlist_items'] = \Drupal::service('howard.youtube')->getPlaylistItems($playlist_id);
+}
+
+/**
+ * Implements hook_theme().
+ * Lets us define our paragraphs templates in this module.
+ */
+function hp_youtube_playlist_theme($existing, $type, $theme, $path)
+{
+  return [
+    'paragraph__hp_youtube_playlist' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}

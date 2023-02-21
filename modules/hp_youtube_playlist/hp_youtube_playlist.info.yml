@@ -1,0 +1,13 @@
+name: 'Howard Paragraphs: YouTube Playlist'
+type: module
+description: Provides a paragraphs bundle for embedding a YouTube playlist as a Kitchen Sink Widget.
+version: '8.x-1.0'
+core: '8.x'
+core_version_requirement: ^8 || ^9
+
+package: Howard University
+dependencies:
+  - entity_reference_revisions
+  - howard_paragraphs
+
+configure: hp_youtube_playlist.settings

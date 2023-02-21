@@ -1,0 +1,123 @@
+{#
+/**
+ * @file
+ * HP YouTube Playlist paragraph bundle.
+ *
+ * @ingroup themeable
+ */
+#}
+
+{%
+  set classes = [
+    'section--padded-top',
+    'section--padded-bottom',
+    'hp-youtube-playlist'
+  ]
+%}
+
+<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Howard YouTube Playlist">
+	{% if hp_show_wrapper %}
+		<div class="compartment">
+		{% endif %}
+
+
+		{% if content.field_hp_yp_title[0] %}
+			<div class="block-header">
+				<div class="block-header__title">
+					<span class="block-header__icon icon-picture"></span>
+					<h2>{{ content.field_hp_yp_title }}</h2>
+				</div>
+
+				<div class="block-header__btn">
+					<a href="https://www.youtube.com/channel/{{ hp_yp_playlist.snippet.channelId }}/playlists" class="fancy-link fancy-link--light" target="_blank">
+						<span>View All Playlists</span>
+						<span class="icon-arrow-right"></span>
+					</a>
+				</div>
+
+			</div>
+		{% endif %}
+
+    {% if hp_yp_type == 'default' %}
+    {# Default, simple view #}
+      <div class="silc-grid">
+        {% if hp_yp_playlist %}
+          <div class="silc-grid__col silc-grid__col--12-medium">
+            <h3>{{ hp_yp_playlist.snippet.title }}</h3>
+            {% if hp_yp_playlist %}
+              <p class="video-meta">{{ hp_yp_playlist.contentDetails.itemCount }}
+                videos in this playlist</p>
+            {% endif %}
+            {% if content.field_hp_yp_playlist_description|render %}
+              <p>{{ content.field_hp_yp_playlist_description }}</p>
+            {% endif %}
+          </div>
+          {% for item in hp_yp_playlist_items %}
+            <div class="silc-grid__col silc-grid__col--6-medium silc-grid__col--3-large video-link">
+              <a href="https://www.youtube.com/watch?v={{ item.contentDetails.videoId }}&list={{ item.snippet.playlistId }}">
+                <img src="{{ item.snippet.thumbnails.maxres.url }}" alt="Screenshot of YouTube video {{ item.snippet.title }}"/>
+                <h4>
+                  {{ item.snippet.title }}
+                </h4>
+              </a>
+            </div>
+          {% endfor %}
+          <div class="silc-grid__col silc-grid__col--6-medium silc-grid__col--3-large see-all-link">
+            <a href="https://www.youtube.com/playlist?list={{ hp_yp_playlist.id }}" class="fancy-link" target="_blank">
+              <span>See More on YouTube</span>
+              <span class="icon-arrow-right"></span>
+            </a>
+          </div>
+        {% else %}
+          <p>Sorry, there was a problem connecting to YouTube.</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if hp_yp_type == 'play_in_page' %}
+    {# Play in page view #}
+      <div class="silc-grid hp-yp-pip">
+        {% if hp_yp_playlist %}
+
+          <div class="silc-grid__col silc-grid__col--9-medium">
+            <iframe width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div class="silc-grid__col silc-grid__col--3-medium">
+            <h3>{{ hp_yp_playlist.snippet.title }}</h3>
+            {% if hp_yp_playlist %}
+              <p class="video-meta">{{ hp_yp_playlist.contentDetails.itemCount }}
+                videos in this playlist</p>
+            {% endif %}
+            {% if content.field_hp_yp_playlist_description|render %}
+              <p>{{ content.field_hp_yp_playlist_description }}</p>
+            {% endif %}
+          </div>
+
+          {% for item in hp_yp_playlist_items %}
+            <div class="silc-grid__col silc-grid__col--6-medium silc-grid__col--3-large video-link video-link--pip">
+              <a data-video-id="https://www.youtube.com/embed/{{ item.contentDetails.videoId }}">
+                <img src="{{ item.snippet.thumbnails.maxres.url }}" alt="Screenshot of YouTube video {{ item.snippet.title }}"/>
+                <h4>
+                  {{ item.snippet.title }}
+                </h4>
+              </a>
+            </div>
+          {% endfor %}
+
+          <div class="silc-grid__col silc-grid__col--6-medium silc-grid__col--3-large see-all-link">
+            <a href="https://www.youtube.com/playlist?list={{ hp_yp_playlist.id }}" class="fancy-link" target="_blank">
+              <span>See More on YouTube</span>
+              <span class="icon-arrow-right"></span>
+            </a>
+          </div>
+        {% else %}
+          <p>Sorry, there was a problem connecting to YouTube.</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+
+		{% if hp_show_wrapper %}
+		</div>
+	{% endif %}
+</section>

@@ -1,0 +1,5 @@
+hp_twitter_feed.settings:
+  title: 'Configure HP YouTube Playlist Module'
+  parent: system.admin_config_services
+  description: 'Add credentials for HP Toutube Playlist'
+  route_name: hp_youtube_playlist.settings

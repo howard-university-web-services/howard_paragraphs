@@ -1,0 +1,47 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_youtube_playlist.field_hp_yp_display_type
+    - field.field.paragraph.hp_youtube_playlist.field_hp_yp_playlist_description
+    - field.field.paragraph.hp_youtube_playlist.field_hp_yp_playlist_id
+    - field.field.paragraph.hp_youtube_playlist.field_hp_yp_title
+    - paragraphs.paragraphs_type.hp_youtube_playlist
+id: paragraph.hp_youtube_playlist.default
+targetEntityType: paragraph
+bundle: hp_youtube_playlist
+mode: default
+content:
+  field_hp_yp_display_type:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_hp_yp_playlist_description:
+    type: string_textarea
+    weight: 3
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_hp_yp_playlist_id:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_hp_yp_title:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,7 @@
+hp_youtube_playlist.settings:
+  path: '/admin/config/hp_youtube_playlist/settings'
+  defaults:
+    _form: '\Drupal\hp_youtube_playlist\Form\HpYoutubePlaylistSettingsForm'
+    _title: 'HP Youtube Playlist Settings'
+  requirements:
+    _permission: 'administer site configuration'
