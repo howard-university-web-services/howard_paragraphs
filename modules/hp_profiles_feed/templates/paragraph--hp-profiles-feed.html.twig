@@ -43,7 +43,9 @@
                 {% if prsn.pronoun %}
                   <h5><em>{{prsn.pronoun}}</em></h5>
                 {% endif %}
-                <h4>{{ prsn.affiliation.title }}</h4>
+                {% if prsn.affiliation.title %}
+                  <h4>{{ prsn.affiliation.title }}</h4>
+                {% endif %}
                 <h5>{{ prsn.affiliation.department }}</h5>
                 <div class="faculty-profile__divider"></div>
                 {% if prsn.show_email %}
