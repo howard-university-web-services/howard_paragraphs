@@ -58,13 +58,13 @@ function hp_articles_theme($existing, $type, $theme, $path)
 function hp_articles_preprocess_paragraph__hp_articles(&$variables) {
 
   // Get Article Type, if present.
-  $type = NULL;
+  $type = 'all';
   if ($variables['elements']['#paragraph']->field_hp_af_article_type_filter->value) {
     $type = $variables['elements']['#paragraph']->field_hp_af_article_type_filter->value;
   }
 
   // Get Category Taxonomy, if present.
-  $filter = NULL;
+  $filter = 'all';
   if ($variables['elements']['#paragraph']->field_hp_af_article_category_fil->target_id) {
     $filter = $variables['elements']['#paragraph']->field_hp_af_article_category_fil->target_id;
   }
