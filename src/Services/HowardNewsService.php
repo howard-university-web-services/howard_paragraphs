@@ -44,7 +44,9 @@ class HowardNewsService {
   public function getNotifications() {
     $url = $this->apiEndpoint . $this->notificationEndpoint;
     $json = $this->getData('general_notifications', $url);
-    return $json['data'];
+    if (isset($json['data'])) {
+      return $json['data'];
+    }
   }
 
   /**

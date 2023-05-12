@@ -38,7 +38,7 @@
 				</div>
 				{%  if true in content.field_hp_graph_link[0] %}
 				<div class="hyperlink">
-					<a class="btn" href="{% spaceless %}{{-content.field_hp_graph_link[0]['#url']-}}{% endspaceless %}">{{ content.field_hp_graph_link[0]['#title'] }}</a>
+					<a class="btn" href="{{-content.field_hp_graph_link[0]['#url']-}}">{{ content.field_hp_graph_link[0]['#title'] }}</a>
 				</div>
 				{% endif %}
 			</div>
