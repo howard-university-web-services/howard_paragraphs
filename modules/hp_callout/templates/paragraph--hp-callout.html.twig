@@ -42,11 +42,13 @@
       <div class="background" style="background-image:url('{{ hp_call_image }}')"></div>
         <div class="compartment">
             <h2>{{ content.field_hp_call_title }}</h2>
-            {% for key, item in content.field_hp_call_links if key|first != '#' %}
+            {% for key, item in content.field_hp_call_links %}
+            {% if key|first != '#' %}
                 <a href="{{ content.field_hp_call_links[key]['#url'] }}" class="btn"{% if content.field_hp_call_links[key]['#options'].attributes.target %} target="{{ content.field_hp_call_links[key]['#options'].attributes.target }}"{% endif %}>
                   <span class="btn__text">{{ content.field_hp_call_links[key]['#title'] }}</span>
                   <span class="icon-arrow-right"></span>
                 </a>
+            {% endif %}
             {% endfor %}
         </div>
     </div>
