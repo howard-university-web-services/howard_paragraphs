@@ -214,7 +214,14 @@ class HowardNewsService {
             $image['alt'] = $json['included'][$key]['relationships']['field_media_image']['data']['meta']['alt'];
             $image_key = array_search($json['included'][$key]['relationships']['field_media_image']['data']['id'], array_column($json['included'], 'id'));
             $image_style = array_column($json['included'][$image_key]['attributes']['image_style_uri'], $style);
-            $image['uri'] = $image_style[0];
+            if (!empty($image_style[0])) {
+              $image['uri'] = $image_style[0];
+            } else {
+              // secondary condition to address issue with d10 upgrade
+              if (!empty($json['included'][$image_key]['attributes']['image_style_uri'][$style])) {
+                $image['uri'] = $json['included'][$image_key]['attributes']['image_style_uri'][$style];
+              }
+            }
           }
         }
 
