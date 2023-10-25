@@ -28,7 +28,7 @@
 					{% endif %}
 
 					{%  if true in content.field_hp_parallax_link[0] %}
-					<a class="btn" href="{% spaceless %}{{-content.field_hp_parallax_link[0]['#url']-}}{% endspaceless %}">{{-content.field_hp_parallax_link[0]['#title']-}}</a>
+						<a class="btn" href="{% apply spaceless %}{{-content.field_hp_parallax_link[0]['#url']-}}{% endapply %}">{{-content.field_hp_parallax_link[0]['#title']-}}</a>
 					{% endif %}
 				</aside>
 			</div>

@@ -25,12 +25,14 @@
             <div class="silc-grid__col silc-grid__col--4-medium">
             <h2 class="header--h2">{{ hp_promo_title }}</h2>
             {{ hp_promo_text | raw }}
-            {% for key, item in content.field_hp_promo_links if key|first != '#' %}
-                <a href="{{ content.field_hp_promo_links[key]['#url'] }}" class="fancy-link"{% if content.field_hp_promo_links[key]['#options'].attributes.target %} target="{{ content.field_hp_promo_links[key]['#options'].attributes.target }}"{% endif %}>
-                  <span>{{ content.field_hp_promo_links[key]['#title'] }}</span>
-                  <span class="icon-arrow-right"></span>
-                </a>
-            {% endfor %}
+            {% for key, item in content.field_hp_promo_links %}
+              {% if key|first != '#' %}
+                  <a href="{{ content.field_hp_promo_links[key]['#url'] }}" class="fancy-link"{% if content.field_hp_promo_links[key]['#options'].attributes.target %} target="{{ content.field_hp_promo_links[key]['#options'].attributes.target }}"{% endif %}>
+                    <span>{{ content.field_hp_promo_links[key]['#title'] }}</span>
+                    <span class="icon-arrow-right"></span>
+                  </a>
+                {% endif %}
+              {% endfor %}
             </div>
             <div class="silc-grid__col silc-grid__col--8-medium">
               <div class="image-type-1 silc-grid__col silc-grid__col--4-medium" style="background-image:url('{{ hp_promo_image_1 }}')">
