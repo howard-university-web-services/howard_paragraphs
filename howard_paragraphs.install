@@ -25,3 +25,23 @@ function howard_paragraphs_update_8001() {
   }
 
 }
+ /**
+ * Remove any config for the HP Events Feed, which is being depreciated.
+ */
+function howard_paragraphs_update_8002() {
+  // Delete existing paragraphs content
+  $paragraphs = \Drupal::entityTypeManager()
+    ->getStorage('paragraph')
+    ->loadByProperties(array('type' => 'hp_events_feed'));
+
+  foreach ($paragraphs as $paragraph) {
+      $paragraph->delete();
+  }
+
+  // Delete entire paragraph type bundle for hp_events_feed
+  $para_type = \Drupal::entityTypeManager()->getStorage('paragraphs_type')->load('hp_events_feed');
+  if($para_type !== NULL) {
+    $para_type->delete();
+  }
+
+}
