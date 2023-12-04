@@ -52,7 +52,7 @@ function hp_magazine_feed_preprocess_paragraph__hp_magazine_feed(&$variables) {
     $env_url = 'https://dev.magazine.howard.edu';
   }
   $variables['hp_mf_env_url'] = $env_url;
-  $variables['hp_mf_default_image'] = '/' . drupal_get_path('module', 'hp_news_feed') . '/assets/hp_news_feed_default.jpg';
+  $variables['hp_mf_default_image'] = '/' . \Drupal::service('extension.path.resolver')->getPath('module', 'hp_news_feed') . '/assets/hp_news_feed_default.jpg';
 
   // Check on categories filter.
   $category = NULL;
@@ -108,7 +108,7 @@ function hp_magazine_feed_update_8002()
   $para_type = \Drupal::entityTypeManager()->getStorage('paragraphs_type')->load('hp_magazine_feed');
   if($para_type !== NULL) {
     $para_type->delete();
-  }   
+  }
 
   // Re-install fresh
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_magazine_feed');
