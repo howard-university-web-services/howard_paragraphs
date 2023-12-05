@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_gf_feed_type
+    - paragraphs.paragraphs_type.hp_giving_feed
+  module:
+    - options
+_core:
+  default_config_hash: ArpVBMFCg2CykhPkGR7u4BmTOiDtB1qeNH8mrmlWzPM
+id: paragraph.hp_giving_feed.field_hp_gf_feed_type
+field_name: field_hp_gf_feed_type
+entity_type: paragraph
+bundle: hp_giving_feed
+label: 'Feed Type'
+description: 'Please choose the type of format desired for the giving feed.'
+required: true
+translatable: false
+default_value:
+  -
+    value: three_w_images
+default_value_callback: ''
+settings: {  }
+field_type: list_string

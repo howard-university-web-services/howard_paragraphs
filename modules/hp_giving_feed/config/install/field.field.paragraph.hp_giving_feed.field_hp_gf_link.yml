@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_gf_link
+    - paragraphs.paragraphs_type.hp_giving_feed
+  module:
+    - link
+_core:
+  default_config_hash: sfDJvQlkxJrHRopV3whuNe_78J6pYcvA4lnO_2QEpHM
+id: paragraph.hp_giving_feed.field_hp_gf_link
+field_name: field_hp_gf_link
+entity_type: paragraph
+bundle: hp_giving_feed
+label: Link
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    attributes: {  }
+    uri: 'https://thedig.howard.edu'
+    options:
+      attributes:
+        target: ''
+    title: 'View More giving'
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

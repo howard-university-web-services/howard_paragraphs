@@ -25,6 +25,7 @@ function howard_paragraphs_update_8001() {
   }
 
 }
+
  /**
  * Remove any config for the HP Events Feed, which is being depreciated.
  */

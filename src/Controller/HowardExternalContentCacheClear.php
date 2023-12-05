@@ -22,6 +22,7 @@ class HowardExternalContentCacheClear extends ControllerBase {
       'hp_deadline_feed',
       'hp_events_feed',
       'hp_facebook_feed',
+      'hp_giving_feed',
       'hp_instagram_feed',
       'hp_magazine_feed',
       'hp_news_feed',

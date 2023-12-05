@@ -1,6 +1,6 @@
-name: 'Howard Paragraphs: Events Feed'
+name: 'Howard Paragraphs: Giving Feed'
 type: module
-description: Provides a paragraphs bundle for embedding Events Feeds as a Kitchen Sink Widget.
+description: Provides a paragraphs bundle for embedding Giving Feeds as a Kitchen Sink Widget.
 version: '8.x-1.0'
 core: '8.x'
 core_version_requirement: ^8 || ^9 || ^10

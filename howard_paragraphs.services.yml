@@ -5,3 +5,6 @@ services:
   howard.profiles:
     class: Drupal\howard_paragraphs\Services\HowardProfilesService
     arguments: ['@http_client']
+  howard.giving:
+    class: Drupal\howard_paragraphs\Services\HowardGivingService
+    arguments: ['@http_client']
