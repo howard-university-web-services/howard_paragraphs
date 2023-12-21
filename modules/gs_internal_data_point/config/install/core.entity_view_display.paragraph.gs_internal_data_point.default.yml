@@ -1,0 +1,53 @@
+uuid: 58ab7bb4-2b14-457d-a0f9-f5ed6833c2a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.gs_internal_data_point.field_data_point_link
+    - field.field.paragraph.gs_internal_data_point.field_stat_body
+    - field.field.paragraph.gs_internal_data_point.field_stat_data_point
+    - field.field.paragraph.gs_internal_data_point.field_title_data_point
+    - paragraphs.paragraphs_type.gs_internal_data_point
+  module:
+    - link
+id: paragraph.gs_internal_data_point.default
+targetEntityType: paragraph
+bundle: gs_internal_data_point
+mode: default
+content:
+  field_data_point_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_stat_body:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_stat_data_point:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_title_data_point:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+hidden: {  }

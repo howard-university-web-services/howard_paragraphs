@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+_core:
+  default_config_hash: SBHc4dseXwqxP9Tj4hZutWv3J1ee8aSqwguhdIvkcBU
+id: paragraph.field_hp_gf_feed_type
+field_name: field_hp_gf_feed_type
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: three_w_images
+      label: 'Three Giving Stories With Images'
+    -
+      value: one_featured
+      label: 'One Featured Story'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

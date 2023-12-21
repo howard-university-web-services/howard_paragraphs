@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_gf_title
+    - paragraphs.paragraphs_type.hp_giving_feed
+_core:
+  default_config_hash: Ih4aGvcwkilWOXuPmkV_EpobSGw1hEInWYuHhwLvKOM
+id: paragraph.hp_giving_feed.field_hp_gf_title
+field_name: field_hp_gf_title
+entity_type: paragraph
+bundle: hp_giving_feed
+label: Title
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: giving
+default_value_callback: ''
+settings: {  }
+field_type: string

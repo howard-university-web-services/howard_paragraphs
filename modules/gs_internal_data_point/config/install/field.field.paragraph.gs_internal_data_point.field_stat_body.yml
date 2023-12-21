@@ -1,0 +1,19 @@
+uuid: 7c20c542-4cf6-46de-af30-c1a5e7e58e02
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_stat_body
+    - paragraphs.paragraphs_type.gs_internal_data_point
+id: paragraph.gs_internal_data_point.field_stat_body
+field_name: field_stat_body
+entity_type: paragraph
+bundle: gs_internal_data_point
+label: 'Stat Body'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
