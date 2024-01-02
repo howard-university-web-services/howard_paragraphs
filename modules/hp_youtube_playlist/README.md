@@ -19,7 +19,7 @@ This widget has a configuration page at admin/config/hp_youtube_playlist/setting
 
 - YouTube Data API key
 
-These credentials can be obtained from the google Developer portal.
+These credentials can be obtained from the google Developer portal. It is important that this API key be created and entered, or no playlist will appear.
 
 
 ## Markup Overrides

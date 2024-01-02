@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for the Howard Youtube Playlist module.
+ */
+
+ /**
+ * Updates to fix wsod on php 8.1 and above, as well as to add more help text around the need for API keys to be added.
+ */
+function hp_youtube_playlist_update_8001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_youtube_playlist');
+}

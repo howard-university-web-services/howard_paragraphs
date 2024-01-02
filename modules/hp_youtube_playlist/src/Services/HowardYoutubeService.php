@@ -30,14 +30,15 @@ class HowardYoutubeService {
   }
 
   /**
-   * Public method to return Playlist Item Info.
+   * Public method to return Playlist Info.
    */
   public function getPlaylist( $id = 'default') {
     $url = $this->playlistEndpoint . '?id=' . $id;
     $url .= '&key=' . $this->api_key;
     $url .= '&part=snippet,contentDetails';
     $json = $this->getData($id . '-playlist', $url);
-    return $json[0];
+    $yt_json = is_array($json) ? $json[0] : NULL;
+    return $yt_json;
   }
 
   /**
@@ -48,17 +49,17 @@ class HowardYoutubeService {
     $url .= '&key=' . $this->api_key;
     $url .= '&part=snippet,contentDetails';
     $json = $this->getData($id . '-playlist-items', $url);
-    $truncated_json = array_slice($json, 0, 3);
+    $truncated_json = is_array($json) ? array_slice($json, 0, 3) : NULL;
     return $truncated_json;
   }
 
   /**
-   * Public method to get content from Howard Profiles API.
+   * Public method to get content from YouTube API.
    */
   public function getData($cache_id, $url) {
-   // if ($cache = \Drupal::cache()->get($cache_id)) {
-   //   return $cache->data;
-   // } else {
+    if ($cache = \Drupal::cache()->get($cache_id)) {
+      return $cache->data;
+    } else {
       try {
         $request = $this->client->get($url, ['verify' => FALSE]);
         $result = json_decode($request->getBody()->__toString(), TRUE);
@@ -75,7 +76,7 @@ class HowardYoutubeService {
       else {
         return;
       }
-   // }
+    }
 
   }
 

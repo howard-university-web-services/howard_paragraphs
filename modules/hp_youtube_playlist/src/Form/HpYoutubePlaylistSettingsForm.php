@@ -44,6 +44,7 @@ class HpYoutubePlaylistSettingsForm extends ConfigFormBase
     $config = $this->config(static::SETTINGS);
     $help_markup = "<p>You will need to create a Youtube Data API Key.</p>";
     $help_markup .= "<p>More information can be found on the <a href='https://developers.google.com/youtube/v3/getting-started'>Youtbe Data API page</a>.</p>";
+    $help_markup .= "<p>If no API key is added, then no playlist will appear. Please contact Howard DSWS if you need further assistance.</p>";
 
     $form['help'] = [
       '#type' => 'markup',

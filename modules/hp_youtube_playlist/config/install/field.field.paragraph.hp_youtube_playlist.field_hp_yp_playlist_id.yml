@@ -9,7 +9,7 @@ field_name: field_hp_yp_playlist_id
 entity_type: paragraph
 bundle: hp_youtube_playlist
 label: 'Youtube Playlist ID'
-description: 'If the URL for your playlist on YouTube, is https://www.youtube.com/playlist?list=<strong>PL6aII3z4JMXtvB7JeItCiQX5KP-_SyHwq</strong>, you would enter <em>PL6aII3z4JMXtvB7JeItCiQX5KP-_SyHwq</em>.'
+description: 'If the URL for your playlist on YouTube, is https://www.youtube.com/playlist?list=<strong>PL6aII3z4JMXtvB7JeItCiQX5KP-_SyHwq</strong>, you would enter <em>PL6aII3z4JMXtvB7JeItCiQX5KP-_SyHwq</em>. You must have added a YouTube API Key to the <a href="/admin/config/hp_youtube_playlist/settings">Settings Page</a> in order for this playlist to display.'
 required: true
 translatable: false
 default_value: {  }
