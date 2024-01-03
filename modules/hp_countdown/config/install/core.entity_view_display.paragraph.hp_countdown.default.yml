@@ -2,42 +2,59 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.hp_countdown.field_hp_countdown_date
-    - field.field.paragraph.hp_countdown.field_hp_countdown_image
-    - field.field.paragraph.hp_countdown.field_hp_countdown_title
+    - field.field.paragraph.hp_countdown.field_hp_cdn_date
+    - field.field.paragraph.hp_countdown.field_hp_cdn_image
+    - field.field.paragraph.hp_countdown.field_hp_cdn_link
+    - field.field.paragraph.hp_countdown.field_hp_cdn_title
+    - image.style.large
     - paragraphs.paragraphs_type.hp_countdown
   module:
     - datetime
-    - howard_paragraphs
-    - text
+    - link
+    - media
 id: paragraph.hp_countdown.default
 targetEntityType: paragraph
 bundle: hp_countdown
 mode: default
 content:
-  field_hp_countdown_date:
+  field_hp_cdn_date:
     type: datetime_default
     label: hidden
     settings:
       timezone_override: ''
       format_type: medium
     third_party_settings: {  }
-    weight: 5
+    weight: 2
     region: content
-  field_hp_tst_image:
-    type: entity_reference_entity_view
-    weight: 4
+  field_hp_cdn_image:
+    type: media_thumbnail
     label: hidden
     settings:
-      view_mode: default
-      link: false
+      image_link: ''
+      image_style: large
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
+    weight: 1
     region: content
-  field_hp_countdown_title:
-    type: text_default
+  field_hp_cdn_link:
+    type: link
     label: hidden
-    settings: {  }
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
     third_party_settings: {  }
-    weight: 0
+    weight: 4
+    region: content
+  field_hp_cdn_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
     region: content
 hidden: {  }

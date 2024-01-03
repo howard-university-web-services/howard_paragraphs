@@ -5,5 +5,5 @@ id: hp_countdown
 label: 'HP Countdown'
 icon_uuid: null
 icon_default: null
-description: 'HP Countdown'
+description: 'This Paragraph type provides a way to embed a countdown within the site.'
 behavior_plugins: {  }

@@ -14,97 +14,70 @@
   ]
 %}
 
-<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Testimonial">
-  {% if hp_show_wrapper %}
-    <div class="compartment">
-  {% endif %}
-
-      <div class="alumni-profile">
-        <div class="silc-grid silc-grid--no-gutters silc-grid--collapse">
-          <div class="silc-grid__col silc-grid__col--4-medium">
-            <div class="alumni-profile__img" style="background-image:url('{{ hp_countdown_image }}')">
-              <div class="alumni-profile__caption">
-                {% if content.field_hp_countdown_title|render %}
-                <h4>{{ content.field_hp_countdown_title }}</h4>
-                {% endif %}
-              </div>
-            </div>
-          </div>
-          <div class="silc-grid__col silc-grid__col--8-medium">
-            <div class="alumni-profile__quote">
-              {% if content.field_hp_countdown_date|render %}
-                <blockquote>
-                  {{ content.field_hp_countdown_date }}
-                </blockquote>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-      </div>
-
-  {% if hp_show_wrapper %}
-    </div>
-  {% endif %}
-</section>
-
-{# /**countdown BLOCK **/
-{% if accuracy == "s" %}
-	{{ days_left }}
-	{{ hrs_left }}
-	{{ min_left }}
-	{{ secs_left }}
-	{{countdown_event_name }}
-{% elseif accuracy == "m" %}
-	{{ days_left }}
-	{{ hrs_left }}
-	{{ min_left }}
-	{{ countdown_event_name }}
-{% elseif accuracy == "h" %}
-	{{ days_left }}
-	{{ hrs_left }}
-	{{ countdown_event_name }}
-{% elseif accuracy == "d" %}
-	{{ days_left }}
-	{{ countdown_event_name }}
-{% endif %} #}
-
-
-{%
-  set classes = [
-  'paragraph',
-  'countdown-paragraph',
-  'countdown-paragraph-countdown',
-  'paragraph--type--' ~ paragraph.bundle|clean_class,
-  'countdown-paragraph--type--' ~ paragraph.bundle|clean_class,
-  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-  not paragraph.isPublished() ? 'paragraph--unpublished',
-  'paragraph-id-' ~ paragraph.id(),
-  content.field_hp_countdown_settings['#object'].field_hp_countdown_settings.countdown_settings.styles,
-  content.field_hp_countdown_settings['#object'].field_hp_countdown_settings.countdown_settings.color_theme,
-]
-%}
-
-{% if content.field_contdown_settings['#object'].field_contdown_settings.countdown_settings.styles == 'new_year' %}
-  {{ attach_library('hp_countdown/new_year') }}
+{% if content.field_hp_cdn_image|render %}
+ {% set img_classes = ['countdown-container', 'has-image'] %}
+{% else %}
+ {% set img_classes = ['countdown-container'] %}
 {% endif %}
-{{ attach_library('hp_countdown/hp_countdown') }}
-<div{{ attributes.addClass(classes).setAttribute('id', 'paragraph-countdown-id-' ~ paragraph.id()) }}>
-  <div class="bg-inner"></div>
-  <div class="hp-container">
-    <div class="countdown-header">
-      {% if content.field_countdown_title|render %}
-        <h2>
-          {{ content.field_countdown_title }}
-        </h2>
-      {% endif %}
-      {{ content|without('field_hp_countdown_settings', 'field_hp_countdown_date', 'field_countdown_title') }}
-    </div>
-    <div
-      class="hp-countdown-date hp-countdown-inline-block flipdown"
-      id="paragraph-id-{{ paragraph.id() }}"
-      data-date="{{ content.field_hp_countdown_date[0]['#attributes']['datetime']|date('U') }}">
-      {{ dump (content.field_hp_countdown_date[0]['#attributes']['datetime']|date('U')) }}
-    </div>
-  </div>
-</div>
-{{ styles|raw }}
+
+<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Countdown">
+	{% if hp_show_wrapper %}
+		<div class="compartment">
+		{% endif %}
+
+		<div class="countdown" data-enddate="{{ hp_cdn_ymd }}T{{ hp_cdn_hms }}">
+			<div{{ attributes.addClass(img_classes) }}>
+
+				{% if content.field_hp_cdn_image|render %}
+					<div class="countdown-image-canvas">
+						{{ content.field_hp_cdn_image }}
+					</div>
+				{% endif %}
+
+				<div class="countdown-sequence-container">
+
+					{% if content.field_hp_cdn_title|render %}
+						<p class="countdown-sequence-title">{{ content.field_hp_cdn_title }}</p>
+					{% endif %}
+
+
+					<div class="countdown-sequence">
+						<div class="countdown-sequence_days">
+							<p class="countdown-sequence-text">
+								<span id="countdown-days">0</span>
+							</p>
+							<p class="countdown-sequence-label">Days</p>
+						</div>
+						<span class="time-sep">:</span>
+						<div class="countdown-sequence_hours">
+							<p class="countdown-sequence-text">
+								<span id="countdown-hours">0</span>
+							</p>
+							<p class="countdown-sequence-label">Hours</p>
+						</div>
+						<span class="time-sep">:</span>
+						<div class="countdown-sequence_mins">
+							<p class="countdown-sequence-text">
+								<span id="countdown-mins">0</span>
+							</p>
+							<p class="countdown-sequence-label">Mins</p>
+						</div>
+						<span class="time-sep">:</span>
+						<div class="countdown-sequence_secs">
+							<p class="countdown-sequence-text">
+								<span id="countdown-secs">0</span>
+							</p>
+							<p class="countdown-sequence-label">Secs</p>
+						</div>
+					</div>
+          {% if content.field_hp_cdn_link|render %}
+					  <p class="countdown-link">{{ content.field_hp_cdn_link }}</p>
+          {% endif %}
+				</div>
+			</div>
+		</div>
+
+		{% if hp_show_wrapper %}
+		</div>
+	{% endif %}
+</section>

@@ -4,8 +4,8 @@ dependencies:
   module:
     - media
     - paragraphs
-id: paragraph.field_hp_countdown_image
-field_name: field_hp_countdown_image
+id: paragraph.field_hp_cdn_image
+field_name: field_hp_cdn_image
 entity_type: paragraph
 type: entity_reference
 settings:

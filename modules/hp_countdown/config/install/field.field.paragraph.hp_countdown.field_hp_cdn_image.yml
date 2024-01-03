@@ -2,11 +2,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_hp_countdown_image
+    - field.storage.paragraph.field_hp_cdn_image
     - media.type.image
     - paragraphs.paragraphs_type.hp_countdown
-id: paragraph.hp_countdown.field_hp_countdown_image
-field_name: field_hp_countdown_image
+id: paragraph.hp_countdown.field_hp_cdn_image
+field_name: field_hp_cdn_image
 entity_type: paragraph
 bundle: hp_countdown
 label: Image
@@ -22,6 +22,7 @@ settings:
       image: image
     sort:
       field: _none
+      direction: ASC
     auto_create: false
     auto_create_bundle: ''
 field_type: entity_reference

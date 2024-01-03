@@ -2,15 +2,14 @@ langcode: en
 status: true
 dependencies:
   module:
-    - datetime
+    - link
     - paragraphs
-id: paragraph.field_hp_countdown_date
-field_name: field_hp_countdown_date
+id: paragraph.field_hp_cdn_link
+field_name: field_hp_cdn_link
 entity_type: paragraph
-type: datetime
-settings:
-  datetime_type: datetime
-module: datetime
+type: link
+settings: {  }
+module: link
 locked: false
 cardinality: 1
 translatable: true

@@ -2,19 +2,19 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_hp_countdown_settings
+    - field.storage.paragraph.field_hp_cdn_date
     - paragraphs.paragraphs_type.hp_countdown
   module:
-    - howard_paragraphs
-id: paragraph.hp_countdown.field_hp_countdown_settings
-field_name: field_hp_countdown_settings
+    - datetime
+id: paragraph.hp_countdown.field_hp_cdn_date
+field_name: field_hp_cdn_date
 entity_type: paragraph
 bundle: hp_countdown
-label: 'HP Settings'
+label: Date
 description: ''
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: hp_settings
+field_type: datetime
