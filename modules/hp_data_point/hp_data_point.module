@@ -14,7 +14,7 @@ use Drupal\Core\Routing\RouteMatchInterface;
  */
 function hp_data_point_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
-    case 'help.page.gs_internal_data_point':
+    case 'help.page.hp_data_point':
       $text = file_get_contents(dirname(__FILE__) . "/README.md");
       if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
         return '<pre>' . $text . '</pre>';
@@ -35,9 +35,9 @@ function hp_data_point_help($route_name, RouteMatchInterface $route_match) {
  * Implements hook_theme().
  * Lets us define our paragraphs templates in this module.
  */
-function gs_internal_data_point_theme($existing, $type, $theme, $path) {
+function hp_data_point_theme($existing, $type, $theme, $path) {
   return [
-    'paragraph__gs_internal_data_point' => [
+    'paragraph__hp_data_point' => [
       'base hook' => 'paragraph',
     ],
   ];

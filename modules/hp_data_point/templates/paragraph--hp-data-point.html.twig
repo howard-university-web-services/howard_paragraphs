@@ -1,0 +1,37 @@
+{%
+  set classes = [
+    'section--padded-top',
+    'section--padded-bottom',
+    'hp-html'
+  ]
+%}
+
+<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Data Point">
+	{% if hp_show_wrapper %}
+		<div class="compartment">
+		{% endif %}
+
+		<div class="giving__data-point">
+			<div class="giving__data-point__container">
+				<div class="giving__data-point__stat-container">
+					<p class="giving__data-point__stat">{{ content.field_hp_dp_stat }}</p>
+					<p class="data-point__stat-subtext">{{ content.field_hp_dp_title }}</p>
+				</div>
+				<div class="giving__data-point__description">
+					<p>{{ content.field_hp_dp_stat_body }}</p>
+					{% if content.field_hp_dp_link %}
+						<p>
+							<a href="{{content.field_hp_dp_link[0]['#url']}}" class="fancy-link">
+								<span class="fancy-link-text">{{ content.field_hp_dp_link[0]['#title'] }}</span>
+								<span class="icon-arrow-right"></span>
+							</a>
+						</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+
+		{% if hp_show_wrapper %}
+		</div>
+	{% endif %}
+</section>

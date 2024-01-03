@@ -1,0 +1,22 @@
+uuid: ae2f7f13-51c7-4ea2-99c7-c5b6b22f7360
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_countdown_title
+    - paragraphs.paragraphs_type.hp_countdown
+  module:
+    - text
+id: paragraph.hp_countdown.field_hp_countdown_title
+field_name: field_hp_countdown_title
+entity_type: paragraph
+bundle: hp_countdown
+label: Title
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: string

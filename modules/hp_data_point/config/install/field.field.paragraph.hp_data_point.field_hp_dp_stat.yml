@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_dp_stat
+    - paragraphs.paragraphs_type.hp_data_point
+id: paragraph.hp_data_point.field_hp_dp_stat
+field_name: field_hp_dp_stat
+entity_type: paragraph
+bundle: hp_data_point
+label: 'Statistic Number'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

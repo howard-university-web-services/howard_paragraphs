@@ -1,9 +1,8 @@
-uuid: 6699b689-f08f-4995-a093-1f70701ce0b6
 langcode: en
 status: true
 dependencies: {  }
-id: gs_internal_data_point
-label: 'GS Internal Data Point'
+id: hp_data_point
+label: 'HP Data Point'
 icon_uuid: null
 icon_default: null
 description: ''

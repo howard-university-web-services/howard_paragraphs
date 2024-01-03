@@ -1,0 +1,43 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_countdown.field_hp_countdown_date
+    - field.field.paragraph.hp_countdown.field_hp_countdown_image
+    - field.field.paragraph.hp_countdown.field_hp_countdown_title
+    - paragraphs.paragraphs_type.hp_countdown
+  module:
+    - datetime
+    - howard_paragraphs
+    - text
+id: paragraph.hp_countdown.default
+targetEntityType: paragraph
+bundle: hp_countdown
+mode: default
+content:
+  field_hp_countdown_date:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_hp_tst_image:
+    type: entity_reference_entity_view
+    weight: 4
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  field_hp_countdown_title:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

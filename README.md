@@ -33,6 +33,8 @@ The following submodules are available:
 - Cards: Paragraphs integration of cards for use in Howard projects
 - Carousel with Caption: Paragraphs integration of a Carousel with Caption for use in Howard projects
 - Carousel with Modal: Paragraphs integration of a Carousel with Modal for use in Howard projects
+- Countdown: Paragraphs integration of a Countdown for use in Howard projects
+- Data Point: Paragraphs integration of a Data Point for use in Howard projects
 - Deadline Feed: Paragraphs integration of Deadline Feed (from calendar.howard.edu) for Howard projects
 - Divider: Paragraphs integration of a simple content divider for Howard projects
 - Embed: Paragraphs integration of the ability to add iframes/js/etc for Howard projects
@@ -40,6 +42,7 @@ The following submodules are available:
 - Facebook Feed: Paragraphs integration of a Facebook Feed for Howard projects
 - Featured People from thedig.howard.edu: Provides a paragraphs bundle for embedding curated Featured People from thedig.howard.edu as a Kitchen Sink Widget
 - Featured Article: Paragraphs integration of the ability to add Featured Articles in Howard projects
+- Giving Feed: Paragraphs integration of Giving Feed (from giving.howard.edu) for Howard projects
 - Graphs: Paragraphs integration of the ability to add custom graphs in Howard projects
 - HTML: Paragraphs integration of HTML for use in Howard projects
 - Instagram Feed: Paragraphs integration of a Instagram Feed for Howard projects

@@ -1,11 +1,10 @@
-uuid: 437da147-b710-4d0e-83d0-54f054096634
 langcode: en
 status: true
 dependencies:
   module:
     - paragraphs
-id: paragraph.field_stat_data_point
-field_name: field_stat_data_point
+id: paragraph.field_hp_dp_stat
+field_name: field_hp_dp_stat
 entity_type: paragraph
 type: string
 settings:

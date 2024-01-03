@@ -1,11 +1,10 @@
-uuid: fcc86a98-df4b-45dd-a697-56654fe0ec94
 langcode: en
 status: true
 dependencies:
   module:
     - paragraphs
-id: paragraph.field_title_data_point
-field_name: field_title_data_point
+id: paragraph.field_hp_dp_title
+field_name: field_hp_dp_title
 entity_type: paragraph
 type: string
 settings:

@@ -1,0 +1,12 @@
+type: module
+name: 'Howard Paragraphs: Countdown'
+description: 'Provides a paragraphs bundle for embedding a countdown as a Kitchen Sink Widget.'
+version: '8.x-1.0'
+core_version_requirement: ^9.3 || ^10
+package: Howard University
+
+dependencies:
+  - drupal:datetime
+  - howard_paragraphs
+  - paragraphs:paragraphs
+  - media_library_form_element

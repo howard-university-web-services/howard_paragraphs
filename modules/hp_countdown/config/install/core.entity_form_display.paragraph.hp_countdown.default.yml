@@ -1,0 +1,106 @@
+uuid: ed55009f-a01e-42ae-987d-b5ccc04e073b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_countdown.field_hp_countdown_date
+    - field.field.paragraph.hp_countdown.field_hp_countdown_settings
+    - field.field.paragraph.hp_countdown.field_hp_countdown_image
+    - field.field.paragraph.hp_countdown.field_hp_countdown_title
+    - paragraphs.paragraphs_type.hp_countdown
+  module:
+    - datetime
+    - hp_countdown
+    - field_group
+    - text
+third_party_settings:
+  field_group:
+    group_tabs:
+      children:
+        - group_content
+        - group_settings
+      label: Tabs
+      region: content
+      parent_name: ''
+      weight: 3
+      format_type: tabs
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        direction: horizontal
+        width_breakpoint: 640
+    group_content:
+      children:
+        - field_hp_countdown_title
+        - field_hp_countdown_text
+        - field_hp_countdown_date
+      label: Content
+      region: content
+      parent_name: group_tabs
+      weight: 20
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: open
+        description: ''
+        required_fields: true
+    group_settings:
+      children:
+        - field_hp_countdown_settings
+      label: Settings
+      region: content
+      parent_name: group_tabs
+      weight: 21
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+id: paragraph.hp_countdown.default
+targetEntityType: paragraph
+bundle: hp_countdown
+mode: default
+content:
+  field_hp_countdown_date:
+    type: datetime_default
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_hp_countdown_settings:
+    type: hp_countdown_settings_countdown
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_hp_countdown_image:
+    weight: 0
+    settings:
+      entity_browser: hc_media_browser_image
+      field_widget_display: label
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      field_widget_replace: false
+      open: false
+      field_widget_display_settings: {  }
+    third_party_settings: {  }
+    type: entity_browser_entity_reference
+    region: content
+  field_hp_countdown_title:
+    type: text_textarea
+    weight: 3
+    region: content
+    settings:
+      rows: 2
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
