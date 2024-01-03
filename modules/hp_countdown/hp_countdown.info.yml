@@ -9,4 +9,3 @@ dependencies:
   - drupal:datetime
   - howard_paragraphs
   - paragraphs:paragraphs
-  - media_library_form_element
