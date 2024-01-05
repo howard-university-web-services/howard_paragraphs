@@ -15,69 +15,63 @@
 %}
 
 {% if content.field_hp_cdn_image|render %}
- {% set img_classes = ['countdown-container', 'has-image'] %}
+	{% set img_classes = ['countdown-container', 'has-image'] %}
 {% else %}
- {% set img_classes = ['countdown-container'] %}
+	{% set img_classes = ['countdown-container'] %}
 {% endif %}
 
 <section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Countdown">
-	{% if hp_show_wrapper %}
-		<div class="compartment">
-		{% endif %}
 
-		<div class="countdown" data-enddate="{{ hp_cdn_ymd }}T{{ hp_cdn_hms }}">
-			<div{{ attributes.addClass(img_classes) }}>
+	<div class="countdown" data-enddate="{{ hp_cdn_ymd }}T{{ hp_cdn_hms }}">
+		<div{{attributes.addClass(img_classes)}}>
 
-				{% if content.field_hp_cdn_image|render %}
-					<div class="countdown-image-canvas">
-						{{ content.field_hp_cdn_image }}
-					</div>
+			{% if content.field_hp_cdn_image|render %}
+				<div class="countdown-image-canvas">
+					{{ content.field_hp_cdn_image }}
+				</div>
+			{% endif %}
+
+			<div class="countdown-sequence-container">
+
+				{% if content.field_hp_cdn_title|render %}
+					<p class="countdown-sequence-title">{{ content.field_hp_cdn_title }}</p>
 				{% endif %}
 
-				<div class="countdown-sequence-container">
 
-					{% if content.field_hp_cdn_title|render %}
-						<p class="countdown-sequence-title">{{ content.field_hp_cdn_title }}</p>
-					{% endif %}
-
-
-					<div class="countdown-sequence">
-						<div class="countdown-sequence_days">
-							<p class="countdown-sequence-text">
-								<span class="countdown-days">0</span>
-							</p>
-							<p class="countdown-sequence-label">Days</p>
-						</div>
-						<span class="time-sep">:</span>
-						<div class="countdown-sequence_hours">
-							<p class="countdown-sequence-text">
-								<span class="countdown-hours">0</span>
-							</p>
-							<p class="countdown-sequence-label">Hours</p>
-						</div>
-						<span class="time-sep">:</span>
-						<div class="countdown-sequence_mins">
-							<p class="countdown-sequence-text">
-								<span class="countdown-mins">0</span>
-							</p>
-							<p class="countdown-sequence-label">Mins</p>
-						</div>
-						<span class="time-sep">:</span>
-						<div class="countdown-sequence_secs">
-							<p class="countdown-sequence-text">
-								<span class="countdown-secs">0</span>
-							</p>
-							<p class="countdown-sequence-label">Secs</p>
-						</div>
+				<div class="countdown-sequence">
+					<div class="countdown-sequence_days">
+						<p class="countdown-sequence-text">
+							<span class="countdown-days">0</span>
+						</p>
+						<p class="countdown-sequence-label">Days</p>
 					</div>
-          {% if content.field_hp_cdn_link|render %}
-					  <p class="countdown-link">{{ content.field_hp_cdn_link }}</p>
-          {% endif %}
+					<span class="time-sep">:</span>
+					<div class="countdown-sequence_hours">
+						<p class="countdown-sequence-text">
+							<span class="countdown-hours">0</span>
+						</p>
+						<p class="countdown-sequence-label">Hours</p>
+					</div>
+					<span class="time-sep">:</span>
+					<div class="countdown-sequence_mins">
+						<p class="countdown-sequence-text">
+							<span class="countdown-mins">0</span>
+						</p>
+						<p class="countdown-sequence-label">Mins</p>
+					</div>
+					<span class="time-sep">:</span>
+					<div class="countdown-sequence_secs">
+						<p class="countdown-sequence-text">
+							<span class="countdown-secs">0</span>
+						</p>
+						<p class="countdown-sequence-label">Secs</p>
+					</div>
 				</div>
+				{% if content.field_hp_cdn_link|render %}
+					<p class="countdown-link">{{ content.field_hp_cdn_link }}</p>
+				{% endif %}
 			</div>
 		</div>
+	</div>
 
-		{% if hp_show_wrapper %}
-		</div>
-	{% endif %}
 </section>
