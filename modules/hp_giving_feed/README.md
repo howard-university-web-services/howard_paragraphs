@@ -15,11 +15,7 @@ The following fields are available on this KS widget:
 - Link: Sets the "View all Link" in the header bar, defaults to production newsroom (thedig.howard.edu).
 - Feed Type: Choose which style of feed you wish to display.
 - Environment: Choose which environment of the newsroom to pull news from. Defaults to production.
-- Category: Filters articles by the Category taxonomy (tags) in the dig.
-- Events, Initiatives, Campaigns: Filters articles by the Events, Initiatives, Campaigns taxonomy (university_events_initiatives_ca) in the dig.
-- Campus Units and Programs: Filters articles by the Campus Units and Programs taxonomy (campus_units_programs) in the dig.
-- Schools and Colleges: Filters articles by the Schools and Colleges taxonomy (schools_and_colleges) in the dig.
-- Howard Forward: Filters articles by the Howard Forward taxonomy (howard_forward) in the dig.
+- Category: Filters articles by the Category taxonomy (tags) in giving site.
 
 ## Notes on news feed filtering
 

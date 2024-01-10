@@ -4,7 +4,7 @@ dependencies: {  }
 _core:
   default_config_hash: 4xLHd2Yt5H3Q9Ge4bha9_QjF-Rdqj_BjDUX8CpW0yYU
 id: hp_giving_feed
-label: 'HP giving Feed'
+label: 'HP Giving Feed'
 icon_uuid: null
 icon_default: null
 description: 'This is a feed of giving articles from giving.howard.edu.'

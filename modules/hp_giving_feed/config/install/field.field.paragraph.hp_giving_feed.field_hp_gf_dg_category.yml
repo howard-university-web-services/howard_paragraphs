@@ -11,7 +11,7 @@ field_name: field_hp_gf_dg_category
 entity_type: paragraph
 bundle: hp_giving_feed
 label: Category
-description: 'Filters articles by the Category taxonomy (tags) in thedig.howard.'
+description: 'Filters articles by the Category taxonomy (tags) in giving.howard.'
 required: false
 translatable: false
 default_value: {  }

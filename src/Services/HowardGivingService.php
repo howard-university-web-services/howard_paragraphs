@@ -26,7 +26,7 @@ class HowardGivingService {
     $this->client = $client;
     $this->currentTime = date("h:i:s");
     $this->currentDate = date("Y-m-d");
-    $this->apiEndpoint = 'https://stg.giving.howard.edu';
+    $this->apiEndpoint = 'https://giving.howard.edu';
     $this->articleEndpoint = "/jsonapi/node/gs_giving_internal";
 
   }
@@ -34,7 +34,7 @@ class HowardGivingService {
   /**
    * Public method to return Howard Giving Articles.
    */
-  public function getArticles($env_url = 'https://stg.giving.howard.edu/', $category = NULL, $range = 3, $id = 'default') {
+  public function getArticles($env_url = 'https://giving.howard.edu/', $category = NULL, $range = 3, $id = 'default') {
 
     $url = $env_url . $this->articleEndpoint ."?page[limit]=" . $range . '&include=field_hc_header_image,field_hc_header_image.field_media_image,field_hc_header_image.field_media_image.uid,field_hc_resource_category';
 
@@ -50,7 +50,6 @@ class HowardGivingService {
       foreach ($json['data'] as $article) {
         $category = $article['relationships']['field_hc_resource_category']['data'][0]['meta']['drupal_internal__target_id'];
         $category_name = $this->getCategory($category);
-
         $article['category_name'] = $category_name;
         $articles_with_category[] = $article;
       }
@@ -65,7 +64,7 @@ class HowardGivingService {
 
 
   public function getCategory( $category = NULL){
-    $env_url = 'https://stg.giving.howard.edu/';
+    $env_url = 'https://giving.howard.edu/';
     $url = $env_url . 'jsonapi/taxonomy_term/hc_resource_category?filter[drupal_internal__tid]='.$category;
 
     try {
@@ -131,21 +130,12 @@ class HowardGivingService {
         $image = [];
         if (isset($article['relationships'][$field]['data']['id'])) {
 
-         // echo"<pre>";
-          //var_dump($json['data'][$key]['relationships']['field_hc_header_image']['links']);
-          //var_dump($article);
-          //echo "</pre>";
-         // die();
           if (isset($json['included'][$key]['relationships'])) {
 
             $image['alt'] = $json['included'][$key]['relationships']['field_media_image']['data']['meta']['alt'];
             $image_key = array_search($json['included'][$key]['relationships']['field_media_image']['data']['id'], array_column($json['included'], 'id'));
-            //$image_style = array_column($json['included'][$image_key]['attributes']['image_style_uri'], $style);
             $image['uri'] = $json['included'][$image_key]['attributes']['image_style_uri']['large'];
-            //echo "<pre>";
-            //var_dump($json['included'][$image_key]['attributes']['image_style_uri']);
-            //var_dump($image);
-            //die();
+
           }
         }
 
