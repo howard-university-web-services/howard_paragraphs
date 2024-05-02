@@ -46,3 +46,66 @@ function howard_paragraphs_update_8002() {
   }
 
 }
+
+ /**
+ * Remove any config for the HP Deadline Feed, which is being depreciated.
+ */
+function howard_paragraphs_update_8003() {
+  // Delete existing paragraphs content
+  $paragraphs = \Drupal::entityTypeManager()
+    ->getStorage('paragraph')
+    ->loadByProperties(array('type' => 'hp_deadline_feed'));
+
+  foreach ($paragraphs as $paragraph) {
+      $paragraph->delete();
+  }
+
+  // Delete entire paragraph type bundle for hp_events_feed
+  $para_type = \Drupal::entityTypeManager()->getStorage('paragraphs_type')->load('hp_deadline_feed');
+  if($para_type !== NULL) {
+    $para_type->delete();
+  }
+
+}
+
+ /**
+ * Remove any config for the HP Photoshelter Feed, which is being depreciated.
+ */
+function howard_paragraphs_update_8004() {
+  // Delete existing paragraphs content
+  $paragraphs = \Drupal::entityTypeManager()
+    ->getStorage('paragraph')
+    ->loadByProperties(array('type' => 'hp_photoshelter_feed'));
+
+  foreach ($paragraphs as $paragraph) {
+      $paragraph->delete();
+  }
+
+  // Delete entire paragraph type bundle for hp_events_feed
+  $para_type = \Drupal::entityTypeManager()->getStorage('paragraphs_type')->load('hp_photoshelter_feed');
+  if($para_type !== NULL) {
+    $para_type->delete();
+  }
+
+}
+
+ /**
+ * Remove any config for the HP Photoshelter Feed Grid, which is being depreciated.
+ */
+function howard_paragraphs_update_8005() {
+  // Delete existing paragraphs content
+  $paragraphs = \Drupal::entityTypeManager()
+    ->getStorage('paragraph')
+    ->loadByProperties(array('type' => 'hp_photoshelter_feed_grid'));
+
+  foreach ($paragraphs as $paragraph) {
+      $paragraph->delete();
+  }
+
+  // Delete entire paragraph type bundle for hp_events_feed
+  $para_type = \Drupal::entityTypeManager()->getStorage('paragraphs_type')->load('hp_photoshelter_feed_grid');
+  if($para_type !== NULL) {
+    $para_type->delete();
+  }
+
+}

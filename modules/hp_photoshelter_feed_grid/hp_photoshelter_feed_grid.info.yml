@@ -11,3 +11,5 @@ dependencies:
   - howard_paragraphs
   - entity_browser
   - link_target
+
+hidden: true
