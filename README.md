@@ -35,11 +35,11 @@ The following submodules are available:
 - Carousel with Modal: Paragraphs integration of a Carousel with Modal for use in Howard projects
 - Countdown: Paragraphs integration of a Countdown for use in Howard projects
 - Data Point: Paragraphs integration of a Data Point for use in Howard projects
-- Deadline Feed: Paragraphs integration of Deadline Feed (from calendar.howard.edu) for Howard projects
+- Deadline Feed: Paragraphs integration of Deadline Feed (from calendar.howard.edu) for Howard projects [DEPRECATED]
 - Divider: Paragraphs integration of a simple content divider for Howard projects
 - Embed: Paragraphs integration of the ability to add iframes/js/etc for Howard projects
-- Events Feed: Paragraphs integration of Events Feed (from calendar.howard.edu) for Howard projects
-- Facebook Feed: Paragraphs integration of a Facebook Feed for Howard projects
+- Events Feed: Paragraphs integration of Events Feed (from calendar.howard.edu) for Howard projects [DEPRECATED]
+- Facebook Feed: Paragraphs integration of a Facebook Feed for Howard projects [DEPRECATED]
 - Featured People from thedig.howard.edu: Provides a paragraphs bundle for embedding curated Featured People from thedig.howard.edu as a Kitchen Sink Widget
 - Featured Article: Paragraphs integration of the ability to add Featured Articles in Howard projects
 - Giving Feed: Paragraphs integration of Giving Feed (from giving.howard.edu) for Howard projects
@@ -50,8 +50,8 @@ The following submodules are available:
 - Media: Paragraphs integration of media for use in Howard projects
 - News Feed: Paragraphs integration of News Feed (from thedig.howard.edu) for Howard projects
 - Parallax: Paragraphs integration of parallax scrolling for use in Howard projects
-- Photoshelter Feed: Paragraphs integration of Photoshelter Feed into a carousel with modal front end
-- Photoshelter Feed Grid: Paragraphs integration of Photoshelter Feed into a silc grid.
+- Photoshelter Feed: Paragraphs integration of Photoshelter Feed into a carousel with modal front end [DEPRECATED]
+- Photoshelter Feed Grid: Paragraphs integration of Photoshelter Feed into a silc grid. [DEPRECATED]
 - Profiles Feed: Paragraphs integration of Profiles Feed (from profiles.howard.edu) for Howard projects
 - Program: Paragraphs integration of embedding a Program (from programs.howard.edu) for Howard projects
 - Programs Feed Paragraphs integration of embedding a Programs Feed (from programs.howard.edu) for Howard projects
