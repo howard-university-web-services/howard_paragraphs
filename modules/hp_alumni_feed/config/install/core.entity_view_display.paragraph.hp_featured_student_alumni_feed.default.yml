@@ -1,8 +1,10 @@
+uuid: be5bfe47-1190-4d8e-a864-f50f267d1ccb
 langcode: en
 status: true
 dependencies:
   config:
     - field.field.paragraph.hp_featured_student_alumni_feed.field_hp_af_alumni_admin_categor
+    - field.field.paragraph.hp_featured_student_alumni_feed.field_hp_af_descriptive_text
     - field.field.paragraph.hp_featured_student_alumni_feed.field_hp_af_display_links_modal
     - field.field.paragraph.hp_featured_student_alumni_feed.field_hp_af_feed_type
     - field.field.paragraph.hp_featured_student_alumni_feed.field_hp_af_show_quote
@@ -12,60 +14,68 @@ dependencies:
   module:
     - external_data_source
     - options
+    - text
 _core:
-  default_config_hash: I2ILTZB8kr1aGyiVo1ppHx7OJw9BFQeNzDoQ1XCqueU
+  default_config_hash: NYgpg6rFOZRHuVOVZIf7ekwm6ECO8_eQreAxwaLkKBw
 id: paragraph.hp_featured_student_alumni_feed.default
 targetEntityType: paragraph
 bundle: hp_featured_student_alumni_feed
 mode: default
 content:
   field_hp_af_alumni_admin_categor:
-    weight: 4
+    type: external_data_source_formatter
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: external_data_source_formatter
+    weight: 4
+    region: content
+  field_hp_af_descriptive_text:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
     region: content
   field_hp_af_display_links_modal:
-    weight: 2
+    type: boolean
     label: hidden
     settings:
       format: default
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    type: boolean
+    weight: 2
     region: content
   field_hp_af_feed_type:
-    weight: 1
+    type: list_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 1
     region: content
   field_hp_af_show_quote:
-    weight: 5
+    type: boolean
     label: above
     settings:
       format: default
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    type: boolean
+    weight: 5
     region: content
   field_hp_af_title:
-    weight: 3
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 3
     region: content
   field_hp_pf_environment:
-    weight: 0
+    type: list_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 0
     region: content
 hidden: {  }

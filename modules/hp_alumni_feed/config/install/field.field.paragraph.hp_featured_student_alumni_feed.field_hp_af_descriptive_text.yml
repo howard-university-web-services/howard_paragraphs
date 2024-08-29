@@ -1,0 +1,24 @@
+uuid: 6fbf8d80-5090-4e86-90ca-d690546709e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_af_descriptive_text
+    - filter.format.basic_html
+    - paragraphs.paragraphs_type.hp_featured_student_alumni_feed
+  module:
+    - text
+id: paragraph.hp_featured_student_alumni_feed.field_hp_af_descriptive_text
+field_name: field_hp_af_descriptive_text
+entity_type: paragraph
+bundle: hp_featured_student_alumni_feed
+label: 'Descriptive Text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text
