@@ -28,6 +28,10 @@
         </div>
       {% endif %}
 
+      {% if content.field_hp_pf_descriptive_text[0] %}
+			  <div class="block-header__description">{{ content.field_hp_pf_descriptive_text }}</div>
+		  {% endif %}
+
       <div class="silc-grid">
 
         {% for prsn in hp_pf_profiles.data %}

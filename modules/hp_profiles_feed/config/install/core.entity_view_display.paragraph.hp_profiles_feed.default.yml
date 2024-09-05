@@ -1,7 +1,9 @@
+uuid: abcfa686-8ab8-4584-a0b5-ce2e9b54b013
 langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.hp_profiles_feed.field_hp_pf_descriptive_text
     - field.field.paragraph.hp_profiles_feed.field_hp_pf_environment
     - field.field.paragraph.hp_profiles_feed.field_hp_pf_profiles_department
     - field.field.paragraph.hp_profiles_feed.field_hp_pf_sort
@@ -9,8 +11,9 @@ dependencies:
     - paragraphs.paragraphs_type.hp_profiles_feed
   module:
     - options
+    - text
 _core:
-  default_config_hash: bOVCxDt0kG3JrAhAodT2vTDINFffOP4jGli1iV5k-uA
+  default_config_hash: bpSIrXluf-I1G4cpOO5IOVCsLDgyyvVzb5AhNRO32tE
 id: paragraph.hp_profiles_feed.default
 targetEntityType: paragraph
 bundle: hp_profiles_feed
@@ -25,6 +28,13 @@ content:
     region: content
   field_hp_ef_event_category:
     type: external_data_source_formatter
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_hp_pf_descriptive_text:
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }

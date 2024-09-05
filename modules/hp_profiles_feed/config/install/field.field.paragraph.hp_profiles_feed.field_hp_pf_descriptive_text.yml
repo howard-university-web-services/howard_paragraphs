@@ -1,0 +1,24 @@
+uuid: b89f4404-44ca-4301-8b2a-e0c6479345de
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_pf_descriptive_text
+    - filter.format.basic_html
+    - paragraphs.paragraphs_type.hp_profiles_feed
+  module:
+    - text
+id: paragraph.hp_profiles_feed.field_hp_pf_descriptive_text
+field_name: field_hp_pf_descriptive_text
+entity_type: paragraph
+bundle: hp_profiles_feed
+label: 'Descriptive Text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text
