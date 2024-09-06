@@ -120,3 +120,10 @@ function hp_profiles_feed_update_8003()
 function hp_profiles_feed_update_8004() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_profiles_feed');
 }
+
+/**
+ * Updates to add descriptive text field.
+ */
+function hp_profiles_feed_update_8005() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_profiles_feed');
+}

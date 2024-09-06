@@ -114,3 +114,10 @@ function hp_alumni_feed_update_8003() {
 function hp_alumni_feed_update_8004() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_alumni_feed');
 }
+
+/**
+ * Updates to add descriptive text field.
+ */
+function hp_alumni_feed_update_8007() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_alumni_feed');
+}
