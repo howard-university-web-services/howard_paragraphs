@@ -15,7 +15,7 @@
 			{% else %}
 				<div class="{{ hp_card_class }}">
 				{% endif %}
-				<div class="news-and-events__img" style="background-image:url({{ hp_card_image }})"></div>
+				<div class="news-and-events__img"><img src="{{hp_card_image}}" alt="{{hp_card_alt}}"></div>
 				<div class="news-and-events__desc">
 					<h3 class="news-and-events__title header--h3-small">{{ content.field_hp_cd_title }}</h3>
 					<div class="body-text--small">{{ content.field_hp_cd_text }}</div>
