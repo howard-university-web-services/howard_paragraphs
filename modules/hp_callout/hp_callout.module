@@ -47,6 +47,7 @@ function hp_callout_preprocess_paragraph__hp_callout(&$variables) {
       $entity = Media::load($bkrd_image[0]['target_id']);
       if (isset($entity->field_media_image->entity)) {
         $variables['hp_call_image'] = \Drupal::service('file_url_generator')->generateAbsoluteString($entity->field_media_image->entity->getFileUri());
+        $variables['hp_call_image_alt'] = $entity->field_media_image->alt;
       }
     }
   }

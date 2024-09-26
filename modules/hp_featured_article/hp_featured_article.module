@@ -79,6 +79,7 @@ function hp_featured_article_preprocess_paragraph__hp_featured_article(&$variabl
             if (isset($image->field_media_image->entity)) {
               if ($image->field_media_image->entity->getFileUri() !== NULL) {
                 $variables['hp_fa_image'] = ImageStyle::load('large')->buildUrl($image->field_media_image->entity->getFileUri());
+                $variables['hp_fa_image_alt'] = $image->field_media_image->alt;
               }
             }
           }

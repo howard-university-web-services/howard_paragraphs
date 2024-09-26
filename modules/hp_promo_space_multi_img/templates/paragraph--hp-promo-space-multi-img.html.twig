@@ -35,32 +35,50 @@
               {% endfor %}
             </div>
             <div class="silc-grid__col silc-grid__col--8-medium">
-              <div class="image-type-1 silc-grid__col silc-grid__col--4-medium" style="background-image:url('{{ hp_promo_image_1 }}')">
+              <div class="image-type-1 silc-grid__col silc-grid__col--4-medium">
+                {% if hp_promo_image_1 %}
+                <img src="{{ hp_promo_image_1 }}" alt="{{ hp_promo_image_1_alt }}">
+                {% endif %}
                 {% if hp_promo_image_1_text %}
                 <div class="overlay"><div class="text">{{ hp_promo_image_1_text | raw }}</div></div>
                 {% endif %}
               </div>
-              <div class="image-type-2 silc-grid__col silc-grid__col--4-medium" style="background-image:url('{{ hp_promo_image_2 }}')">
+              <div class="image-type-2 silc-grid__col silc-grid__col--4-medium">
+                {% if hp_promo_image_2 %}
+                <img src="{{ hp_promo_image_2 }}" alt="{{ hp_promo_image_2_alt }}">
+                {% endif %}
                 {% if hp_promo_image_2_text %}
                 <div class="overlay"><div class="text">{{ hp_promo_image_2_text | raw }}</div></div>
                 {% endif %}
               </div>
-              <div class="image-type-1 silc-grid__col silc-grid__col--4-medium" style="background-image:url('{{ hp_promo_image_3 }}')">
+              <div class="image-type-1 silc-grid__col silc-grid__col--4-medium">
+                {% if hp_promo_image_3 %}
+                <img src="{{ hp_promo_image_3 }}" alt="{{ hp_promo_image_3_alt }}">
+                {% endif %}
                 {% if hp_promo_image_3_text %}
                 <div class="overlay"><div class="text">{{ hp_promo_image_3_text | raw }}</div></div>
                 {% endif %}
               </div>
-              <div class="image-type-3 silc-grid__col silc-grid__col--4-medium" style="background-image:url('{{ hp_promo_image_4 }}')">
+              <div class="image-type-3 silc-grid__col silc-grid__col--4-medium">
+                {% if hp_promo_image_4 %}
+                <img src="{{ hp_promo_image_4 }}" alt="{{ hp_promo_image_4_alt }}">
+                {% endif %}
                 {% if hp_promo_image_4_text %}
                 <div class="overlay"><div class="text">{{ hp_promo_image_4_text | raw }}</div></div>
                 {% endif %}
               </div>
-              <div class="image-type-1 silc-grid__col silc-grid__col--4-medium" style="background-image:url('{{ hp_promo_image_5 }}')">
+              <div class="image-type-1 silc-grid__col silc-grid__col--4-medium">
+                {% if hp_promo_image_5 %}
+                <img src="{{ hp_promo_image_5 }}" alt="{{ hp_promo_image_5_alt }}">
+                {% endif %}
                 {% if hp_promo_image_5_text %}
                 <div class="overlay"><div class="text">{{ hp_promo_image_5_text | raw }}</div></div>
                 {% endif %}
               </div>
-              <div class="image-type-3 silc-grid__col silc-grid__col--4-medium" style="background-image:url('{{ hp_promo_image_6 }}')">
+              <div class="image-type-3 silc-grid__col silc-grid__col--4-medium">
+                {% if hp_promo_image_6 %}
+                <img src="{{ hp_promo_image_6 }}" alt="{{ hp_promo_image_6_alt }}">
+                {% endif %}
                 {% if hp_promo_image_6_text %}
                 <div class="overlay"><div class="text">{{ hp_promo_image_6_text | raw }}</div></div>
                 {% endif %}

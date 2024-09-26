@@ -15,7 +15,7 @@
 
   {% if hp_call_type == 'standard' %}
 
-    <div class="full-width-image-banner" style="background-image:url('{{ hp_call_image }}')">
+    <div class="full-width-image-banner" style="background-image:url('{{ hp_call_image }}')" alt="{{ hp_call_image_alt }}">
       <div class="compartment">
         <div class="silc-grid silc-grid--collapse">
           <div class="silc-grid__col silc-grid__col--6-large">
@@ -39,7 +39,7 @@
   {% elseif hp_call_type == 'large_homepage_style' %}
 
     <div class="full-width-cta">
-      <div class="background" style="background-image:url('{{ hp_call_image }}')"></div>
+      <div class="background"><img src="{{ hp_call_image }}" alt="{{ hp_call_image_alt }}"></div>
         <div class="compartment">
             <h2>{{ content.field_hp_call_title }}</h2>
             {% for key, item in content.field_hp_call_links %}

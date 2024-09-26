@@ -66,6 +66,7 @@ function hp_promo_space_multi_img_preprocess_paragraph__hp_promo_space_multi_img
                 if ($entity->field_media_image->entity->getFileUri() !== NULL)
                 {
                     $variables['hp_promo_image_' . $i] = ImageStyle::load('large')->buildUrl($entity->field_media_image->entity->getFileUri());
+                    $variables['hp_promo_image_' . $i . '_alt'] = $entity->field_media_image->alt;
                 }
             }
         }
