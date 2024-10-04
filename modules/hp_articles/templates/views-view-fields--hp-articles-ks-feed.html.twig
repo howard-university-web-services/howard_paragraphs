@@ -31,8 +31,8 @@
 		</a>
 	{% else %}
 		<a href="{{ path('entity.node.canonical', {'node': fields.nid.content|render|striptags|trim}) }}" class="news-and-events__block">
-			{% if fields.field_media_image.content|render|striptags|trim %}
-				<div class="news-and-events__img news_article" style="background-image:url('{{ fields.field_media_image.content|render|striptags|trim }}'); display:block;"></div>
+			{% if fields.field_media_image.content|render|striptags %}
+				<div class="news-and-events__img ks_article_img">{{fields.field_media_image.content }}</div>
 			{% endif %}
 			<div class="news-and-events__desc">
 				<span class="news-and-events__date">{{ fields.created.content }}</span>

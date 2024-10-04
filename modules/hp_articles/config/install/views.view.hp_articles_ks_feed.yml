@@ -328,7 +328,7 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
-          type: image_url
+          type: image
           settings:
             image_style: large
           group_column: ''
