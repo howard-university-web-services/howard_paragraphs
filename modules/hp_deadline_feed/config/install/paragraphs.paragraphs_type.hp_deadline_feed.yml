@@ -1,8 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: hp_deadline_feed
-label: 'HP Deadline Feed'
-icon_uuid: null
-description: 'This is a feed of deadlines from calendar.howard.edu.'
-behavior_plugins: {  }
