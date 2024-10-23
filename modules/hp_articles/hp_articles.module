@@ -127,3 +127,12 @@ function hp_articles_update_8005()
 {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_articles');
 }
+
+/**
+ * Implements hook update()
+ * Updates hp_articles_ks_feed config  allow sticky to top.
+ */
+function hp_articles_update_8006()
+{
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_articles');
+}
