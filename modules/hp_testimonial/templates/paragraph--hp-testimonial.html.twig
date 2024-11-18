@@ -22,7 +22,7 @@
       <div class="alumni-profile">
         <div class="silc-grid silc-grid--no-gutters silc-grid--collapse">
           <div class="silc-grid__col silc-grid__col--4-medium">
-            <div class="alumni-profile__img" style="background-image:url('{{ hp_tst_image }}')">
+            <div class="alumni-profile__img" style="background-image:url('{{ hp_tst_image }}')" alt="{{ content.field_hp_tst_image[0]['#media'].field_media_image[0].alt }}">
               <div class="alumni-profile__caption">
                 {% if content.field_hp_tst_name|render %}
                 <h3>{{ content.field_hp_tst_name }}</h3>
