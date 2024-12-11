@@ -15,38 +15,41 @@
 %}
 
 <section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Testimonial">
-  {% if hp_show_wrapper %}
-    <div class="compartment">
-  {% endif %}
+	{% if hp_show_wrapper %}
+		<div class="compartment">
+		{% endif %}
 
-      <div class="alumni-profile">
-        <div class="silc-grid silc-grid--no-gutters silc-grid--collapse">
-          <div class="silc-grid__col silc-grid__col--4-medium">
-            <div class="alumni-profile__img" style="background-image:url('{{ hp_tst_image }}')" alt="{{ content.field_hp_tst_image[0]['#media'].field_media_image[0].alt }}">
-              <div class="alumni-profile__caption">
-                {% if content.field_hp_tst_name|render %}
-                <h3>{{ content.field_hp_tst_name }}</h3>
-                {% endif %}
-                {% if content.field_hp_tst_title|render %}
-                <h4>{{ content.field_hp_tst_title }}</h4>
-                {% endif %}
-              </div>
-            </div>
-          </div>
-          <div class="silc-grid__col silc-grid__col--8-medium">
-            <div class="alumni-profile__quote">
-              {{ content.field_hp_tst_intro }}
-              {% if content.field_hp_tst_quote|render %}
-                <blockquote>
-                  {{ content.field_hp_tst_quote }}
-                </blockquote>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-      </div>
+		<div class="alumni-profile">
+			<div class="silc-grid silc-grid--no-gutters silc-grid--collapse">
+				<div class="silc-grid__col silc-grid__col--4-medium">
+					<div class="alumni-profile__img" style="background-image:url('{{ hp_tst_image }}')">
+						{% if content.field_hp_tst_image|render %}
+							<span class="visually-hidden" role="img" aria-label="{{ content.field_hp_tst_image[0]['#media'].field_media_image[0].alt }}"></span>
+						{% endif %}
+						<div class="alumni-profile__caption">
+							{% if content.field_hp_tst_name|render %}
+								<h3>{{ content.field_hp_tst_name }}</h3>
+							{% endif %}
+							{% if content.field_hp_tst_title|render %}
+								<h4>{{ content.field_hp_tst_title }}</h4>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+				<div class="silc-grid__col silc-grid__col--8-medium">
+					<div class="alumni-profile__quote">
+						{{ content.field_hp_tst_intro }}
+						{% if content.field_hp_tst_quote|render %}
+							<blockquote>
+								{{ content.field_hp_tst_quote }}
+							</blockquote>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
 
-  {% if hp_show_wrapper %}
-    </div>
-  {% endif %}
+		{% if hp_show_wrapper %}
+		</div>
+	{% endif %}
 </section>
