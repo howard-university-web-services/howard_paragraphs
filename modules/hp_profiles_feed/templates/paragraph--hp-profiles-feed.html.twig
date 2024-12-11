@@ -15,59 +15,68 @@
 %}
 
 <section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Howard profiles">
-  {% if hp_show_wrapper %}
-    <div class="compartment">
-  {% endif %}
+	{% if hp_show_wrapper %}
+		<div class="compartment">
+		{% endif %}
 
-      {% if content.field_hp_pf_title[0] %}
-        <div class="block-header">
-            <div class="block-header__title">
-                <span class=" block-header__icon icon-our-people"></span>
-                <h2>{{ content.field_hp_pf_title }}</h2>
-            </div>
-        </div>
-      {% endif %}
+		{% if content.field_hp_pf_title[0] %}
+			<div class="block-header">
+				<div class="block-header__title">
+					<span class=" block-header__icon icon-our-people"></span>
+					<h2>{{ content.field_hp_pf_title }}</h2>
+				</div>
+			</div>
+		{% endif %}
 
-      {% if content.field_hp_pf_descriptive_text[0] %}
-			  <div class="block-header__description">{{ content.field_hp_pf_descriptive_text }}</div>
-		  {% endif %}
+		{% if content.field_hp_pf_descriptive_text[0] %}
+			<div class="block-header__description">{{ content.field_hp_pf_descriptive_text }}</div>
+		{% endif %}
 
-      <div class="silc-grid">
+		<div class="silc-grid">
 
-        {% for prsn in hp_pf_profiles.data %}
-          <div class="silc-grid__col silc-grid__col--4-medium">
-            <div class="faculty-profile">
-              <div class="faculty-profile__block">
-              {% if prsn.featured_image.image_styles.hc_large_480_480_cropped %}
-                <div class="faculty-profile__img" style="background-image:url('{{ prsn.featured_image.image_styles.hc_large_480_480_cropped }}')"></div>
-              {% else %}
-                <div class="faculty-profile__img" style="background-image:url('https://profiles.howard.edu/sites/profiles.howard.edu/themes/custom/hu_profiles_theme/idfive-component-library/src/img/howard_avatar.jpg')"></div>
-              {% endif %}
-                <h3>{{ prsn.full_name }}</h3>
-                {% if prsn.pronoun %}
-                  <h5><em>{{prsn.pronoun}}</em></h5>
-                {% endif %}
-                {% if prsn.affiliation.title %}
-                  <h4>{{ prsn.affiliation.title }}</h4>
-                {% endif %}
-                <h5>{{ prsn.affiliation.department }}</h5>
-                <div class="faculty-profile__divider"></div>
-                {% if prsn.show_email %}
-                  <a href="mailto:{{ prsn.email }}" class=" faculty-profile__link faculty-profile__email"><span class="icon icon-envelope"></span>{{ prsn.email }}</a>
-                {% endif %}
-              </div>
-              <div class="faculty-profile__btn">
-                <a href="{{ hp_pf_env_url }}{{ prsn.url }}" class="fancy-link fancy-link--dark" target="_blank">
-                  <span>View Full Profile<span class="visually-hidden"> of {{ prsn.full_name }}</span></span>
-                  <span class="icon-arrow-right"></span>
-                </a>
-              </div>
-            </div>
-          </div>
-        {% endfor %}
+			{% for prsn in hp_pf_profiles.data %}
+				<div class="silc-grid__col silc-grid__col--4-medium">
+					<div class="faculty-profile">
+						<div class="faculty-profile__block">
+							<div class="faculty-profile__img">
+								{% if prsn.featured_image.image_styles.hc_large_480_480_cropped %}
+									<img src="{{ prsn.featured_image.image_styles.hc_large_480_480_cropped }}" alt="Profile headshot photo of {{ prsn.full_name }}."/>
+								{% else %}
+									<img src="https://profiles.howard.edu/sites/profiles.howard.edu/themes/custom/hu_profiles_theme/idfive-component-library/src/img/howard_avatar.jpg" alt="Avatar of grey silouette, used to when no person photo exists."/>
+								{% endif %}
+							</div>
+							<h3>{{ prsn.full_name }}</h3>
+							{% if prsn.pronoun %}
+								<h5>
+									<em>{{prsn.pronoun}}</em>
+								</h5>
+							{% endif %}
+							{% if prsn.affiliation.title %}
+								<h4>{{ prsn.affiliation.title }}</h4>
+							{% endif %}
+							<h5>{{ prsn.affiliation.department }}</h5>
+							<div class="faculty-profile__divider"></div>
+							{% if prsn.show_email %}
+								<a href="mailto:{{ prsn.email }}" class=" faculty-profile__link faculty-profile__email">
+									<span class="icon icon-envelope"></span>
+									{{ prsn.email }}</a>
+							{% endif %}
+						</div>
+						<div class="faculty-profile__btn">
+							<a href="{{ hp_pf_env_url }}{{ prsn.url }}" class="fancy-link fancy-link--dark" target="_blank">
+								<span>View Full Profile<span class="visually-hidden">
+										of
+										{{ prsn.full_name }}</span>
+								</span>
+								<span class="icon-arrow-right"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
 
-      </div>
-  {% if hp_show_wrapper %}
-    </div>
-  {% endif %}
+		</div>
+		{% if hp_show_wrapper %}
+		</div>
+	{% endif %}
 </section>
