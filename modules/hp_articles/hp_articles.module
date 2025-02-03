@@ -136,3 +136,12 @@ function hp_articles_update_8006()
 {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_articles');
 }
+
+/**
+ * Implements hook update()
+ * Updates categories from select list to radio.
+ */
+function hp_articles_update_8007()
+{
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_articles');
+}

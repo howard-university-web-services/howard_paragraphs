@@ -174,3 +174,10 @@ function hp_news_feed_update_8004()
     FieldConfig::loadByName('paragraph', 'hp_news_feed', 'field_hp_nf_news_schools_college')->delete();
   }
 }
+/**
+ * News feed category change from select list radio buttons.
+ */
+function hp_news_feed_update_8005()
+{
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_news_feed');
+}
