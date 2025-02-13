@@ -55,26 +55,32 @@ class HowardNewsService {
   public function getArticles($env_url = 'https://thedig.howard.edu', $category = NULL, $initiatives = NULL, $units = NULL, $schools_colleges = NULL, $howard_forward = NULL, $range = 3, $id = 'default') {
 
     $url = $env_url . $this->articleEndpoint . "?sort[sort-published][path]=field_date&sort[sort-published][direction]=DESC&page[limit]=" . $range . '&include=field_hero_image,field_hero_image.field_media_image,field_hero_image.field_media_image.uid';
+    
     // Filter for category.
     if (isset($category)) {
-      $url .= $this->formatFilters('category', 'field_primary_tag', $category);
+      $url .= $this->formatIdFilters('category', 'field_tags.tid', $category, 'IN');
     }
+    
     // Filter for initiatives.
     if (isset($initiatives)) {
       $url .= $this->formatFilters('initiatives', 'field_event_initiative_campaign', $initiatives);
     }
+    
     // Filter for units.
     if (isset($units)) {
       $url .= $this->formatFilters('units', 'field_campus_units_programs', $units);
     }
+    
     // Filter for schools.
     if (isset($schools_colleges)) {
       $url .= $this->formatFilters('schools', 'field_schools_and_colleges', $schools_colleges);
     }
+    
     // Filter for howard forward.
     if (isset($howard_forward)) {
       $url .= $this->formatFilters('forward', 'field_howard_forward', $howard_forward);
     }
+
     $json = $this->getData($id, $url);
     $json = $this->formatContentWithImages($json, 'large', 'field_hero_image');
 

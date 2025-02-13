@@ -54,12 +54,15 @@ function hp_news_feed_preprocess_paragraph__hp_news_feed(&$variables)
   $variables['hp_nf_env_url'] = $env_url;
   $variables['hp_nf_default_image'] = '/' . \Drupal::service('extension.path.resolver')->getPath('module', 'hp_news_feed') . '/assets/hp_news_feed_default.jpg';
 
-  // Check on categories filter.
+  // Check on categories filter. This can have multiple terms, which is unlike other fields here, which are single.
   $category = NULL;
   if (isset($variables['elements']['#paragraph']->field_hp_nf_dg_category->value)) {
-    $category = $variables['elements']['#paragraph']->field_hp_nf_dg_category->value;
-    // Decode string workaround due to bug in core or external_data_source.
-    $category = str_replace('id=', '', $category);
+    $all_terms = $variables['elements']['#paragraph']->field_hp_nf_dg_category->getValue();
+    // Workaround to replace "id=" in external data source fields.
+    foreach($all_terms as $key => $term) {
+      $all_terms[$key]['value'] = str_replace('id=', '', $term['value']);
+    }
+    $category = $all_terms;
   }
 
   // Check on initiatives filter.

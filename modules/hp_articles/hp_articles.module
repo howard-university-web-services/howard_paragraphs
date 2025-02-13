@@ -66,7 +66,12 @@ function hp_articles_preprocess_paragraph__hp_articles(&$variables) {
   // Get Category Taxonomy, if present.
   $filter = 'all';
   if ($variables['elements']['#paragraph']->field_hp_af_article_category_fil->target_id) {
-    $filter = $variables['elements']['#paragraph']->field_hp_af_article_category_fil->target_id;
+    $cats = $variables['elements']['#paragraph']->field_hp_af_article_category_fil->getValue();
+    $tids = [];
+    foreach($cats as $cat) {
+      $tids[] = $cat['target_id'];
+    }
+    $filter = implode( '+', $tids );
   }
 
   $article_count = 10;
@@ -142,6 +147,15 @@ function hp_articles_update_8006()
  * Updates categories from select list to radio.
  */
 function hp_articles_update_8007()
+{
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_articles');
+}
+
+/**
+ * Implements hook update()
+ * Updates to allow categories to be passed to the relevant view correctly.
+ */
+function hp_articles_update_8008()
 {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_articles');
 }

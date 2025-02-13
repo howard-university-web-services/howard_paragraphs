@@ -22,7 +22,7 @@ dependencies:
     - text
     - user
 _core:
-  default_config_hash: EK88UDQbEZbhVN6pcoms1wwd4yM671uwKxzVgUr1hKs
+  default_config_hash: S39MV58JRj5CLEsJ1wqHmCcxvt-W7SCjRBM1dsCXK8c
 id: hp_articles_ks_feed
 label: 'HP Articles KS Feed'
 module: views
@@ -832,7 +832,7 @@ display:
             type: none
             fail: 'not found'
           validate_options: {  }
-          break_phrase: false
+          break_phrase: true
           not: false
       filters:
         status:
