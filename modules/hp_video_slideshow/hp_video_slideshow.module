@@ -78,8 +78,7 @@ function hp_video_slideshow_theme($existing, $type, $theme, $path)
 {
     $result = [
         'paragraph__hp_video_slideshow' => [ 'base hook' => 'paragraph' ],
-        'paragraph__hp_video_slide' => [ 'base hook' => 'paragraph' ],
-        'field__paragraph__field_hp_vs_caption' => [ 'base hook' => 'paragraph' ],
+        'paragraph__hp_video_slide' => [ 'base hook' => 'paragraph' ]
     ];
 
     return $result;
