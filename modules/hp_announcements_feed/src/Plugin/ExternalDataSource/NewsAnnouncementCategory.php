@@ -83,7 +83,7 @@ class NewsAnnouncementCategory extends ExternalDataSourceBase {
         $data = $data->data;
       }
       catch (GuzzleException $e) {
-        watchdog_exception('external_data_source', $e->getMessage());
+        \Drupal::logger('hp_announcements_feed')->error($e->getMessage());
       }
       // Caching result to avoid ws over use.
       \Drupal::cache()->set($cid, $data);
