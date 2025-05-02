@@ -1,9 +1,9 @@
 name: 'Howard Paragraphs: Views Embed'
 type: module
 description: Provides a paragraphs bundle for embedding views as a Kitchen Sink Widget.
-version: '8.x-1.0'
-core: '8.x'
-core_version_requirement: ^8 || ^9 || ^10
+version: '11.x-1.0'
+
+core_version_requirement: ^10 || ^11
 
 package: Howard University
 dependencies:

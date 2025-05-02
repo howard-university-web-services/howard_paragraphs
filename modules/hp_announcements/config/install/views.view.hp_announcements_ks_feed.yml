@@ -18,7 +18,7 @@ description: 'This view is used by the HP Announcements Paragraphs Widget'
 tag: ''
 base_table: node_field_data
 base_field: nid
-core: 8.x
+
 display:
   default:
     display_plugin: default
