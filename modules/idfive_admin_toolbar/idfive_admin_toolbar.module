@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * @file
+ * Implements various hooks and functions to run the Admin Toolbar module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ *
+ * Shows the module's readme file on the help page.
+ */
+function idfive_admin_toolbar_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.idfive_admin_toolbar':
+      $filepath = dirname(__FILE__) . '/README.md';
+      if (file_exists($filepath)) {
+        $readme = file_get_contents($filepath);
+      }
+      else {
+        $filepath = dirname(__FILE__) . '/README.txt';
+        if (file_exists($filepath)) {
+          $readme = file_get_contents($filepath);
+        }
+      }
+      if (!isset($readme)) {
+        return NULL;
+      }
+      if (\Drupal::moduleHandler()->moduleExists('markdown')) {
+        // TODO Add markdown support.
+        $output = '<pre>' . $readme . '</pre>';
+      }
+      else {
+        $output = '<pre>' . $readme . '</pre>';
+      }
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_toolbar().
+ *
+ * Adds admin edit links/tabs in toolbar, so we don't need to have tabs on pages.
+ */
+function idfive_admin_toolbar_toolbar() {
+  return \Drupal::service('idfive_admin_toolbar.edit_button')
+  ->addEdit();
+}

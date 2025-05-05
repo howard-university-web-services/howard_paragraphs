@@ -1,0 +1,4 @@
+services:
+  idfive_admin_toolbar.edit_button:
+    class: Drupal\idfive_admin_toolbar\IdfiveAdminToolbar
+    arguments: ['@plugin.manager.menu.local_task', '@current_route_match']
