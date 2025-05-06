@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Provides Drupal\external_data_source\Plugin\ExternalWsSource\RelatedProfessions.
- */
-
 namespace Drupal\hp_programs_feed\Plugin\ExternalDataSource;
 
 use Drupal\external_data_source\Plugin\ExternalDataSourceBase;

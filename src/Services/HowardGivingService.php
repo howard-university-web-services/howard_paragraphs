@@ -36,7 +36,7 @@ class HowardGivingService {
    */
   public function getArticles($env_url = 'https://giving.howard.edu/', $category = NULL, $range = 3, $id = 'default') {
 
-    $url = $env_url . $this->articleEndpoint ."?page[limit]=" . $range . '&include=field_hc_header_image,field_hc_header_image.field_media_image,field_hc_header_image.field_media_image.uid,field_hc_resource_category';
+    $url = $env_url . $this->articleEndpoint . "?page[limit]=" . $range . '&include=field_hc_header_image,field_hc_header_image.field_media_image,field_hc_header_image.field_media_image.uid,field_hc_resource_category';
 
     if (isset($category)) {
       $url .= $this->formatFilters('category', 'field_hc_resource_category', $category);
@@ -62,20 +62,22 @@ class HowardGivingService {
     return $result;
   }
 
-
-  public function getCategory( $category = NULL){
+  /**
+   *
+   */
+  public function getCategory($category = NULL) {
     $env_url = 'https://giving.howard.edu/';
-    $url = $env_url . 'jsonapi/taxonomy_term/hc_resource_category?filter[drupal_internal__tid]='.$category;
+    $url = $env_url . 'jsonapi/taxonomy_term/hc_resource_category?filter[drupal_internal__tid]=' . $category;
 
     try {
-        $request = $this->client->get($url, ['verify' => FALSE]);
-        $result = json_decode($request->getBody()->__toString(), TRUE);
-      }
-      catch (RequestException $e) {
-        $message = 'Error connecting to Howard Dig API via URL:' . $url;
-        \Drupal::logger('Howard Giving API')->error($message);
-        return;
-      }
+      $request = $this->client->get($url, ['verify' => FALSE]);
+      $result = json_decode($request->getBody()->__toString(), TRUE);
+    }
+    catch (RequestException $e) {
+      $message = 'Error connecting to Howard Dig API via URL:' . $url;
+      \Drupal::logger('Howard Giving API')->error($message);
+      return;
+    }
 
     return $result['data'][0]["attributes"]['name'];
   }
@@ -86,7 +88,8 @@ class HowardGivingService {
   public function getData($cache_id, $url) {
     if ($cache = \Drupal::cache()->get($cache_id)) {
       return $cache->data;
-    } else {
+    }
+    else {
 
       try {
         $request = $this->client->get($url, ['verify' => FALSE]);
@@ -120,6 +123,7 @@ class HowardGivingService {
     $filters .= '&filter[' . $id . '][condition][operator]=' . $operator;
     return $filters;
   }
+
   /**
    * Public method to format content to get an image.
    */

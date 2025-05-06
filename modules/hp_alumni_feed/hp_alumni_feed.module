@@ -84,8 +84,7 @@ function hp_alumni_feed_theme($existing, $type, $theme, $path) {
   ];
 }
 
-
-// UPDATES
+// UPDATES.
 
 /**
  * Updates to allow categories.

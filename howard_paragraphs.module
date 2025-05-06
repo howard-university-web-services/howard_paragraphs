@@ -13,14 +13,14 @@ use Drupal\howard_paragraphs\Controller\HowardExternalContentCacheClear;
  *
  * @inheritdoc
  */
-function howard_paragraphs_help($route_name, RouteMatchInterface $route_match)
-{
+function howard_paragraphs_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
     case 'help.page.howard_paragraphs':
       $text = file_get_contents(dirname(__FILE__) . "/README.md");
       if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
         return '<pre>' . $text . '</pre>';
-      } else {
+      }
+      else {
         // Use the Markdown filter to render the README.
         $filter_manager = \Drupal::service('plugin.manager.filter');
         $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
@@ -37,8 +37,7 @@ function howard_paragraphs_help($route_name, RouteMatchInterface $route_match)
  *
  * Shows/hides a wrapper based on parent node type.
  */
-function howard_paragraphs_preprocess_paragraph(&$variables)
-{
+function howard_paragraphs_preprocess_paragraph(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   // Get the parent bundle.
@@ -56,8 +55,7 @@ function howard_paragraphs_preprocess_paragraph(&$variables)
  *
  * Provides some basic stripped down templates.
  */
-function howard_paragraphs_theme($existing, $type, $theme, $path)
-{
+function howard_paragraphs_theme($existing, $type, $theme, $path) {
   return [
     'paragraph__default' => [
       'base hook' => 'paragraph',
@@ -79,7 +77,6 @@ function howard_paragraphs_theme($existing, $type, $theme, $path)
  * Implements hook_cron().
  *
  * We implement hook_cron() to kick off clearing caches on external feed paragraphs.
- *
  */
 function howard_paragraphs_cron() {
   // Load and clear cache for all howard paragraphs marked as external.

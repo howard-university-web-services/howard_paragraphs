@@ -8,8 +8,7 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Configure example settings for this site.
  */
-class HpYoutubePlaylistSettingsForm extends ConfigFormBase
-{
+class HpYoutubePlaylistSettingsForm extends ConfigFormBase {
 
   /**
    * Config settings.
@@ -21,16 +20,14 @@ class HpYoutubePlaylistSettingsForm extends ConfigFormBase
   /**
    * {@inheritdoc}
    */
-  public function getFormId()
-  {
+  public function getFormId() {
     return 'hp_youtube_playlist_settings';
   }
 
   /**
    * {@inheritdoc}
    */
-  protected function getEditableConfigNames()
-  {
+  protected function getEditableConfigNames() {
     return [
       static::SETTINGS,
     ];
@@ -39,8 +36,7 @@ class HpYoutubePlaylistSettingsForm extends ConfigFormBase
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state)
-  {
+  public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config(static::SETTINGS);
     $help_markup = "<p>You will need to create a Youtube Data API Key.</p>";
     $help_markup .= "<p>More information can be found on the <a href='https://developers.google.com/youtube/v3/getting-started'>Youtbe Data API page</a>.</p>";
@@ -64,8 +60,7 @@ class HpYoutubePlaylistSettingsForm extends ConfigFormBase
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, FormStateInterface $form_state)
-  {
+  public function submitForm(array &$form, FormStateInterface $form_state) {
     // Retrieve the configuration.
     $this->configFactory->getEditable(static::SETTINGS)
       // Set the submitted configuration setting.
@@ -74,4 +69,5 @@ class HpYoutubePlaylistSettingsForm extends ConfigFormBase
 
     parent::submitForm($form, $form_state);
   }
+
 }

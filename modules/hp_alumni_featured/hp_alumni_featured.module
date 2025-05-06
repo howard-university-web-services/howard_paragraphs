@@ -60,7 +60,7 @@ function hp_alumni_featured_preprocess_paragraph__hp_alumni_featured(&$variables
   $raw_profiles = \Drupal::service('howard.news')->getPeople($env_url, $feat_alumni, NULL, NULL, 50, $uuid);
   // Reorder the return from thedig, to match the order specified in drupal.
   $ordered_profiles['data'] = [];
-  foreach($feat_alumni as $order) {
+  foreach ($feat_alumni as $order) {
     foreach ($raw_profiles['data'] as $item) {
       if ($item['attributes']['drupal_internal__nid'] == $order['value']) {
         $ordered_profiles['data'][] = $item;
@@ -83,7 +83,7 @@ function hp_alumni_featured_theme($existing, $type, $theme, $path) {
   ];
 }
 
-// UPDATES
+// UPDATES.
 
 /**
  * Update to rename the widget to specify thedig.

@@ -13,14 +13,14 @@ use Drupal\field\Entity\FieldConfig;
  *
  * @inheritdoc
  */
-function hp_giving_feed_help($route_name, RouteMatchInterface $route_match)
-{
+function hp_giving_feed_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
     case 'help.page.hp_giving_feed':
       $text = file_get_contents(dirname(__FILE__) . "/README.md");
       if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
         return '<pre>' . $text . '</pre>';
-      } else {
+      }
+      else {
         // Use the Markdown filter to render the README.
         $filter_manager = \Drupal::service('plugin.manager.filter');
         $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
@@ -38,8 +38,7 @@ function hp_giving_feed_help($route_name, RouteMatchInterface $route_match)
  * @param $variables
  *   This sets variables for getting events, and then gets events.
  */
-function hp_giving_feed_preprocess_paragraph__hp_giving_feed(&$variables)
-{
+function hp_giving_feed_preprocess_paragraph__hp_giving_feed(&$variables) {
   // UUID to pass for cache.
   $uuid = $variables['elements']['#paragraph']->uuid->value;
 
@@ -48,7 +47,8 @@ function hp_giving_feed_preprocess_paragraph__hp_giving_feed(&$variables)
   $env_url = 'https://giving.howard.edu';
   if ($env == 'stg') {
     $env_url = 'https://stg.giving.howard.edu';
-  } elseif ($env == 'dev') {
+  }
+  elseif ($env == 'dev') {
     $env_url = 'https://dev.giving.howard.edu';
   }
   $variables['hp_gf_env_url'] = $env_url;
@@ -68,8 +68,9 @@ function hp_giving_feed_preprocess_paragraph__hp_giving_feed(&$variables)
 
   if ($feed_type == 'three_w_images') {
     $variables['hp_gf_giving'] = \Drupal::service('howard.giving')->getArticles($env_url, $category, 3, $uuid);
-  } elseif ($feed_type == 'one_featured') {
-    $variables['hp_gf_giving'] = \Drupal::service('howard.giving')->getArticles($env_url, $category,  1, $uuid);
+  }
+  elseif ($feed_type == 'one_featured') {
+    $variables['hp_gf_giving'] = \Drupal::service('howard.giving')->getArticles($env_url, $category, 1, $uuid);
   }
 }
 
@@ -77,8 +78,7 @@ function hp_giving_feed_preprocess_paragraph__hp_giving_feed(&$variables)
  * Implements hook_theme().
  * Lets us define our paragraphs templates in this module.
  */
-function hp_giving_feed_theme($existing, $type, $theme, $path)
-{
+function hp_giving_feed_theme($existing, $type, $theme, $path) {
   return [
     'paragraph__hp_giving_feed' => [
       'base hook' => 'paragraph',
@@ -86,15 +86,17 @@ function hp_giving_feed_theme($existing, $type, $theme, $path)
   ];
 }
 
-function hp_giving_feed_update_8001()
-{
+/**
+ *
+ */
+function hp_giving_feed_update_8001() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_giving_feed');
   // Remove admin category field.
-  if (FieldConfig::loadByName('paragraph', 'hp_giving_feed', 'field_hp_gf_giving_admin_category') !== NULL ) {
+  if (FieldConfig::loadByName('paragraph', 'hp_giving_feed', 'field_hp_gf_giving_admin_category') !== NULL) {
     FieldConfig::loadByName('paragraph', 'hp_giving_feed', 'field_hp_gf_giving_admin_category')->delete();
   }
   // Remove category field.
-  if (FieldConfig::loadByName('paragraph', 'hp_giving_feed', 'field_hp_gf_giving_category') !== NULL ) {
+  if (FieldConfig::loadByName('paragraph', 'hp_giving_feed', 'field_hp_gf_giving_category') !== NULL) {
     FieldConfig::loadByName('paragraph', 'hp_giving_feed', 'field_hp_gf_giving_category')->delete();
   }
 }

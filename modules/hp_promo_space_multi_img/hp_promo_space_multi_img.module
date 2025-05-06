@@ -2,7 +2,7 @@
 
 /**
  * @file
- * hp_promo_space_multi_img module file.
+ * Hp_promo_space_multi_img module file.
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
@@ -14,29 +14,25 @@ use Drupal\image\Entity\ImageStyle;
  *
  * @inheritdoc
  */
-function hp_promo_space_multi_img_help($route_name, RouteMatchInterface $route_match)
-{
-    switch ($route_name)
-    {
-        case 'help.page.hp_promo_space_multi_img':
-            $text = file_get_contents(dirname(__FILE__) . "/README.md");
-            if (!\Drupal::moduleHandler()->moduleExists('markdown'))
-            {
-                return '<pre>' . $text . '</pre>';
-            }
-            else
-            {
-                // Use the Markdown filter to render the README.
-                $filter_manager = \Drupal::service('plugin.manager.filter');
-                $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
-                $config = ['settings' => $settings];
-                $filter = $filter_manager->createInstance('markdown', $config);
+function hp_promo_space_multi_img_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.hp_promo_space_multi_img':
+      $text = file_get_contents(dirname(__FILE__) . "/README.md");
+      if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        return '<pre>' . $text . '</pre>';
+      }
+      else {
+        // Use the Markdown filter to render the README.
+        $filter_manager = \Drupal::service('plugin.manager.filter');
+        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $config = ['settings' => $settings];
+        $filter = $filter_manager->createInstance('markdown', $config);
 
-                return $filter->process($text, 'en');
-            }
-    }
+        return $filter->process($text, 'en');
+      }
+  }
 
-    return NULL;
+  return NULL;
 }
 
 /**
@@ -44,38 +40,32 @@ function hp_promo_space_multi_img_help($route_name, RouteMatchInterface $route_m
  *
  *   This sets a url for the image.
  */
-function hp_promo_space_multi_img_preprocess_paragraph__hp_promo_space_multi_img(&$variables)
-{
-    // Add paragraph resources.
-    $variables['#attached']['library'][] = 'hp_promo_space_multi_img/resources';
+function hp_promo_space_multi_img_preprocess_paragraph__hp_promo_space_multi_img(&$variables) {
+  // Add paragraph resources.
+  $variables['#attached']['library'][] = 'hp_promo_space_multi_img/resources';
 
-    // Get fallback image URL.
-    $paragraph = $variables['elements']['#paragraph'];
-    $variables['hp_promo_title'] = $paragraph->get('field_hp_promo_title')->value;
-    $variables['hp_promo_text'] = $paragraph->get('field_hp_promo_text')->value;
+  // Get fallback image URL.
+  $paragraph = $variables['elements']['#paragraph'];
+  $variables['hp_promo_title'] = $paragraph->get('field_hp_promo_title')->value;
+  $variables['hp_promo_text'] = $paragraph->get('field_hp_promo_text')->value;
 
-    // Load information for all six images.
-    for ($i = 1; $i <= 6; $i++)
-    {
-        $promo_image = $paragraph->get('field_hp_promo_media_img_' . $i)->getValue();
-        if ($promo_image && !empty($promo_image))
-        {
-            $entity = Media::load($promo_image[0]['target_id']);
-            if (isset($entity->field_media_image->entity))
-            {
-                if ($entity->field_media_image->entity->getFileUri() !== NULL)
-                {
-                    $variables['hp_promo_image_' . $i] = ImageStyle::load('large')->buildUrl($entity->field_media_image->entity->getFileUri());
-                    $variables['hp_promo_image_' . $i . '_alt'] = $entity->field_media_image->alt;
-                }
-            }
+  // Load information for all six images.
+  for ($i = 1; $i <= 6; $i++) {
+    $promo_image = $paragraph->get('field_hp_promo_media_img_' . $i)->getValue();
+    if ($promo_image && !empty($promo_image)) {
+      $entity = Media::load($promo_image[0]['target_id']);
+      if (isset($entity->field_media_image->entity)) {
+        if ($entity->field_media_image->entity->getFileUri() !== NULL) {
+          $variables['hp_promo_image_' . $i] = ImageStyle::load('large')->buildUrl($entity->field_media_image->entity->getFileUri());
+          $variables['hp_promo_image_' . $i . '_alt'] = $entity->field_media_image->alt;
         }
-
-        if ($paragraph->hasField('field_hp_promo_image_' . $i . '_text'))
-        {
-            $variables['hp_promo_image_' . $i . '_text'] = $paragraph->get('field_hp_promo_image_' . $i . '_text')->value;
-        }
+      }
     }
+
+    if ($paragraph->hasField('field_hp_promo_image_' . $i . '_text')) {
+      $variables['hp_promo_image_' . $i . '_text'] = $paragraph->get('field_hp_promo_image_' . $i . '_text')->value;
+    }
+  }
 }
 
 /**
@@ -83,11 +73,10 @@ function hp_promo_space_multi_img_preprocess_paragraph__hp_promo_space_multi_img
  *
  * Let's us define our paragraphs templates in this module.
  */
-function hp_promo_space_multi_img_theme($existing, $type, $theme, $path)
-{
-    $result = [
-        'paragraph__hp_promo_space_multi_img' => [ 'base hook' => 'paragraph' ],
-    ];
+function hp_promo_space_multi_img_theme($existing, $type, $theme, $path) {
+  $result = [
+    'paragraph__hp_promo_space_multi_img' => ['base hook' => 'paragraph'],
+  ];
 
-    return $result;
+  return $result;
 }

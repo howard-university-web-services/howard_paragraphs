@@ -6,7 +6,6 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\field\Entity\FieldConfig;
 
 /**
  * Implements hook_help().
@@ -85,31 +84,30 @@ function hp_magazine_feed_theme($existing, $type, $theme, $path) {
 /**
  * Update feed for new magazine.howard.edu site.
  */
-function hp_magazine_feed_update_8001()
-{
+function hp_magazine_feed_update_8001() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_magazine_feed');
 }
 
 /**
  * Remove any instances of the old paragraph type, then re-install fresh.
  */
-function hp_magazine_feed_update_8002()
-{
-  // Delete existing paragraphs
+function hp_magazine_feed_update_8002() {
+  // Delete existing paragraphs.
   $paragraphs = \Drupal::entityTypeManager()
     ->getStorage('paragraph')
-    ->loadByProperties(array('type' => 'hp_magazine_feed')); // System name
+  // System name.
+    ->loadByProperties(['type' => 'hp_magazine_feed']);
 
   foreach ($paragraphs as $paragraph) {
-      $paragraph->delete();
+    $paragraph->delete();
   }
 
-  // Delete bundle
+  // Delete bundle.
   $para_type = \Drupal::entityTypeManager()->getStorage('paragraphs_type')->load('hp_magazine_feed');
-  if($para_type !== NULL) {
+  if ($para_type !== NULL) {
     $para_type->delete();
   }
 
-  // Re-install fresh
+  // Re-install fresh.
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_magazine_feed');
 }

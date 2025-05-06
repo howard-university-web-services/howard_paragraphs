@@ -12,14 +12,14 @@ use Drupal\Core\Routing\RouteMatchInterface;
  *
  * @inheritdoc
  */
-function hp_announcements_feed_help($route_name, RouteMatchInterface $route_match)
-{
+function hp_announcements_feed_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
     case 'help.page.hp_announcements_feed':
       $text = file_get_contents(dirname(__FILE__) . "/README.md");
       if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
         return '<pre>' . $text . '</pre>';
-      } else {
+      }
+      else {
         // Use the Markdown filter to render the README.
         $filter_manager = \Drupal::service('plugin.manager.filter');
         $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
@@ -37,8 +37,7 @@ function hp_announcements_feed_help($route_name, RouteMatchInterface $route_matc
  * @param $variables
  *   This sets variables for getting events, and then gets events.
  */
-function hp_announcements_feed_preprocess_paragraph__hp_announcements_feed(&$variables)
-{
+function hp_announcements_feed_preprocess_paragraph__hp_announcements_feed(&$variables) {
   // UUID to pass for cache.
   $uuid = $variables['elements']['#paragraph']->uuid->value;
 
@@ -47,7 +46,8 @@ function hp_announcements_feed_preprocess_paragraph__hp_announcements_feed(&$var
   $env_url = 'https://thedig.howard.edu';
   if ($env == 'stg') {
     $env_url = 'https://stg.thedig.howard.edu';
-  } elseif ($env == 'dev') {
+  }
+  elseif ($env == 'dev') {
     $env_url = 'https://dev.thedig.howard.edu';
   }
   $variables['hp_anf_env_url'] = $env_url;
@@ -82,8 +82,7 @@ function hp_announcements_feed_preprocess_paragraph__hp_announcements_feed(&$var
  * Implements hook_theme().
  * Lets us define our paragraphs templates in this module.
  */
-function hp_announcements_feed_theme($existing, $type, $theme, $path)
-{
+function hp_announcements_feed_theme($existing, $type, $theme, $path) {
   return [
     'paragraph__hp_announcements_feed' => [
       'base hook' => 'paragraph',

@@ -75,12 +75,11 @@ function hp_media_preprocess_paragraph__hp_media(&$variables) {
 
 }
 
-// UPDATES
+// UPDATES.
 
 /**
  * Change default display type of media to hc_full.
  */
-function hp_media_update_8001()
-{
+function hp_media_update_8001() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_media');
 }

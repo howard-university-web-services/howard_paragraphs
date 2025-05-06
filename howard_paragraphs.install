@@ -5,148 +5,148 @@
  * Contains install and update functions for the Howard Paragraphs module.
  */
 
- /**
+/**
  * Remove any config for the HP Facebook Feed, which is being depreciated.
  */
 function howard_paragraphs_update_8001() {
-  // Delete existing paragraphs content
+  // Delete existing paragraphs content.
   $paragraphs = \Drupal::entityTypeManager()
     ->getStorage('paragraph')
-    ->loadByProperties(array('type' => 'hp_facebook_feed'));
+    ->loadByProperties(['type' => 'hp_facebook_feed']);
 
   foreach ($paragraphs as $paragraph) {
-      $paragraph->delete();
+    $paragraph->delete();
   }
 
-  // Delete entire paragraph type bundle for hp_facebook_feed
+  // Delete entire paragraph type bundle for hp_facebook_feed.
   $para_type = \Drupal::entityTypeManager()->getStorage('paragraphs_type')->load('hp_facebook_feed');
-  if($para_type !== NULL) {
+  if ($para_type !== NULL) {
     $para_type->delete();
   }
 
 }
 
- /**
+/**
  * Remove any config for the HP Events Feed, which is being depreciated.
  */
 function howard_paragraphs_update_8002() {
-  // Delete existing paragraphs content
+  // Delete existing paragraphs content.
   $paragraphs = \Drupal::entityTypeManager()
     ->getStorage('paragraph')
-    ->loadByProperties(array('type' => 'hp_events_feed'));
+    ->loadByProperties(['type' => 'hp_events_feed']);
 
   foreach ($paragraphs as $paragraph) {
-      $paragraph->delete();
+    $paragraph->delete();
   }
 
-  // Delete entire paragraph type bundle for hp_events_feed
+  // Delete entire paragraph type bundle for hp_events_feed.
   $para_type = \Drupal::entityTypeManager()->getStorage('paragraphs_type')->load('hp_events_feed');
-  if($para_type !== NULL) {
+  if ($para_type !== NULL) {
     $para_type->delete();
   }
 
 }
 
- /**
+/**
  * Remove any config for the HP Deadline Feed, which is being depreciated.
  */
 function howard_paragraphs_update_8003() {
-  // Delete existing paragraphs content
+  // Delete existing paragraphs content.
   $paragraphs = \Drupal::entityTypeManager()
     ->getStorage('paragraph')
-    ->loadByProperties(array('type' => 'hp_deadline_feed'));
+    ->loadByProperties(['type' => 'hp_deadline_feed']);
 
   foreach ($paragraphs as $paragraph) {
-      $paragraph->delete();
+    $paragraph->delete();
   }
 
-  // Delete entire paragraph type bundle for hp_deadline_feed
+  // Delete entire paragraph type bundle for hp_deadline_feed.
   $para_type = \Drupal::entityTypeManager()->getStorage('paragraphs_type')->load('hp_deadline_feed');
-  if($para_type !== NULL) {
+  if ($para_type !== NULL) {
     $para_type->delete();
   }
 
 }
 
- /**
+/**
  * Remove any config for the HP Photoshelter Feed, which is being depreciated.
  */
 function howard_paragraphs_update_8004() {
-  // Delete existing paragraphs content
+  // Delete existing paragraphs content.
   $paragraphs = \Drupal::entityTypeManager()
     ->getStorage('paragraph')
-    ->loadByProperties(array('type' => 'hp_photoshelter_feed'));
+    ->loadByProperties(['type' => 'hp_photoshelter_feed']);
 
   foreach ($paragraphs as $paragraph) {
-      $paragraph->delete();
+    $paragraph->delete();
   }
 
-  // Delete entire paragraph type bundle for hp_photoshelter_feed
+  // Delete entire paragraph type bundle for hp_photoshelter_feed.
   $para_type = \Drupal::entityTypeManager()->getStorage('paragraphs_type')->load('hp_photoshelter_feed');
-  if($para_type !== NULL) {
+  if ($para_type !== NULL) {
     $para_type->delete();
   }
 
 }
 
- /**
+/**
  * Remove any config for the HP Photoshelter Feed Grid, which is being depreciated.
  */
 function howard_paragraphs_update_8005() {
-  // Delete existing paragraphs content
+  // Delete existing paragraphs content.
   $paragraphs = \Drupal::entityTypeManager()
     ->getStorage('paragraph')
-    ->loadByProperties(array('type' => 'hp_photoshelter_feed_grid'));
+    ->loadByProperties(['type' => 'hp_photoshelter_feed_grid']);
 
   foreach ($paragraphs as $paragraph) {
-      $paragraph->delete();
+    $paragraph->delete();
   }
 
-  // Delete entire paragraph type bundle for hp_photoshelter_feed_grid
+  // Delete entire paragraph type bundle for hp_photoshelter_feed_grid.
   $para_type = \Drupal::entityTypeManager()->getStorage('paragraphs_type')->load('hp_photoshelter_feed_grid');
-  if($para_type !== NULL) {
+  if ($para_type !== NULL) {
     $para_type->delete();
   }
 
 }
 
- /**
+/**
  * Remove any config for the HP Twitter Feed, which is being depreciated.
  */
 function howard_paragraphs_update_8006() {
-  // Delete existing paragraphs content
+  // Delete existing paragraphs content.
   $paragraphs = \Drupal::entityTypeManager()
     ->getStorage('paragraph')
-    ->loadByProperties(array('type' => 'hp_twitter_feed'));
+    ->loadByProperties(['type' => 'hp_twitter_feed']);
 
   foreach ($paragraphs as $paragraph) {
-      $paragraph->delete();
+    $paragraph->delete();
   }
 
-  // Delete entire paragraph type bundle for hp_twitter_feed
+  // Delete entire paragraph type bundle for hp_twitter_feed.
   $para_type = \Drupal::entityTypeManager()->getStorage('paragraphs_type')->load('hp_twitter_feed');
-  if($para_type !== NULL) {
+  if ($para_type !== NULL) {
     $para_type->delete();
   }
 
 }
 
- /**
+/**
  * Remove any config for the HP Instagram Feed, which is being depreciated.
  */
 function howard_paragraphs_update_8007() {
-  // Delete existing paragraphs content
+  // Delete existing paragraphs content.
   $paragraphs = \Drupal::entityTypeManager()
     ->getStorage('paragraph')
-    ->loadByProperties(array('type' => 'hp_instagram_feed'));
+    ->loadByProperties(['type' => 'hp_instagram_feed']);
 
   foreach ($paragraphs as $paragraph) {
-      $paragraph->delete();
+    $paragraph->delete();
   }
 
-  // Delete entire paragraph type bundle for hp_instagram_feed
+  // Delete entire paragraph type bundle for hp_instagram_feed.
   $para_type = \Drupal::entityTypeManager()->getStorage('paragraphs_type')->load('hp_instagram_feed');
-  if($para_type !== NULL) {
+  if ($para_type !== NULL) {
     $para_type->delete();
   }
 

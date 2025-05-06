@@ -97,19 +97,18 @@ function hp_profiles_feed_update_8002() {
 /**
  * Remove old profiles fields and info, and re-add new fields, to go to the new profiles.howard site.
  */
-function hp_profiles_feed_update_8003()
-{
+function hp_profiles_feed_update_8003() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_profiles_feed');
   // Remove old sort by field.
-  if (FieldConfig::loadByName('paragraph', 'hp_profiles_feed', 'field_sort_by') !== NULL ) {
+  if (FieldConfig::loadByName('paragraph', 'hp_profiles_feed', 'field_sort_by') !== NULL) {
     FieldConfig::loadByName('paragraph', 'hp_profiles_feed', 'field_sort_by')->delete();
   }
   // Remove old level field.
-  if (FieldConfig::loadByName('paragraph', 'hp_profiles_feed', 'field_hp_pf_level') !== NULL ) {
+  if (FieldConfig::loadByName('paragraph', 'hp_profiles_feed', 'field_hp_pf_level') !== NULL) {
     FieldConfig::loadByName('paragraph', 'hp_profiles_feed', 'field_hp_pf_level')->delete();
   }
   // Remove old exclude leadership field.
-  if (FieldConfig::loadByName('paragraph', 'hp_profiles_feed', 'field_exclude_leadership') !== NULL ) {
+  if (FieldConfig::loadByName('paragraph', 'hp_profiles_feed', 'field_exclude_leadership') !== NULL) {
     FieldConfig::loadByName('paragraph', 'hp_profiles_feed', 'field_exclude_leadership')->delete();
   }
 }

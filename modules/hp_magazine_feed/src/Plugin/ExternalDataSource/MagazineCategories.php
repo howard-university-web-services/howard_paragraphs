@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Provides Drupal\external_data_source\Plugin\ExternalWsSource\MagazineCategories.
- */
-
 namespace Drupal\hp_magazine_feed\Plugin\ExternalDataSource;
 
 use Drupal\external_data_source\Plugin\ExternalDataSourceBase;
@@ -78,7 +73,7 @@ class MagazineCategories extends ExternalDataSourceBase {
     else {
       $client = new Client();
       try {
-        // categories is the endpoint on magazine.howard.
+        // Categories is the endpoint on magazine.howard.
         $response = $client->get('https://magazine.howard.edu/jsonapi/taxonomy_term/categories', ['verify' => FALSE]);
         $data = json_decode($response->getBody()->getContents());
         $data = $data->data;

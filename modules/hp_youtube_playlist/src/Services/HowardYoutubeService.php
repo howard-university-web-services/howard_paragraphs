@@ -32,7 +32,7 @@ class HowardYoutubeService {
   /**
    * Public method to return Playlist Info.
    */
-  public function getPlaylist( $id = 'default') {
+  public function getPlaylist($id = 'default') {
     $url = $this->playlistEndpoint . '?id=' . $id;
     $url .= '&key=' . $this->api_key;
     $url .= '&part=snippet,contentDetails';
@@ -44,7 +44,7 @@ class HowardYoutubeService {
   /**
    * Public method to return Playlist Item Info.
    */
-  public function getPlaylistItems( $id = 'default') {
+  public function getPlaylistItems($id = 'default') {
     $url = $this->playlistItemsEndpoint . '?playlistId=' . $id;
     $url .= '&key=' . $this->api_key;
     $url .= '&part=snippet,contentDetails';
@@ -59,7 +59,8 @@ class HowardYoutubeService {
   public function getData($cache_id, $url) {
     if ($cache = \Drupal::cache()->get($cache_id)) {
       return $cache->data;
-    } else {
+    }
+    else {
       try {
         $request = $this->client->get($url, ['verify' => FALSE]);
         $result = json_decode($request->getBody()->__toString(), TRUE);
@@ -70,7 +71,7 @@ class HowardYoutubeService {
         return;
       }
       if ($result['items']) {
-       // \Drupal::cache()->set($cache_id, $result, time() + 7200);
+        // \Drupal::cache()->set($cache_id, $result, time() + 7200);
         return $result['items'];
       }
       else {

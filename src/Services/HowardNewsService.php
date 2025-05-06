@@ -55,27 +55,27 @@ class HowardNewsService {
   public function getArticles($env_url = 'https://thedig.howard.edu', $category = NULL, $initiatives = NULL, $units = NULL, $schools_colleges = NULL, $howard_forward = NULL, $range = 3, $id = 'default') {
 
     $url = $env_url . $this->articleEndpoint . "?sort[sort-published][path]=field_date&sort[sort-published][direction]=DESC&page[limit]=" . $range . '&include=field_hero_image,field_hero_image.field_media_image,field_hero_image.field_media_image.uid';
-    
+
     // Filter for category.
     if (isset($category)) {
       $url .= $this->formatIdFilters('category', 'field_tags.tid', $category, 'IN');
     }
-    
+
     // Filter for initiatives.
     if (isset($initiatives)) {
       $url .= $this->formatFilters('initiatives', 'field_event_initiative_campaign', $initiatives);
     }
-    
+
     // Filter for units.
     if (isset($units)) {
       $url .= $this->formatFilters('units', 'field_campus_units_programs', $units);
     }
-    
+
     // Filter for schools.
     if (isset($schools_colleges)) {
       $url .= $this->formatFilters('schools', 'field_schools_and_colleges', $schools_colleges);
     }
-    
+
     // Filter for howard forward.
     if (isset($howard_forward)) {
       $url .= $this->formatFilters('forward', 'field_howard_forward', $howard_forward);
@@ -123,7 +123,8 @@ class HowardNewsService {
     // If we are specifying ID's, just get those, otherwise, look for filters.
     if (isset($ids)) {
       $url .= $this->formatIdFilters('node_ids', 'nid', $ids, 'IN');
-    } else {
+    }
+    else {
       // Filter for category.
       if (isset($category)) {
         $url .= $this->formatFilters('category', 'field_person_categories', $category);
@@ -222,8 +223,9 @@ class HowardNewsService {
             $image_style = array_column($json['included'][$image_key]['attributes']['image_style_uri'], $style);
             if (!empty($image_style[0])) {
               $image['uri'] = $image_style[0];
-            } else {
-              // secondary condition to address issue with d10 upgrade
+            }
+            else {
+              // Secondary condition to address issue with d10 upgrade.
               if (!empty($json['included'][$image_key]['attributes']['image_style_uri'][$style])) {
                 $image['uri'] = $json['included'][$image_key]['attributes']['image_style_uri'][$style];
               }
@@ -243,7 +245,8 @@ class HowardNewsService {
   public function getData($cache_id, $url) {
     if ($cache = \Drupal::cache()->get($cache_id)) {
       return $cache->data;
-    } else {
+    }
+    else {
       try {
         $request = $this->client->get($url . '&filter[status][value]=1', ['verify' => FALSE]);
         $result = json_decode($request->getBody()->__toString(), TRUE);

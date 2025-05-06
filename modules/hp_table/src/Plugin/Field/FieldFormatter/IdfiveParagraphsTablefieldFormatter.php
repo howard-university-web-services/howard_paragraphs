@@ -11,6 +11,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Session\AccountProxy;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+
 // Use Drupal\tablefield\Utility\Tablefield;.
 
 /**
@@ -24,7 +25,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   }
  * )
  */
-
 class IdfiveParagraphsTablefieldFormatter extends FormatterBase implements ContainerFactoryPluginInterface {
   /**
    * Drupal\Core\Session\AccountProxy definition.
@@ -38,6 +38,7 @@ class IdfiveParagraphsTablefieldFormatter extends FormatterBase implements Conta
    * @var \Drupal\Core\Extension\ModuleHandlerInterface
    */
   protected $moduleHandler;
+
   /**
    * {@inheritdoc}
    */
@@ -54,6 +55,7 @@ class IdfiveParagraphsTablefieldFormatter extends FormatterBase implements Conta
     $this->currentUser = $currentUser;
     $this->ModuleHandler = $moduleHandler;
   }
+
   /**
    * {@inheritdoc}
    */
@@ -70,6 +72,7 @@ class IdfiveParagraphsTablefieldFormatter extends FormatterBase implements Conta
       $container->get('module_handler')
     );
   }
+
   /**
    * {@inheritdoc}
    */
@@ -79,6 +82,7 @@ class IdfiveParagraphsTablefieldFormatter extends FormatterBase implements Conta
       'column_header' => 0,
     ] + parent::defaultSettings();
   }
+
   /**
    * {@inheritdoc}
    */
@@ -95,6 +99,7 @@ class IdfiveParagraphsTablefieldFormatter extends FormatterBase implements Conta
     ];
     return $elements;
   }
+
   /**
    * {@inheritdoc}
    */
@@ -110,6 +115,7 @@ class IdfiveParagraphsTablefieldFormatter extends FormatterBase implements Conta
     }
     return $summary;
   }
+
   /**
    * {@inheritdoc}
    */
@@ -224,4 +230,5 @@ class IdfiveParagraphsTablefieldFormatter extends FormatterBase implements Conta
     }
     return $elements;
   }
+
 }

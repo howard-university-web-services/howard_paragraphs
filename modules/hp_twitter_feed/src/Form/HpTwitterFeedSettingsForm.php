@@ -8,8 +8,7 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Configure example settings for this site.
  */
-class HpTwitterFeedSettingsForm extends ConfigFormBase
-{
+class HpTwitterFeedSettingsForm extends ConfigFormBase {
 
   /**
    * Config settings.
@@ -21,16 +20,14 @@ class HpTwitterFeedSettingsForm extends ConfigFormBase
   /**
    * {@inheritdoc}
    */
-  public function getFormId()
-  {
+  public function getFormId() {
     return 'hp_twitter_feed_settings';
   }
 
   /**
    * {@inheritdoc}
    */
-  protected function getEditableConfigNames()
-  {
+  protected function getEditableConfigNames() {
     return [
       static::SETTINGS,
     ];
@@ -39,8 +36,7 @@ class HpTwitterFeedSettingsForm extends ConfigFormBase
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state)
-  {
+  public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config(static::SETTINGS);
     $help_markup = "<p>In order to use the Twitter Feed Paragraphs Module, credentials from an authentic Twitter application need to be filled in here.</p>";
     $help_markup .= "<p>Accessing the Twitter APIs requires a set of <a href='https://developer.twitter.com/en/docs/basics/authentication/oauth-1-0a'>credentials</a> that you must pass with each request. To create and app, first <a href='https://developer.twitter.com/en/docs/basics/developer-portal/overview'>apply for a developer account.</a> Then you will be able to create <a href='https://developer.twitter.com/en/docs/basics/apps/overview'></a>Twitter developer apps.</a> In order to access data from Twitter with an app, credentials need to be passed to Twitter on each request. </p>";
@@ -85,8 +81,7 @@ class HpTwitterFeedSettingsForm extends ConfigFormBase
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, FormStateInterface $form_state)
-  {
+  public function submitForm(array &$form, FormStateInterface $form_state) {
     // Retrieve the configuration.
     $this->configFactory->getEditable(static::SETTINGS)
       // Set the submitted configuration setting.
@@ -98,4 +93,5 @@ class HpTwitterFeedSettingsForm extends ConfigFormBase
 
     parent::submitForm($form, $form_state);
   }
+
 }

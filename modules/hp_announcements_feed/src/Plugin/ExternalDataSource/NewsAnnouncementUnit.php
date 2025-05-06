@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Provides Drupal\external_data_source\Plugin\ExternalWsSource\NewsAnnouncementUnit.
- */
-
 namespace Drupal\hp_announcements_feed\Plugin\ExternalDataSource;
 
 use Drupal\external_data_source\Plugin\ExternalDataSourceBase;

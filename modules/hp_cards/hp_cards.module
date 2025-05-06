@@ -20,7 +20,8 @@ function hp_cards_help($route_name, RouteMatchInterface $route_match) {
       $text = file_get_contents(dirname(__FILE__) . "/README.md");
       if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
         return '<pre>' . $text . '</pre>';
-      } else {
+      }
+      else {
         // Use the Markdown filter to render the README.
         $filter_manager = \Drupal::service('plugin.manager.filter');
         $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
@@ -48,10 +49,12 @@ function hp_cards_preprocess_paragraph__hp_cards(&$variables) {
   $variables['hp_card_wrapper_class'] = 'announcements';
   if ($layout == 'card_with_image') {
     $variables['hp_card_wrapper_class'] = 'news-and-events';
-  } elseif ($layout == 'sponsor') {
+  }
+  elseif ($layout == 'sponsor') {
     $variables['hp_card_group_wrapper_class'] = NULL;
     $variables['hp_card_wrapper_class'] = 'sponsors sponsors--logos';
-  } elseif ($layout == 'person') {
+  }
+  elseif ($layout == 'person') {
     $variables['hp_card_group_wrapper_class'] = NULL;
     $variables['hp_card_wrapper_class'] = 'sponsors sponsors--people';
   }
@@ -91,7 +94,7 @@ function hp_cards_preprocess_paragraph__hp_card(&$variables) {
     // Large image style by default.
     $image_style = 'large';
     if ($layout == 'person') {
-      // Person style requires different image
+      // Person style requires different image.
       $image_style = 'hc_large_480_480_cropped';
     }
     $card_image = $paragraph->get('field_hp_cd_image')->getValue();
@@ -129,7 +132,7 @@ function hp_cards_theme($existing, $type, $theme, $path) {
   ];
 }
 
-// UPDATES
+// UPDATES.
 
 /**
  * Updates to allow unlimited cards.
@@ -137,18 +140,21 @@ function hp_cards_theme($existing, $type, $theme, $path) {
 function hp_cards_update_8001() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_cards');
 }
+
 /**
  * Update to add optional card group header.
  */
 function hp_cards_update_8002() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_cards');
 }
+
 /**
  * Update to add person/logo layout types.
  */
 function hp_cards_update_8003() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_cards');
 }
+
 /**
  * Fix heading config error.
  */

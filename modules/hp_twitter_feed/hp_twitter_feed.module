@@ -13,14 +13,14 @@ use Drupal\Core\Routing\RouteMatchInterface;
  *
  * @inheritdoc
  */
-function hp_twitter_feed_help($route_name, RouteMatchInterface $route_match)
-{
+function hp_twitter_feed_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
     case 'help.page.hp_twitter_feed':
       $text = file_get_contents(dirname(__FILE__) . "/README.md");
       if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
         return '<pre>' . $text . '</pre>';
-      } else {
+      }
+      else {
         // Use the Markdown filter to render the README.
         $filter_manager = \Drupal::service('plugin.manager.filter');
         $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
@@ -38,11 +38,10 @@ function hp_twitter_feed_help($route_name, RouteMatchInterface $route_match)
  * @param $variables
  *   This sets variables for getting events, and then gets events.
  */
-function hp_twitter_feed_preprocess_paragraph__hp_twitter_feed(&$variables)
-{
+function hp_twitter_feed_preprocess_paragraph__hp_twitter_feed(&$variables) {
 
   // Check on desired count/user account.
-  //$count = $variables['elements']['#paragraph']->field_hp_tf_count->value;
+  // $count = $variables['elements']['#paragraph']->field_hp_tf_count->value;.
   $username = $variables['elements']['#paragraph']->field_hp_tf_username->value;
 
   // If twitter key/etc are overridden we could add fields/etc here.
@@ -54,8 +53,7 @@ function hp_twitter_feed_preprocess_paragraph__hp_twitter_feed(&$variables)
  * Implements hook_theme().
  * Lets us define our paragraphs templates in this module.
  */
-function hp_twitter_feed_theme($existing, $type, $theme, $path)
-{
+function hp_twitter_feed_theme($existing, $type, $theme, $path) {
   return [
     'paragraph__hp_twitter_feed' => [
       'base hook' => 'paragraph',
@@ -87,7 +85,8 @@ function _hp_twitter_feed_get_tweets(
   // Get cache if it's there.
   if ($cache = \Drupal::cache()->get('hp_twitter_feed--' . $username . '-' . $count)) {
     return $cache->data;
-  } else {
+  }
+  else {
 
     // Get tweets from twitter.
     $connection = new TwitterOAuth($consumer_key, $consumer_secret, $access_token, $access_token_secret);
@@ -95,7 +94,8 @@ function _hp_twitter_feed_get_tweets(
 
     if (isset($resp->errors[0])) {
       $result['error'] = $resp->errors[0]->message;
-    } else {
+    }
+    else {
       $result['results'] = $resp;
       // Parse text because twitter adds links/etc separately.
       foreach ($result['results'] as $key => $tweet) {
@@ -107,7 +107,8 @@ function _hp_twitter_feed_get_tweets(
     if ($result) {
       \Drupal::cache()->set('hp_twitter_feed--' . $username . '-' . $count, $result, time() + 900);
       return $result;
-    } else {
+    }
+    else {
       return NULL;
     }
   }
@@ -116,8 +117,7 @@ function _hp_twitter_feed_get_tweets(
 /**
  * Parses and modifies text and images/etc.
  */
-function _hp_twitter_feed_parse_message(&$tweet)
-{
+function _hp_twitter_feed_parse_message(&$tweet) {
   if (!empty($tweet->entities)) {
     foreach ($tweet->entities as $area => $items) {
       $prefix = FALSE;

@@ -29,7 +29,7 @@ function idfive_admin_toolbar_help($route_name, RouteMatchInterface $route_match
         return NULL;
       }
       if (\Drupal::moduleHandler()->moduleExists('markdown')) {
-        // TODO Add markdown support.
+        // @todo Add markdown support.
         $output = '<pre>' . $readme . '</pre>';
       }
       else {
@@ -46,5 +46,5 @@ function idfive_admin_toolbar_help($route_name, RouteMatchInterface $route_match
  */
 function idfive_admin_toolbar_toolbar() {
   return \Drupal::service('idfive_admin_toolbar.edit_button')
-  ->addEdit();
+    ->addEdit();
 }

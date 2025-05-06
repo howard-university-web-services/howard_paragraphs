@@ -57,7 +57,7 @@ function hp_views_embed_theme($existing, $type, $theme, $path) {
 function hp_views_embed_field_widget_paragraphs_form_alter(&$element, &$form_state, $context) {
   if ($element['#paragraph_type'] == 'hp_views_embed') {
     // Tips text from idfive.
-    $markup .= '<p>This widget is primarily designed for administrators to add specially crafted views, mainly as overview, and search pages. These should not be modified or changed without express knowledge of what these views do, how they work, and why they are there.</p>';
+    $markup = '<p>This widget is primarily designed for administrators to add specially crafted views, mainly as overview, and search pages. These should not be modified or changed without express knowledge of what these views do, how they work, and why they are there.</p>';
     $markup .= '<p><a target="_blank" href="/admin/help/hp_views_embed">Views Embed Help</a></p>';
     $element['ip_views_embed_tips'] = [
       '#type' => 'fieldset',

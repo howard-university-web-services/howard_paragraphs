@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Provides Drupal\external_data_source\Plugin\ExternalWsSource\ProfilesDepartments.
- */
-
 namespace Drupal\hp_profiles_feed\Plugin\ExternalDataSource;
 
 use Drupal\external_data_source\Plugin\ExternalDataSourceBase;
@@ -78,7 +73,7 @@ class ProfilesDepartments extends ExternalDataSourceBase {
     else {
       $client = new Client();
       try {
-        // department is the category endpoint on howard profiles.
+        // Department is the category endpoint on howard profiles.
         $response = $client->get('https://profiles.howard.edu/api/departments', ['verify' => FALSE]);
         $data = json_decode($response->getBody()->getContents());
         $data = $data->data;

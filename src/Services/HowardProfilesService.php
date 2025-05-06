@@ -38,10 +38,10 @@ class HowardProfilesService {
 
     // Filter for department.
     if (isset($department)) {
-        $url .= '&department=' . $department;
+      $url .= '&department=' . $department;
     }
 
-    //dsm($url);
+    // dsm($url);
     $json = $this->getData($id, $url);
 
     return $json;
@@ -53,7 +53,8 @@ class HowardProfilesService {
   public function getData($cache_id, $url) {
     if ($cache = \Drupal::cache()->get($cache_id)) {
       return $cache->data;
-    } else {
+    }
+    else {
       try {
         $request = $this->client->get($url, ['verify' => FALSE]);
         $result = json_decode($request->getBody()->__toString(), TRUE);
