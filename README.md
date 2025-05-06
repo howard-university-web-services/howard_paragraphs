@@ -66,6 +66,7 @@ The following submodules are available:
 - Webform Embed: Paragraphs integration of webform module for use in Howard projects
 - YouTube Playlist: Paragraphs integration of a YouTube playlist for use in Howard projects
 - WYSIWYG Text Filter UL: Provides a filter to add ICL markup to UL's embedded in a WYSIWYG.
+- Admin Toolbar: Provides toolbar buttons to edit nodes/etc.
 
 ## CRON and External Content
 

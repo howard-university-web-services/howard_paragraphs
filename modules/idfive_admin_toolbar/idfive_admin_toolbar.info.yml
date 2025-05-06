@@ -1,6 +1,6 @@
-name: 'idfive Admin Toolbar'
+name: 'Howard Admin Toolbar'
 type: module
 description: 'Custom module to add Admin tabs as an edit button in the toolbar, rather than being needed on page.'
 version: '11.0.0'
-core_version_requirement: ^9 || ^10 || ^11
+core_version_requirement: ^10 || ^11
 package: 'idfive'
