@@ -16,7 +16,8 @@
     ],
     "support": {
         "issues": "https://github.com/howard-university-web-services/howard_paragraphs/issues",
-        "source": "https://github.com/howard-university-web-services/howard_paragraphs"
+        "source": "https://github.com/howard-university-web-services/howard_paragraphs",
+        "docs": "https://github.com/howard-university-web-services/howard_paragraphs#readme"
     },
     "require": {
         "php": ">=8.1",
@@ -32,6 +33,7 @@
         "branch-alias": {
             "8.x-1.x": "11.x-dev"
         },
-        "drupal-core-compatibility": "^10 || ^11"
+        "drupal-core-compatibility": "^10 || ^11",
+        "installer-name": "howard_paragraphs"
     }
 }

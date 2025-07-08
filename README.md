@@ -4,17 +4,21 @@ Paragraphs integration of the commonly used howard "Kitchen Sink" components.
 
 ## Version
 
-**Current Version: 11.0.5**
+**Current Version: 11.0.6**
 
 These components are designed as individual sub-modules that you may enable as needed. These are designed to work with the idfive Component Library frontend.
 
 ## Installation
+
+This is a **custom Drupal module** distributed via **Packagist** (not Drupal.org).
 
 ```bash
 composer require howard/howard_paragraphs
 ```
 
 The module is available on [Packagist](https://packagist.org/packages/howard/howard_paragraphs).
+
+**Note:** This module is not available through Drupal.org's module repository. It is a custom module specifically designed for Howard University projects and is distributed exclusively through Packagist and GitHub.
 
 ## Description
 

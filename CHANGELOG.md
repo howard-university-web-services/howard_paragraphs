@@ -2,6 +2,19 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.0.7] - 2025-07-08
+
+### Changed
+
+- Updated composer.json and info file to properly reflect this is a custom module served by Packagist
+- Clarified that this module is not distributed through Drupal.org
+- Updated documentation to emphasize custom module distribution
+
+### Added
+
+- Enhanced documentation about custom module distribution via Packagist
+- Better support documentation in composer.json
+
 ## [11.0.6] - 2025-07-08
 
 ### Changed
