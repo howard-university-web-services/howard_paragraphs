@@ -1,9 +1,58 @@
 <h2>External Content Caches Cleared</h2>
-<p>The following caches, which relate to hu_paragraphs kitchen sink widgets that reference extrnal API calls, have been invalidated. This should clear with varnish next time the CRON is run.</p>
-<ul>
-  {% for cid in cids %}
-    {% for cache in cid %}
-      <li>{{ cache }}</li>
+
+<div class="messages messages--status">
+  <h3>Cache clearing successfully initiated!</h3>
+  <p>The caches for external content have been cleared. The changes will be visible after Varnish cache is invalidated (usually during the next cron run).</p>
+</div>
+
+<h3>Paragraph Types Cleared</h3>
+<p>The following paragraph types with external content have been processed:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Paragraph Type</th>
+      <th>Number of Instances</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% if paragraph_types %}
+    {% for type_id, info in paragraph_types %}
+      <tr>
+        <td>{{ info.name }}</td>
+        <td>{{ info.count }}</td>
+      </tr>
     {% endfor %}
-  {% endfor %}
-</ul>
+  {% else %}
+    <tr>
+      <td colspan="2">No external content paragraphs found.</td>
+    </tr>
+  {% endif %}
+  </tbody>
+</table>
+
+{% if using_batch %}
+<div class="messages messages--warning">
+  <h3>Batch Processing Active</h3>
+  <p>Due to the large number of paragraphs, batch processing has been activated. Cache clearing is running in the background and will complete shortly.</p>
+</div>
+{% else %}
+<h3>Cache Tags Invalidated</h3>
+<p>The following cache tags have been invalidated:</p>
+
+<div class="cache-tags-container" style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;">
+  {% if cids and cids|length > 0 %}
+    <ul>
+      {% for cid in cids %}
+        {% for cache in cid %}
+          <li>{{ cache }}</li>
+        {% endfor %}
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No cache tags were invalidated. This might happen if there are no external content paragraphs on the site.</p>
+  {% endif %}
+</div>
+{% endif %}
+
+<p><a href="{{ path('system.admin_config') }}" class="button">Return to Configuration</a></p>

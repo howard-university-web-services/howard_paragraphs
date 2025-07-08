@@ -53,7 +53,7 @@ class IdfiveParagraphsTablefieldFormatter extends FormatterBase implements Conta
                               ModuleHandlerInterface $moduleHandler) {
     parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $label, $view_mode, $third_party_settings);
     $this->currentUser = $currentUser;
-    $this->ModuleHandler = $moduleHandler;
+    $this->moduleHandler = $moduleHandler;
   }
 
   /**
@@ -218,7 +218,7 @@ class IdfiveParagraphsTablefieldFormatter extends FormatterBase implements Conta
           '#responsive' => FALSE,
         ];
         // Extend render array if responsive_tables_filter module is enabled.
-        if ($this->ModuleHandler->moduleExists('responsive_tables_filter')) {
+        if ($this->moduleHandler->moduleExists('responsive_tables_filter')) {
           array_push($render_array['tablefield']['#attributes']['class'], 'tablesaw', 'tablesaw-stack');
           $render_array['tablefield']['#attributes']['data-tablesaw-mode'] = 'stack';
           $render_array['tablefield']['#attached'] = [
