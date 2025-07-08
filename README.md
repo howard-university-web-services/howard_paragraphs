@@ -8,6 +8,16 @@ Paragraphs integration of the commonly used howard "Kitchen Sink" components.
 
 These components are designed as individual sub-modules that you may enable as needed. These are designed to work with the idfive Component Library frontend.
 
+## Installation
+
+```bash
+composer require howard/howard_paragraphs
+```
+
+The module is available on [Packagist](https://packagist.org/packages/howard/howard_paragraphs).
+
+## Description
+
 This module, and sub-modules, contain markup only (no js or css), those should be provided in the client theme, loaded via the idfive Component Library:
 
 - [idfive Component Library](https://bitbucket.org/idfivellc/idfive-component-library)
@@ -37,11 +47,22 @@ This module, and sub-modules, contain markup only (no js or css), those should b
 
 ### Install Via Composer
 
-`composer install howard/howard_paragraphs`
+```bash
+composer require howard/howard_paragraphs
+```
 
 ### Update Via Composer
 
-`composer update howard/howard_paragraphs`
+```bash
+composer update howard/howard_paragraphs
+```
+
+### Requirements
+
+- PHP 8.1 or higher
+- Drupal 10 or 11
+- Paragraphs module
+- Other dependencies as specified in composer.json
 
 ## Submodules
 
