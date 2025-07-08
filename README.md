@@ -18,6 +18,7 @@ This module, and sub-modules, contain markup only (no js or css), those should b
 - **[Theming & Customization](docs/theming.md)** - Template overrides and styling
 - **[Development Guide](docs/development-guide.md)** - Creating custom components
 - **[External Content & Caching](docs/external-content.md)** - External feed configuration
+- **[Security](docs/security-best-practices.md)** - Security best practices and implementation
 - **[API Reference](docs/api-reference.md)** - Hooks, services, and APIs
 - **[Troubleshooting](docs/troubleshooting.md)** - Common issues and solutions
 - **[Contributing](docs/contributing.md)** - How to contribute to the project

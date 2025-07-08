@@ -380,16 +380,18 @@ public function fetchFromAPI($params) {
 3. **Empty State**: Gracefully handle no content
 4. **Error Messages**: Show user-friendly error messages
 
-## Performance Optimization
+## Security & Performance Optimization
 
 ### HTTP Client Configuration
 
+All HTTP clients in Howard Paragraphs now use the following secure configuration:
+
 ```php
-// Configure HTTP client for external requests
+// Secure HTTP client configuration for all external requests
 $config['http_client_config'] = [
-  'timeout' => 10,
-  'connect_timeout' => 5,
-  'verify' => TRUE,
+  'verify' => TRUE,                   // SSL verification ALWAYS enabled
+  'timeout' => 30,                    // Request timeout
+  'connect_timeout' => 10,            // Connection timeout
   'headers' => [
     'User-Agent' => 'Howard-Paragraphs/1.0',
     'Accept' => 'application/json',
@@ -397,7 +399,12 @@ $config['http_client_config'] = [
 ];
 ```
 
-### Rate Limiting
+### Security Measures
+
+1. **SSL Verification**: All external API connections use SSL certificate verification
+2. **Error Sanitization**: API errors are logged but user-facing messages are generic
+3. **Input Validation**: All API parameters are validated before use
+4. **Rate Limiting**: Implementing client-side rate limiting to prevent API abuse
 
 ```php
 // Implement rate limiting
