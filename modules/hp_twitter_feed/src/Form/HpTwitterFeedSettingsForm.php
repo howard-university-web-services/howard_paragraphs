@@ -47,6 +47,15 @@ class HpTwitterFeedSettingsForm extends ConfigFormBase {
       '#markup' => $help_markup,
     ];
 
+    // Add security notice for production deployments
+    $form['security_notice'] = [
+      '#type' => 'markup',
+      '#markup' => '<div class="messages messages--warning">' . 
+        $this->t('For production sites, consider using environment variables (TWITTER_API_KEY, TWITTER_API_SECRET, etc.) instead of storing credentials in configuration.') . 
+        '</div>',
+      '#weight' => -10,
+    ];
+
     $form['api_key'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Consumer key'),
@@ -55,24 +64,27 @@ class HpTwitterFeedSettingsForm extends ConfigFormBase {
     ];
 
     $form['api_secret'] = [
-      '#type' => 'textfield',
+      '#type' => 'password',
       '#title' => $this->t('Consumer Secret'),
-      '#default_value' => $config->get('api_secret'),
-      '#required' => TRUE,
+      '#description' => $this->t('Leave blank to keep existing value.'),
+      '#attributes' => ['autocomplete' => 'new-password'],
+      '#required' => empty($config->get('api_secret')),
     ];
 
     $form['access_token'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Access Token'),
       '#default_value' => $config->get('access_token'),
+      '#description' => $this->t('Can also be set via TWITTER_ACCESS_TOKEN environment variable.'),
       '#required' => TRUE,
     ];
 
     $form['access_secret'] = [
-      '#type' => 'textfield',
+      '#type' => 'password',
       '#title' => $this->t('Access Token Secret'),
-      '#default_value' => $config->get('access_secret'),
-      '#required' => TRUE,
+      '#description' => $this->t('Leave blank to keep existing value.'),
+      '#attributes' => ['autocomplete' => 'new-password'],
+      '#required' => empty($config->get('access_secret')),
     ];
 
     return parent::buildForm($form, $form_state);
@@ -81,15 +93,54 @@ class HpTwitterFeedSettingsForm extends ConfigFormBase {
   /**
    * {@inheritdoc}
    */
+  public function validateForm(array &$form, FormStateInterface $form_state) {
+    parent::validateForm($form, $form_state);
+    
+    // Validate API key format
+    $api_key = $form_state->getValue('api_key');
+    if (!empty($api_key) && !preg_match('/^[a-zA-Z0-9_-]+$/', $api_key)) {
+      $form_state->setErrorByName('api_key', $this->t('Consumer key contains invalid characters. Only letters, numbers, underscores, and hyphens are allowed.'));
+    }
+    
+    // Validate access token format
+    $access_token = $form_state->getValue('access_token');
+    if (!empty($access_token) && !preg_match('/^[a-zA-Z0-9_-]+$/', $access_token)) {
+      $form_state->setErrorByName('access_token', $this->t('Access token contains invalid characters. Only letters, numbers, underscores, and hyphens are allowed.'));
+    }
+    
+    // Validate required secrets only if not already configured
+    $config = $this->config(static::SETTINGS);
+    if (empty($config->get('api_secret')) && empty($form_state->getValue('api_secret'))) {
+      $form_state->setErrorByName('api_secret', $this->t('Consumer Secret is required.'));
+    }
+    
+    if (empty($config->get('access_secret')) && empty($form_state->getValue('access_secret'))) {
+      $form_state->setErrorByName('access_secret', $this->t('Access Token Secret is required.'));
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    // Retrieve the configuration.
-    $this->configFactory->getEditable(static::SETTINGS)
-      // Set the submitted configuration setting.
-      ->set('api_key', $form_state->getValue('api_key'))
-      ->set('api_secret', $form_state->getValue('api_secret'))
-      ->set('access_token', $form_state->getValue('access_token'))
-      ->set('access_secret', $form_state->getValue('access_secret'))
-      ->save();
+    $config = $this->configFactory->getEditable(static::SETTINGS);
+    
+    // Always update non-sensitive values
+    $config->set('api_key', $form_state->getValue('api_key'));
+    $config->set('access_token', $form_state->getValue('access_token'));
+    
+    // Only update secrets if new values provided
+    $api_secret = $form_state->getValue('api_secret');
+    if (!empty($api_secret)) {
+      $config->set('api_secret', $api_secret);
+    }
+    
+    $access_secret = $form_state->getValue('access_secret');
+    if (!empty($access_secret)) {
+      $config->set('access_secret', $access_secret);
+    }
+    
+    $config->save();
 
     parent::submitForm($form, $form_state);
   }

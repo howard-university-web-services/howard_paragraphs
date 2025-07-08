@@ -15,6 +15,7 @@ Welcome to the comprehensive documentation for the Howard Paragraphs module - a 
 - [Contributing](contributing.md)
 - [Security Best Practices](security-best-practices.md)
 - [Form API Security Implementation](form-api-security-implementation.md)
+- [Security Fixes Summary](security-fixes-summary.md)
 
 ## Quick Overview
 
