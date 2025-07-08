@@ -8,6 +8,6 @@ services:
   howard.giving:
     class: Drupal\howard_paragraphs\Services\HowardGivingService
     arguments: ['@http_client', '@cache.default', '@logger.factory']
-  howard.external_content_cache_clear:
+  howard_paragraphs.external_content_cache_clear:
     class: Drupal\howard_paragraphs\Controller\HowardExternalContentCacheClear
-    arguments: ['@entity_type.manager', '@cache_tags.invalidator', '@logger.factory']
+    arguments: ['@entity_type.manager', '@cache_tags.invalidator', '@logger.factory', '@messenger']

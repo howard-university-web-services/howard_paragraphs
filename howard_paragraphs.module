@@ -68,6 +68,8 @@ function howard_paragraphs_theme($existing, $type, $theme, $path) {
       'path' => $path . '/templates',
       'variables' => [
         'cids' => NULL,
+        'paragraph_types' => NULL,
+        'using_batch' => NULL,
       ],
     ],
   ];
@@ -80,5 +82,5 @@ function howard_paragraphs_theme($existing, $type, $theme, $path) {
  */
 function howard_paragraphs_cron() {
   // Load and clear cache for all howard paragraphs marked as external.
-  \Drupal::service('howard.external_content_cache_clear')->clearExternalContent();
+  \Drupal::service('howard_paragraphs.external_content_cache_clear')->clearExternalContent();
 }

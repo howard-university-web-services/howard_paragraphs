@@ -7,12 +7,16 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\Core\DependencyInjection\DependencySerializationTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Controller that helps load and clear external content feed caches for Howard websites.
  */
 class HowardExternalContentCacheClear extends ControllerBase {
+
+  use DependencySerializationTrait;
 
   /**
    * The entity type manager.
@@ -108,12 +112,13 @@ class HowardExternalContentCacheClear extends ControllerBase {
 
     // Use batch processing for large number of paragraphs to avoid timeouts.
     if (count($pids) > 50) {
+      // Store only the PIDs in the batch operation, not the entire controller
       $batch = [
         'title' => $this->t('Clearing external content cache'),
         'operations' => [
-          [[$this, 'processBatchClear'], [$pids]],
+          ['Drupal\howard_paragraphs\Controller\HowardExternalContentCacheClear::staticProcessBatchClear', [$pids]],
         ],
-        'finished' => [[$this, 'processBatchFinished']],
+        'finished' => ['Drupal\howard_paragraphs\Controller\HowardExternalContentCacheClear::staticProcessBatchFinished'],
         'progressive' => TRUE,
       ];
       batch_set($batch);
@@ -169,10 +174,63 @@ class HowardExternalContentCacheClear extends ControllerBase {
    *   A simple renderable array.
    */
   public function bootstrapCacheClear() {
-    $paragraph_cids = $this->clearExternalContent();
+    // Get the paragraph types that will be cleared
+    $paragraph_types = [
+      'hp_announcements_feed' => 'Announcements Feed',
+      'hp_twitter_feed' => 'Twitter Feed',
+      'hp_deadline_feed' => 'Deadline Feed',
+      'hp_events_feed' => 'Events Feed',
+      'hp_facebook_feed' => 'Facebook Feed',
+      'hp_giving_feed' => 'Giving Feed',
+      'hp_instagram_feed' => 'Instagram Feed',
+      'hp_magazine_feed' => 'Magazine Feed',
+      'hp_news_feed' => 'News Feed',
+      'hp_profiles_feed' => 'Profiles Feed',
+      'hp_program' => 'Program',
+      'hp_programs_feed' => 'Programs Feed',
+      'hp_alumni_featured' => 'Alumni Featured',
+      'hp_alumni_feed' => 'Alumni Feed',
+    ];
+    
+    
+    // Count how many of each type exist
+    $counts = [];
+    foreach ($paragraph_types as $type_id => $type_name) {
+      $count = $this->entityTypeManager->getStorage('paragraph')->getQuery()
+        ->condition('type', $type_id)
+        ->accessCheck(FALSE)
+        ->count()
+        ->execute();
+      
+      if ($count > 0) {
+        $counts[$type_id] = [
+          'name' => $type_name,
+          'count' => $count,
+        ];
+      }
+    }
+    
+    // Check if we have a lot of paragraphs
+    $total_paragraphs = array_sum(array_column($counts, 'count'));
+    $using_batch = ($total_paragraphs > 50);
+    
+    $paragraph_cids = [];
+    if (!$using_batch) {
+      $paragraph_cids = $this->clearExternalContent();
+    }
+    else {
+      // Trigger batch processing
+      $this->clearExternalContent();
+    }
+    
     return [
       '#theme' => 'external_content_cache_clear',
       '#cids' => $paragraph_cids,
+      '#paragraph_types' => $counts,
+      '#using_batch' => $using_batch,
+      '#cache' => [
+        'max-age' => 0,
+      ],
     ];
   }
 
@@ -185,6 +243,14 @@ class HowardExternalContentCacheClear extends ControllerBase {
    *   The batch context.
    */
   public function processBatchClear(array $pids, array &$context) {
+    // Re-initialize services that might have been serialized.
+    if ($this->entityTypeManager === NULL) {
+      $this->entityTypeManager = \Drupal::service('entity_type.manager');
+    }
+    if ($this->cacheTagsInvalidator === NULL) {
+      $this->cacheTagsInvalidator = \Drupal::service('cache_tags.invalidator');
+    }
+
     if (!isset($context['sandbox']['progress'])) {
       $context['sandbox']['progress'] = 0;
       $context['sandbox']['max'] = count($pids);
@@ -215,6 +281,47 @@ class HowardExternalContentCacheClear extends ControllerBase {
   }
 
   /**
+   * Static batch operation callback to clear paragraph cache tags.
+   *
+   * @param array $pids
+   *   An array of paragraph IDs.
+   * @param array $context
+   *   The batch context.
+   */
+  public static function staticProcessBatchClear(array $pids, array &$context) {
+    $entity_type_manager = \Drupal::service('entity_type.manager');
+    $cache_tags_invalidator = \Drupal::service('cache_tags.invalidator');
+
+    if (!isset($context['sandbox']['progress'])) {
+      $context['sandbox']['progress'] = 0;
+      $context['sandbox']['max'] = count($pids);
+      $context['sandbox']['pids'] = $pids;
+      $context['results']['cids'] = [];
+    }
+
+    // Process 20 paragraphs at a time.
+    $batch_size = 20;
+    $batch_pids = array_slice($context['sandbox']['pids'], $context['sandbox']['progress'], $batch_size);
+
+    if (!empty($batch_pids)) {
+      $paragraphs = $entity_type_manager->getStorage('paragraph')->loadMultiple($batch_pids);
+      foreach ($paragraphs as $paragraph) {
+        $tags = $paragraph->getCacheTags();
+        $context['results']['cids'][] = $tags;
+        $cache_tags_invalidator->invalidateTags($tags);
+        $context['sandbox']['progress']++;
+      }
+    }
+
+    if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
+      $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+    }
+    else {
+      $context['finished'] = 1;
+    }
+  }
+
+  /**
    * Finish batch processing.
    *
    * @param bool $success
@@ -225,6 +332,14 @@ class HowardExternalContentCacheClear extends ControllerBase {
    *   The operations processed.
    */
   public function processBatchFinished($success, array $results, array $operations) {
+    // Re-initialize services that might have been serialized.
+    if ($this->loggerFactory === NULL) {
+      $this->loggerFactory = \Drupal::service('logger.factory');
+    }
+    if ($this->messenger === NULL) {
+      $this->messenger = \Drupal::service('messenger');
+    }
+
     if ($success) {
       $cleared = count($results['cids']);
       $message = $this->formatPlural(
@@ -238,6 +353,36 @@ class HowardExternalContentCacheClear extends ControllerBase {
     else {
       $this->messenger()->addError($this->t('An error occurred while clearing external content caches.'));
       $this->loggerFactory->get('howard_paragraphs')->error('Error occurred during batch clearing of external content caches.');
+    }
+  }
+
+  /**
+   * Static batch finished callback.
+   *
+   * @param bool $success
+   *   Whether the batch was successful.
+   * @param array $results
+   *   The batch results.
+   * @param array $operations
+   *   The operations processed.
+   */
+  public static function staticProcessBatchFinished($success, array $results, array $operations) {
+    $messenger = \Drupal::service('messenger');
+    $logger = \Drupal::service('logger.factory')->get('howard_paragraphs');
+
+    if ($success) {
+      $cleared = count($results['cids']);
+      $message = \Drupal::translation()->formatPlural(
+        $cleared,
+        'Cleared 1 external content cache tag.',
+        'Cleared @count external content cache tags.'
+      );
+      $messenger->addStatus($message);
+      $logger->notice($message);
+    }
+    else {
+      $messenger->addError(new TranslatableMarkup('An error occurred while clearing external content caches.'));
+      $logger->error('An error occurred while clearing external content caches.');
     }
   }
 
