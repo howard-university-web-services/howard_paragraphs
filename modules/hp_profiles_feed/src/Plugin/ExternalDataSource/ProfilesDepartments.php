@@ -5,7 +5,7 @@ namespace Drupal\hp_profiles_feed\Plugin\ExternalDataSource;
 use Drupal\external_data_source\Plugin\ExternalDataSourceBase;
 use Symfony\Component\HttpFoundation\Request;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception as GuzzleException;
+use GuzzleHttp\Exception\RequestException;
 
 /**
  * Provides a 'Profiles Departments' ExternalDataSource.
@@ -74,12 +74,20 @@ class ProfilesDepartments extends ExternalDataSourceBase {
       $client = new Client();
       try {
         // Department is the category endpoint on howard profiles.
-        $response = $client->get('https://profiles.howard.edu/api/departments', ['verify' => FALSE]);
+        $response = $client->get('https://profiles.howard.edu/api/departments', [
+          'verify' => TRUE,
+          'timeout' => 30,
+          'connect_timeout' => 10,
+          'headers' => [
+            'Accept' => 'application/json',
+            'User-Agent' => 'Howard Paragraphs Module/1.0',
+          ],
+        ]);
         $data = json_decode($response->getBody()->getContents());
         $data = $data->data;
       }
-      catch (GuzzleException $e) {
-        \Drupal::logger('external_data_source')->error($e->getMessage());
+      catch (RequestException $e) {
+        \Drupal::logger('external_data_source')->error('HTTP request failed for Profiles Departments API: @message', ['@message' => $e->getMessage()]);
       }
       // Caching result to avoid ws over use.
       \Drupal::cache()->set($cid, $data);

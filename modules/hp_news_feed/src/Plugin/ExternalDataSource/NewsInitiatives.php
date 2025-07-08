@@ -5,7 +5,7 @@ namespace Drupal\hp_news_feed\Plugin\ExternalDataSource;
 use Drupal\external_data_source\Plugin\ExternalDataSourceBase;
 use Symfony\Component\HttpFoundation\Request;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception as GuzzleException;
+use GuzzleHttp\Exception\RequestException;
 
 /**
  * Provides a 'Initiatives' ExternalDataSource.
@@ -74,12 +74,20 @@ class NewsInitiatives extends ExternalDataSourceBase {
       $client = new Client();
       try {
         // taxonomy_1 is the schools/colleges endpoint on howard newsroom.
-        $response = $client->get('https://thedig.howard.edu/jsonapi/taxonomy_term/university_events_initiatives_ca', ['verify' => FALSE]);
+        $response = $client->get('https://thedig.howard.edu/jsonapi/taxonomy_term/university_events_initiatives_ca', [
+          'verify' => TRUE,
+          'timeout' => 30,
+          'connect_timeout' => 10,
+          'headers' => [
+            'Accept' => 'application/json',
+            'User-Agent' => 'Howard Paragraphs Module/1.0',
+          ],
+        ]);
         $data = json_decode($response->getBody()->getContents());
         $data = $data->data;
       }
-      catch (GuzzleException $e) {
-        \Drupal::logger('external_data_source')->error($e->getMessage());
+      catch (RequestException $e) {
+        \Drupal::logger('external_data_source')->error('HTTP request failed for News Initiatives API: @message', ['@message' => $e->getMessage()]);
       }
       // Caching result to avoid ws over use.
       \Drupal::cache()->set($cid, $data);

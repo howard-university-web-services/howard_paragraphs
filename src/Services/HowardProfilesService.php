@@ -90,7 +90,15 @@ class HowardProfilesService {
     }
     else {
       try {
-        $request = $this->client->get($url, ['verify' => FALSE]);
+        $request = $this->client->get($url, [
+          'verify' => TRUE,
+          'timeout' => 30,
+          'connect_timeout' => 10,
+          'headers' => [
+            'Accept' => 'application/json',
+            'User-Agent' => 'Howard Paragraphs Module/1.0',
+          ],
+        ]);
         $result = json_decode($request->getBody()->__toString(), TRUE);
       }
       catch (RequestException $e) {

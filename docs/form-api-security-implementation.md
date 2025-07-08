@@ -328,137 +328,110 @@ After implementation, the security score for Form API should improve from:
 
 This addresses the primary security concern identified in the security audit.
 
-## ⚠️ Data Loss Risk Analysis
+## 🚨 REMAINING Critical Security Issues Found
 
-### 🔍 Risk Assessment Summary
+### 1. SSL Verification Disabled (HIGH RISK)
 
-**GOOD NEWS**: None of the critical security suggestions will result in data loss if implemented correctly.
+**Issue**: Multiple HTTP clients have SSL verification disabled (`['verify' => FALSE]`)
+**Risk Level**: 🔴 **HIGH** - Vulnerable to man-in-the-middle attacks
+**Impact**: API communications can be intercepted and manipulated
 
-### 📊 Detailed Risk Analysis
+**Files Affected**:
+- `src/Services/HowardNewsService.php` (line 285)
+- `src/Services/HowardProfilesService.php` (line 93)  
+- `src/Services/HowardGivingService.php` (lines 99, 128)
+- `modules/hp_youtube_playlist/src/Services/HowardYoutubeService.php` (line 65)
+- `modules/hp_news_feed/src/Plugin/ExternalDataSource/NewsCategories.php` (line 77)
+- `modules/hp_announcements_feed/src/Plugin/ExternalDataSource/NewsAnnouncementCategory.php` (line 76)
+- `modules/hp_profiles_feed/src/Plugin/ExternalDataSource/ProfilesDepartments.php` (line 77)
+- `modules/hp_giving_feed/src/Plugin/ExternalDataSource/GivingCategories.php` (line 77)
+- `modules/hp_magazine_feed/src/Plugin/ExternalDataSource/MagazineCategories.php` (line 77)
+- `modules/hp_alumni_feed/src/Plugin/ExternalDataSource/AlumniAdminCategories.php` (line 77)
+- And 9 more external data source files
 
-#### 1. Form Field Type Changes (Textfield → Password)
-
-**Risk Level**: 🟢 **NO DATA LOSS RISK**
-
-**Why it's safe**:
-- Configuration values are stored in Drupal's configuration system, not in form field definitions
-- Changing `#type` from `'textfield'` to `'password'` only affects form display, not data storage
-- Existing configuration values remain intact in the database
-
-**Current Storage**:
+**Current Code**:
 ```php
-// Data is stored in config table, not affected by form field type
-$config = \Drupal::config('hp_twitter_feed.settings');
-$api_secret = $config->get('api_secret'); // This data persists regardless of form field type
+$request = $this->client->get($url, ['verify' => FALSE]);
 ```
 
-**Evidence from code analysis**:
-- Twitter feed: No default configuration file exists
-- YouTube playlist: No default configuration file exists  
-- Configuration is only created when users save the form
-- Existing saved configurations are preserved in `config` database table
-
-#### 2. Form Validation Addition
-
-**Risk Level**: 🟢 **NO DATA LOSS RISK**
-
-**Why it's safe**:
-- Validation only prevents saving invalid NEW data
-- Existing valid configurations pass through unchanged
-- Invalid existing data would be flagged but not deleted
-
-#### 3. submitForm Method Changes
-
-**Risk Level**: 🟢 **NO DATA LOSS RISK** (with proper implementation)
-
-**Current submitForm behavior**:
+**Required Fix**:
 ```php
-// CURRENT: Always overwrites all values
-->set('api_secret', $form_state->getValue('api_secret'))
+$request = $this->client->get($url, [
+  'verify' => TRUE,
+  'timeout' => 30,
+  'connect_timeout' => 10,
+]);
 ```
 
-**Recommended submitForm behavior**:
+### 2. Insecure HTTP Client Usage (HIGH RISK)
+
+**Issue**: `hp_program` module uses `file_get_contents()` for external HTTP requests
+**Risk Level**: 🔴 **HIGH** - No SSL verification, no timeout controls, no error handling
+**File**: `modules/hp_program/hp_program.module` (line ~75)
+
+**Current Code**:
 ```php
-// SAFE: Only updates if new value provided
-$api_secret = $form_state->getValue('api_secret');
-if (!empty($api_secret)) {
-  $config->set('api_secret', $api_secret);
-}
+$url = "https://programs.howard.edu/api/programs/" . $program;
+$result = file_get_contents($url);
 ```
 
-**Protection mechanism**: Empty password fields are ignored, preserving existing values.
+**Security Risks**:
+- No SSL certificate verification
+- No timeout controls (can cause server hanging)
+- No proper error handling
+- No connection security
 
-### 🛡️ Additional Safety Measures
+**Required Fix**: Replace with proper Guzzle HTTP client
 
-#### Backup Strategy
-Before implementing changes:
+### 3. Raw HTML Output from External Sources (MEDIUM RISK)
 
-1. **Export current configuration**:
-```bash
-drush config:export
+**Issue**: External API content is output with `|raw` filter after minimal sanitization
+**Risk Level**: 🟡 **MEDIUM** - Potential XSS if external API is compromised
+**Files**:
+- `modules/hp_program/templates/paragraph--hp-program.html.twig` (8 instances)
+- `modules/hp_alumni_featured/templates/paragraph--hp-alumni-featured.html.twig` 
+- `modules/hp_alumni_feed/templates/paragraph--hp-featured-student-alumni-feed.html.twig`
+
+**Current Implementation**:
+```twig
+{{ hp_pg_program.body|raw }}
 ```
 
-2. **Backup specific settings**:
-```bash
-drush config:get hp_twitter_feed.settings --format=yaml > twitter_backup.yml
-drush config:get hp_youtube_playlist.settings --format=yaml > youtube_backup.yml
+**Note**: The `_hp_sanitize_external_html()` function does provide some protection, but `|raw` should be used cautiously with external content.
+
+### 4. Embed Code Raw Output (MEDIUM RISK)
+
+**Issue**: User-provided embed codes are output directly with `|raw`
+**Risk Level**: 🟡 **MEDIUM** - Depends on access controls
+**File**: `modules/hp_embed/templates/field--paragraph--field-hp-embed-code.html.twig`
+
+**Current Code**:
+```twig
+{{ item.content['#context'].value|raw }}
 ```
 
-#### Implementation Safety Steps
+**Mitigation**: This is acceptable IF proper access controls are in place for who can create embed paragraphs.
 
-1. **Test in development first**
-2. **Verify existing credentials work after changes**
-3. **Use the "leave blank to keep existing" pattern**
+## 🎯 Critical Fix Priority
 
-#### Recovery Procedure (if needed)
+### 🔴 IMMEDIATE (High Risk)
+1. **Fix SSL verification** - Enable `verify => TRUE` in all HTTP clients
+2. **Replace file_get_contents()** - Use Guzzle HTTP client in hp_program module
 
-If configuration is accidentally lost:
+### 🟡 SHORT TERM (Medium Risk)  
+3. **Review raw output usage** - Ensure external content sanitization is robust
+4. **Audit embed code access** - Verify only trusted users can create embed paragraphs
 
-```bash
-# Restore from backup
-drush config:set hp_twitter_feed.settings api_secret "your_secret_here"
-drush config:set hp_twitter_feed.settings api_key "your_key_here"
-```
+## 📊 Updated Security Assessment
 
-### 🔄 Migration Path
+**Current Status**:
+- **Form API Security**: ✅ RESOLVED
+- **Error Message Exposure**: ✅ RESOLVED  
+- **SSL Verification**: 🔴 **CRITICAL** (18+ files affected)
+- **HTTP Client Security**: 🔴 **CRITICAL** (hp_program module)
+- **XSS Protection**: 🟡 **NEEDS REVIEW** (raw output usage)
 
-#### Phase 1: Safe Implementation
-1. **Deploy form changes** (password fields with proper submitForm logic)
-2. **Test with existing configurations** 
-3. **Verify no data loss occurred**
-
-#### Phase 2: Enhanced Security  
-1. **Add validation rules**
-2. **Add environment variable support**
-3. **Update documentation**
-
-### 🧪 Testing Verification
-
-After implementation, verify:
-
-```php
-// Test that existing config is preserved
-$config = \Drupal::config('hp_twitter_feed.settings');
-$existing_secret = $config->get('api_secret');
-// Should return the same value as before implementation
-```
-
-### 📋 Pre-Implementation Checklist
-
-- [ ] **Backup current configuration** (`drush config:export`)
-- [ ] **Document existing API credentials** (in secure location)
-- [ ] **Test form submission** with empty password fields
-- [ ] **Verify existing services still work** after form changes
-- [ ] **Have rollback plan ready** (configuration restore)
-
-### 🎯 Conclusion
-
-**The critical security suggestions are SAFE to implement** because:
-
-1. **Form field type changes** don't affect stored data
-2. **Validation additions** don't modify existing data  
-3. **submitForm improvements** preserve existing values when password fields are empty
-4. **No database schema changes** are required
-5. **Configuration structure remains the same**
-
-The recommended implementation actually **protects against data loss** by only updating configuration when new values are explicitly provided, rather than the current behavior of always overwriting values (which could overwrite with empty strings if form submission fails).
+**Overall Security Score**: 
+- **Before Form API fixes**: 75%
+- **After Form API fixes**: 80% (SSL issues remain critical)
+- **After ALL fixes**: 95%

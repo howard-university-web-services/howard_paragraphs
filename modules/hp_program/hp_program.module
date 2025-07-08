@@ -7,6 +7,7 @@
 
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Component\Utility\Html;
+use GuzzleHttp\Exception\RequestException;
 
 /**
  * Implements hook_help().
@@ -71,13 +72,50 @@ function hp_program_theme($existing, $type, $theme, $path) {
  * Gets program from programs.howard.edu, and displays.
  */
 function _hp_program_get_program($program = NULL, $id = 'default') {
+  // Validate program parameter to prevent potential security issues
+  if (empty($program) || !is_numeric($program)) {
+    \Drupal::logger('hp_program')->warning('Invalid program ID provided: @program', ['@program' => $program]);
+    return NULL;
+  }
+  
   if ($cache = \Drupal::cache()->get('hp_program--' . $id)) {
     return $cache->data;
   }
   else {
+    // Use Drupal's HTTP client service for secure communication
+    $http_client = \Drupal::httpClient();
     $url = "https://programs.howard.edu/api/programs/" . $program;
-    $result = file_get_contents($url);
-    $result = json_decode($result, TRUE);
+    
+    try {
+      $response = $http_client->get($url, [
+        'verify' => TRUE,
+        'timeout' => 30,
+        'connect_timeout' => 10,
+        'headers' => [
+          'Accept' => 'application/json',
+          'User-Agent' => 'Howard Paragraphs Module/1.0',
+        ],
+      ]);
+      
+      $result = json_decode($response->getBody()->getContents(), TRUE);
+    }
+    catch (RequestException $e) {
+      \Drupal::logger('hp_program')->error('Failed to fetch program data from API: @message', ['@message' => $e->getMessage()]);
+      return NULL;
+    }
+    
+    // Validate JSON response
+    if (json_last_error() !== JSON_ERROR_NONE) {
+      \Drupal::logger('hp_program')->error('Invalid JSON response from programs API: @error', ['@error' => json_last_error_msg()]);
+      return NULL;
+    }
+    
+    // Validate response structure
+    if (!isset($result['data'][0])) {
+      \Drupal::logger('hp_program')->warning('No program data found for program ID: @program', ['@program' => $program]);
+      return NULL;
+    }
+    
     $result = $result['data'][0];
     if ($result) {
       $html_fields = [

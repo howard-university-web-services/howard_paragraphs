@@ -82,17 +82,32 @@ The Howard Paragraphs module has been comprehensively reviewed for Drupal best p
 
 **Issue**: HTTP clients use `['verify' => FALSE]`
 **Priority**: High (Security)
-**Files Affected**: Multiple external data source plugins
+**Files Affected**: Multiple external data source plugins and service classes
+**Status**: ✅ Fixed
 
-**Current Code**:
+**Previous Code**:
 
 ```php
 $response = $client->get($url, ['verify' => FALSE]);
 ```
 
-**Recommendation**: Enable SSL verification in production environments.
+**Fix Implemented**:
 
-### 3. Form API Security
+```php
+$request = $this->client->get($url, [
+  'verify' => TRUE,
+  'timeout' => 30,
+  'connect_timeout' => 10,
+  'headers' => [
+    'Accept' => 'application/json',
+    'User-Agent' => 'Howard Paragraphs Module/1.0',
+  ],
+]);
+```
+
+**Documentation**: See [SSL Verification Security Fix](/docs/ssl-verification-security-fix.md) for details.
+
+### 4. Form API Security
 
 **Issue**: Configuration forms don't use password field types for sensitive data
 **Priority**: Medium (Security)

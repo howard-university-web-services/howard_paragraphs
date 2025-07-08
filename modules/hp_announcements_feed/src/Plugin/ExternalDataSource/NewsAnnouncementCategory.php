@@ -5,7 +5,7 @@ namespace Drupal\hp_announcements_feed\Plugin\ExternalDataSource;
 use Drupal\external_data_source\Plugin\ExternalDataSourceBase;
 use Symfony\Component\HttpFoundation\Request;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception as GuzzleException;
+use GuzzleHttp\Exception\RequestException;
 
 /**
  * Provides a 'News Announcement Category' ExternalDataSource.
@@ -73,11 +73,19 @@ class NewsAnnouncementCategory extends ExternalDataSourceBase {
     else {
       $client = new Client();
       try {
-        $response = $client->get('https://thedig.howard.edu/jsonapi/taxonomy_term/announcement_category', ['verify' => FALSE]);
+        $response = $client->get('https://thedig.howard.edu/jsonapi/taxonomy_term/announcement_category', [
+          'verify' => TRUE,
+          'timeout' => 30,
+          'connect_timeout' => 10,
+          'headers' => [
+            'Accept' => 'application/json',
+            'User-Agent' => 'Howard Paragraphs Module/1.0',
+          ],
+        ]);
         $data = json_decode($response->getBody()->getContents());
         $data = $data->data;
       }
-      catch (GuzzleException $e) {
+      catch (RequestException $e) {
         \Drupal::logger('hp_announcements_feed')->error('HTTP request failed for Announcements Categories API: @message', ['@message' => $e->getMessage()]);
       }
       // Caching result to avoid ws over use.
