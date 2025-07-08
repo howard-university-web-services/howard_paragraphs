@@ -9,6 +9,23 @@ This module, and sub-modules, contain markup only (no js or css), those should b
 - [idfive Component Library](https://bitbucket.org/idfivellc/idfive-component-library)
 - [idfive Component Library D8 Theme](https://bitbucket.org/idfivellc/idfive-component-library-d8-theme)
 
+## 📚 Documentation
+
+**Comprehensive documentation is available in the `/docs` directory:**
+
+- **[Getting Started](docs/getting-started.md)** - Quick start guide and basic concepts
+- **[Installation & Configuration](docs/installation.md)** - Detailed setup instructions
+- **[Theming & Customization](docs/theming.md)** - Template overrides and styling
+- **[Development Guide](docs/development-guide.md)** - Creating custom components
+- **[External Content & Caching](docs/external-content.md)** - External feed configuration
+- **[API Reference](docs/api-reference.md)** - Hooks, services, and APIs
+- **[Troubleshooting](docs/troubleshooting.md)** - Common issues and solutions
+- **[Contributing](docs/contributing.md)** - How to contribute to the project
+
+**Quick Links:**
+- [Architecture Overview](docs/architecture.md)
+- [Performance Guide](docs/external-content.md#performance-optimization)
+
 ## Installation and Updates
 
 ### Install Via Composer
