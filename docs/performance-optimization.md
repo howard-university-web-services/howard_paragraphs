@@ -59,11 +59,11 @@ public function clearExternalContent() {
   // Use Batch API for sites with many paragraphs
   if (count($pids) > 50) {
     $batch = [
-      'title' => t('Clearing external content cache'),
+      'title' => $this->t('Clearing external content cache'),
       'operations' => [
-        ['Drupal\howard_paragraphs\Controller\HowardExternalContentCacheClear::batchClearCache', [$pids]],
+        [[$this, 'processBatchClear'], [$pids]],
       ],
-      'finished' => 'Drupal\howard_paragraphs\Controller\HowardExternalContentCacheClear::batchFinished',
+      'finished' => [[$this, 'processBatchFinished']],
     ];
     batch_set($batch);
     return batch_process('admin/config/howard_paragraphs');
@@ -71,8 +71,11 @@ public function clearExternalContent() {
   else {
     // Original method for smaller sites
     $cids = [];
-    foreach ($pids as $key => $pid) {
-      // Process each paragraph...
+    if (!empty($pids)) {
+      $paragraphs = $this->entityTypeManager->getStorage('paragraph')->loadMultiple($pids);
+      foreach ($paragraphs as $paragraph) {
+        // Process each paragraph...
+      }
     }
     return $cids;
   }
