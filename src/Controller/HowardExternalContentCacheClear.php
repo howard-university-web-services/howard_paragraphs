@@ -91,9 +91,10 @@ class HowardExternalContentCacheClear extends ControllerBase {
     $pids = $query->execute();
     $cids = [];
     
-    foreach ($pids as $key => $pid) {
-      $paragraph = Paragraph::load($pid);
-      if ($paragraph) {
+    // Load all paragraphs at once to avoid multiple database queries
+    if (!empty($pids)) {
+      $paragraphs = $this->entityTypeManager->getStorage('paragraph')->loadMultiple($pids);
+      foreach ($paragraphs as $paragraph) {
         $tags = $paragraph->getCacheTags();
         $cids[] = $tags;
         $this->cacheTagsInvalidator->invalidateTags($tags);

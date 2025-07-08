@@ -10,6 +10,7 @@ Welcome to the comprehensive documentation for the Howard Paragraphs module - a 
 - [Development Guide](development-guide.md)
 - [Theming & Customization](theming.md)
 - [External Content & Caching](external-content.md)
+- [Performance Optimization](performance-optimization.md)
 - [Troubleshooting](troubleshooting.md)
 - [API Reference](api-reference.md)
 - [Contributing](contributing.md)

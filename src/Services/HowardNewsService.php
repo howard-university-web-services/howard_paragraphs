@@ -5,6 +5,7 @@ namespace Drupal\howard_paragraphs\Services;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Drupal\Core\Cache\CacheBackendInterface;
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 
 /**
@@ -299,7 +300,13 @@ class HowardNewsService {
         return;
       }
       if ($result['data']) {
-        $this->cache->set($cache_id, $result, time() + 7200);
+        // Use cache tags for better invalidation instead of time-based expiration.
+        $this->cache->set(
+          $cache_id,
+          $result,
+          \Drupal\Core\Cache\Cache::PERMANENT,
+          ['howard_news_data', 'howard_external_content']
+        );
         return $result;
       }
       else {
