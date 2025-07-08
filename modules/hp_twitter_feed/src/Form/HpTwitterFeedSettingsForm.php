@@ -47,12 +47,12 @@ class HpTwitterFeedSettingsForm extends ConfigFormBase {
       '#markup' => $help_markup,
     ];
 
-    // Add security notice for production deployments
+    // Add security notice for production deployments.
     $form['security_notice'] = [
       '#type' => 'markup',
-      '#markup' => '<div class="messages messages--warning">' . 
-        $this->t('For production sites, consider using environment variables (TWITTER_API_KEY, TWITTER_API_SECRET, etc.) instead of storing credentials in configuration.') . 
-        '</div>',
+      '#markup' => '<div class="messages messages--warning">' .
+      $this->t('For production sites, consider using environment variables (TWITTER_API_KEY, TWITTER_API_SECRET, etc.) instead of storing credentials in configuration.') .
+      '</div>',
       '#weight' => -10,
     ];
 
@@ -95,25 +95,25 @@ class HpTwitterFeedSettingsForm extends ConfigFormBase {
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
     parent::validateForm($form, $form_state);
-    
-    // Validate API key format
+
+    // Validate API key format.
     $api_key = $form_state->getValue('api_key');
     if (!empty($api_key) && !preg_match('/^[a-zA-Z0-9_-]+$/', $api_key)) {
       $form_state->setErrorByName('api_key', $this->t('Consumer key contains invalid characters. Only letters, numbers, underscores, and hyphens are allowed.'));
     }
-    
-    // Validate access token format
+
+    // Validate access token format.
     $access_token = $form_state->getValue('access_token');
     if (!empty($access_token) && !preg_match('/^[a-zA-Z0-9_-]+$/', $access_token)) {
       $form_state->setErrorByName('access_token', $this->t('Access token contains invalid characters. Only letters, numbers, underscores, and hyphens are allowed.'));
     }
-    
-    // Validate required secrets only if not already configured
+
+    // Validate required secrets only if not already configured.
     $config = $this->config(static::SETTINGS);
     if (empty($config->get('api_secret')) && empty($form_state->getValue('api_secret'))) {
       $form_state->setErrorByName('api_secret', $this->t('Consumer Secret is required.'));
     }
-    
+
     if (empty($config->get('access_secret')) && empty($form_state->getValue('access_secret'))) {
       $form_state->setErrorByName('access_secret', $this->t('Access Token Secret is required.'));
     }
@@ -124,22 +124,22 @@ class HpTwitterFeedSettingsForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $config = $this->configFactory->getEditable(static::SETTINGS);
-    
-    // Always update non-sensitive values
+
+    // Always update non-sensitive values.
     $config->set('api_key', $form_state->getValue('api_key'));
     $config->set('access_token', $form_state->getValue('access_token'));
-    
-    // Only update secrets if new values provided
+
+    // Only update secrets if new values provided.
     $api_secret = $form_state->getValue('api_secret');
     if (!empty($api_secret)) {
       $config->set('api_secret', $api_secret);
     }
-    
+
     $access_secret = $form_state->getValue('access_secret');
     if (!empty($access_secret)) {
       $config->set('access_secret', $access_secret);
     }
-    
+
     $config->save();
 
     parent::submitForm($form, $form_state);

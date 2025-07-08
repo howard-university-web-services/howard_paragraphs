@@ -6,10 +6,8 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
-use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Messenger\MessengerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\paragraphs\Entity\Paragraph;
 
 /**
  * Controller that helps load and clear external content feed caches for Howard websites.
@@ -58,7 +56,7 @@ class HowardExternalContentCacheClear extends ControllerBase {
    */
   public function __construct(
     EntityTypeManagerInterface $entity_type_manager,
-    CacheTagsInvalidatorInterface $cache_tags_invalidator, 
+    CacheTagsInvalidatorInterface $cache_tags_invalidator,
     LoggerChannelFactoryInterface $logger_factory,
     MessengerInterface $messenger
   ) {
@@ -105,10 +103,10 @@ class HowardExternalContentCacheClear extends ControllerBase {
         'hp_alumni_feed',
       ], 'IN')
       ->accessCheck(FALSE);
-    
+
     $pids = $query->execute();
-    
-    // Use batch processing for large number of paragraphs to avoid timeouts
+
+    // Use batch processing for large number of paragraphs to avoid timeouts.
     if (count($pids) > 50) {
       $batch = [
         'title' => $this->t('Clearing external content cache'),
@@ -119,8 +117,8 @@ class HowardExternalContentCacheClear extends ControllerBase {
         'progressive' => TRUE,
       ];
       batch_set($batch);
-      
-      // If this is being run as part of a form/UI action, process the batch
+
+      // If this is being run as part of a form/UI action, process the batch.
       if (php_sapi_name() != 'cli') {
         return batch_process();
       }
@@ -130,15 +128,15 @@ class HowardExternalContentCacheClear extends ControllerBase {
         $batch['progressive'] = FALSE;
         batch_process();
       }
-      
-      // Return empty array as the batch process will handle creating the cids
+
+      // Return empty array as the batch process will handle creating the cids.
       return [];
     }
-    
-    // For smaller number of paragraphs, process directly
+
+    // For smaller number of paragraphs, process directly.
     $cids = [];
-    
-    // Load all paragraphs at once to avoid multiple database queries
+
+    // Load all paragraphs at once to avoid multiple database queries.
     if (!empty($pids)) {
       $paragraphs = $this->entityTypeManager->getStorage('paragraph')->loadMultiple($pids);
       foreach ($paragraphs as $paragraph) {
@@ -147,7 +145,7 @@ class HowardExternalContentCacheClear extends ControllerBase {
         $this->cacheTagsInvalidator->invalidateTags($tags);
       }
     }
-    
+
     $message = 'Howard external content feed caches cleared.';
     $this->loggerFactory->get('howard_paragraphs')->notice($message);
     return $cids;
@@ -193,11 +191,11 @@ class HowardExternalContentCacheClear extends ControllerBase {
       $context['sandbox']['pids'] = $pids;
       $context['results']['cids'] = [];
     }
-    
-    // Process 20 paragraphs at a time
+
+    // Process 20 paragraphs at a time.
     $batch_size = 20;
     $batch_pids = array_slice($context['sandbox']['pids'], $context['sandbox']['progress'], $batch_size);
-    
+
     if (!empty($batch_pids)) {
       $paragraphs = $this->entityTypeManager->getStorage('paragraph')->loadMultiple($batch_pids);
       foreach ($paragraphs as $paragraph) {
@@ -207,7 +205,7 @@ class HowardExternalContentCacheClear extends ControllerBase {
         $context['sandbox']['progress']++;
       }
     }
-    
+
     if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
       $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
     }

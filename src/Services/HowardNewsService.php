@@ -2,10 +2,10 @@
 
 namespace Drupal\howard_paragraphs\Services;
 
+use Drupal\Core\Cache\Cache;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Drupal\Core\Cache\CacheBackendInterface;
-use Drupal\Core\Cache\Cache;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 
 /**
@@ -304,7 +304,7 @@ class HowardNewsService {
         $this->cache->set(
           $cache_id,
           $result,
-          \Drupal\Core\Cache\Cache::PERMANENT,
+          Cache::PERMANENT,
           ['howard_news_data', 'howard_external_content']
         );
         return $result;
