@@ -2,6 +2,10 @@
 
 Paragraphs integration of the commonly used howard "Kitchen Sink" components.
 
+## Version
+
+**Current Version: 11.0.5**
+
 These components are designed as individual sub-modules that you may enable as needed. These are designed to work with the idfive Component Library frontend.
 
 This module, and sub-modules, contain markup only (no js or css), those should be provided in the client theme, loaded via the idfive Component Library:
@@ -25,6 +29,7 @@ This module, and sub-modules, contain markup only (no js or css), those should b
 - **[Contributing](docs/contributing.md)** - How to contribute to the project
 
 **Quick Links:**
+
 - [Architecture Overview](docs/architecture.md)
 - [Performance Guide](docs/external-content.md#performance-optimization)
 
