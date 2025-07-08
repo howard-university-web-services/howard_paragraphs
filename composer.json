@@ -22,7 +22,7 @@
         "php": ">=8.1",
         "abraham/twitteroauth": "^4.0 || ^5.0",
         "drupal/core": "^10 || ^11",
-        "drupal/external_data_source": "^2.0",
+        "drupal/external_data_source": "^3.2",
         "drupal/paragraphs": "^1.12",
         "drupal/tablefield": "^2.3",
         "drupal/viewsreference": "^2.0",

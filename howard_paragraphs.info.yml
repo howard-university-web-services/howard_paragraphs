@@ -1,7 +1,7 @@
 name: Howard Paragraphs
 type: module
 description: A suite of Paragraph bundles made for Howard University projects.
-version: '11.0.5'
+version: '11.0.6'
 project: 'howard_paragraphs'
 
 core_version_requirement: ^10 || ^11

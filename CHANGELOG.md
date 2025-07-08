@@ -2,6 +2,17 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.0.6] - 2025-07-08
+
+### Changed
+
+- Updated external_data_source dependency from ^2.0 to ^3.2 for Drupal 11 compatibility
+- Improved dependency management for better security and performance
+
+### Added
+
+- Support for external_data_source 3.2.x with enhanced features and Drupal 11 compatibility
+
 ## [11.0.5] - 2025-07-08
 
 ### Fixed
