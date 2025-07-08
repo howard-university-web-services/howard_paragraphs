@@ -253,7 +253,7 @@ Ready to start developing? Begin with the development environment setup below an
 
 Before developing with Howard Paragraphs:
 
-- **PHP 8.1+** with required extensions
+- **PHP 8.1+** with required extensions (8.2+ recommended for Drupal 11)
 - **Drupal 10.x or 11.x** development environment
 - **Git** for version control
 - **Composer** for dependency management

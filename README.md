@@ -7,7 +7,7 @@ These components are designed as individual sub-modules that you may enable as n
 This module, and sub-modules, contain markup only (no js or css), those should be provided in the client theme, loaded via the idfive Component Library:
 
 - [idfive Component Library](https://bitbucket.org/idfivellc/idfive-component-library)
-- [idfive Component Library D8 Theme](https://bitbucket.org/idfivellc/idfive-component-library-d8-theme)
+- [idfive Component Library Theme](https://bitbucket.org/idfivellc/idfive-component-library-theme)
 
 ## 📚 Documentation
 
@@ -62,7 +62,7 @@ The following submodules are available:
 - Giving Feed: Paragraphs integration of Giving Feed (from giving.howard.edu) for Howard projects
 - Graphs: Paragraphs integration of the ability to add custom graphs in Howard projects
 - HTML: Paragraphs integration of HTML for use in Howard projects
-- Instagram Feed: Paragraphs integration of a Instagram Feed for Howard projects
+- Instagram Feed: Paragraphs integration of a Instagram Feed for Howard projects **[Note: Requires Facebook Graph SDK and may be affected by Instagram API changes]**
 - Magazine Feed: Paragraphs integration of Magazine Feed (from magazine.howard.edu) for Howard projects
 - Media: Paragraphs integration of media for use in Howard projects
 - News Feed: Paragraphs integration of News Feed (from thedig.howard.edu) for Howard projects
@@ -77,7 +77,7 @@ The following submodules are available:
 - Table: Paragraphs integration of tablefield module for use in Howard projects, and set up to use tablesaw js
 - Testimonial: Paragraphs integration of testimonials for use in Howard projects
 - Timeline: Paragraphs integration of a timeline for use in Howard projects
-- Twitter Feed: Paragraphs integration of a twitter Feed for Howard projects
+- Twitter Feed: Paragraphs integration of a twitter Feed for Howard projects **[Note: May require API updates due to Twitter/X changes]**
 - Video Slide Show: Provides a paragraphs bundle for rendering a video slide show as a Kitchen Sink widget in Howard projects.
 - Views Embed: Paragraphs integration of viewfield module for use in Howard projects
 - Webform Embed: Paragraphs integration of webform module for use in Howard projects

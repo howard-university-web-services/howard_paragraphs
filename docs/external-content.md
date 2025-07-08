@@ -11,7 +11,11 @@ The external content system allows paragraph components to display live data fro
 - **giving.howard.edu**: Giving campaigns and fundraising
 - **magazine.howard.edu**: Magazine articles and features
 - **programs.howard.edu**: Academic programs
-- **calendar.howard.edu**: Events and deadlines (deprecated)
+
+### Deprecated Services
+- **calendar.howard.edu**: Events and deadlines (deprecated - use alternative event management)
+- **Facebook feeds**: Social media integration (deprecated due to API limitations)
+- **Photoshelter feeds**: Image gallery integration (deprecated service)
 
 ## Architecture
 

@@ -29,8 +29,8 @@ The Howard Paragraphs module provides a comprehensive collection of reusable con
 
 ### System Requirements
 
-- **Drupal**: 10.x or 11.x
-- **PHP**: 8.1+
+- **Drupal**: 10.x or 11.x ✅
+- **PHP**: 8.1+ (8.2+ recommended for Drupal 11)
 - **Required Modules**: See [Installation Guide](installation.md#dependencies)
 - **Recommended**: idfive Component Library theme
 

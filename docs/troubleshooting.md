@@ -294,7 +294,26 @@ drush config:export
 
 ## Environment-Specific Issues
 
-### Development Environment
+### Drupal 11 Specific Issues
+
+#### Composer dependency conflicts
+**Symptoms**: Composer fails to install due to dependency conflicts
+
+**Solutions**:
+1. Update all contrib modules to Drupal 11 compatible versions:
+   ```bash
+   composer update drupal/paragraphs drupal/tablefield drupal/webform
+   ```
+2. Check contrib module compatibility at drupal.org
+3. Use `composer why-not drupal/core:^11` to identify blocking dependencies
+
+#### PHP version incompatibility
+**Symptoms**: Fatal errors related to PHP version
+
+**Solutions**:
+1. Ensure PHP 8.1+ is installed (8.2+ recommended for Drupal 11)
+2. Update PHP version on your server
+3. Check PHP extension compatibility
 
 #### External APIs not accessible
 **Solution**: Configure local API endpoints:

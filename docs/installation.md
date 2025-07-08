@@ -6,7 +6,7 @@ This guide covers the complete installation and configuration process for Howard
 
 ### Drupal Requirements
 - **Drupal Core**: 10.x or 11.x
-- **PHP**: 8.1 or higher
+- **PHP**: 8.1 or higher (8.2+ recommended for Drupal 11)
 - **Database**: MySQL 5.7+, PostgreSQL 10+, or SQLite 3.26+
 
 ### Required Modules
@@ -30,9 +30,11 @@ The following modules are automatically installed as dependencies:
 Some submodules require additional modules:
 
 - `external_data_source`: For external content feeds
-- `tablefield`: For table components
+- `tablefield`: For table components  
 - `viewsreference`: For views embed components
 - `webform`: For webform embed components
+
+**Note for Drupal 11**: Ensure all contrib dependencies support Drupal 11 before upgrading. Check module compatibility at drupal.org.
 
 ## Installation Methods
 
