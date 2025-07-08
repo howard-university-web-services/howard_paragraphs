@@ -67,7 +67,7 @@ class HowardYoutubeService {
       }
       catch (RequestException $e) {
         $message = 'Error connecting to YouTube API via URL:' . $url;
-        \Drupal::logger('Howard Youtube API')->error($message);
+        \Drupal::logger('Howard Youtube API')->error($message . ' Error: @error', ['@error' => $e->getMessage()]);
         return;
       }
       if ($result['items']) {

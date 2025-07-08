@@ -13,6 +13,8 @@ Welcome to the comprehensive documentation for the Howard Paragraphs module - a 
 - [Troubleshooting](troubleshooting.md)
 - [API Reference](api-reference.md)
 - [Contributing](contributing.md)
+- [Security Best Practices](security-best-practices.md)
+- [Form API Security Implementation](form-api-security-implementation.md)
 
 ## Quick Overview
 

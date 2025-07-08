@@ -125,10 +125,12 @@ function _hp_instagram_feed_get_posts($id, $count, $token, $app_id, $app_secret)
       $test_access = $fb->get('/me', $token);
     }
     catch (FacebookResponseException $e) {
-      $result['error'] = 'Graph returned an error: ' . $e->getMessage();
+      \Drupal::logger('hp_instagram_feed')->error('Graph API error: @message', ['@message' => $e->getMessage()]);
+      $result['error'] = 'Unable to connect to Instagram API. Please check your access token configuration.';
     }
     catch (FacebookSDKException $e) {
-      $result['error'] = 'Facebook SDK returned an error: ' . $e->getMessage();
+      \Drupal::logger('hp_instagram_feed')->error('Facebook SDK error: @message', ['@message' => $e->getMessage()]);
+      $result['error'] = 'Unable to connect to Instagram API. Please check your configuration.';
     }
 
     if ($test_access) {
@@ -137,10 +139,12 @@ function _hp_instagram_feed_get_posts($id, $count, $token, $app_id, $app_secret)
         $response = $fb->get($endpoint, $token);
       }
       catch (FacebookResponseException $e) {
-        $result['error'] = 'Graph returned an error: ' . $e->getMessage();
+        \Drupal::logger('hp_instagram_feed')->error('Graph API error: @message', ['@message' => $e->getMessage()]);
+        $result['error'] = 'Unable to retrieve Instagram posts. Please check your access token configuration.';
       }
       catch (FacebookSDKException $e) {
-        $result['error'] = 'Facebook SDK returned an error: ' . $e->getMessage();
+        \Drupal::logger('hp_instagram_feed')->error('Facebook SDK error: @message', ['@message' => $e->getMessage()]);
+        $result['error'] = 'Unable to retrieve Instagram posts. Please check your configuration.';
       }
 
       $feedEdge = $response->getGraphEdge();

@@ -79,7 +79,7 @@ class NewsCategories extends ExternalDataSourceBase {
         $data = $data->data;
       }
       catch (GuzzleException $e) {
-        \Drupal::logger('external_data_source')->error($e->getMessage());
+        \Drupal::logger('external_data_source')->error('HTTP request failed for News Categories API: @message', ['@message' => $e->getMessage()]);
       }
       // Caching result to avoid ws over use.
       \Drupal::cache()->set($cid, $data);

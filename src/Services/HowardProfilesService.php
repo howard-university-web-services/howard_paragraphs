@@ -4,6 +4,8 @@ namespace Drupal\howard_paragraphs\Services;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use Drupal\Core\Cache\CacheBackendInterface;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 
 /**
  * Class HowardProfilesService.
@@ -14,6 +16,21 @@ class HowardProfilesService {
    * @var GuzzleHttp\Client
    */
   protected $client;
+
+  /**
+   * The cache backend.
+   *
+   * @var \Drupal\Core\Cache\CacheBackendInterface
+   */
+  protected $cache;
+
+  /**
+   * The logger factory.
+   *
+   * @var \Drupal\Core\Logger\LoggerChannelFactoryInterface
+   */
+  protected $loggerFactory;
+
   public $apiEndpoint;
   public $notificationEndpoint;
   public $articleEndpoint;
@@ -22,9 +39,18 @@ class HowardProfilesService {
 
   /**
    * Constructs a new HowardProfilesService object.
+   *
+   * @param \GuzzleHttp\Client $client
+   *   The HTTP client.
+   * @param \Drupal\Core\Cache\CacheBackendInterface $cache
+   *   The cache backend.
+   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger_factory
+   *   The logger factory.
    */
-  public function __construct(Client $client) {
+  public function __construct(Client $client, CacheBackendInterface $cache, LoggerChannelFactoryInterface $logger_factory) {
     $this->client = $client;
+    $this->cache = $cache;
+    $this->loggerFactory = $logger_factory;
     $this->apiEndpoint = 'http://profiles.howard.edu';
     $this->personEndpoint = "/api/profiles";
   }
@@ -49,9 +75,17 @@ class HowardProfilesService {
 
   /**
    * Public method to get content from Howard Profiles API.
+   *
+   * @param string $cache_id
+   *   The cache ID.
+   * @param string $url
+   *   The URL to fetch data from.
+   *
+   * @return array|null
+   *   The fetched data or NULL on error.
    */
   public function getData($cache_id, $url) {
-    if ($cache = \Drupal::cache()->get($cache_id)) {
+    if ($cache = $this->cache->get($cache_id)) {
       return $cache->data;
     }
     else {
@@ -61,18 +95,17 @@ class HowardProfilesService {
       }
       catch (RequestException $e) {
         $message = 'Error connecting to Howard Profiles API via URL:' . $url;
-        \Drupal::logger('Howard Profiles API')->error($message);
+        $this->loggerFactory->get('Howard Profiles API')->error($message);
         return;
       }
       if ($result['data']) {
-        \Drupal::cache()->set($cache_id, $result, time() + 7200);
+        $this->cache->set($cache_id, $result, time() + 7200);
         return $result;
       }
       else {
         return;
       }
     }
-
   }
 
 }

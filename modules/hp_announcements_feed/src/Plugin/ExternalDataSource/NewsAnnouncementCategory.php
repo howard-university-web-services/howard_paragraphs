@@ -78,7 +78,7 @@ class NewsAnnouncementCategory extends ExternalDataSourceBase {
         $data = $data->data;
       }
       catch (GuzzleException $e) {
-        \Drupal::logger('hp_announcements_feed')->error($e->getMessage());
+        \Drupal::logger('hp_announcements_feed')->error('HTTP request failed for Announcements Categories API: @message', ['@message' => $e->getMessage()]);
       }
       // Caching result to avoid ws over use.
       \Drupal::cache()->set($cid, $data);

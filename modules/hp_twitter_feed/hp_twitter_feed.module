@@ -93,7 +93,8 @@ function _hp_twitter_feed_get_tweets(
     $resp = $connection->get("statuses/user_timeline", ["screen_name" => $username, "count" => $count, "exclude_rts" => TRUE, "exclude_replies" => TRUE]);
 
     if (isset($resp->errors[0])) {
-      $result['error'] = $resp->errors[0]->message;
+      \Drupal::logger('hp_twitter_feed')->error('Twitter API error: @message', ['@message' => $resp->errors[0]->message]);
+      $result['error'] = 'Unable to retrieve Twitter posts. Please check your API configuration.';
     }
     else {
       $result['results'] = $resp;

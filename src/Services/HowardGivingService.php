@@ -4,6 +4,8 @@ namespace Drupal\howard_paragraphs\Services;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use Drupal\Core\Cache\CacheBackendInterface;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 
 /**
  * Class HowardGivingService.
@@ -14,6 +16,21 @@ class HowardGivingService {
    * @var GuzzleHttp\Client
    */
   protected $client;
+
+  /**
+   * The cache backend.
+   *
+   * @var \Drupal\Core\Cache\CacheBackendInterface
+   */
+  protected $cache;
+
+  /**
+   * The logger factory.
+   *
+   * @var \Drupal\Core\Logger\LoggerChannelFactoryInterface
+   */
+  protected $loggerFactory;
+
   public $currentTime;
   public $currentDate;
   public $apiEndpoint;
@@ -21,9 +38,18 @@ class HowardGivingService {
 
   /**
    * Constructs a new HowardGivingService object.
+   *
+   * @param \GuzzleHttp\Client $client
+   *   The HTTP client.
+   * @param \Drupal\Core\Cache\CacheBackendInterface $cache
+   *   The cache backend.
+   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger_factory
+   *   The logger factory.
    */
-  public function __construct(Client $client) {
+  public function __construct(Client $client, CacheBackendInterface $cache, LoggerChannelFactoryInterface $logger_factory) {
     $this->client = $client;
+    $this->cache = $cache;
+    $this->loggerFactory = $logger_factory;
     $this->currentTime = date("h:i:s");
     $this->currentDate = date("Y-m-d");
     $this->apiEndpoint = 'https://giving.howard.edu';
@@ -75,7 +101,7 @@ class HowardGivingService {
     }
     catch (RequestException $e) {
       $message = 'Error connecting to Howard Dig API via URL:' . $url;
-      \Drupal::logger('Howard Giving API')->error($message);
+      $this->loggerFactory->get('Howard Giving API')->error($message);
       return;
     }
 
@@ -84,34 +110,37 @@ class HowardGivingService {
 
   /**
    * Public method to get content from Howard Giving API.
+   *
+   * @param string $cache_id
+   *   The cache ID.
+   * @param string $url
+   *   The URL to fetch data from.
+   *
+   * @return array|null
+   *   The fetched data or NULL on error.
    */
   public function getData($cache_id, $url) {
-    if ($cache = \Drupal::cache()->get($cache_id)) {
+    if ($cache = $this->cache->get($cache_id)) {
       return $cache->data;
     }
     else {
-
       try {
         $request = $this->client->get($url, ['verify' => FALSE]);
         $result = json_decode($request->getBody()->__toString(), TRUE);
-
       }
       catch (RequestException $e) {
-
         $message = 'Error connecting to Howard Giving API via URL:' . $url;
-        \Drupal::logger('Howard Giving API')->error($message);
-
+        $this->loggerFactory->get('Howard Giving API')->error($message);
         return;
       }
       if ($result['data']) {
-        \Drupal::cache()->set($cache_id, $result, time() + 7200);
+        $this->cache->set($cache_id, $result, time() + 7200);
         return $result;
       }
       else {
         return;
       }
     }
-
   }
 
   /**
