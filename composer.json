@@ -25,7 +25,7 @@
         "drupal/core": "^10 || ^11",
         "drupal/external_data_source": "^3.2",
         "drupal/paragraphs": "^1.12",
-        "drupal/tablefield": "^2.3",
+        "drupal/tablefield": "^3.0",
         "drupal/viewsreference": "^2.0",
         "drupal/webform": "^6.0"
     },
