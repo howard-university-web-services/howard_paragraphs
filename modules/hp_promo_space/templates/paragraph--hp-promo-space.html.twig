@@ -26,7 +26,9 @@
           {% else %}
             <div class="silc-grid__col silc-grid__col--12-medium">
           {% endif %}
-            <h2 class="header--h2">{{ content.field_hp_promo_title }}</h2>
+            {% if content.field_hp_promo_title|render %}
+              <h2 class="header--h2">{{ content.field_hp_promo_title }}</h2>
+            {% endif %}
             {{ content.field_hp_promo_text }}
             {% for key, item in content.field_hp_promo_links %}
               {%  if key|first != '#' %}
