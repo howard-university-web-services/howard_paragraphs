@@ -83,6 +83,9 @@ class HowardNewsService {
 
     $url = $env_url . $this->articleEndpoint . "?sort[sort-published][path]=field_date&sort[sort-published][direction]=DESC&page[limit]=" . $range . '&include=field_hero_image,field_hero_image.field_media_image,field_hero_image.field_media_image.uid';
 
+    // Exclude articles with external source field checked (filter out where field = 1).
+    $url .= '&filter[external-source][condition][path]=field_article_external_source&filter[external-source][condition][value]=1&filter[external-source][condition][operator]=%3C%3E';
+
     // Filter for category.
     if (isset($category)) {
       $url .= $this->formatIdFilters('category', 'field_tags.tid', $category, 'IN');

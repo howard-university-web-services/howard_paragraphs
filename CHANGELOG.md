@@ -2,6 +2,61 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.0.11] - 2025-08-20
+
+### Added
+
+- External source field filtering for article feeds in HowardNewsService
+- Automatic exclusion of articles marked with field_article_external_source boolean field
+- JSON:API filtering integration to exclude external content from article feeds
+
+### Changed
+
+- Enhanced getArticles() method with external source filtering capability
+- Improved service methods for better content filtering and data integrity
+- Updated documentation and maintenance for release preparation
+
+### Fixed
+
+- Resolved article feed filtering to properly exclude external source content
+- Improved API query construction for better content control
+
+## [11.0.10] - 2025-07-17
+
+### Fixed
+
+- Fixed promo space template to conditionally render heading only when title field has content
+- Improved template output by preventing empty heading tags in promo space paragraphs
+
+### Changed
+
+- Enhanced hp_promo_space template with conditional title rendering
+- Better content structure for promo space components
+
+## [11.0.9] - 2025-07-17
+
+### Fixed
+
+- Fixed carousel with caption template to conditionally render heading only when title field has content
+- Improved template output by preventing empty heading tags in carousel slides
+
+### Changed
+
+- Enhanced hp_carousel_with_caption_slide template with conditional title rendering
+- Better content structure for carousel components
+
+## [11.0.8] - 2025-07-16
+
+### Changed
+
+- Updated drupal/tablefield dependency requirement from ^2.3 to ^3.0
+- Improved compatibility with latest tablefield module version
+- Enhanced module dependency management for better stability
+
+### Added
+
+- Support for tablefield module 3.x with improved features and Drupal 11 compatibility
+
 ## [11.0.7] - 2025-07-08
 
 ### Changed
