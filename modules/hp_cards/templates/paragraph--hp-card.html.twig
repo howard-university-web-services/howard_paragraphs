@@ -11,7 +11,7 @@
 	{# General card with image layout #}
 	<div class="silc-grid__col silc-grid__col--4-medium">
 		{% if content.field_hp_cd_link[0]['#url'] %}
-			<a href="{{ content.field_hp_cd_link[0]['#url'] }}" class="{{ hp_card_class }}" {% if content.field_hp_cd_link[0]['#options'].attributes.target %} target="{{ content.field_hp_cd_link[0]['#options'].attributes.target }}" {% endif %}>
+			<a href="{{ content.field_hp_cd_link[0]['#url'] }}" class="{{ hp_card_class }}" {% if content.field_hp_cd_link[0]['#url'].getOption('attributes')['target'] %} target="{{ content.field_hp_cd_link[0]['#url'].getOption('attributes')['target'] }}" {% endif %}>
 			{% else %}
 				<div class="{{ hp_card_class }}">
 				{% endif %}
