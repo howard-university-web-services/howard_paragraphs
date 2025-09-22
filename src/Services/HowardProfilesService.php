@@ -58,7 +58,7 @@ class HowardProfilesService {
   /**
    * Public method to return Howard Profiles.
    */
-  public function getProfiles($env_url = 'http://profiles.howard.edu', $sort = 'all', $department = NULL, $id = 'default') {
+  public function getProfiles($env_url = 'http://profiles.howard.edu', $sort = 'all', $department = NULL, $id = 'default', $admin_taxonomy = NULL) {
 
     $url = $env_url . $this->personEndpoint . '?sort=' . $sort;
 
@@ -67,7 +67,12 @@ class HowardProfilesService {
       $url .= '&department=' . $department;
     }
 
-    // dsm($url);
+    // Filter for administrative taxonomy.
+    if (isset($admin_taxonomy)) {
+      $url .= '&admin=' . $admin_taxonomy;
+    }
+
+   //  dsm($url);
     $json = $this->getData($id, $url);
 
     return $json;

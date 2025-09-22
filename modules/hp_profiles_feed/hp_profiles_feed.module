@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Ip_button_link module file.
+ * HP Profiles Feed module file.
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
@@ -61,6 +61,14 @@ function hp_profiles_feed_preprocess_paragraph__hp_profiles_feed(&$variables) {
     $department = str_replace('id=', '', $department);
   }
 
+  // Check on administrative taxonomy.
+  $admin_taxonomy = NULL;
+  if (isset($variables['elements']['#paragraph']->field_hp_pf_admin_taxonomy->value)) {
+    $admin_taxonomy = $variables['elements']['#paragraph']->field_hp_pf_admin_taxonomy->value;
+    // Decode string workaround due to bug in core or external_data_source.
+    $admin_taxonomy = str_replace('id=', '', $admin_taxonomy);
+  }
+
   // Check for the prefered display sort.
   $sort = 'all';
   if (isset($variables['elements']['#paragraph']->field_hp_pf_sort->value)) {
@@ -68,7 +76,7 @@ function hp_profiles_feed_preprocess_paragraph__hp_profiles_feed(&$variables) {
   }
 
   // Get profiles.
-  $variables['hp_pf_profiles'] = \Drupal::service('howard.profiles')->getProfiles($env_url, $sort, $department, $uuid);
+  $variables['hp_pf_profiles'] = \Drupal::service('howard.profiles')->getProfiles($env_url, $sort, $department, $uuid, $admin_taxonomy);
 
 }
 
@@ -124,5 +132,12 @@ function hp_profiles_feed_update_8004() {
  * Updates to add descriptive text field.
  */
 function hp_profiles_feed_update_8005() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_profiles_feed');
+}
+
+/**
+ * Updates to add administrative taxonomy field.
+ */
+function hp_profiles_feed_update_8006() {
   \Drupal::service('config.installer')->installDefaultConfig('module', 'hp_profiles_feed');
 }

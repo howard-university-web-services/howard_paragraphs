@@ -1,8 +1,8 @@
-uuid: abcfa686-8ab8-4584-a0b5-ce2e9b54b013
 langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.hp_profiles_feed.field_hp_pf_admin_taxonomy
     - field.field.paragraph.hp_profiles_feed.field_hp_pf_descriptive_text
     - field.field.paragraph.hp_profiles_feed.field_hp_pf_environment
     - field.field.paragraph.hp_profiles_feed.field_hp_pf_profiles_department
@@ -56,5 +56,6 @@ content:
     weight: 0
     region: content
 hidden:
+  field_hp_pf_admin_taxonomy: true
   field_hp_pf_environment: true
   field_hp_pf_profiles_department: true

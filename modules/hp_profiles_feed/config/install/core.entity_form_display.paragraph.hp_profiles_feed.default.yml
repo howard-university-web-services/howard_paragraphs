@@ -1,8 +1,8 @@
-uuid: 6f1a88ef-9875-48b0-a577-2044f145bacd
 langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.hp_profiles_feed.field_hp_pf_admin_taxonomy
     - field.field.paragraph.hp_profiles_feed.field_hp_pf_descriptive_text
     - field.field.paragraph.hp_profiles_feed.field_hp_pf_environment
     - field.field.paragraph.hp_profiles_feed.field_hp_pf_profiles_department
@@ -19,6 +19,14 @@ targetEntityType: paragraph
 bundle: hp_profiles_feed
 mode: default
 content:
+  field_hp_pf_admin_taxonomy:
+    type: external_data_source_select_widget
+    weight: 5
+    region: content
+    settings:
+      size: 1
+      placeholder: ''
+    third_party_settings: {  }
   field_hp_pf_descriptive_text:
     type: text_textfield
     weight: 1

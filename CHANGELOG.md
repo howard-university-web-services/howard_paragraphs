@@ -2,6 +2,35 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.0.13] - 2025-09-22
+
+### Added
+
+- Administrative taxonomy filtering field for HP Profiles Feed module
+- New external data source plugin (ProfilesAdmin) to fetch administrative classifications from profiles.howard.edu
+- Field storage and configuration for field_hp_pf_admin_taxonomy
+- Support for filtering profiles by administrative taxonomy in HowardProfilesService
+- Update hook hp_profiles_feed_update_8006() to install new field configuration
+
+### Changed
+
+- Enhanced getProfiles() method in HowardProfilesService to accept admin_taxonomy parameter
+- Updated hp_profiles_feed preprocessing to handle administrative taxonomy filtering
+- Improved profiles feed flexibility with additional filtering options
+
+### Fixed
+
+- Corrected module file header comment in hp_profiles_feed.module (was showing "Ip_button_link" instead of "HP Profiles Feed")
+- Added proper parameter handling for administrative taxonomy filtering in profile queries
+
+## [11.0.12] - 2025-08-28
+
+### Fixed
+
+- Fixed card link target attribute access in hp_cards template
+- Updated paragraph--hp-card.html.twig to properly access target attribute from URL options
+- Resolved issue where card link targets were not being applied correctly
+
 ## [11.0.11] - 2025-08-20
 
 ### Added

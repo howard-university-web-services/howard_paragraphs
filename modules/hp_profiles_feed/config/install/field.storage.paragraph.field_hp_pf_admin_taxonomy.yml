@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - external_data_source
+    - paragraphs
+_core:
+  default_config_hash: sSbahdFwmMAdqBScSbdgo8_TV4DAzFRk6vzQrKkEr6I
+id: paragraph.field_hp_pf_admin_taxonomy
+field_name: field_hp_pf_admin_taxonomy
+entity_type: paragraph
+type: external_data_source
+settings:
+  ws: profiles_admin
+  count: '100'
+  max_length: '255'
+  is_ascii: false
+  case_sensitive: false
+module: external_data_source
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_pf_admin_taxonomy
+    - paragraphs.paragraphs_type.hp_profiles_feed
+  module:
+    - external_data_source
+_core:
+  default_config_hash: SdgsQC72mh7lup11oo-JwDVInWroLWkFVBqqG_Rm-Rw
+id: paragraph.hp_profiles_feed.field_hp_pf_admin_taxonomy
+field_name: field_hp_pf_admin_taxonomy
+entity_type: paragraph
+bundle: hp_profiles_feed
+label: 'Administrative Taxonomy'
+description: 'Optionally, filter this feed by administrative classification. These categories are pulled from the "Administrative" taxonomy (admin) on the profiles.howard.edu installation.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: external_data_source
