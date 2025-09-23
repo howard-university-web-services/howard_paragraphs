@@ -31,6 +31,21 @@
       <div class="silc-grid">
         {% if hp_announcements[0] %}
           {% for ann in hp_announcements %}
+            {# Schema.org structured data for Announcement/Event #}
+            <script type="application/ld+json">
+            {
+              "@context": "https://schema.org",
+              "@type": "Event",
+              "name": "{{ ann.title|striptags }}",
+              "description": "{{ ann.summary|striptags }}",
+              "startDate": "{{ ann.start_date|date('c') }}",
+              "organizer": {
+                "@type": "EducationalOrganization",
+                "name": "Howard University"
+              }
+              {% if ann.link.uri %},"url": "{{ ann.link.uri }}"{% endif %}
+            }
+            </script>
 
             {% if hp_an_type == 'one_column' %}
               <div class="silc-grid__col silc-grid__col--12-medium">

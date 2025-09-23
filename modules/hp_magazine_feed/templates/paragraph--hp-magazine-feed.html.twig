@@ -38,6 +38,29 @@
       {% if hp_mf_articles.data[0] %}
           <div class="silc-grid">
             {% for evnt in hp_mf_articles.data %}
+              {# Schema.org structured data for Article #}
+              <script type="application/ld+json">
+              {
+                "@context": "https://schema.org",
+                "@type": "Article",
+                "headline": "{{ evnt.attributes.title|striptags }}",
+                "description": "{{ evnt.attributes.field_summary|striptags }}",
+                {% if evnt.attributes.image.uri %}"image": "{{ evnt.attributes.image.uri }}",{% endif %}
+                "url": "{{ hp_mf_env_url }}{{ evnt.attributes.path.alias }}",
+                "isPartOf": {
+                  "@type": "PublicationIssue",
+                  "isPartOf": {
+                    "@type": "Periodical",
+                    "name": "Howard Magazine"
+                  }
+                },
+                "publisher": {
+                  "@type": "EducationalOrganization",
+                  "name": "Howard University"
+                }
+              }
+              </script>
+
               <div class="silc-grid__col silc-grid__col--4-medium">
                 <a href="{{ hp_mf_env_url }}{{ evnt.attributes.path.alias }}" class="news-and-events__block" target="_blank">
                   <div class="news-and-events__img">

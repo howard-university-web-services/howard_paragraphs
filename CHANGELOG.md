@@ -2,6 +2,36 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.0.14] - 2025-09-23
+
+### Added
+
+- Comprehensive Schema.org structured data markup across all major paragraph templates
+- Schema.org Person markup for profiles, testimonials, alumni feeds, and featured alumni
+- Schema.org Article markup for featured articles, giving feed, and magazine feed  
+- Schema.org NewsArticle markup for news feeds and announcements feeds
+- Schema.org Event markup for announcements and announcement feeds
+- Schema.org Statistic markup for data point paragraphs
+- Schema.org VideoObject/AudioObject/MediaObject markup for media paragraphs
+- Schema.org EducationalOccupationalProgram markup for program paragraphs
+- Schema.org WebApplication markup for programs feed (program finder tool)
+- Schema.org Quotation markup for testimonial paragraphs
+- Enhanced SEO capabilities through structured data for search engine optimization
+- Rich snippet potential for better search result display
+
+### Changed
+
+- All major paragraph templates now include appropriate Schema.org JSON-LD structured data
+- Improved semantic markup consistency across educational content types
+- Enhanced content discoverability through structured data implementation
+
+### Technical Details
+
+- Added Schema.org markup to 14+ paragraph templates including profiles, news, articles, media, programs, testimonials, and data points
+- Used appropriate schema types based on content: Person for individuals, Article/NewsArticle for content, Event for announcements, etc.
+- Implemented conditional field inclusion to prevent empty schema properties
+- Used Howard University as the consistent organization/publisher entity across all markup
+
 ## [11.0.13] - 2025-09-22
 
 ### Added

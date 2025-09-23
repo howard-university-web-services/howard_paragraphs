@@ -18,6 +18,29 @@
 <section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Program">
   {% if hp_pg_program %}
 
+    {# Schema.org structured data #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOccupationalProgram",
+      "name": "{{ hp_pg_program.label|striptags }}{% if hp_pg_program.degree_classification %} | {{ hp_pg_program.degree_classification|striptags }}{% endif %}",
+      {% if hp_pg_program.lead_in %}"description": "{{ hp_pg_program.lead_in|striptags }}",{% endif %}
+      {% if hp_pg_program.program_type %}"programType": "{{ hp_pg_program.program_type|striptags }}",{% endif %}
+      {% if hp_pg_program.degree_classification %}"educationalCredentialAwarded": "{{ hp_pg_program.degree_classification|striptags }}",{% endif %}
+      {% if hp_pg_program.program_length %}"timeToComplete": "{{ hp_pg_program.program_length|striptags }}",{% endif %}
+      {% if hp_pg_program.program_tuition %}"offers": {
+        "@type": "Offer",
+        "price": "{{ hp_pg_program.program_tuition|striptags }}",
+        "priceCurrency": "USD"
+      },{% endif %}
+      {% if hp_pg_program.total_students %}"numberOfCredits": "{{ hp_pg_program.total_students|striptags }}",{% endif %}
+      "provider": {
+        "@type": "CollegeOrUniversity",
+        "name": "Howard University"
+      }
+    }
+    </script>
+
     {# Intro #}
     <div class="section--padded-bottom hp-html">
       <h2>{{ hp_pg_program.label }} | {{ hp_pg_program.degree_classification }}</h2>

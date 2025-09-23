@@ -7,6 +7,22 @@
 %}
 
 <section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Data Point">
+	{# Schema.org structured data for Statistic #}
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Statistic",
+		"name": "{{ content.field_hp_dp_title|striptags }}",
+		"value": "{{ content.field_hp_dp_stat|striptags }}",
+		"description": "{{ content.field_hp_dp_stat_body|striptags }}",
+		"about": {
+			"@type": "EducationalOrganization",
+			"name": "Howard University"
+		}
+		{% if content.field_hp_dp_link %},"url": "{{ content.field_hp_dp_link[0]['#url'] }}"{% endif %}
+	}
+	</script>
+
 	{% if hp_show_wrapper %}
 		<div class="compartment">
 		{% endif %}

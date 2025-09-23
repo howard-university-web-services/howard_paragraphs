@@ -21,6 +21,19 @@
   {% endif %}
 
       {% if hp_media_type == 'remote_video' %}
+        {# Schema.org structured data for Video #}
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "VideoObject",
+          {% if content.field_hp_md_title[0] %}"name": "{{ content.field_hp_md_title|striptags }}",{% endif %}
+          {% if content.field_hp_md_caption[0] %}"description": "{{ content.field_hp_md_caption|striptags }}",{% endif %}
+          "publisher": {
+            "@type": "EducationalOrganization",
+            "name": "Howard University"
+          }
+        }
+        </script>
 
         <div class="video">
           {% if content.field_hp_md_title[0] %}
@@ -44,6 +57,19 @@
         </div>
 
       {% elseif hp_media_type == 'audio' %}
+        {# Schema.org structured data for Audio #}
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "AudioObject",
+          {% if content.field_hp_md_title[0] %}"name": "{{ content.field_hp_md_title|striptags }}",{% endif %}
+          {% if content.field_hp_md_caption[0] %}"description": "{{ content.field_hp_md_caption|striptags }}",{% endif %}
+          "publisher": {
+            "@type": "EducationalOrganization",
+            "name": "Howard University"
+          }
+        }
+        </script>
 
         <div class="audio-file">
           {% if content.field_hp_md_title[0] %}
@@ -58,6 +84,19 @@
         </div>
 
       {% else %}
+        {# Schema.org structured data for General Media #}
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "MediaObject",
+          {% if content.field_hp_md_title[0] %}"name": "{{ content.field_hp_md_title|striptags }}",{% endif %}
+          {% if content.field_hp_md_caption[0] %}"description": "{{ content.field_hp_md_caption|striptags }}",{% endif %}
+          "publisher": {
+            "@type": "EducationalOrganization",
+            "name": "Howard University"
+          }
+        }
+        </script>
 
         {% if content.field_hp_md_title[0] %}
           <h3>{{ content.field_hp_md_title }}</h3>

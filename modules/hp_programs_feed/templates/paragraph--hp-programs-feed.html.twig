@@ -19,6 +19,35 @@
 	{% if hp_show_wrapper %}
 		<div class="compartment">
 		{% endif %}
+
+			{# Schema.org structured data #}
+			<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "WebApplication",
+				"name": "{% if content.field_hp_pgf_title|render %}{{ content.field_hp_pgf_title|striptags }}{% else %}Program Finder{% endif %}",
+				{% if content.field_hp_pgf_text|render %}"description": "{{ content.field_hp_pgf_text|striptags }}",{% endif %}
+				"applicationCategory": "EducationalApplication",
+				"operatingSystem": "Web Browser",
+				"provider": {
+					"@type": "CollegeOrUniversity",
+					"name": "Howard University"
+				},
+				"potentialAction": {
+					"@type": "SearchAction",
+					"target": {
+						"@type": "EntryPoint",
+						"urlTemplate": "{{ hp_pgf_env_url }}",
+						"actionPlatform": [
+							"http://schema.org/DesktopWebPlatform",
+							"http://schema.org/MobileWebPlatform"
+						]
+					},
+					"query-input": "required name=search"
+				}
+			}
+			</script>
+
 			<div class="program-finder">
 				{% if content.field_hp_pgf_title|render %}
 					<h2 class="program-finder__heading header--h2">{{ content.field_hp_pgf_title }}</h2>

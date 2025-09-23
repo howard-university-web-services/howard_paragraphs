@@ -17,6 +17,22 @@
 
 {% if hp_fa_title %}
 	<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Featured Article">
+		{# Schema.org structured data for Article #}
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Article",
+			"headline": "{{ hp_fa_title|striptags }}",
+			"description": "{{ hp_fa_summary|striptags }}",
+			"image": "{{ hp_fa_image }}",
+			"url": "{{ hp_fa_link }}",
+			"publisher": {
+				"@type": "EducationalOrganization",
+				"name": "Howard University"
+			}
+		}
+		</script>
+
 		{% if hp_show_wrapper %}
 			<div class="compartment">
 			{% endif %}

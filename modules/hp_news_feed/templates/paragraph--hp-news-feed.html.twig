@@ -43,6 +43,22 @@
 
 				<div class="silc-grid">
 					{% for evnt in hp_nf_news.data %}
+						{# Schema.org structured data for Article #}
+						<script type="application/ld+json">
+						{
+							"@context": "https://schema.org",
+							"@type": "NewsArticle",
+							"headline": "{{ evnt.attributes.title|striptags }}",
+							"datePublished": "{{ evnt.attributes.field_date|date('c') }}",
+							{% if evnt.attributes.image.uri %}"image": "{{ evnt.attributes.image.uri }}",{% endif %}
+							"url": "{{ hp_nf_env_url }}{{ evnt.attributes.path.alias }}",
+							"publisher": {
+								"@type": "EducationalOrganization",
+								"name": "Howard University"
+							}
+						}
+						</script>
+
 						<div class="silc-grid__col silc-grid__col--4-medium">
 							<a href="{{ hp_nf_env_url }}{{ evnt.attributes.path.alias }}" class="news-and-events__block" target="_blank">
 								<div class="news-and-events__img news-and-events__img_portrait"><img src={% if evnt.attributes.image.uri %}"{{ evnt.attributes.image.uri }}" alt="{{ evnt.attributes.image.alt }}"{% else %}"{{ hp_nf_default_image }}" alt="{{ hp_nf_default_image.alt }}"{% endif %}></div>
@@ -59,6 +75,21 @@
 
 				<div class="news-and-events--featured">
 					{% for evnt in hp_nf_news.data %}
+						{# Schema.org structured data for Article #}
+						<script type="application/ld+json">
+						{
+							"@context": "https://schema.org",
+							"@type": "NewsArticle",
+							"headline": "{{ evnt.attributes.title|striptags }}",
+							"datePublished": "{{ evnt.attributes.field_date|date('c') }}",
+							{% if evnt.attributes.image.uri %}"image": "{{ evnt.attributes.image.uri }}",{% endif %}
+							"url": "{{ hp_nf_env_url }}{{ evnt.attributes.path.alias }}",
+							"publisher": {
+								"@type": "EducationalOrganization",
+								"name": "Howard University"
+							}
+						}
+						</script>
 
 						{% if loop.first %}
 							<div class="silc-grid silc-grid--no-gutters">
@@ -104,6 +135,21 @@
 
 				<div class="silc-grid">
 					{% for evnt in hp_nf_news.data %}
+						{# Schema.org structured data for Article #}
+						<script type="application/ld+json">
+						{
+							"@context": "https://schema.org",
+							"@type": "NewsArticle",
+							"headline": "{{ evnt.attributes.title|striptags }}",
+							"datePublished": "{{ evnt.attributes.field_date|date('c') }}",
+							{% if evnt.attributes.image.uri %}"image": "{{ evnt.attributes.image.uri }}",{% endif %}
+							"url": "{{ hp_nf_env_url }}{{ evnt.attributes.path.alias }}",
+							"publisher": {
+								"@type": "EducationalOrganization",
+								"name": "Howard University"
+							}
+						}
+						</script>
 
 						{% if loop.first %}
 							<div class="silc-grid__col silc-grid__col--6-medium news-and-events__white">
@@ -151,6 +197,21 @@
 				<div class="silc-grid">
 					<div class="silc-grid__col silc-grid__col--12-medium">
 						{% for evnt in hp_nf_news.data %}
+							{# Schema.org structured data for Article #}
+							<script type="application/ld+json">
+							{
+								"@context": "https://schema.org",
+								"@type": "NewsArticle",
+								"headline": "{{ evnt.attributes.title|striptags }}",
+								"datePublished": "{{ evnt.attributes.field_date|date('c') }}",
+								"url": "{{ hp_nf_env_url }}{{ evnt.attributes.path.alias }}",
+								"publisher": {
+									"@type": "EducationalOrganization",
+									"name": "Howard University"
+								}
+							}
+							</script>
+
 							<a href="{{ hp_nf_env_url }}{{ evnt.attributes.path.alias }}" class="news-and-events__block" target="_blank">
 								<div class="news-and-events__desc">
 									<span class="news-and-events__date">{{ evnt.attributes.field_date|date('M j, Y') }}</span>

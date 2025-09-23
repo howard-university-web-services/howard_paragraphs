@@ -41,6 +41,22 @@
         <div class="silc-grid">
           <div class="silc-grid__col silc-grid__col--12-medium">
           {% for evnt in hp_anf_announcements %}
+            {# Schema.org structured data for Announcement/Event #}
+            <script type="application/ld+json">
+            {
+              "@context": "https://schema.org",
+              "@type": "Event",
+              "name": "{{ evnt.attributes.title|striptags }}",
+              "description": "{{ evnt.attributes.field_announcement_summary|striptags }}",
+              "startDate": "{{ evnt.attributes.field_announcement_pub_date|date('c') }}",
+              "organizer": {
+                "@type": "EducationalOrganization",
+                "name": "Howard University"
+              },
+              "url": "{{ hp_anf_env_url }}{{ evnt.attributes.path.alias }}"
+            }
+            </script>
+
             <a href="{{ hp_anf_env_url }}{{ evnt.attributes.path.alias }}" class="news-and-events__block" target="_blank">
               <div class="news-and-events__desc">
                 <span class="news-and-events__date">{{ evnt.attributes.field_announcement_pub_date|date('M j, Y') }}</span>

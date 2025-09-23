@@ -35,6 +35,29 @@
 		<div class="silc-grid">
 
 			{% for prsn in hp_pf_profiles.data %}
+				{# Schema.org structured data for Person #}
+				<script type="application/ld+json">
+				{
+					"@context": "https://schema.org",
+					"@type": "Person",
+					"name": "{{ prsn.full_name|striptags }}",
+					{% if prsn.affiliation.title %}"jobTitle": "{{ prsn.affiliation.title|striptags }}",{% endif %}
+					{% if prsn.affiliation.department %}
+					"worksFor": {
+						"@type": "Organization",
+						"name": "{{ prsn.affiliation.department|striptags }}",
+						"parentOrganization": {
+							"@type": "EducationalOrganization",
+							"name": "Howard University"
+						}
+					},
+					{% endif %}
+					{% if prsn.featured_image.image_styles.hc_large_480_480_cropped %}"image": "{{ prsn.featured_image.image_styles.hc_large_480_480_cropped }}",{% endif %}
+					{% if prsn.show_email and prsn.email %}"email": "{{ prsn.email }}",{% endif %}
+					"url": "{{ hp_pf_env_url }}{{ prsn.url }}"
+				}
+				</script>
+
 				<div class="silc-grid__col silc-grid__col--4-medium">
 					<div class="faculty-profile">
 						<div class="faculty-profile__block">

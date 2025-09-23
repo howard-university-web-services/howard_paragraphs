@@ -15,6 +15,21 @@
 %}
 
 <section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Testimonial">
+	{# Schema.org structured data for Testimonial/Quotation #}
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Quotation",
+		{% if content.field_hp_tst_quote|render %}"text": "{{ content.field_hp_tst_quote|striptags }}",{% endif %}
+		"author": {
+			"@type": "Person",
+			{% if content.field_hp_tst_name|render %}"name": "{{ content.field_hp_tst_name|striptags }}",{% endif %}
+			{% if content.field_hp_tst_title|render %}"jobTitle": "{{ content.field_hp_tst_title|striptags }}"{% endif %}
+			{% if content.field_hp_tst_image|render %},"image": "{{ hp_tst_image }}"{% endif %}
+		}
+	}
+	</script>
+
 	{% if hp_show_wrapper %}
 		<div class="compartment">
 		{% endif %}
