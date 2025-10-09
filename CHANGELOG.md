@@ -24,7 +24,7 @@ All notable changes to the Howard Paragraphs module will be documented in this f
 
 - Comprehensive Schema.org structured data markup across all major paragraph templates
 - Schema.org Person markup for profiles, testimonials, alumni feeds, and featured alumni
-- Schema.org Article markup for featured articles, giving feed, and magazine feed  
+- Schema.org Article markup for featured articles, giving feed, and magazine feed
 - Schema.org NewsArticle markup for news feeds and announcements feeds
 - Schema.org Event markup for announcements and announcement feeds
 - Schema.org Statistic markup for data point paragraphs
