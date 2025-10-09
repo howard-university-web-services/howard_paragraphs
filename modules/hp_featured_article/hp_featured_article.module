@@ -63,9 +63,9 @@ function hp_featured_article_preprocess_paragraph__hp_featured_article(&$variabl
         // Title.
         $variables['hp_fa_title'] = $entity->getTitle();
         // Summary.
-        $variables['hp_fa_summary'] = ['#markup' => text_summary(strip_tags($entity->body->value))];
+        $variables['hp_fa_summary'] = text_summary(strip_tags($entity->body->value));
         if (isset($entity->body->summary) && $entity->body->summary !== '') {
-          $variables['hp_fa_summary'] = ['#markup' => $entity->body->summary];
+          $variables['hp_fa_summary'] = $entity->body->summary;
         }
         // Link.
         $variables['hp_fa_link'] = $entity->toUrl()->toString();

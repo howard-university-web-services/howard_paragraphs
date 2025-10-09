@@ -2,6 +2,22 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.0.15] - 2025-10-09
+
+### Fixed
+
+- Fixed Schema.org structured data field value access in Twig templates
+- Corrected `hp_featured_article` module preprocess function to return raw text instead of render arrays for summary fields
+- Fixed field value access in `hp_media` templates to use `paragraph.field_name.value` instead of `content.field_name` for Schema.org markup
+- Fixed field value access in `hp_programs_feed` template for proper Schema.org structured data output
+- Improved consistency of field value handling across all paragraph templates with Schema.org markup
+
+### Technical Details
+
+- Changed summary field output in `hp_featured_article_preprocess_paragraph__hp_featured_article()` from render arrays to plain text
+- Updated Schema.org JSON-LD markup in media, programs feed, and other templates to access field values correctly
+- Ensures proper Schema.org validation and prevents HTML markup in structured data
+
 ## [11.0.14] - 2025-09-23
 
 ### Added

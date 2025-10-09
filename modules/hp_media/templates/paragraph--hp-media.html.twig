@@ -26,8 +26,8 @@
         {
           "@context": "https://schema.org",
           "@type": "VideoObject",
-          {% if content.field_hp_md_title[0] %}"name": "{{ content.field_hp_md_title|striptags }}",{% endif %}
-          {% if content.field_hp_md_caption[0] %}"description": "{{ content.field_hp_md_caption|striptags }}",{% endif %}
+          {% if content.field_hp_md_title[0] %}"name": "{{ paragraph.field_hp_md_title.value|striptags }}",{% endif %}
+          {% if content.field_hp_md_caption[0] %}"description": "{{ paragraph.field_hp_md_caption.value|striptags }}",{% endif %}
           "publisher": {
             "@type": "EducationalOrganization",
             "name": "Howard University"
@@ -62,8 +62,8 @@
         {
           "@context": "https://schema.org",
           "@type": "AudioObject",
-          {% if content.field_hp_md_title[0] %}"name": "{{ content.field_hp_md_title|striptags }}",{% endif %}
-          {% if content.field_hp_md_caption[0] %}"description": "{{ content.field_hp_md_caption|striptags }}",{% endif %}
+          {% if content.field_hp_md_title[0] %}"name": "{{ paragraph.field_hp_md_title.value|striptags }}",{% endif %}
+          {% if content.field_hp_md_caption[0] %}"description": "{{ paragraph.field_hp_md_caption.value|striptags }}",{% endif %}
           "publisher": {
             "@type": "EducationalOrganization",
             "name": "Howard University"
@@ -89,8 +89,8 @@
         {
           "@context": "https://schema.org",
           "@type": "MediaObject",
-          {% if content.field_hp_md_title[0] %}"name": "{{ content.field_hp_md_title|striptags }}",{% endif %}
-          {% if content.field_hp_md_caption[0] %}"description": "{{ content.field_hp_md_caption|striptags }}",{% endif %}
+          {% if content.field_hp_md_title[0] %}"name": "{{ paragraph.field_hp_md_title.value|striptags }}",{% endif %}
+          {% if content.field_hp_md_caption[0] %}"description": "{{ paragraph.field_hp_md_caption.value|striptags }}",{% endif %}
           "publisher": {
             "@type": "EducationalOrganization",
             "name": "Howard University"
