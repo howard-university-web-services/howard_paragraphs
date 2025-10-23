@@ -12,9 +12,9 @@
 	{
 		"@context": "https://schema.org",
 		"@type": "Statistic",
-		"name": "{{ content.field_hp_dp_title|striptags }}",
-		"value": "{{ content.field_hp_dp_stat|striptags }}",
-		"description": "{{ content.field_hp_dp_stat_body|striptags }}",
+		"name": "{{ content.field_hp_dp_title|render|striptags }}",
+		"value": "{{ content.field_hp_dp_stat|render|striptags }}",
+		"description": "{{ content.field_hp_dp_stat_body|render|striptags }}",
 		"about": {
 			"@type": "EducationalOrganization",
 			"name": "Howard University"
