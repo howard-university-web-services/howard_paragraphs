@@ -2,6 +2,25 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.0.17] - 2025-10-23
+
+### Fixed
+
+- Fixed version number in howard_paragraphs.info.yml
+
+## [11.0.16] - 2025-10-23
+
+### Fixed
+
+- Fixed Twig error in hp_data_point module caused by missing `|render` filter before `|striptags` in Schema.org structured data markup
+- Corrected field value processing in data point template to ensure proper JSON-LD output
+
+### Technical Details
+
+- Added `|render` filter before `|striptags` in paragraph--hp-data-point.html.twig template for Schema.org fields
+- Ensures field values are properly rendered before string processing for structured data
+- Prevents Twig filter chain errors when processing field content
+
 ## [11.0.15] - 2025-10-09
 
 ### Fixed
