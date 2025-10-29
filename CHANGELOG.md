@@ -2,6 +2,18 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.0.18] - 2025-10-29
+
+### Changed
+
+- Removed unnecessary CSS class 'ks_article_img' from hp_articles template
+- Cleaned up template markup for better consistency and maintainability
+
+### Fixed
+
+- Updated README.md version number to reflect current version
+- Improved template consistency across article feed displays
+
 ## [11.0.17] - 2025-10-23
 
 ### Fixed

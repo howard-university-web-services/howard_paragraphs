@@ -4,7 +4,7 @@ Paragraphs integration of the commonly used howard "Kitchen Sink" components.
 
 ## Version
 
-**Current Version: 11.0.6**
+**Current Version: 11.0.18**
 
 These components are designed as individual sub-modules that you may enable as needed. These are designed to work with the idfive Component Library frontend.
 
