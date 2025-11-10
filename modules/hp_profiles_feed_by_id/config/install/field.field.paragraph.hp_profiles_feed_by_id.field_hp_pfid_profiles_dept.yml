@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_pfid_profiles_dept
+    - paragraphs.paragraphs_type.hp_profiles_feed_by_id
+  module:
+    - external_data_source
+id: paragraph.hp_profiles_feed_by_id.field_hp_pfid_profiles_dept
+field_name: field_hp_pfid_profiles_dept
+entity_type: paragraph
+bundle: hp_profiles_feed_by_id
+label: Department
+description: 'Optionally, filter this feed by department.'
+required: true
+translatable: false
+settings: {  }
+field_type: external_data_source

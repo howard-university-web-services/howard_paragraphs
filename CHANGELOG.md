@@ -2,6 +2,14 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.0.19] - 2025-11-10
+
+### Changed
+
+- HP Profile Feed by Id Created
+- HowardProfileService updated to include nids as argument and add as filter
+
+
 ## [11.0.18] - 2025-10-29
 
 ### Changed

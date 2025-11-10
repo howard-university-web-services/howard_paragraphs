@@ -1,0 +1,23 @@
+
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_pfid_selected_profiles
+    - paragraphs.paragraphs_type.hp_profiles_feed_by_id
+id: paragraph.hp_profiles_feed_by_id.field_hp_pfid_selected_profiles
+field_name: field_hp_pfid_selected_profiles
+entity_type: paragraph
+bundle: hp_profiles_feed_by_id
+label: 'Selected Profiles'
+description: "This field allows you to manually specify the ID of individual profiles to feature. These ID's are the node ID of the profile, in profiles.howard.edu."
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer
