@@ -2,6 +2,18 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.0.20] - 2025-11-25
+
+### Fixed
+
+- Fixed target attribute access in hp_button_link template for button-type links
+- Changed from `content.field_ip_bl_link[key]['#options'].attributes.target` to `content.field_ip_bl_link[key]['#url'].getOption('attributes')['target']` for proper URL option handling
+
+### Technical Details
+
+- Updated paragraph--ip-button-link.html.twig to use correct Drupal URL API method for accessing link options
+- Ensures consistent behavior when links are configured to open in new windows/tabs
+
 ## [11.0.18] - 2025-10-29
 
 ### Changed

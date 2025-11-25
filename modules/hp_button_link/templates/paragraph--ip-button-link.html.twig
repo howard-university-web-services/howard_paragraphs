@@ -28,7 +28,7 @@
               <span class="icon-arrow-right"></span>
             </a>
           {% elseif ip_bl_type == 'button' %}
-            <a href="{{ content.field_ip_bl_link[key]['#url'] }}" class="btn"{% if content.field_ip_bl_link[key]['#options'].attributes.target %} target="{{ content.field_ip_bl_link[key]['#options'].attributes.target }}"{% endif %}>
+            <a href="{{ content.field_ip_bl_link[key]['#url'] }}" class="btn"{% if content.field_ip_bl_link[key]['#url'].getOption('attributes')['target'] %} target="{{ content.field_ip_bl_link[key]['#url'].getOption('attributes')['target'] }}"{% endif %}>
               <span class="btn__text">{{ content.field_ip_bl_link[key]['#title'] }}</span>
               <span class="icon-arrow-right"></span>
             </a>
