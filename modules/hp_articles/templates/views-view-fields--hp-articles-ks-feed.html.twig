@@ -8,6 +8,45 @@
 #}
 
 <div class="silc-grid__col silc-grid__col--4-medium">
+	{# Schema.org structured data for Article #}
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Article",
+		"headline": {{ fields.title.content|render|striptags|json_encode|raw }},
+		{% if fields.field_hc_article_type.content == 'External Article' -%}
+		{% if fields.field_hc_article_link.content -%}
+		"url": {{ fields.field_hc_article_link.content|render|striptags|json_encode|raw }},
+		{%- endif %}
+		{% if fields.field_hc_article_dateline.content -%}
+		"datePublished": {{ fields.field_hc_article_dateline.content|render|striptags|json_encode|raw }},
+		{%- endif %}
+		{% if fields.field_hc_article_source.content -%}
+		"publisher": {
+			"@type": "Organization",
+			"name": {{ fields.field_hc_article_source.content|render|striptags|json_encode|raw }}
+		},
+		{%- endif %}
+		{%- else -%}
+		"url": "{{ path('entity.node.canonical', {'node': fields.nid.content|render|striptags|trim}) }}",
+		{% if fields.created.content -%}
+		"datePublished": {{ fields.created.content|render|striptags|json_encode|raw }},
+		{%- endif %}
+		{% if fields.body.content -%}
+		"description": {{ fields.body.content|render|striptags|json_encode|raw }},
+		{%- endif %}
+		"publisher": {
+			"@type": "EducationalOrganization",
+			"name": "Howard University"
+		},
+		{%- endif %}
+		{% if fields.field_hc_article_category.content -%}
+		"about": {{ fields.field_hc_article_category.content|render|striptags|json_encode|raw }}
+		{%- else -%}
+		"about": "News"
+		{%- endif %}
+	}
+	</script>
 	{% if fields.field_hc_article_type.content == 'External Article' %}
 		<a href="{{ fields.field_hc_article_link.content }}" class="news-and-events__block" target="_blank">
 			<div class="news-and-events__desc">

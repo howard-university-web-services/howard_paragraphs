@@ -11,9 +11,9 @@
 <script type="application/ld+json">
 {
 	"@context": "https://schema.org",
-	"@type": "Dataset",
-	{% if paragraph.field_hp_graph_title.value %}"name": "{{ paragraph.field_hp_graph_title.value|striptags }}",{% endif %}
-	{% if paragraph.field_hp_graph_description.value %}"description": "{{ paragraph.field_hp_graph_description.value|striptags }}",{% endif %}
+	"@type": "Dataset"{% if paragraph.field_hp_graph_title.value %},
+	"name": {{ paragraph.field_hp_graph_title.value|striptags|json_encode|raw }}{% endif %}{% if paragraph.field_hp_graph_description.value %},
+	"description": {{ paragraph.field_hp_graph_description.value|striptags|json_encode|raw }}{% endif %},
 	"publisher": {
 		"@type": "EducationalOrganization",
 		"name": "Howard University"
@@ -22,9 +22,9 @@
 	{% for key, data in paragraph.field_hp_graph_data %}
 		{% set data_entity = data.entity %}
 		{
-			"@type": "DataDownload",
-			{% if data_entity.field_hp_graph_label.value %}"name": {{ data_entity.field_hp_graph_label.value|striptags|json_encode|raw }},{% endif %}
-			{% if data_entity.field_hp_graph_value.value %}"contentSize": "{{ data_entity.field_hp_graph_value.value }}"{% endif %}
+			"@type": "DataDownload"{% if data_entity.field_hp_graph_label.value %},
+			"name": {{ data_entity.field_hp_graph_label.value|striptags|json_encode|raw }}{% endif %}{% if data_entity.field_hp_graph_value.value %},
+			"contentSize": "{{ data_entity.field_hp_graph_value.value }}"{% endif %}
 		}{{ not loop.last ? ',' }}
 	{% endfor %}
 	]{% endif %}

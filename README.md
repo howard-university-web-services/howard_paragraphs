@@ -1,12 +1,31 @@
 # Howard Paragraphs
 
-Paragraphs integration of the commonly used howard "Kitchen Sink" components.
+Paragraphs integration of the commonly used howard "Kitchen Sink" components with comprehensive Schema.org structured data support.
 
 ## Version
 
-**Current Version: 11.0.18**
+**Current Version: 11.1.1**
 
-These components are designed as individual sub-modules that you may enable as needed. These are designed to work with the idfive Component Library frontend.
+These components are designed as individual sub-modules that you may enable as needed. These are designed to work with the idfive Component Library frontend and include robust Schema.org markup for enhanced SEO and search engine visibility.
+
+## Features
+
+### 🔍 **Schema.org Integration (New in v11.1.1)**
+- **Comprehensive Structured Data**: All 12+ paragraph types include appropriate Schema.org markup
+- **Educational Context**: Proper academic institution markup for university content  
+- **SEO Optimization**: Enhanced search engine understanding and rich snippet generation
+- **JSON Safety**: Robust encoding prevents malformed structured data
+- **Content Types Supported**: Articles, Events, People, Organizations, Educational Programs, Statistics, Creative Works, Video Content, and more
+
+### 📋 **Paragraph Components**
+- **HP Articles**: Article listings with proper Schema.org Article markup
+- **HP Cards**: Dynamic Person/Organization/Thing schema based on card type
+- **HP Carousels**: Image galleries with ItemList and ImageObject schema
+- **HP Data Points**: University statistics with Statistic schema
+- **HP Programs**: Academic programs with EducationalOccupationalProgram schema  
+- **HP Timelines**: Event-based chronological content
+- **HP YouTube Playlists**: Video content with VideoObject schema
+- **And many more...**
 
 ## Installation
 

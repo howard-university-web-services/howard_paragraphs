@@ -2,6 +2,34 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.1.1] - 2025-12-05
+
+### Fixed
+- **Schema.org Data Quality**: Improved JSON encoding and field access patterns across all templates
+- **String Safety**: Enhanced string cleaning with proper quote escaping and newline removal  
+- **Field Validation**: Added proper conditional rendering to prevent malformed JSON
+- **Educational Context**: Standardized Howard University as `EducationalOrganization` across all modules
+
+### Enhanced - 12 Paragraph Modules
+- **HP Articles** (`views-view-fields--hp-articles-ks-feed`): Enhanced article schema with safe JSON encoding
+- **HP Card** (`paragraph--hp-card`): Improved schema relationships and string safety
+- **HP Carousel with Caption** (`paragraph--hp-carousel-with-caption`): Better image metadata handling  
+- **HP Carousel with Modal** (`paragraph--hp-carousel-with-modal`): Enhanced modal gallery schema
+- **HP Data Point** (`paragraph--hp-data-point`): Improved statistic schema with URL validation
+- **HP Giving Feed** (`paragraph--hp-giving-feed`): Enhanced article schema for fundraising content
+- **HP Graph** (`paragraph--hp-graph`): Better dataset schema with proper field validation
+- **HP Program** (`paragraph--hp-program`): Comprehensive educational program schema improvements
+- **HP Promo Space** (`paragraph--hp-promo-space`): Enhanced creative work schema
+- **HP Promo Space Multi Image** (`paragraph--hp-promo-space-multi-img`): Complex multi-image schema arrays  
+- **HP Timeline** (`paragraph--hp-timeline`): Enhanced event-based timeline schema
+- **HP YouTube Playlist** (`paragraph--hp-youtube-playlist`): Comprehensive video playlist schema
+
+### Technical
+- **JSON Safety**: All fields now use `|json_encode|raw` for proper escaping
+- **String Cleaning**: Added `|replace({'"': '\\"', "\n": " ", "\r": " "})` for safe JSON output
+- **Error Prevention**: Eliminated potential malformed JSON from field values
+- **SEO Enhancement**: Better structured data quality for search engines
+
 ## [11.1.0] - 2025-12-05
 
 ### Enhanced - Schema.org Implementation

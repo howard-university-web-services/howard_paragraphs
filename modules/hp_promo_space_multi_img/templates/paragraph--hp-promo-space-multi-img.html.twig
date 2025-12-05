@@ -16,6 +16,21 @@
 %}
 
 <section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Promotional space">
+  {# Schema.org structured data for CreativeWork #}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",{% if hp_promo_title %}
+    "name": "{{ hp_promo_title|striptags|replace({'"': '\\"', "\n": " ", "\r": " "})|raw }}",{% endif %}{% if hp_promo_text %}
+    "description": "{{ hp_promo_text|striptags|replace({'"': '\\"', "\n": " ", "\r": " "})|raw }}",{% endif %}{% if hp_promo_image_1 or hp_promo_image_2 or hp_promo_image_3 or hp_promo_image_4 or hp_promo_image_5 or hp_promo_image_6 %}
+    "image": [{% set images = [] %}{% if hp_promo_image_1 %}{% set images = images|merge(['"' ~ hp_promo_image_1|raw ~ '"']) %}{% endif %}{% if hp_promo_image_2 %}{% set images = images|merge(['"' ~ hp_promo_image_2|raw ~ '"']) %}{% endif %}{% if hp_promo_image_3 %}{% set images = images|merge(['"' ~ hp_promo_image_3|raw ~ '"']) %}{% endif %}{% if hp_promo_image_4 %}{% set images = images|merge(['"' ~ hp_promo_image_4|raw ~ '"']) %}{% endif %}{% if hp_promo_image_5 %}{% set images = images|merge(['"' ~ hp_promo_image_5|raw ~ '"']) %}{% endif %}{% if hp_promo_image_6 %}{% set images = images|merge(['"' ~ hp_promo_image_6|raw ~ '"']) %}{% endif %}{{ images|join(', ')|raw }}],{% endif %}{% if content.field_hp_promo_links[0] %}
+    "url": "{{ content.field_hp_promo_links[0]['#url'] }}",{% endif %}
+    "publisher": {
+      "@type": "EducationalOrganization",
+      "name": "Howard University"
+    }
+  }
+  </script>
   {% if hp_show_wrapper %}
     <div class="compartment">
   {% endif %}
