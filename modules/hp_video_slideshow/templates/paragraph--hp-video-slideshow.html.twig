@@ -7,6 +7,33 @@
  */
 #}
 
+{# Video Slideshow Schema.org structured data #}
+{% if paragraph.field_hp_vs_video_slides %}
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "ItemList",
+	{% if paragraph.field_hp_vs_title.value %}"name": "{{ paragraph.field_hp_vs_title.value|striptags }}",{% endif %}
+	"numberOfItems": {{ paragraph.field_hp_vs_video_slides|length }},
+	"itemListElement": [
+	{% for key, slide in paragraph.field_hp_vs_video_slides %}
+		{% set slide_entity = slide.entity %}
+		{
+			"@type": "VideoObject",
+			"position": {{ key + 1 }}{% if slide_entity.field_hp_vs_title.value %},
+			"name": {{ slide_entity.field_hp_vs_title.value|striptags|json_encode|raw }}{% endif %}{% if slide_entity.field_hp_vs_description.value %},
+			"description": {{ slide_entity.field_hp_vs_description.value|striptags|json_encode|raw }}{% endif %}
+		}{{ not loop.last ? ',' }}
+	{% endfor %}
+	],
+	"publisher": {
+		"@type": "EducationalOrganization",
+		"name": "Howard University"
+	}
+}
+</script>
+{% endif %}
+
 {%
   set classes = [
     content.field_hp_vs_use_padding[0].value ? 'section--padded-top',

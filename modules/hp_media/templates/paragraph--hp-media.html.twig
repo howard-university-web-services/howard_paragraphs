@@ -26,11 +26,17 @@
         {
           "@context": "https://schema.org",
           "@type": "VideoObject",
-          {% if content.field_hp_md_title[0] %}"name": "{{ paragraph.field_hp_md_title.value|striptags }}",{% endif %}
-          {% if content.field_hp_md_caption[0] %}"description": "{{ paragraph.field_hp_md_caption.value|striptags }}",{% endif %}
+          {% if paragraph.field_hp_md_title.value %}"name": "{{ paragraph.field_hp_md_title.value|striptags }}",{% endif %}
+          {% if paragraph.field_hp_md_caption.value %}"description": "{{ paragraph.field_hp_md_caption.value|striptags }}",{% endif %}
+          {% if paragraph.field_hp_md_media.entity.field_media_oembed_video.value %}"contentUrl": "{{ paragraph.field_hp_md_media.entity.field_media_oembed_video.value }}",{% endif %}
+          {% if paragraph.field_hp_md_media.entity.thumbnail.entity.uri.value %}"thumbnailUrl": "{{ file_url(paragraph.field_hp_md_media.entity.thumbnail.entity.uri.value) }}",{% endif %}
+          {% if paragraph.field_hp_md_media.entity.created.value %}"uploadDate": "{{ paragraph.field_hp_md_media.entity.created.value|date('c') }}",{% endif %}
+          {% if paragraph.field_hp_md_media.entity.name.value %}"alternateName": "{{ paragraph.field_hp_md_media.entity.name.value|striptags }}",{% endif %}
+          {% if url %}"url": "{{ url }}",{% endif %}
           "publisher": {
             "@type": "EducationalOrganization",
-            "name": "Howard University"
+            "name": "Howard University",
+            "url": "https://www.howard.edu"
           }
         }
         </script>
@@ -62,11 +68,16 @@
         {
           "@context": "https://schema.org",
           "@type": "AudioObject",
-          {% if content.field_hp_md_title[0] %}"name": "{{ paragraph.field_hp_md_title.value|striptags }}",{% endif %}
-          {% if content.field_hp_md_caption[0] %}"description": "{{ paragraph.field_hp_md_caption.value|striptags }}",{% endif %}
+          {% if paragraph.field_hp_md_title.value %}"name": "{{ paragraph.field_hp_md_title.value|striptags }}",{% endif %}
+          {% if paragraph.field_hp_md_caption.value %}"description": "{{ paragraph.field_hp_md_caption.value|striptags }}",{% endif %}
+          {% if paragraph.field_hp_md_media.entity.field_media_audio_file.entity.uri.value %}"contentUrl": "{{ file_url(paragraph.field_hp_md_media.entity.field_media_audio_file.entity.uri.value) }}",{% endif %}
+          {% if paragraph.field_hp_md_media.entity.created.value %}"uploadDate": "{{ paragraph.field_hp_md_media.entity.created.value|date('c') }}",{% endif %}
+          {% if paragraph.field_hp_md_media.entity.name.value %}"alternateName": "{{ paragraph.field_hp_md_media.entity.name.value|striptags }}",{% endif %}
+          {% if url %}"url": "{{ url }}",{% endif %}
           "publisher": {
             "@type": "EducationalOrganization",
-            "name": "Howard University"
+            "name": "Howard University",
+            "url": "https://www.howard.edu"
           }
         }
         </script>
@@ -89,11 +100,16 @@
         {
           "@context": "https://schema.org",
           "@type": "MediaObject",
-          {% if content.field_hp_md_title[0] %}"name": "{{ paragraph.field_hp_md_title.value|striptags }}",{% endif %}
-          {% if content.field_hp_md_caption[0] %}"description": "{{ paragraph.field_hp_md_caption.value|striptags }}",{% endif %}
+          {% if paragraph.field_hp_md_title.value %}"name": "{{ paragraph.field_hp_md_title.value|striptags }}",{% endif %}
+          {% if paragraph.field_hp_md_caption.value %}"description": "{{ paragraph.field_hp_md_caption.value|striptags }}",{% endif %}
+          {% if paragraph.field_hp_md_media.entity.field_media_image.entity.uri.value %}"contentUrl": "{{ file_url(paragraph.field_hp_md_media.entity.field_media_image.entity.uri.value) }}",{% endif %}
+          {% if paragraph.field_hp_md_media.entity.created.value %}"uploadDate": "{{ paragraph.field_hp_md_media.entity.created.value|date('c') }}",{% endif %}
+          {% if paragraph.field_hp_md_media.entity.name.value %}"alternateName": "{{ paragraph.field_hp_md_media.entity.name.value|striptags }}",{% endif %}
+          {% if url %}"url": "{{ url }}",{% endif %}
           "publisher": {
             "@type": "EducationalOrganization",
-            "name": "Howard University"
+            "name": "Howard University",
+            "url": "https://www.howard.edu"
           }
         }
         </script>

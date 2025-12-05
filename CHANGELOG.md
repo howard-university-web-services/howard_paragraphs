@@ -2,6 +2,49 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.1.0] - 2025-12-05
+
+### Enhanced - Schema.org Implementation
+
+#### New Schema.org Implementations (6 modules)
+
+- **HP Carousel with Caption**: Added `ItemList` with `ImageObject` items for enhanced image carousels
+- **HP Carousel with Modal**: Added `ItemList` with `ImageObject` items for modal image collections  
+- **HP Video Slideshow**: Added `ItemList` with `VideoObject` items for video content
+- **HP Timeline**: Added `ItemList` with `Event` objects for chronological content
+- **HP Accordion**: Added `ItemList` with `WebPageElement` objects for collapsible content
+- **HP Cards**: Added dynamic schema (`Person`/`Organization`/`Thing`) based on card type
+- **HP Callout**: Added `WebPageElement` with `Action` objects for call-to-action content
+
+#### Enhanced Existing Schema.org (4 modules)
+
+- **HP Media**: Enhanced with proper media entity access, content URLs, and safe JSON encoding
+- **HP Testimonial**: Enhanced with safe JSON encoding and proper author affiliation
+- **HP Featured Article**: Enhanced with conditional field rendering and complete publisher URLs
+- **HP News Feed**: Enhanced all layout types with improved field validation and safety
+
+### Technical Improvements
+
+- **Safe JSON Encoding**: All text fields use `json_encode|raw` to prevent syntax errors
+- **Conditional Rendering**: All schema fields check for existence before output
+- **Educational Context**: All modules reference Howard University as `EducationalOrganization`
+- **Media Entity Support**: Enhanced media field access patterns for rich content URLs
+- **Cross-template Consistency**: Standardized schema patterns across all templates
+
+### SEO Benefits
+
+- **Rich Snippets**: Enabled image carousels, video thumbnails, event timelines, person profiles
+- **Enhanced Discovery**: Better content categorization and relationship understanding
+- **Technical SEO**: Structured data validation compliance, no JSON syntax errors
+
+### Documentation
+
+- Added comprehensive Schema.org implementation documentation (`docs/schema-org-implementation.md`)
+- Documented field access patterns and best practices
+- Added testing and validation guidelines
+- Included maintenance guidelines for future development
+- Updated index and development guides with Schema.org references
+
 ## [11.0.19] - 2025-11-25
 
 ### Fixed

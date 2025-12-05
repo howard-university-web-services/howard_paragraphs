@@ -7,6 +7,35 @@
  */
 #}
 
+{# Timeline Schema.org structured data #}
+{% if paragraph.field_hp_timeline_field %}
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "ItemList",
+	{% if paragraph.field_hp_timeline_title.value %}"name": "{{ paragraph.field_hp_timeline_title.value|striptags }}",{% endif %}
+	{% if paragraph.field_hp_timeline_text.value %}"description": "{{ paragraph.field_hp_timeline_text.value|striptags }}",{% endif %}
+	"numberOfItems": {{ paragraph.field_hp_timeline_field|length }},
+	"itemListElement": [
+	{% for key, item in paragraph.field_hp_timeline_field %}
+		{% set item_entity = item.entity %}
+		{
+			"@type": "Event",
+			"position": {{ key + 1 }}{% if item_entity.field_hp_timeline_title.value %},
+			"name": {{ item_entity.field_hp_timeline_title.value|striptags|json_encode|raw }}{% endif %}{% if item_entity.field_hp_timeline_date.value %},
+			"startDate": "{{ item_entity.field_hp_timeline_date.value|date('c') }}"{% endif %}{% if item_entity.field_hp_timeline_description.value %},
+			"description": {{ item_entity.field_hp_timeline_description.value|striptags|json_encode|raw }}{% endif %}
+		}{{ not loop.last ? ',' }}
+	{% endfor %}
+	],
+	"publisher": {
+		"@type": "EducationalOrganization",
+		"name": "Howard University"
+	}
+}
+</script>
+{% endif %}
+
 {%
   set classes = [
     'section--padded-top',

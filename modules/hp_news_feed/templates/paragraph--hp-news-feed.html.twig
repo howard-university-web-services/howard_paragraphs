@@ -48,13 +48,14 @@
 						{
 							"@context": "https://schema.org",
 							"@type": "NewsArticle",
-							"headline": "{{ evnt.attributes.title|striptags }}",
-							"datePublished": "{{ evnt.attributes.field_date|date('c') }}",
+							{% if evnt.attributes.title %}"headline": {{ evnt.attributes.title|striptags|json_encode|raw }},{% endif %}
+							{% if evnt.attributes.field_date %}"datePublished": "{{ evnt.attributes.field_date|date('c') }}",{% endif %}
 							{% if evnt.attributes.image.uri %}"image": "{{ evnt.attributes.image.uri }}",{% endif %}
-							"url": "{{ hp_nf_env_url }}{{ evnt.attributes.path.alias }}",
+							{% if hp_nf_env_url and evnt.attributes.path.alias %}"url": "{{ hp_nf_env_url }}{{ evnt.attributes.path.alias }}",{% endif %}
 							"publisher": {
 								"@type": "EducationalOrganization",
-								"name": "Howard University"
+								"name": "Howard University",
+								"url": "https://www.howard.edu"
 							}
 						}
 						</script>
@@ -80,13 +81,14 @@
 						{
 							"@context": "https://schema.org",
 							"@type": "NewsArticle",
-							"headline": "{{ evnt.attributes.title|striptags }}",
-							"datePublished": "{{ evnt.attributes.field_date|date('c') }}",
+							{% if evnt.attributes.title %}"headline": {{ evnt.attributes.title|striptags|json_encode|raw }},{% endif %}
+							{% if evnt.attributes.field_date %}"datePublished": "{{ evnt.attributes.field_date|date('c') }}",{% endif %}
 							{% if evnt.attributes.image.uri %}"image": "{{ evnt.attributes.image.uri }}",{% endif %}
-							"url": "{{ hp_nf_env_url }}{{ evnt.attributes.path.alias }}",
+							{% if hp_nf_env_url and evnt.attributes.path.alias %}"url": "{{ hp_nf_env_url }}{{ evnt.attributes.path.alias }}",{% endif %}
 							"publisher": {
 								"@type": "EducationalOrganization",
-								"name": "Howard University"
+								"name": "Howard University",
+								"url": "https://www.howard.edu"
 							}
 						}
 						</script>

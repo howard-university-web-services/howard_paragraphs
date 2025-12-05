@@ -7,6 +7,31 @@
  */
 #}
 
+{# Callout Schema.org structured data #}
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "WebPageElement",
+	{% if paragraph.field_hp_call_title.value %}"name": "{{ paragraph.field_hp_call_title.value|striptags }}",{% endif %}
+	{% if hp_call_image %}"image": "{{ hp_call_image }}",{% endif %}
+	{% if paragraph.field_hp_call_links %}"potentialAction": [
+	{% for key, link in paragraph.field_hp_call_links %}
+		{% if key|first != '#' %}
+		{
+			"@type": "Action",
+			{% if link.title %}"name": "{{ link.title|striptags }}",{% endif %}
+			{% if link.uri %}"url": "{{ link.uri }}"{% endif %}
+		}{{ not loop.last ? ',' }}
+		{% endif %}
+	{% endfor %}
+	],{% endif %}
+	"publisher": {
+		"@type": "EducationalOrganization",
+		"name": "Howard University"
+	}
+}
+</script>
+
 {%
   set classes = []
 %}

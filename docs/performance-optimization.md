@@ -238,3 +238,9 @@ $request = $this->client->get($url . '&filter[status][value]=1', [
    - Lazy load external content
 
 These optimizations can significantly improve the performance of sites using the Howard Paragraphs module without requiring a major refactoring of the codebase.
+
+## SEO and Structured Data Performance
+
+Howard Paragraphs includes comprehensive Schema.org structured data implementation that provides SEO benefits with minimal performance impact. The structured data is implemented as lightweight JSON-LD scripts that add less than 2KB per component on average.
+
+For details on the SEO implementation, see the [Schema.org Implementation Guide](schema-org-implementation.md).

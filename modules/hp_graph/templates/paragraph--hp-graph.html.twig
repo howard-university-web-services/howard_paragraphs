@@ -7,6 +7,30 @@
  */
 #}
 
+{# Graph Schema.org structured data as Dataset #}
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "Dataset",
+	{% if paragraph.field_hp_graph_title.value %}"name": "{{ paragraph.field_hp_graph_title.value|striptags }}",{% endif %}
+	{% if paragraph.field_hp_graph_description.value %}"description": "{{ paragraph.field_hp_graph_description.value|striptags }}",{% endif %}
+	"publisher": {
+		"@type": "EducationalOrganization",
+		"name": "Howard University"
+	}{% if paragraph.field_hp_graph_data %},
+	"distribution": [
+	{% for key, data in paragraph.field_hp_graph_data %}
+		{% set data_entity = data.entity %}
+		{
+			"@type": "DataDownload",
+			{% if data_entity.field_hp_graph_label.value %}"name": {{ data_entity.field_hp_graph_label.value|striptags|json_encode|raw }},{% endif %}
+			{% if data_entity.field_hp_graph_value.value %}"contentSize": "{{ data_entity.field_hp_graph_value.value }}"{% endif %}
+		}{{ not loop.last ? ',' }}
+	{% endfor %}
+	]{% endif %}
+}
+</script>
+
 {%
   set classes = [
     'section--padded-top',

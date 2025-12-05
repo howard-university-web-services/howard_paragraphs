@@ -7,6 +7,40 @@
  */
 #}
 
+{# Homepage Carousel Schema.org structured data with image details #}
+{% if paragraph.field_hp_cc_slides %}
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "ItemList",
+	{% if paragraph.field_hp_cc_title.value %}"name": "{{ paragraph.field_hp_cc_title.value|striptags }}",{% endif %}
+	"numberOfItems": {{ paragraph.field_hp_cc_slides|length }},
+	"itemListElement": [
+	{% for key, slide in paragraph.field_hp_cc_slides %}
+		{% set slide_entity = slide.entity %}
+		{
+			"@type": "ImageObject",
+			"position": {{ key + 1 }},
+			{% if slide_entity.field_hp_cc_image.entity.field_media_image.entity %}
+			"url": {{ file_url(slide_entity.field_hp_cc_image.entity.field_media_image.entity.fileuri)|json_encode|raw }},
+			{% if slide_entity.field_hp_cc_image.entity.field_media_image.alt %}
+			"caption": {{ slide_entity.field_hp_cc_image.entity.field_media_image.alt|json_encode|raw }},
+			{% endif %}
+			{% endif %}
+			{% if slide_entity.field_hp_cc_title.value %}
+			"name": {{ slide_entity.field_hp_cc_title.value|striptags|json_encode|raw }}
+			{% endif %}
+		}{{ not loop.last ? ',' }}
+	{% endfor %}
+	],
+	"publisher": {
+		"@type": "EducationalOrganization",
+		"name": "Howard University"
+	}
+}
+</script>
+{% endif %}
+
 {%
   set classes = [
     'section--padded-top',

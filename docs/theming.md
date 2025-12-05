@@ -91,6 +91,8 @@ Example customization:
 </div>
 ```
 
+> **Note**: When customizing templates, be aware that many components include Schema.org structured data markup for SEO benefits. See the [Schema.org Implementation](schema-org-implementation.md) guide for details on maintaining or customizing structured data when modifying templates.
+
 ### Method 2: Preprocess Functions
 
 Add custom logic through preprocessing:

@@ -20,12 +20,22 @@
 	{
 		"@context": "https://schema.org",
 		"@type": "Quotation",
-		{% if content.field_hp_tst_quote|render %}"text": "{{ content.field_hp_tst_quote|render|striptags }}",{% endif %}
+		{% if paragraph.field_hp_tst_quote.value %}"text": {{ paragraph.field_hp_tst_quote.value|striptags|json_encode|raw }},{% endif %}
 		"author": {
 			"@type": "Person",
-			{% if content.field_hp_tst_name|render %}"name": "{{ content.field_hp_tst_name|render|striptags }}",{% endif %}
-			{% if content.field_hp_tst_title|render %}"jobTitle": "{{ content.field_hp_tst_title|render|striptags }}"{% endif %}
-			{% if content.field_hp_tst_image|render %},"image": "{{ hp_tst_image }}"{% endif %}
+			{% if paragraph.field_hp_tst_name.value %}"name": {{ paragraph.field_hp_tst_name.value|striptags|json_encode|raw }},{% endif %}
+			{% if paragraph.field_hp_tst_title.value %}"jobTitle": {{ paragraph.field_hp_tst_title.value|striptags|json_encode|raw }}{% endif %}{% if hp_tst_image %},
+			"image": "{{ hp_tst_image }}"{% endif %},
+			"affiliation": {
+				"@type": "EducationalOrganization",
+				"name": "Howard University",
+				"url": "https://www.howard.edu"
+			}
+		},
+		"publisher": {
+			"@type": "EducationalOrganization",
+			"name": "Howard University",
+			"url": "https://www.howard.edu"
 		}
 	}
 	</script>

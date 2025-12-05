@@ -7,6 +7,28 @@
  */
 #}
 
+{# Card Schema.org structured data - Generic approach #}
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "{% if hp_card_layout == 'person' %}Person{% elseif hp_card_layout == 'sponsor' %}Organization{% else %}Thing{% endif %}",
+	{% if paragraph.field_hp_cd_title.value %}"name": "{{ paragraph.field_hp_cd_title.value|striptags }}",{% endif %}
+	{% if paragraph.field_hp_cd_text.value %}"description": "{{ paragraph.field_hp_cd_text.value|striptags }}",{% endif %}
+	{% if hp_card_image %}"image": "{{ hp_card_image }}",{% endif %}
+	{% if paragraph.field_hp_cd_link.uri %}"url": "{{ paragraph.field_hp_cd_link.uri }}",{% endif %}
+	{% if hp_card_layout == 'person' %}"affiliation": {
+		"@type": "EducationalOrganization",
+		"name": "Howard University"
+	}{% elseif hp_card_layout == 'sponsor' %}"memberOf": {
+		"@type": "EducationalOrganization", 
+		"name": "Howard University"
+	}{% else %}"publisher": {
+		"@type": "EducationalOrganization",
+		"name": "Howard University"
+	}{% endif %}
+}
+</script>
+
 {% if hp_card_layout == 'card_with_image' %}
 	{# General card with image layout #}
 	<div class="silc-grid__col silc-grid__col--4-medium">

@@ -9,6 +9,7 @@ Welcome to the comprehensive documentation for the Howard Paragraphs module - a 
 - [Installation & Configuration](installation.md)
 - [Development Guide](development-guide.md)
 - [Theming & Customization](theming.md)
+- [Schema.org Implementation](schema-org-implementation.md)
 - [External Content & Caching](external-content.md)
 - [Performance Optimization](performance-optimization.md)
 - [Troubleshooting](troubleshooting.md)
@@ -24,6 +25,7 @@ The Howard Paragraphs module provides a comprehensive collection of reusable con
 
 - **40+ Paragraph Components**: From simple text blocks to complex data feeds
 - **External Content Integration**: Automatic feeds from Howard's various digital properties
+- **Schema.org SEO Enhancement**: Built-in structured data for better search engine optimization
 - **Responsive Design**: Mobile-first approach with the idfive Component Library
 - **Caching & Performance**: Built-in cache management for external content
 - **Modular Architecture**: Enable only the components you need

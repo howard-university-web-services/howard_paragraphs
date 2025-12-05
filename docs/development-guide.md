@@ -17,6 +17,7 @@ This section covers development topics for Howard Paragraphs, including creating
 
 ### Advanced Topics
 - [External Content Integration](external-content.md)
+- [Schema.org Implementation](schema-org-implementation.md)
 - [Performance Optimization](development-guide.md#performance-optimization)
 - [Testing Components](development-guide.md#testing-components)
 - [Deployment Strategies](development-guide.md#deployment-strategies)

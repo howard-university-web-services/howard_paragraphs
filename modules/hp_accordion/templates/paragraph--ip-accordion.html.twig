@@ -7,6 +7,33 @@
  */
 #}
 
+{# Accordion Schema.org structured data as ItemList #}
+{% if paragraph.field_ip_ac_item %}
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "ItemList",
+	{% if paragraph.field_ip_ac_title.value %}"name": "{{ paragraph.field_ip_ac_title.value|striptags }}",{% endif %}
+	"numberOfItems": {{ paragraph.field_ip_ac_item|length }},
+	"itemListElement": [
+	{% for key, item in paragraph.field_ip_ac_item %}
+		{% set item_entity = item.entity %}
+		{
+			"@type": "WebPageElement",
+			"position": {{ key + 1 }},
+			{% if item_entity.field_ip_ac_title.value %}"name": {{ item_entity.field_ip_ac_title.value|striptags|json_encode|raw }},{% endif %}
+			{% if item_entity.field_ip_ac_body.value %}"description": {{ item_entity.field_ip_ac_body.value|striptags|json_encode|raw }}{% endif %}
+		}{{ not loop.last ? ',' }}
+	{% endfor %}
+	],
+	"publisher": {
+		"@type": "EducationalOrganization",
+		"name": "Howard University"
+	}
+}
+</script>
+{% endif %}
+
 {%
   set classes = [
     'section--padded-top',

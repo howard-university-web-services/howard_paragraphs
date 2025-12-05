@@ -22,13 +22,14 @@
 		{
 			"@context": "https://schema.org",
 			"@type": "Article",
-			"headline": "{{ hp_fa_title|striptags }}",
-			"description": "{{ hp_fa_summary|striptags }}",
-			"image": "{{ hp_fa_image }}",
-			"url": "{{ hp_fa_link }}",
+			{% if hp_fa_title %}"headline": {{ hp_fa_title|striptags|json_encode|raw }},{% endif %}
+			{% if hp_fa_summary %}"description": {{ hp_fa_summary|striptags|json_encode|raw }},{% endif %}
+			{% if hp_fa_image %}"image": "{{ hp_fa_image }}",{% endif %}
+			{% if hp_fa_link %}"url": "{{ hp_fa_link }}",{% endif %}
 			"publisher": {
 				"@type": "EducationalOrganization",
-				"name": "Howard University"
+				"name": "Howard University",
+				"url": "https://www.howard.edu"
 			}
 		}
 		</script>
