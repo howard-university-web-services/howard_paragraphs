@@ -29,8 +29,7 @@
       "programType": {{ hp_pg_program.program_type|striptags|json_encode|raw }}{% endif %}{% if hp_pg_program.program_length %},
       "timeToComplete": {{ hp_pg_program.program_length|striptags|json_encode|raw }}{% endif %}{% if hp_pg_program.program_format %},
       "educationalProgramMode": {{ hp_pg_program.program_format|striptags|json_encode|raw }}{% endif %}{% if hp_pg_program.program_frequency %},
-      "timeOfDay": {{ hp_pg_program.program_frequency|striptags|json_encode|raw }}{% endif %}{% if hp_pg_program.related_degrees %},
-      "alternativeName": {{ hp_pg_program.related_degrees|striptags|json_encode|raw }}{% endif %}{% if hp_pg_program.related_professions %},
+      "timeOfDay": {{ hp_pg_program.program_frequency|striptags|json_encode|raw }}{% endif %}{% if hp_pg_program.related_professions %},
       "occupationalCategory": {{ hp_pg_program.related_professions|striptags|json_encode|raw }}{% endif %}{% if hp_pg_program.program_tuition %},
       "offers": {
         "@type": "Offer",

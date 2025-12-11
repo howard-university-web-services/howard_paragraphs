@@ -7,15 +7,15 @@
 %}
 
 <section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Data Point">
-	{# Schema.org structured data for Statistic #}
+	{# Schema.org structured data for Data Point as QuantitativeValue #}
 	<script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
-		"@type": "Statistic",
+		"@type": "QuantitativeValue",
 		"name": "{{ paragraph.field_hp_dp_title.value|striptags|replace({'"': '\\"', "\n": " ", "\r": " "})|raw }}",
 		"value": "{{ paragraph.field_hp_dp_stat.value|striptags|replace({'"': '\\"', "\n": " ", "\r": " "})|raw }}",
 		"description": "{{ paragraph.field_hp_dp_stat_body.value|striptags|replace({'"': '\\"', "\n": " ", "\r": " "})|raw }}",
-		"about": {
+		"valueReference": {
 			"@type": "EducationalOrganization",
 			"name": "Howard University"
 		}{% if content.field_hp_dp_link %}{% set link_url = content.field_hp_dp_link[0]['#url'] %}{% if link_url %},

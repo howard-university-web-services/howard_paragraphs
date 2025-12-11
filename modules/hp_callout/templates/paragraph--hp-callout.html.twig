@@ -24,11 +24,11 @@
 		}{{ not loop.last ? ',' }}
 		{% endif %}
 	{% endfor %}
-	],{% endif %}
-	"publisher": {
+	]{% endif %}{% if paragraph.field_hp_call_links %},
+	"about": {
 		"@type": "EducationalOrganization",
 		"name": "Howard University"
-	}
+	}{% endif %}
 }
 </script>
 

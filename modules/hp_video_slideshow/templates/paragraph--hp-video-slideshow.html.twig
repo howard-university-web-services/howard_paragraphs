@@ -25,11 +25,7 @@
 			"description": {{ slide_entity.field_hp_vs_description.value|striptags|json_encode|raw }}{% endif %}
 		}{{ not loop.last ? ',' }}
 	{% endfor %}
-	],
-	"publisher": {
-		"@type": "EducationalOrganization",
-		"name": "Howard University"
-	}
+	]
 }
 </script>
 {% endif %}

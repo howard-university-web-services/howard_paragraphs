@@ -7,6 +7,21 @@
  */
 #}
 
+{# Table Schema.org structured data #}
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "Table"{% if paragraph.field_ip_tb_title.value %},
+	"name": {{ paragraph.field_ip_tb_title.value|striptags|json_encode|raw }}{% endif %}{% if paragraph.field_ip_tb_table.value %},
+	"description": "Data table from Howard University"{% endif %},
+	"about": {
+		"@type": "EducationalOrganization",
+		"name": "Howard University",
+		"url": "https://www.howard.edu"
+	}
+}
+</script>
+
 {%
   set classes = [
     'section--padded-top',

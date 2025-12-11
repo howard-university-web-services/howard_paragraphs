@@ -25,11 +25,7 @@
 			{% if item_entity.field_ip_ac_body.value %}"description": {{ item_entity.field_ip_ac_body.value|striptags|json_encode|raw }}{% endif %}
 		}{{ not loop.last ? ',' }}
 	{% endfor %}
-	],
-	"publisher": {
-		"@type": "EducationalOrganization",
-		"name": "Howard University"
-	}
+	]
 }
 </script>
 {% endif %}

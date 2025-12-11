@@ -2,6 +2,40 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.1.2] - 2025-12-11
+
+### Schema.org Validation Fixes
+
+- **Schema.org Validation**: Removed inappropriate `publisher` properties from `ItemList`, `Table`, `WebPageElement`, and `Thing` schema types
+- **URL References**: Fixed HP Card URLs to use proper rendered URLs instead of entity references
+- **Schema Type Accuracy**: Changed HP Card from `Thing` to `WebPageElement` for general cards
+
+### New Schema.org Implementations
+
+- **HP Countdown** (`paragraph--hp-countdown`): Added `Event` schema for countdown timers with event dates
+- **HP Table** (`paragraph--ip-table`): Added `Table` schema for structured data presentation
+
+### Schema.org Compliance Updates
+
+- **HP Accordion**: Removed `publisher` from `ItemList` schema
+- **HP Callout**: Removed `publisher` from `WebPageElement`, replaced with `about` property
+- **HP Card**: Fixed URL rendering and changed `Thing` to `WebPageElement` for generic cards
+- **HP Carousel with Caption**: Removed `publisher` from `ItemList` schema
+- **HP Carousel with Modal**: Removed `publisher` from `ItemList` schema
+- **HP Data Point**: Fixed invalid `Statistic` type to valid `QuantitativeValue` type
+- **HP Program**: Removed invalid `alternativeName` property from `EducationalOccupationalProgram`
+- **HP Table**: Removed `publisher` from `Table`, replaced with `about` property
+- **HP Timeline**: Removed `publisher` from `ItemList` schema, removed invalid `position` property from `Event` objects
+- **HP Video Slideshow**: Removed `publisher` from `ItemList` schema
+- **HP YouTube Playlist**: Removed `publisher` from `ItemList` schema
+
+### Release Statistics
+
+- **Total Enhanced**: 28 modules now include Schema.org markup (up from 26)
+- **Coverage**: 72% of all paragraph modules (28 out of 39)
+- **Schema Types**: 15 different Schema.org types implemented
+- **Validation**: All implementations now pass Schema.org validator requirements
+
 ## [11.1.1] - 2025-12-05
 
 ### Fixed

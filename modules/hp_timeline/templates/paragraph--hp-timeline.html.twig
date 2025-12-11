@@ -20,21 +20,16 @@
 	{% for key, item in paragraph.field_hp_timeline_field %}
 		{% set item_entity = item.entity %}
 		{
-			"@type": "Event",
-			"position": {{ key + 1 }}{% if item_entity.field_hp_timeline_field_title.value %},
+			"@type": "Event"{% if item_entity.field_hp_timeline_field_title.value %},
 			"name": {{ item_entity.field_hp_timeline_field_title.value|striptags|json_encode|raw }}{% endif %}{% if item_entity.field_hp_timeline_field_datetime.value %},
 			"startDate": "{{ item_entity.field_hp_timeline_field_datetime.value|date('c') }}"{% endif %}{% if item_entity.field_hp_timeline_field_desc.value %},
 			"description": {{ item_entity.field_hp_timeline_field_desc.value|striptags|json_encode|raw }}{% endif %}
 		}{{ not loop.last ? ',' }}
 	{% endfor %}
-	],
-	"publisher": {
-		"@type": "EducationalOrganization",
-		"name": "Howard University"
-	}
+	]
 }
 </script>
-{% endif %}
+{% endif %>
 
 {%
   set classes = [

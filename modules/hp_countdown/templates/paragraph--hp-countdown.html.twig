@@ -7,6 +7,24 @@
  */
 #}
 
+{# Countdown Schema.org structured data as Event #}
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "Event"{% if paragraph.field_hp_cdn_title.value %},
+	"name": {{ paragraph.field_hp_cdn_title.value|striptags|json_encode|raw }}{% endif %}{% if hp_cdn_ymd and hp_cdn_hms %},
+	"startDate": "{{ hp_cdn_ymd }}T{{ hp_cdn_hms }}"{% endif %}{% if paragraph.field_hp_cdn_image.entity.field_media_image.entity %},
+	"image": {{ file_url(paragraph.field_hp_cdn_image.entity.field_media_image.entity.fileuri)|json_encode|raw }}{% endif %}{% if content.field_hp_cdn_link[0]['#url'] %},
+	"url": "{{ content.field_hp_cdn_link[0]['#url'] }}"{% endif %},
+	"organizer": {
+		"@type": "EducationalOrganization",
+		"name": "Howard University",
+		"url": "https://www.howard.edu"
+	},
+	"eventStatus": "https://schema.org/EventScheduled"
+}
+</script>
+
 {%
   set classes = [
     'section--padded-top',
