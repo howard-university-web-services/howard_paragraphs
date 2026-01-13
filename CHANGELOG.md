@@ -2,6 +2,12 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.1.3] - 2026-01-13
+
+### Fixed
+
+- **HP Timeline**: Fixed syntax error in timeline widget template
+
 ## [11.1.2] - 2025-12-11
 
 ### Schema.org Validation Fixes
