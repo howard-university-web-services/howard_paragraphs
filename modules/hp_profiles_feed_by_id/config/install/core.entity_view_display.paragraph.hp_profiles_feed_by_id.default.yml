@@ -1,0 +1,42 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_profiles_feed_by_id.field_hp_pfid_selected_profiles
+    - field.field.paragraph.hp_profiles_feed_by_id.field_hp_pfid_title
+    - field.field.paragraph.hp_profiles_feed_by_id.field_hp_pfid_descriptive_text
+    - field.field.paragraph.hp_profiles_feed_by_id.field_hp_pfid_profiles_dept
+    - paragraphs.paragraphs_type.hp_profiles_feed_by_id
+module:
+  - options
+  - text
+id: paragraph.hp_profiles_feed_by_id.default
+targetEntityType: paragraph
+bundle: hp_profiles_feed_by_id
+mode: default
+content:
+  field_hp_pfid_selected_profiles:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ""
+      prefix_suffix: true
+    third_party_settings: {}
+    weight: 2
+    region: content
+  field_hp_pfid_descriptive_text:
+    type: text_default
+    label: hidden
+    settings: {}
+    third_party_settings: {}
+    weight: 1
+    region: content
+  field_hp_pfid_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+    weight: 0
+    region: content
+hidden: { field_hp_pf_profiles_dept: true }

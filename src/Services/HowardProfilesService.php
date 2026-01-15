@@ -58,9 +58,15 @@ class HowardProfilesService {
   /**
    * Public method to return Howard Profiles.
    */
-  public function getProfiles($env_url = 'http://profiles.howard.edu', $sort = 'all', $department = NULL, $id = 'default', $admin_taxonomy = NULL) {
+  public function getProfiles($env_url = 'http://profiles.howard.edu', $sort = 'all', $department = NULL, $id = 'default', $admin_taxonomy = NULL, $nids = NULL) {
 
     $url = $env_url . $this->personEndpoint . '?sort=' . $sort;
+
+    if (isset($nids) && is_array($nids) && !empty($nids)) {
+    foreach ($nids as $nid_value) {
+        $url .= '&nid[]=' . urlencode($nid_value);
+    }
+}
 
     // Filter for department.
     if (isset($department)) {

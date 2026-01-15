@@ -1,0 +1,10 @@
+
+langcode: en
+status: true
+dependencies: {  }
+id: hp_profiles_feed_by_id
+label: 'HP Profiles Feed by ID'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }
