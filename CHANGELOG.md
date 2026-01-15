@@ -2,6 +2,16 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.1.4] - 2026-01-15
+
+### Added
+
+- **HP Profiles Feed By ID**: New paragraph module for displaying manually selected profiles from profiles.howard.edu by specific profile IDs
+  - Includes configuration fields for title and selected profiles
+  - Admin-only functionality for manual profile selection
+  - Template markup provided without CSS/JS (to be styled in client theme)
+  - Enhanced HowardProfilesService to support ID-based profile retrieval
+
 ## [11.1.3] - 2026-01-13
 
 ### Fixed
