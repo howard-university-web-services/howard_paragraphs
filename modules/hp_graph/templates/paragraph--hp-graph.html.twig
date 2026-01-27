@@ -39,34 +39,37 @@
 %}
 
 <section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Graph">
-    {% if hp_show_wrapper %}
-        <section class="compartment">
-    {% endif %}
-			<div class="hp_graph_bundle">
-				<div class="text col">
-					<div class="text_wrapper">
-						{%  if true in content.field_hp_graph_title[0] %}
-							<h2 class="lead-in">{{ content.field_hp_graph_title[0] }}</h2>
-						{% endif %}
-						{%  if true in content.field_hp_graph_description[0] %}
-							<p>{{ content.field_hp_graph_description[0] }}</p>
-						{% endif %}
-					</div>
-				</div>
-				<div class="graph col">
-					{% for i in 0..content.field_hp_graph_data|length %}
-						{% if content.field_hp_graph_data[i] is not null %}
-							{{ content.field_hp_graph_data[i] }}
-						{% endif %}
-					{% endfor %}
-				</div>
-				{%  if true in content.field_hp_graph_link[0] %}
-				<div class="hyperlink">
-					<a class="btn" href="{{-content.field_hp_graph_link[0]['#url']-}}">{{ content.field_hp_graph_link[0]['#title'] }}</a>
-				</div>
-				{% endif %}
-			</div>
 	{% if hp_show_wrapper %}
-        </section>
-    {% endif %}
+		<section class="compartment">
+		{% endif %}
+		<div class="hp_graph_bundle">
+			<div class="text col">
+				<div class="text_wrapper">
+					{%  if true in content.field_hp_graph_title[0] %}
+						<h2 class="lead-in">{{ content.field_hp_graph_title[0] }}</h2>
+					{% endif %}
+					{%  if true in content.field_hp_graph_description[0] %}
+						<p>{{ content.field_hp_graph_description[0] }}</p>
+					{% endif %}
+				</div>
+			</div>
+			<div class="graph col">
+				{% for i in 0..content.field_hp_graph_data|length %}
+					{% if content.field_hp_graph_data[i] is not null %}
+						{{ content.field_hp_graph_data[i] }}
+					{% endif %}
+				{% endfor %}
+			</div>
+			{%  if true in content.field_hp_graph_link[0] %}
+				<div class="hyperlink">
+					<a href="{% apply spaceless %}{{-content.field_hp_graph_link[0]['#url']-}}{% endapply %}" class="btn">
+						<span class="btn__text">{{ content.field_hp_graph_link[0]['#title'] }}</span>
+						<span class="icon-arrow-right"></span>
+					</a>
+				</div>
+			{% endif %}
+		</div>
+		{% if hp_show_wrapper %}
+		</section>
+	{% endif %}
 </section>

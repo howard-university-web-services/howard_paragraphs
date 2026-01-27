@@ -2,6 +2,16 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.1.5] - 2026-01-27
+
+### Improved
+
+- **Template Code Quality**: Standardized indentation and formatting across multiple paragraph templates
+- **Button Styling**: Enhanced button markup with proper `btn__text` spans and arrow icons for consistency
+- **HP Featured Article**: Removed unnecessary `block-header--slim` class
+- **HP Graph**: Improved template formatting and button structure
+- **HP Parallax**: Fixed indentation and updated button markup
+
 ## [11.1.4] - 2026-01-15
 
 ### Added

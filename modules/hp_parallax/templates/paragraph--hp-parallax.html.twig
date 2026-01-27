@@ -16,19 +16,22 @@
 
 <section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Parallax">
 	{% if hp_show_wrapper %}
-    <section class="compartment">
-  {% endif %}
-		<div class=" hp_parallax_bundle" >
+		<section class="compartment">
+		{% endif %}
+		<div class=" hp_parallax_bundle">
 			<div class="parallax_text {{ (float_left == 1 ) ? 'float_left' : '' }}">
 				<aside class="parallax_text_container">
 					<p class="lead-in">{{ content.field_hp_parallax_title }}</p>
 
 					{%  if true in content.field_hp_parallax_description %}
-					{{ content.field_hp_parallax_description }}
+						{{ content.field_hp_parallax_description }}
 					{% endif %}
 
 					{%  if true in content.field_hp_parallax_link[0] %}
-						<a class="btn" href="{% apply spaceless %}{{-content.field_hp_parallax_link[0]['#url']-}}{% endapply %}">{{-content.field_hp_parallax_link[0]['#title']-}}</a>
+						<a href="{% apply spaceless %}{{-content.field_hp_parallax_link[0]['#url']-}}{% endapply %}" class="btn">
+							<span class="btn__text">{{-content.field_hp_parallax_link[0]['#title']-}}</span>
+							<span class="icon-arrow-right"></span>
+						</a>
 					{% endif %}
 				</aside>
 			</div>
@@ -36,7 +39,7 @@
 				<section class="background-image" style="background-image: url('{{hp_parallax_bg_image}}')" alt="{{hp_parallax_bg_image_alt}}">&nbsp;</section>
 			</div>
 		</div>
-	{% if hp_show_wrapper %}
-    </section>
-  {% endif %}
+		{% if hp_show_wrapper %}
+		</section>
+	{% endif %}
 </section>
