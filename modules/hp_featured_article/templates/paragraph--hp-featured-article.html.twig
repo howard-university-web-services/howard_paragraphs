@@ -18,51 +18,48 @@
 {% if hp_fa_title %}
 	<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Featured Article">
 		{# Schema.org structured data for Article #}
-		<script type="application/ld+json">
-		{
-			"@context": "https://schema.org",
-			"@type": "Article",
-			{% if hp_fa_title %}"headline": {{ hp_fa_title|striptags|json_encode|raw }},{% endif %}
-			{% if hp_fa_summary %}"description": {{ hp_fa_summary|striptags|json_encode|raw }},{% endif %}
-			{% if hp_fa_image %}"image": "{{ hp_fa_image }}",{% endif %}
-			{% if hp_fa_link %}"url": "{{ hp_fa_link }}",{% endif %}
-			"publisher": {
-				"@type": "EducationalOrganization",
-				"name": "Howard University",
-				"url": "https://www.howard.edu"
-			}
-		}
-		</script>
+		 <script type="application/ld+json">
+				{
+					"@context": "https://schema.org",
+					"@type": "Article",
+					{% if hp_fa_title %}"headline": {{ hp_fa_title|striptags|json_encode|raw }},{% endif %}
+					{% if hp_fa_summary %}"description": {{ hp_fa_summary|striptags|json_encode|raw }},{% endif %}
+					{% if hp_fa_image %}"image": "{{ hp_fa_image }}",{% endif %}
+					{% if hp_fa_link %}"url": "{{ hp_fa_link }}",{% endif %}
+					"publisher": {
+						"@type": "EducationalOrganization",
+						"name": "Howard University",
+						"url": "https://www.howard.edu"
+					}
+				}
+				</script>
 
-		{% if hp_show_wrapper %}
-			<div class="compartment">
-			{% endif %}
-			<div class="section-content">
+			{% if hp_show_wrapper %}
+			<div class="compartment"> {% endif %}
 
-				<div class="block-header">
-					<div class="block-header__title">
-						<span class=" block-header__icon icon-paper"></span>
-						<h2>{{ content.field_hp_fa_title }}</h2>
-					</div>
+			<div class="block-header block-header">
+				<div class="block-header__title">
+					<span class=" block-header__icon icon-paper"></span>
+					<h2>{{ content.field_hp_fa_title }}</h2>
 				</div>
-
-				<div class="section-content__block">
-					<div class="silc-grid silc-grid--collapse">
-						<div class="silc-grid__col silc-grid__col--4-large">
-							<div class="section-content__img"><img src="{{ hp_fa_image }}" alt="{{ hp_fa_image_alt }}"></div>
-						</div>
-						<div class="silc-grid__col silc-grid__col--8-large">
-							<h3>{{ hp_fa_title }}</h3>
-							{{ hp_fa_summary }}
-							<a href="{{ hp_fa_link }}" class="fancy-link">
-								<span>Read the Article</span>
-								<span class="icon-arrow-right"></span>
-							</a>
-						</div>
-					</div>
-				</div>
-
 			</div>
+
+			<div class="section-content__block">
+				<div class="silc-grid silc-grid--collapse">
+					<div class="silc-grid__col silc-grid__col--4-large">
+						<div class="section-content__img"><img src="{{ hp_fa_image }}" alt="{{ hp_fa_image_alt }}"></div>
+					</div>
+					<div class="silc-grid__col silc-grid__col--8-large">
+						<h3>{{ hp_fa_title }}</h3>
+						{{ hp_fa_summary }}
+						<a href="{{ hp_fa_link }}" class="fancy-link">
+							<span>Read the Article</span>
+							<span class="icon-arrow-right"></span>
+						</a>
+					</div>
+				</div>
+			</div>
+
 			{% if hp_show_wrapper %}
 			</div>
 		{% endif %}

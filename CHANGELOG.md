@@ -2,6 +2,12 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.1.6] - 2026-02-09
+
+### Improved
+
+- **HP Featured Article**: Cleaned up template structure by removing unnecessary nested `section-content` wrapper div and improved indentation formatting
+
 ## [11.1.5] - 2026-01-27
 
 ### Improved
