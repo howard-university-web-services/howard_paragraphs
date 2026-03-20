@@ -2,6 +2,12 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.1.7] - 2026-03-20
+
+### Fixed
+
+- **HP Callout**: Fixed link targeting error
+
 ## [11.1.6] - 2026-02-09
 
 ### Improved
