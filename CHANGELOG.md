@@ -2,6 +2,19 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.1.9] - 2026-04-03
+
+### Changed
+
+- **Version**: Updated module version to 11.1.9
+
+## [11.1.8] - 2026-04-03
+
+### Fixed
+
+- **Schema.org**: Updated Schema.org markup for "isPartOf" and "publisher" properties across multiple paragraph templates
+- **Templates**: Improved schema markup in HP Articles, Featured Article, Giving Feed, Graph, Magazine Feed, Media, News Feed, Promo Space, Promo Space Multi-Image, and Testimonial templates
+
 ## [11.1.7] - 2026-03-20
 
 ### Fixed
@@ -78,21 +91,21 @@ All notable changes to the Howard Paragraphs module will be documented in this f
 
 ### Fixed
 - **Schema.org Data Quality**: Improved JSON encoding and field access patterns across all templates
-- **String Safety**: Enhanced string cleaning with proper quote escaping and newline removal  
+- **String Safety**: Enhanced string cleaning with proper quote escaping and newline removal
 - **Field Validation**: Added proper conditional rendering to prevent malformed JSON
 - **Educational Context**: Standardized Howard University as `EducationalOrganization` across all modules
 
 ### Enhanced - 12 Paragraph Modules
 - **HP Articles** (`views-view-fields--hp-articles-ks-feed`): Enhanced article schema with safe JSON encoding
 - **HP Card** (`paragraph--hp-card`): Improved schema relationships and string safety
-- **HP Carousel with Caption** (`paragraph--hp-carousel-with-caption`): Better image metadata handling  
+- **HP Carousel with Caption** (`paragraph--hp-carousel-with-caption`): Better image metadata handling
 - **HP Carousel with Modal** (`paragraph--hp-carousel-with-modal`): Enhanced modal gallery schema
 - **HP Data Point** (`paragraph--hp-data-point`): Improved statistic schema with URL validation
 - **HP Giving Feed** (`paragraph--hp-giving-feed`): Enhanced article schema for fundraising content
 - **HP Graph** (`paragraph--hp-graph`): Better dataset schema with proper field validation
 - **HP Program** (`paragraph--hp-program`): Comprehensive educational program schema improvements
 - **HP Promo Space** (`paragraph--hp-promo-space`): Enhanced creative work schema
-- **HP Promo Space Multi Image** (`paragraph--hp-promo-space-multi-img`): Complex multi-image schema arrays  
+- **HP Promo Space Multi Image** (`paragraph--hp-promo-space-multi-img`): Complex multi-image schema arrays
 - **HP Timeline** (`paragraph--hp-timeline`): Enhanced event-based timeline schema
 - **HP YouTube Playlist** (`paragraph--hp-youtube-playlist`): Comprehensive video playlist schema
 
@@ -109,7 +122,7 @@ All notable changes to the Howard Paragraphs module will be documented in this f
 #### New Schema.org Implementations (6 modules)
 
 - **HP Carousel with Caption**: Added `ItemList` with `ImageObject` items for enhanced image carousels
-- **HP Carousel with Modal**: Added `ItemList` with `ImageObject` items for modal image collections  
+- **HP Carousel with Modal**: Added `ItemList` with `ImageObject` items for modal image collections
 - **HP Video Slideshow**: Added `ItemList` with `VideoObject` items for video content
 - **HP Timeline**: Added `ItemList` with `Event` objects for chronological content
 - **HP Accordion**: Added `ItemList` with `WebPageElement` objects for collapsible content

@@ -4,13 +4,13 @@ Paragraphs integration of the commonly used howard "Kitchen Sink" components wit
 
 ## Version
 
-**Current Version: 11.1.2**
+**Current Version: 11.1.9**
 
 These components are designed as individual sub-modules that you may enable as needed. These are designed to work with the idfive Component Library frontend and include robust Schema.org markup for enhanced SEO and search engine visibility.
 
 ## Features
 
-### 🔍 **Schema.org Integration (Enhanced in v11.1.2)**
+### 🔍 **Schema.org Integration (Latest in v11.1.9)**
 - **Comprehensive Structured Data**: 28+ paragraph types include appropriate Schema.org markup
 - **Validation Compliant**: All markup passes Schema.org validation requirements
 - **Educational Context**: Proper academic institution markup for university content  
