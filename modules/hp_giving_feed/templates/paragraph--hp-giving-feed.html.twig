@@ -40,7 +40,7 @@
 					"articleSection": {{ evnt.category_name|striptags|json_encode|raw }},
 					"publisher": {
 						"@type": "EducationalOrganization",
-						"name": "Howard University"
+						"name": {{ site_name|json_encode|raw }}
 					}
 				}
 				</script>					<div class="silc-grid__col silc-grid__col--4-medium">
@@ -85,7 +85,7 @@
 					"articleSection": {{ evnt.category_name|striptags|json_encode|raw }},
 					"publisher": {
 						"@type": "EducationalOrganization",
-						"name": "Howard University"
+						"name": {{ site_name|json_encode|raw }}
 					}
 				}
 				</script>					<div class="silc-grid">

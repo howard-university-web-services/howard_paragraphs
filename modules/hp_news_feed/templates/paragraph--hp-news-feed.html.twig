@@ -54,7 +54,7 @@
 							{% if hp_nf_env_url and evnt.attributes.path.alias %}"url": "{{ hp_nf_env_url }}{{ evnt.attributes.path.alias }}",{% endif %}
 							"publisher": {
 								"@type": "EducationalOrganization",
-								"name": "Howard University",
+								"name": {{ site_name|json_encode|raw }},
 								"url": "https://www.howard.edu"
 							}
 						}
@@ -87,7 +87,7 @@
 							{% if hp_nf_env_url and evnt.attributes.path.alias %}"url": "{{ hp_nf_env_url }}{{ evnt.attributes.path.alias }}",{% endif %}
 							"publisher": {
 								"@type": "EducationalOrganization",
-								"name": "Howard University",
+								"name": {{ site_name|json_encode|raw }},
 								"url": "https://www.howard.edu"
 							}
 						}
@@ -148,7 +148,7 @@
 							"url": "{{ hp_nf_env_url }}{{ evnt.attributes.path.alias }}",
 							"publisher": {
 								"@type": "EducationalOrganization",
-								"name": "Howard University"
+								"name": {{ site_name|json_encode|raw }}
 							}
 						}
 						</script>
@@ -209,7 +209,7 @@
 								"url": "{{ hp_nf_env_url }}{{ evnt.attributes.path.alias }}",
 								"publisher": {
 									"@type": "EducationalOrganization",
-									"name": "Howard University"
+									"name": {{ site_name|json_encode|raw }}
 								}
 							}
 							</script>

@@ -35,7 +35,7 @@
           {% if url %}"url": "{{ url }}",{% endif %}
           "publisher": {
             "@type": "EducationalOrganization",
-            "name": "Howard University",
+            "name": {{ site_name|json_encode|raw }},
             "url": "https://www.howard.edu"
           }
         }
@@ -76,7 +76,7 @@
           {% if url %}"url": "{{ url }}",{% endif %}
           "publisher": {
             "@type": "EducationalOrganization",
-            "name": "Howard University",
+            "name": {{ site_name|json_encode|raw }},
             "url": "https://www.howard.edu"
           }
         }
@@ -108,7 +108,7 @@
           {% if url %}"url": "{{ url }}",{% endif %}
           "publisher": {
             "@type": "EducationalOrganization",
-            "name": "Howard University",
+            "name": {{ site_name|json_encode|raw }},
             "url": "https://www.howard.edu"
           }
         }

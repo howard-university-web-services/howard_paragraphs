@@ -28,7 +28,7 @@
 					{% if hp_fa_link %}"url": "{{ hp_fa_link }}",{% endif %}
 					"publisher": {
 						"@type": "EducationalOrganization",
-						"name": "Howard University",
+						"name": {{ site_name|json_encode|raw }},
 						"url": "https://www.howard.edu"
 					}
 				}

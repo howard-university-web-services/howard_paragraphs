@@ -16,7 +16,7 @@
 	"description": {{ paragraph.field_hp_graph_description.value|striptags|json_encode|raw }}{% endif %},
 	"publisher": {
 		"@type": "EducationalOrganization",
-		"name": "Howard University"
+		"name": {{ site_name|json_encode|raw }}
 	}{% if paragraph.field_hp_graph_data %},
 	"distribution": [
 	{% for key, data in paragraph.field_hp_graph_data %}

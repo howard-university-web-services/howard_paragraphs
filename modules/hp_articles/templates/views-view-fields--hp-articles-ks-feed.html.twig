@@ -24,7 +24,7 @@
 		{% if fields.field_hc_article_source.content -%}
 		"publisher": {
 			"@type": "Organization",
-			"name": {{ fields.field_hc_article_source.content|render|striptags|json_encode|raw }}
+			"name": {{ site_name|json_encode|raw }}
 		},
 		{%- endif %}
 		{%- else -%}
@@ -37,7 +37,7 @@
 		{%- endif %}
 		"publisher": {
 			"@type": "EducationalOrganization",
-			"name": "Howard University"
+			"name": {{ site_name|json_encode|raw }}
 		},
 		{%- endif %}
 		{% if fields.field_hc_article_category.content -%}
