@@ -1,0 +1,11 @@
+uuid: 00000000-0000-0000-0000-000000000000
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: hp_ai_agent
+label: 'AI Agent'
+icon_uuid: null
+description: 'Embeds an Azure AI Foundry agent for real-time conversational experiences.'
+behavior_plugins: {  }

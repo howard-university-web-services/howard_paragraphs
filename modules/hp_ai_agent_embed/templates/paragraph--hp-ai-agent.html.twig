@@ -1,0 +1,25 @@
+{#
+  /**
+   * @file
+   * Default theme implementation for HP AI Agent paragraph.
+   *
+   * Available variables:
+   * - paragraph: The paragraph object.
+   * - attributes: HTML attributes for the containing element.
+   * - field_agent_name: Agent name.
+   * - field_agent_version: Agent version.
+   * - field_system_prompt: System prompt for the agent.
+   */
+#}
+{% set agent_name = paragraph.field_agent_name.value %}
+{% set agent_version = paragraph.field_agent_version.value %}
+{% set system_prompt = paragraph.field_system_prompt.value %}
+
+<div{{ attributes.addClass('paragraph paragraph--type--hp-ai-agent') }}>
+  <div class="ai-agent-embed"
+    data-agent-name="{{ agent_name }}"
+    data-agent-version="{{ agent_version }}"
+    {% if system_prompt %}data-system-prompt="{{ system_prompt|escape('html_attr') }}"{% endif %}
+    id="ai-agent-{{ paragraph.id }}">
+  </div>
+</div>

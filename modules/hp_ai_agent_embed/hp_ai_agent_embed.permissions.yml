@@ -1,0 +1,4 @@
+administer ai agent settings:
+  title: 'Administer AI Agent settings'
+  description: 'Allow users to configure Azure AI Foundry agent settings and credentials'
+  restrict access: true
