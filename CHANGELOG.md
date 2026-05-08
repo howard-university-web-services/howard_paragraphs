@@ -2,6 +2,12 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.2.1] - 2026-05-08
+
+### Fixed
+
+- **Howard Permissions**: Eliminated severe install/update slowness caused by calling `$role->save()` inside the permissions loop — previously triggered up to 950 separate DB writes and cache invalidations (190 permissions × 5 roles). Both `howard_permissions_apply_all_permissions()` and the permissions form submit handler now load each role once, batch all grant/revoke operations in memory, and save exactly 5 times.
+
 ## [11.2.0] - 2026-05-08
 
 ### Added

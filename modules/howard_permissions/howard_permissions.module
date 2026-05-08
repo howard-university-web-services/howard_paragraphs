@@ -141,24 +141,34 @@ function howard_permissions_form_alter(&$form, FormStateInterface $form_state, $
 function howard_permissions_permissions_form_submit($form, FormStateInterface $form_state) {
   $core_roles = ['anonymous', 'authenticated', 'administrator', 'site_admin', 'site_builder'];
   $overrides = howard_permissions_get_enforced_permissions();
-  
-  // For each enforced permission, set it correctly for core roles
+
+  // Load each role once, apply all permission changes in memory, then save
+  // once per role to avoid hundreds of redundant DB writes and cache clears.
+  $roles = [];
+  foreach ($core_roles as $role_id) {
+    $role = \Drupal\user\Entity\Role::load($role_id);
+    if ($role) {
+      $roles[$role_id] = $role;
+    }
+  }
+
   foreach ($overrides as $permission => $enforced_roles) {
     foreach ($core_roles as $role_id) {
-      $role = \Drupal\user\Entity\Role::load($role_id);
-      if ($role) {
-        if (in_array($role_id, $enforced_roles)) {
-          // Grant permission
-          $role->grantPermission($permission);
-        } else {
-          // Revoke permission  
-          $role->revokePermission($permission);
-        }
-        $role->save();
+      if (!isset($roles[$role_id])) {
+        continue;
+      }
+      if (in_array($role_id, $enforced_roles)) {
+        $roles[$role_id]->grantPermission($permission);
+      } else {
+        $roles[$role_id]->revokePermission($permission);
       }
     }
   }
-  
+
+  foreach ($roles as $role) {
+    $role->save();
+  }
+
   \Drupal::messenger()->addMessage(t('Howard University core role permissions have been enforced.'));
 }
 
@@ -185,34 +195,44 @@ function howard_permissions_apply_all_permissions() {
   
   $applied_permissions = [];
   $missing_roles = [];
-  
-  // For each enforced permission, set it correctly for core roles
+
+  // Load each role once, apply all permission changes in memory, then save
+  // once per role to avoid hundreds of redundant DB writes and cache clears.
+  $roles = [];
+  foreach ($core_roles as $role_id) {
+    $role = \Drupal\user\Entity\Role::load($role_id);
+    if ($role) {
+      $roles[$role_id] = $role;
+    } else {
+      $missing_roles[] = $role_id;
+    }
+  }
+
   foreach ($overrides as $permission => $enforced_roles) {
     foreach ($core_roles as $role_id) {
-      $role = \Drupal\user\Entity\Role::load($role_id);
-      if ($role) {
-        if (in_array($role_id, $enforced_roles)) {
-          // Grant permission
-          $role->grantPermission($permission);
-          $applied_permissions[] = "Granted '$permission' to '$role_id'";
-        } else {
-          // Revoke permission  
-          $role->revokePermission($permission);
-          $applied_permissions[] = "Revoked '$permission' from '$role_id'";
-        }
-        $role->save();
+      if (!isset($roles[$role_id])) {
+        continue;
+      }
+      if (in_array($role_id, $enforced_roles)) {
+        $roles[$role_id]->grantPermission($permission);
+        $applied_permissions[] = "Granted '$permission' to '$role_id'";
       } else {
-        $missing_roles[] = $role_id;
+        $roles[$role_id]->revokePermission($permission);
+        $applied_permissions[] = "Revoked '$permission' from '$role_id'";
       }
     }
   }
-  
-  $message = 'Applied ' . count($overrides) . ' permissions to ' . count($core_roles) . ' core roles.';
-  
+
+  foreach ($roles as $role) {
+    $role->save();
+  }
+
+  $message = 'Applied ' . count($overrides) . ' permissions to ' . count($roles) . ' core roles.';
+
   if (!empty($missing_roles)) {
     $message .= ' Warning: Missing roles: ' . implode(', ', array_unique($missing_roles));
   }
-  
+
   return [
     'success' => TRUE,
     'message' => $message,
