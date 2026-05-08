@@ -2,6 +2,18 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.2.2] - 2026-05-08
+
+### Added
+
+- **Howard Permissions** (`permissions_roles.json`): Added `access toolbar` permission granted to Site Builder, Site Admin, and Administrator
+- **Howard Permissions** (`permissions_roles.json`): Added comprehensive node content permissions covering all standard Howard content types (`hc_announcement`, `hc_article`, `hc_page`, `hc_person`, `hc_resource`, `hc_standard_homepage`) — create/edit own/edit any/delete own/delete any — with appropriate role assignments across Site Builder, Site Admin, and Administrator
+- **Howard Permissions** (`permissions_roles.json`): Added core node permissions: `access content`, `access content overview`, `administer content types`, `administer nodes`, `administer node published status`, `bypass node access`, `rebuild node access permissions`, `view own unpublished content`
+
+### Fixed
+
+- **Howard Permissions** (`permissions_roles.json`): Normalized all role name strings to use spaces (`Site Builder`, `Site Admin`) consistently throughout the file — 269 underscore-format entries corrected
+
 ## [11.2.1] - 2026-05-08
 
 ### Fixed

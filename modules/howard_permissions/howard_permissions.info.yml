@@ -1,7 +1,7 @@
 name: 'Howard Permissions'
 type: module
 description: 'Manages and enforces standard permissions for core Howard University roles across all sites.'
-version: '11.2.1'
+version: '11.2.2'
 core_version_requirement: ^11
 package: 'Howard University'
 dependencies:
