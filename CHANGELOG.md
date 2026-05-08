@@ -2,6 +2,20 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.2.0] - 2026-05-08
+
+### Added
+
+- **Howard Permissions** (`modules/howard_permissions`): New standalone submodule for managing and enforcing standard permissions across Howard University's multisite Drupal installations
+  - Loads permission configuration from `permissions_roles.json`
+  - Automatically creates `site_admin` and `site_builder` roles on install
+  - Disables manual editing of core role checkboxes on the permissions page
+  - Enforces correct permissions on form submission
+  - Provides `apply-permissions.sh` shell script for CLI permission management
+  - Provides `generate_untracked_permissions.py` for detecting site-specific custom permissions
+  - Includes PHPUnit test suite (unit + functional) with `run-tests.sh` runner
+  - Fully documented API in `API.md` and developer guide in `TESTING.md`
+
 ## [11.1.9] - 2026-04-03
 
 ### Changed

@@ -1,0 +1,1144 @@
+{
+  "permissions": [
+    {
+      "permission": "use admin toolbar search",
+      "title": "Use Admin Toolbar Search",
+      "provider": "admin_toolbar_search",
+      "roles": ["Site Builder", "Site Admin", "Administrator"]
+    },
+    {
+      "permission": "administer antibot configuration",
+      "title": "Administer antibot configuration",
+      "provider": "antibot",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "skip antibot",
+      "title": "Skip antibot",
+      "provider": "antibot",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer blocks",
+      "title": "Administer blocks",
+      "provider": "block",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "create basic block content",
+      "title": "Basic block: Create new content block",
+      "provider": "block_content",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "delete any basic block content",
+      "title": "Basic block: Delete content block",
+      "provider": "block_content",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "delete any basic block content revisions",
+      "title": "Basic block: Delete content block revisions",
+      "provider": "block_content",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "edit any basic block content",
+      "title": "Basic block: Edit content block",
+      "provider": "block_content",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "revert any basic block content revisions",
+      "title": "Basic block: Revert content block revisions",
+      "provider": "block_content",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "view any basic block content history",
+      "title": "Basic block: View content block history pages",
+      "provider": "block_content",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "access block library",
+      "title": "Access the Content blocks overview page",
+      "provider": "block_content",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer block content",
+      "title": "Administer block content",
+      "provider": "block_content",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer block types",
+      "title": "Administer block types",
+      "provider": "block_content",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer CAPTCHA settings",
+      "title": "Administer CAPTCHA settings",
+      "provider": "captcha",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "skip CAPTCHA",
+      "title": "Skip CAPTCHA",
+      "provider": "captcha",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "export configuration",
+      "title": "Export configuration",
+      "provider": "config",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "import configuration",
+      "title": "Import configuration",
+      "provider": "config",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "synchronize configuration",
+      "title": "Synchronize configuration",
+      "provider": "config",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "use editorial transition archive",
+      "title": "Editorial workflow: Use Archive transition",
+      "provider": "content_moderation",
+      "roles": ["Site Admin", "Administrator"]
+    },
+    {
+      "permission": "use editorial transition create_new_draft",
+      "title": "Editorial workflow: Use Create New Draft transition",
+      "provider": "content_moderation",
+      "roles": ["Site Builder", "Site Admin", "Administrator"]
+    },
+    {
+      "permission": "use editorial transition publish",
+      "title": "Editorial workflow: Use Publish transition",
+      "provider": "content_moderation",
+      "roles": ["Site Builder", "Site Admin", "Administrator"]
+    },
+    {
+      "permission": "use editorial transition archived_published",
+      "title": "Editorial workflow: Use Restore transition",
+      "provider": "content_moderation",
+      "roles": ["Site Builder", "Site Admin", "Administrator"]
+    },
+    {
+      "permission": "use editorial transition archived_draft",
+      "title": "Editorial workflow: Use Restore to Draft transition",
+      "provider": "content_moderation",
+      "roles": ["Site Builder", "Site Admin", "Administrator"]
+    },
+    {
+      "permission": "view any unpublished content",
+      "title": "View any unpublished content",
+      "provider": "content_moderation",
+      "roles": ["Site Builder", "Site Admin", "Administrator"]
+    },
+    {
+      "permission": "view latest version",
+      "title": "View the latest version",
+      "provider": "content_moderation",
+      "roles": ["Site Builder", "Site Admin", "Administrator"]
+    },
+    {
+      "permission": "access contextual links",
+      "title": "Use contextual links",
+      "provider": "contextual",
+      "roles": ["Site Builder", "Site Admin", "Administrator"]
+    },
+    {
+      "permission": "administer crop",
+      "title": "Administer crop settings",
+      "provider": "crop",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer crop types",
+      "title": "Administer crop types",
+      "provider": "crop",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "access devel information",
+      "title": "Access developer information",
+      "provider": "devel",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "switch users",
+      "title": "Switch users",
+      "provider": "devel",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer embed buttons",
+      "title": "Administer embed buttons",
+      "provider": "embed",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "access hc_media_browser_audio entity browser pages",
+      "title": "Access HC Media Browser Audio pages",
+      "provider": "entity_browser",
+      "roles": ["Site Builder", "Site Admin", "Administrator"]
+    },
+    {
+      "permission": "access hc_media_browser_file entity browser pages",
+      "title": "Access HC Media Browser File pages",
+      "provider": "entity_browser",
+      "roles": ["Site Builder", "Site Admin", "Administrator"]
+    },
+    {
+      "permission": "access hc_media_browser_general entity browser pages",
+      "title": "Access HC Media Browser General pages",
+      "provider": "entity_browser",
+      "roles": ["Site Builder", "Site Admin", "Administrator"]
+    },
+    {
+      "permission": "access hc_media_browser_image entity browser pages",
+      "title": "Access HC Media Browser Image pages",
+      "provider": "entity_browser",
+      "roles": ["Site Builder", "Site Admin", "Administrator"]
+    },
+    {
+      "permission": "access hc_media_browser_video entity browser pages",
+      "title": "Access HC Media Browser Video pages",
+      "provider": "entity_browser",
+      "roles": ["Site Builder", "Site Admin", "Administrator"]
+    },
+    {
+      "permission": "access media_entity_browser entity browser pages",
+      "title": "Access Media Entity Browser pages",
+      "provider": "entity_browser",
+      "roles": ["Site Builder", "Site Admin", "Administrator"]
+    },
+    {
+      "permission": "administer entity browsers",
+      "title": "Administer entity browsers",
+      "provider": "entity_browser",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer honeypot",
+      "title": "Administer Honeypot",
+      "provider": "honeypot",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "bypass honeypot protection",
+      "title": "Bypass Honeypot protection",
+      "provider": "honeypot",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer image styles",
+      "title": "Administer image styles",
+      "provider": "image",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer imageapi optimize pipelines",
+      "title": "Administer Image Optimize pipelines",
+      "provider": "imageapi_optimize",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "access slab cachedump",
+      "title": "Access cachedump of memcache slab",
+      "provider": "memcache_admin",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "access memcache statistics",
+      "title": "Access memcache statistics",
+      "provider": "memcache_admin",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer meta tags",
+      "title": "Administer meta tags",
+      "provider": "metatag",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "moderated content bulk change owner",
+      "title": "Moderated content bulk change owner",
+      "provider": "moderated_content_bulk_publish",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "moderated content bulk draft",
+      "title": "Moderated content bulk draft",
+      "provider": "moderated_content_bulk_publish",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "moderated content bulk pin",
+      "title": "Moderated content bulk pin (sticky)",
+      "provider": "moderated_content_bulk_publish",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "moderated content bulk publish",
+      "title": "Moderated content bulk publish",
+      "provider": "moderated_content_bulk_publish",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "moderated content bulk save content",
+      "title": "Moderated content bulk save content",
+      "provider": "moderated_content_bulk_publish",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "moderated content bulk unpin",
+      "title": "Moderated content bulk unpin (sticky)",
+      "provider": "moderated_content_bulk_publish",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "moderated content bulk unpublish",
+      "title": "Moderated content bulk unpublish",
+      "provider": "moderated_content_bulk_publish",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer module_filter",
+      "title": "Administer Module Filter",
+      "provider": "module_filter",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer entity clone",
+      "title": "Administer entity clone",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "take_ownership_on_clone node entity",
+      "title": "Allow user to take ownership of Content cloned entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "take_ownership_on_clone content_moderation_state entity",
+      "title": "Allow user to take ownership of Content moderation state cloned entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "take_ownership_on_clone file entity",
+      "title": "Allow user to take ownership of File cloned entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "take_ownership_on_clone media entity",
+      "title": "Allow user to take ownership of Media cloned entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone action entity",
+      "title": "Clone all Action entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone base_field_override entity",
+      "title": "Clone all Base field override entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone block entity",
+      "title": "Clone all Block entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone block_content_type entity",
+      "title": "Clone all Block type entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone captcha_point entity",
+      "title": "Clone all Captcha Point entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone node entity",
+      "title": "Clone all Content entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone block_content entity",
+      "title": "Clone all Content block entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone content_moderation_state entity",
+      "title": "Clone all Content moderation state entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone node_type entity",
+      "title": "Clone all Content type entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone crop entity",
+      "title": "Clone all Crop entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone crop_type entity",
+      "title": "Clone all Crop type entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone menu_link_content entity",
+      "title": "Clone all Custom menu link entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone date_format entity",
+      "title": "Clone all Date format entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone embed_button entity",
+      "title": "Clone all Embed button entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone entity_browser entity",
+      "title": "Clone all Entity browser entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone entity_form_display entity",
+      "title": "Clone all Entity form display entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone entity_view_display entity",
+      "title": "Clone all Entity view display entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone entity_embed_fake_entity entity",
+      "title": "Clone all Entity embed fake entity entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone field_config entity",
+      "title": "Clone all Field config entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone field_storage_config entity",
+      "title": "Clone all Field storage config entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone file entity",
+      "title": "Clone all File entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone entity_form_mode entity",
+      "title": "Clone all Form mode entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone imageapi_optimize_pipeline entity",
+      "title": "Clone all Image optimize pipeline entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone image_style entity",
+      "title": "Clone all Image style entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone media entity",
+      "title": "Clone all Media entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone media_bulk_config entity",
+      "title": "Clone all Media bulk config entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone media_type entity",
+      "title": "Clone all Media type entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone menu entity",
+      "title": "Clone all Menu entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone metatag_defaults entity",
+      "title": "Clone all Metatag defaults entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone openid_connect_client entity",
+      "title": "Clone all OpenID Connect client entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone paragraph entity",
+      "title": "Clone all Paragraph entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone paragraphs_type entity",
+      "title": "Clone all Paragraphs type entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone password_policy entity",
+      "title": "Clone all Password policy entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone pathauto_pattern entity",
+      "title": "Clone all Pathauto pattern entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone rdf_mapping entity",
+      "title": "Clone all RDF mapping entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone user_role entity",
+      "title": "Clone all Role entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone search_page entity",
+      "title": "Clone all Search page entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone shortcut entity",
+      "title": "Clone all Shortcut entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone shortcut_set entity",
+      "title": "Clone all Shortcut set entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone simple_sitemap_type entity",
+      "title": "Clone all Simple sitemap type entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone simple_sitemap entity",
+      "title": "Clone all Simple XML sitemap entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone taxonomy_term entity",
+      "title": "Clone all Taxonomy term entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone taxonomy_vocabulary entity",
+      "title": "Clone all Taxonomy vocabulary entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone editor entity",
+      "title": "Clone all Text editor entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone filter_format entity",
+      "title": "Clone all Text format entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone path_alias entity",
+      "title": "Clone all URL alias entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone user entity",
+      "title": "Clone all User entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone view entity",
+      "title": "Clone all View entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone entity_view_mode entity",
+      "title": "Clone all View mode entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone webform entity",
+      "title": "Clone all Webform entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone webform_options entity",
+      "title": "Clone all Webform options entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone webform_submission entity",
+      "title": "Clone all Webform submission entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "clone workflow entity",
+      "title": "Clone all Workflow entities",
+      "provider": "entity_clone",
+      "roles": ["Administrator", "Site Admin"]
+    },
+    {
+      "permission": "delete orphan revisions",
+      "title": "Delete orphan revisions",
+      "provider": "entity_reference_revisions",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "delete authmap",
+      "title": "Delete authmap",
+      "provider": "externalauth",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "view authmap",
+      "title": "View authmap",
+      "provider": "externalauth",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer node display",
+      "title": "Content: Administer display",
+      "provider": "field_ui",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer block_content display",
+      "title": "Content block: Administer display",
+      "provider": "field_ui",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer media display",
+      "title": "Media: Administer display",
+      "provider": "field_ui",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer paragraph display",
+      "title": "Paragraph: Administer display",
+      "provider": "field_ui",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer taxonomy_term display",
+      "title": "Taxonomy term: Administer display",
+      "provider": "field_ui",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer user display",
+      "title": "User: Administer display",
+      "provider": "field_ui",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer node fields",
+      "title": "Content: Administer fields",
+      "provider": "field_ui",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer block_content fields",
+      "title": "Content block: Administer fields",
+      "provider": "field_ui",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer media fields",
+      "title": "Media: Administer fields",
+      "provider": "field_ui",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer paragraph fields",
+      "title": "Paragraph: Administer fields",
+      "provider": "field_ui",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer taxonomy_term fields",
+      "title": "Taxonomy term: Administer fields",
+      "provider": "field_ui",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer user fields",
+      "title": "User: Administer fields",
+      "provider": "field_ui",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer node form display",
+      "title": "Content: Administer form display",
+      "provider": "field_ui",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer block_content form display",
+      "title": "Content block: Administer form display",
+      "provider": "field_ui",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer media form display",
+      "title": "Media: Administer form display",
+      "provider": "field_ui",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer paragraph form display",
+      "title": "Paragraph: Administer form display",
+      "provider": "field_ui",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer taxonomy_term form display",
+      "title": "Taxonomy term: Administer form display",
+      "provider": "field_ui",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer user form display",
+      "title": "User: Administer form display",
+      "provider": "field_ui",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer display modes",
+      "title": "Administer display modes",
+      "provider": "field_ui",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer openid connect clients",
+      "title": "Administer OpenID Connect clients",
+      "provider": "openid_connect",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "disconnect openid connected accounts",
+      "title": "Disconnect OpenID Connect accounts",
+      "provider": "openid_connect",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "manage own openid connect accounts",
+      "title": "Manage own OpenID Connect accounts",
+      "provider": "openid_connect",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "openid connect set own password",
+      "title": "Set own password when connecting",
+      "provider": "openid_connect",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer paragraphs settings",
+      "title": "Administer paragraphs settings",
+      "provider": "paragraphs",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer paragraphs types",
+      "title": "Administer paragraphs types",
+      "provider": "paragraphs",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "edit behavior plugin settings",
+      "title": "Paragraph: Edit behavior plugin settings",
+      "provider": "paragraphs",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "view unpublished paragraphs",
+      "title": "View unpublished paragraphs",
+      "provider": "paragraphs",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "manage password reset",
+      "title": "Manage password reset",
+      "provider": "password_policy",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer pathauto",
+      "title": "Administer pathauto",
+      "provider": "pathauto",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "bulk delete aliases",
+      "title": "Bulk delete aliases",
+      "provider": "pathauto",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "bulk update aliases",
+      "title": "Bulk update aliases",
+      "provider": "pathauto",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "notify of path changes",
+      "title": "Notify of Path Changes",
+      "provider": "pathauto",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "access in-place editing",
+      "title": "Access in-place editing",
+      "provider": "quickedit",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer shield",
+      "title": "Administer shield",
+      "provider": "shield",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer sitemap settings",
+      "title": "Administer sitemap settings",
+      "provider": "simple_sitemap",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "edit entity sitemap settings",
+      "title": "Edit entity sitemap settings",
+      "provider": "simple_sitemap",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "access files overview",
+      "title": "Access the Files overview page",
+      "provider": "file",
+      "roles": ["Administrator", "Site_Admin"]
+    },
+    {
+      "permission": "delete any file",
+      "title": "Delete any file",
+      "provider": "file",
+      "roles": ["Administrator", "Site_Admin"]
+    },
+    {
+      "permission": "delete own files",
+      "title": "Delete own files",
+      "provider": "file",
+      "roles": ["Administrator", "Site_Admin"]
+    },
+    {
+      "permission": "administer filters",
+      "title": "Administer text formats and filters",
+      "provider": "filter",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "use text format basic_html",
+      "title": "Use the Basic HTML text format",
+      "provider": "filter",
+      "roles": ["Authenticated", "Administrator", "Site_Admin", "Site_Builder"]
+    },
+    {
+      "permission": "use text format full_html",
+      "title": "Use the Full HTML text format",
+      "provider": "filter",
+      "roles": ["Administrator", "Site_Admin"]
+    },
+    {
+      "permission": "use text format restricted_html",
+      "title": "Use the Restricted HTML text format",
+      "provider": "filter",
+      "roles": ["Authenticated", "Administrator", "Site_Admin", "Site_Builder"]
+    },
+    {
+      "permission": "use text format site_builder_config",
+      "title": "Use the Site Builder Config text format",
+      "provider": "filter",
+      "roles": ["Administrator", "Site_Admin", "Site_Builder"]
+    },
+    {
+      "permission": "access help pages",
+      "title": "Use help pages",
+      "provider": "help",
+      "roles": ["Administrator", "Site_Admin", "Site_Builder"]
+    },
+    {
+      "permission": "administer search",
+      "title": "Administer search",
+      "provider": "search",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "use advanced search",
+      "title": "Use advanced search",
+      "provider": "search",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "search content",
+      "title": "Use search",
+      "provider": "search",
+      "roles": ["Anonymous", "Authenticated", "Administrator", "Site_Admin", "Site_Builder"]
+    },
+    {
+      "permission": "access shortcuts",
+      "title": "Use shortcuts",
+      "provider": "shortcut",
+      "roles": ["Authenticated", "Administrator", "Site_Admin", "Site_Builder"]
+    },
+    {
+      "permission": "administer shortcuts",
+      "title": "Administer shortcuts",
+      "provider": "shortcut",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "customize shortcut links",
+      "title": "Edit current shortcut set",
+      "provider": "shortcut",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "switch shortcut sets",
+      "title": "Select any shortcut set",
+      "provider": "shortcut",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer actions",
+      "title": "Administer actions",
+      "provider": "system",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer modules",
+      "title": "Administer modules",
+      "provider": "system",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer site configuration",
+      "title": "Administer site configuration",
+      "provider": "system",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "administer software updates",
+      "title": "Administer software updates",
+      "provider": "system",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "view the administration theme",
+      "title": "View the administration theme",
+      "provider": "system",
+      "roles": ["Authenticated", "Administrator", "Site_Admin", "Site_Builder"]
+    },
+    {
+      "permission": "access site reports",
+      "title": "View site reports",
+      "provider": "system",
+      "roles": ["Administrator", "Site_Admin"]
+    },
+    {
+      "permission": "link to any page",
+      "title": "Link to any page",
+      "provider": "system",
+      "roles": ["Administrator", "Site_Admin", "Site_Builder"]
+    },
+    {
+      "permission": "access administration pages",
+      "title": "Use the administration pages",
+      "provider": "system",
+      "roles": ["Administrator", "Site_Admin", "Site_Builder"]
+    },
+    {
+      "permission": "access site in maintenance mode",
+      "title": "Use the site in maintenance mode",
+      "provider": "system",
+      "roles": ["Administrator", "Site_Admin", "Site_Builder"]
+    },
+    {
+      "permission": "use bulk_image bulk upload form",
+      "title": "Use Bulk Image Bulk Upload Form",
+      "provider": "bulk_image",
+      "roles": ["Administrator", "Site_Admin"]
+    },
+    {
+      "permission": "administer media_bulk_upload configuration",
+      "title": "Administer Media Bulk Upload Configuration",
+      "provider": "media_bulk_upload",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "view own unpublished media",
+      "title": "View Own Unpublished Media",
+      "provider": "media",
+      "roles": ["Administrator", "Site_Admin", "Site_Builder"]
+    },
+    {
+      "permission": "view media",
+      "title": "View Media",
+      "provider": "media",
+      "roles": ["Anonymous", "Authenticated", "Site_Builder", "Site_Admin", "Administrator"]
+    },
+    {
+      "permission": "view all media revisions",
+      "title": "View All Media Revisions",
+      "provider": "media",
+      "roles": ["Administrator", "Site_Admin"]
+    },
+    {
+      "permission": "update media",
+      "title": "Update Media",
+      "provider": "media",
+      "roles": ["Administrator", "Site_Admin", "Site_Builder"]
+    },
+    {
+      "permission": "update any media",
+      "title": "Update Any Media",
+      "provider": "media",
+      "roles": ["Administrator", "Site_Admin"]
+    },
+    {
+      "permission": "access media overview",
+      "title": "Access Media Overview",
+      "provider": "media",
+      "roles": ["Administrator", "Site_Admin", "Site_Builder"]
+    },
+    {
+      "permission": "administer media",
+      "title": "Administer Media",
+      "provider": "media",
+      "roles": ["Administrator", "Site_Admin"]
+    },
+    {
+      "permission": "administer media types",
+      "title": "Administer Media Types",
+      "provider": "media",
+      "roles": ["Administrator"]
+    },
+    {
+      "permission": "create audio media",
+      "title": "Create Audio Media",
+      "provider": "media",
+      "roles": ["Administrator", "Site_Admin", "Site_Builder"]
+    },
+    {
+      "permission": "create file media",
+      "title": "Create File Media",
+      "provider": "media",
+      "roles": ["Administrator", "Site_Admin", "Site_Builder"]
+    },
+    {
+      "permission": "create image media",
+      "title": "Create Image Media",
+      "provider": "media",
+      "roles": ["Administrator", "Site_Admin", "Site_Builder"]
+    },
+    {
+      "permission": "create remote_video media",
+      "title": "Create Remote Video Media",
+      "provider": "media",
+      "roles": ["Administrator", "Site_Admin", "Site_Builder"]
+    },
+    {
+      "permission": "create video media",
+      "title": "Create Video Media",
+      "provider": "media",
+      "roles": ["Administrator", "Site_Admin", "Site_Builder"]
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Howard Permissions module.
+ */
+
+use Drupal\user\Entity\Role;
+
+/**
+ * Implements hook_install().
+ */
+function howard_permissions_install() {
+  // Run the role creation when module is first installed
+  howard_permissions_ensure_required_roles();
+  
+  // Apply permissions from JSON file
+  $result = howard_permissions_apply_all_permissions();
+  if ($result['success']) {
+    \Drupal::logger('howard_permissions')->notice($result['message']);
+  } else {
+    \Drupal::logger('howard_permissions')->warning($result['message']);
+  }
+}
+
+/**
+ * Update 8001: Ensure required roles exist and apply permissions.
+ */
+function howard_permissions_update_8001() {
+  howard_permissions_ensure_required_roles();
+  
+  // Apply permissions from JSON file
+  $result = howard_permissions_apply_all_permissions();
+  if ($result['success']) {
+    return $result['message'];
+  } else {
+    throw new \Exception($result['message']);
+  }
+}
+
+/**
+ * Helper function to ensure required roles exist.
+ */
+function howard_permissions_ensure_required_roles() {
+  $required_roles = [
+    'site_admin' => [
+      'id' => 'site_admin',
+      'label' => 'Site Admin',
+      'weight' => -7,
+    ],
+    'site_builder' => [
+      'id' => 'site_builder',
+      'label' => 'Site Builder',
+      'weight' => -6,
+    ],
+  ];
+
+  $created_roles = [];
+
+  foreach ($required_roles as $role_id => $role_config) {
+    // Check if role already exists
+    $role = Role::load($role_id);
+    
+    if (!$role) {
+      // Create the role if it doesn't exist
+      $role = Role::create([
+        'id' => $role_config['id'],
+        'label' => $role_config['label'],
+        'weight' => $role_config['weight'],
+        'is_admin' => FALSE,
+      ]);
+      $role->save();
+      $created_roles[] = $role_config['label'];
+    }
+  }
+
+  if (!empty($created_roles)) {
+    \Drupal::logger('howard_permissions')->notice(
+      'Created missing roles: @roles', 
+      ['@roles' => implode(', ', $created_roles)]
+    );
+  }
+
+  return t('Ensured required roles exist: @roles', [
+    '@roles' => implode(', ', array_column($required_roles, 'label'))
+  ]);
+}

@@ -11,7 +11,9 @@ Howard Paragraphs (Base Module)
 ├── Core Services (External Content, Caching)
 ├── Base Templates & Themes
 ├── Shared Utilities & Controllers
-└── Submodules (Individual Components)
+├── Utility Submodules
+│   └── howard_permissions/  (Role & permission management)
+└── Paragraph Submodules (Individual Components)
     ├── hp_cards/
     ├── hp_news_feed/
     ├── hp_alumni_feed/
@@ -32,7 +34,21 @@ The base module provides:
 
 ### Submodules
 
-Each component is implemented as a separate submodule containing:
+The package ships two categories of submodules:
+
+#### Utility Submodule
+
+**`howard_permissions`** is a standalone utility submodule with no dependency on the base `howard_paragraphs` module. It can be dropped into any Howard University Drupal site independently:
+
+- Manages permissions for the five core Howard roles (`anonymous`, `authenticated`, `administrator`, `site_admin`, `site_builder`)
+- Reads configuration from `permissions_roles.json` — a single source of truth for all role permissions
+- Disables manual editing of core role checkboxes on the permissions page, preventing configuration drift
+- Provides `apply-permissions.sh` for scripted/deployment use and a Python helper for detecting untracked permissions
+- Ships with a PHPUnit test suite (unit + functional) and `run-tests.sh` runner
+
+#### Paragraph Component Submodules
+
+Each paragraph component is implemented as a separate submodule containing:
 
 - **Configuration**: Field definitions, form displays, view modes
 - **Templates**: Twig templates for rendering

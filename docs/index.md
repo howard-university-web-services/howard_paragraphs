@@ -17,6 +17,12 @@ Welcome to the comprehensive documentation for the Howard Paragraphs module - a 
 - [Contributing](contributing.md)
 - [Security Best Practices](security-best-practices.md)
 
+### Submodule Documentation
+
+- [Howard Permissions](../modules/howard_permissions/README.md) — Role & permission management
+- [Howard Permissions API](../modules/howard_permissions/API.md)
+- [Howard Permissions Testing](../modules/howard_permissions/TESTING.md)
+
 ## Quick Overview
 
 The Howard Paragraphs module provides a comprehensive collection of reusable content components (paragraphs) that integrate seamlessly with the idfive Component Library. These components are designed to create rich, interactive content experiences while maintaining consistency across Howard University's digital properties.
@@ -24,6 +30,7 @@ The Howard Paragraphs module provides a comprehensive collection of reusable con
 ### Key Features
 
 - **40+ Paragraph Components**: From simple text blocks to complex data feeds
+- **Permission Management**: `howard_permissions` submodule enforces consistent role permissions across all Howard University sites
 - **External Content Integration**: Automatic feeds from Howard's various digital properties
 - **Schema.org SEO Enhancement**: Built-in structured data for better search engine optimization
 - **Responsive Design**: Mobile-first approach with the idfive Component Library
@@ -53,6 +60,6 @@ The Howard Paragraphs module provides a comprehensive collection of reusable con
 
 ---
 
-**Version**: 11.0.3  
+**Version**: 11.2.0  
 **Maintainer**: Dan Rogers  
 **License**: GPL-2.0+

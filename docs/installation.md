@@ -55,6 +55,12 @@ Some submodules require additional modules:
    drush en hp_cards hp_news_feed hp_button_link hp_callout
    ```
 
+4. **(Recommended) Enable the permissions submodule** to enforce standard Howard role permissions:
+   ```bash
+   drush en howard_permissions -y && drush cr
+   ```
+   The install hook automatically creates the `site_admin` and `site_builder` roles if absent and applies all permissions from `permissions_roles.json`. No further steps are required.
+
 ### Method 2: Manual Installation
 
 1. **Download the module**:

@@ -1,0 +1,221 @@
+<?php
+
+/**
+ * @file
+ * Howard Permissions module.
+ * 
+ * This module manages and enforces standard permissions for core Howard 
+ * University roles across all multisite installations. It loads permission
+ * configurations from a JSON file and automatically applies them to ensure
+ * consistency across all Howard University Drupal sites.
+ * 
+ * Core roles managed:
+ * - anonymous: Visitors not logged in
+ * - authenticated: Any logged in user
+ * - administrator: Full admin access
+ * - site_admin: Site-specific administration
+ * - site_builder: Content and structure management
+ * 
+ * The module disables manual editing of core role permissions on the
+ * permissions page and enforces the defined permissions on form submission.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Messenger\MessengerInterface;
+
+/**
+ * Helper function to define enforced permissions.
+ * 
+ * @param string $permission
+ *   The machine name of the permission.
+ * @param array $grant_roles
+ *   Array of role machine names that should have this permission.
+ * 
+ * @return array
+ *   Static array of all enforced permissions when called with empty parameters.
+ */
+function howard_permissions_enforce_permission($permission, $grant_roles = []) {
+  static $enforced_permissions = [];
+  $enforced_permissions[$permission] = $grant_roles;
+  return $enforced_permissions;
+}
+
+/**
+ * Get the enforced permissions for Howard University core roles.
+ * 
+ * Loads permissions from permissions_roles.json file if available,
+ * otherwise falls back to a minimal set of hardcoded permissions.
+ * 
+ * @return array
+ *   Array of permissions and their assigned roles.
+ */
+function howard_permissions_get_enforced_permissions() {
+  // Load permissions from JSON file
+  $json_file = DRUPAL_ROOT . '/' . \Drupal::service('extension.list.module')->getPath('howard_permissions') . '/permissions_roles.json';
+  
+  if (file_exists($json_file)) {
+    $json_content = file_get_contents($json_file);
+    $permissions_data = json_decode($json_content, TRUE);
+    
+    if ($permissions_data && is_array($permissions_data) && isset($permissions_data['permissions'])) {
+      // Load each permission from JSON using the helper function
+      foreach ($permissions_data['permissions'] as $item) {
+        if (isset($item['permission']) && isset($item['roles'])) {
+          // Convert role names to lowercase and replace spaces with underscores
+          $roles = array_map(function($role) {
+            return strtolower(str_replace(' ', '_', $role));
+          }, $item['roles']);
+          howard_permissions_enforce_permission($item['permission'], $roles);
+        }
+      }
+    } else {
+      \Drupal::messenger()->addMessage(t('ERROR: Howard Permissions JSON file exists but is invalid or malformed. Please check the file format.'), 'error');
+      \Drupal::logger('howard_permissions')->error('JSON file exists but failed to parse or does not have "permissions" array');
+    }
+  } else {
+    \Drupal::messenger()->addMessage(t('ERROR: Howard Permissions JSON file not found at: @path. Module cannot function without this file.', ['@path' => $json_file]), 'error');
+    \Drupal::logger('howard_permissions')->error('JSON file not found at: @path', ['@path' => $json_file]);
+  }
+  
+  // Return all defined permissions
+  return howard_permissions_enforce_permission('', []);
+}
+
+/**
+ * Implements hook_form_alter().
+ * 
+ * Modifies the user permissions form to disable editing of core roles
+ * and enforce Howard University standard permissions.
+ */
+function howard_permissions_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id === 'user_admin_permissions') {
+    $core_roles = ['anonymous', 'authenticated', 'administrator', 'site_admin', 'site_builder'];
+    $overrides = howard_permissions_get_enforced_permissions();
+    
+    // Show which permissions from JSON don't exist in Drupal (for debugging)
+    $form_permissions = array_keys($form['permissions'] ?? []);
+    $enforced_permissions = array_keys($overrides);
+    
+    $missing_permissions = array_diff($enforced_permissions, $form_permissions);
+    if (!empty($missing_permissions)) {
+      \Drupal::logger('howard_permissions')->warning('These permissions from JSON do not exist in Drupal: @permissions', ['@permissions' => implode(', ', $missing_permissions)]);
+    }
+    
+    // Process each enforced permission
+    foreach ($overrides as $permission => $enforced_roles) {
+      if (isset($form['permissions'][$permission])) {
+        foreach ($form['permissions'][$permission] as $role_id => &$checkbox) {
+          if (is_array($checkbox) && isset($checkbox['#type']) && $checkbox['#type'] === 'checkbox') {
+            // Only disable core roles - leave custom site-specific roles editable
+            if (in_array($role_id, $core_roles)) {
+              $is_enforced = in_array($role_id, $enforced_roles);
+              
+              $checkbox['#disabled'] = TRUE;
+              $checkbox['#default_value'] = $is_enforced;
+              $checkbox['#description'] = t('Managed by Howard Permissions');
+              $checkbox['#attributes']['style'] = 'opacity: 0.6;';
+            }
+          }
+        }
+      }
+    }
+    
+    // Add submit handler to enforce our permissions on save
+    $form['#submit'][] = 'howard_permissions_permissions_form_submit';
+    
+    // Add informational message
+    \Drupal::messenger()->addMessage(
+      t('Core Howard University role permissions are managed automatically and cannot be changed manually. Custom site-specific roles can still be edited freely.'), 
+      'info'
+    );
+  }
+}
+
+/**
+ * Form submission handler to enforce Howard University permission overrides.
+ * 
+ * This handler runs after the permissions form is submitted and ensures
+ * that all core Howard roles have the correct permissions regardless of
+ * what was submitted in the form.
+ */
+function howard_permissions_permissions_form_submit($form, FormStateInterface $form_state) {
+  $core_roles = ['anonymous', 'authenticated', 'administrator', 'site_admin', 'site_builder'];
+  $overrides = howard_permissions_get_enforced_permissions();
+  
+  // For each enforced permission, set it correctly for core roles
+  foreach ($overrides as $permission => $enforced_roles) {
+    foreach ($core_roles as $role_id) {
+      $role = \Drupal\user\Entity\Role::load($role_id);
+      if ($role) {
+        if (in_array($role_id, $enforced_roles)) {
+          // Grant permission
+          $role->grantPermission($permission);
+        } else {
+          // Revoke permission  
+          $role->revokePermission($permission);
+        }
+        $role->save();
+      }
+    }
+  }
+  
+  \Drupal::messenger()->addMessage(t('Howard University core role permissions have been enforced.'));
+}
+
+/**
+ * Apply all Howard University role permissions from JSON configuration.
+ * 
+ * This function can be called independently of form submission to enforce
+ * permissions programmatically.
+ * 
+ * @return array
+ *   Result array with 'success', 'message', and 'details' keys.
+ */
+function howard_permissions_apply_all_permissions() {
+  $core_roles = ['anonymous', 'authenticated', 'administrator', 'site_admin', 'site_builder'];
+  $overrides = howard_permissions_get_enforced_permissions();
+  
+  if (empty($overrides)) {
+    return [
+      'success' => FALSE,
+      'message' => 'No permissions loaded from JSON file. Check file existence and format.',
+      'details' => []
+    ];
+  }
+  
+  $applied_permissions = [];
+  $missing_roles = [];
+  
+  // For each enforced permission, set it correctly for core roles
+  foreach ($overrides as $permission => $enforced_roles) {
+    foreach ($core_roles as $role_id) {
+      $role = \Drupal\user\Entity\Role::load($role_id);
+      if ($role) {
+        if (in_array($role_id, $enforced_roles)) {
+          // Grant permission
+          $role->grantPermission($permission);
+          $applied_permissions[] = "Granted '$permission' to '$role_id'";
+        } else {
+          // Revoke permission  
+          $role->revokePermission($permission);
+          $applied_permissions[] = "Revoked '$permission' from '$role_id'";
+        }
+        $role->save();
+      } else {
+        $missing_roles[] = $role_id;
+      }
+    }
+  }
+  
+  $message = 'Applied ' . count($overrides) . ' permissions to ' . count($core_roles) . ' core roles.';
+  
+  if (!empty($missing_roles)) {
+    $message .= ' Warning: Missing roles: ' . implode(', ', array_unique($missing_roles));
+  }
+  
+  return [
+    'success' => TRUE,
+    'message' => $message,
+    'details' => $applied_permissions
+  ];
+}

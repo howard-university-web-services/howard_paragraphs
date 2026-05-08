@@ -1,0 +1,7 @@
+name: 'Howard Permissions'
+type: module
+description: 'Manages and enforces standard permissions for core Howard University roles across all sites.'
+core_version_requirement: ^11
+package: 'Howard University'
+dependencies:
+  - drupal:user
