@@ -33,6 +33,8 @@
       "title": "Skip antibot",
       "provider": "antibot",
       "roles": [
+        "Site Builder",
+        "Site Admin",
         "Administrator"
       ]
     },
@@ -129,6 +131,8 @@
       "title": "Skip CAPTCHA",
       "provider": "captcha",
       "roles": [
+        "Site Builder",
+        "Site Admin",
         "Administrator"
       ]
     },
@@ -1312,6 +1316,7 @@
       "title": "Edit Any Hc Announcement Content",
       "provider": "node",
       "roles": [
+        "Site Builder",
         "Site Admin",
         "Administrator"
       ]
@@ -1321,6 +1326,7 @@
       "title": "Edit Any Hc Article Content",
       "provider": "node",
       "roles": [
+        "Site Builder",
         "Site Admin",
         "Administrator"
       ]
@@ -1330,6 +1336,7 @@
       "title": "Edit Any Hc Page Content",
       "provider": "node",
       "roles": [
+        "Site Builder",
         "Site Admin",
         "Administrator"
       ]
@@ -1339,6 +1346,7 @@
       "title": "Edit Any Hc Person Content",
       "provider": "node",
       "roles": [
+        "Site Builder",
         "Site Admin",
         "Administrator"
       ]
@@ -1348,6 +1356,7 @@
       "title": "Edit Any Hc Resource Content",
       "provider": "node",
       "roles": [
+        "Site Builder",
         "Site Admin",
         "Administrator"
       ]
@@ -1357,6 +1366,7 @@
       "title": "Edit Any Hc Standard Homepage Content",
       "provider": "node",
       "roles": [
+        "Site Builder",
         "Site Admin",
         "Administrator"
       ]
@@ -2937,7 +2947,8 @@
       "provider": "media",
       "roles": [
         "Administrator",
-        "Site Admin"
+        "Site Admin",
+        "Site Builder"
       ]
     },
     {
@@ -3073,7 +3084,8 @@
       "provider": "media",
       "roles": [
         "Administrator",
-        "Site Admin"
+        "Site Admin",
+        "Site Builder"
       ]
     },
     {
@@ -3082,7 +3094,8 @@
       "provider": "media",
       "roles": [
         "Administrator",
-        "Site Admin"
+        "Site Admin",
+        "Site Builder"
       ]
     },
     {
@@ -3091,7 +3104,8 @@
       "provider": "media",
       "roles": [
         "Administrator",
-        "Site Admin"
+        "Site Admin",
+        "Site Builder"
       ]
     },
     {
@@ -3100,7 +3114,8 @@
       "provider": "media",
       "roles": [
         "Administrator",
-        "Site Admin"
+        "Site Admin",
+        "Site Builder"
       ]
     },
     {
@@ -3109,7 +3124,8 @@
       "provider": "media",
       "roles": [
         "Administrator",
-        "Site Admin"
+        "Site Admin",
+        "Site Builder"
       ]
     },
     {
