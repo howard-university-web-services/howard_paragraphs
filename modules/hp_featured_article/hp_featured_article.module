@@ -67,6 +67,7 @@ function hp_featured_article_preprocess_paragraph__hp_featured_article(&$variabl
         if (isset($entity->body->summary) && $entity->body->summary !== '') {
           $variables['hp_fa_summary'] = $entity->body->summary;
         }
+          $variables['hp_fa_summary'] = html_entity_decode($variables['hp_fa_summary'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
         // Link.
         $variables['hp_fa_link'] = $entity->toUrl()->toString();
         // Get media image URL.
