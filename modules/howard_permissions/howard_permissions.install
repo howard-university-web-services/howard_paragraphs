@@ -39,6 +39,20 @@ function howard_permissions_update_8001() {
 }
 
 /**
+ * Update 8002: Re-apply permissions after role assignment updates.
+ */
+function howard_permissions_update_8002() {
+  // Apply updated permissions from JSON file.
+  $result = howard_permissions_apply_all_permissions();
+  if ($result['success']) {
+    return $result['message'];
+  }
+  else {
+    throw new \Exception($result['message']);
+  }
+}
+
+/**
  * Helper function to ensure required roles exist.
  */
 function howard_permissions_ensure_required_roles() {

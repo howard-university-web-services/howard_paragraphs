@@ -165,6 +165,7 @@
       "title": "Editorial workflow: Use Archive transition",
       "provider": "content_moderation",
       "roles": [
+        "Site Builder",
         "Site Admin",
         "Administrator"
       ]
@@ -482,7 +483,8 @@
       "provider": "entity_clone",
       "roles": [
         "Administrator",
-        "Site Admin"
+        "Site Admin",
+        "Site Builder"
       ]
     },
     {
@@ -563,7 +565,8 @@
       "provider": "entity_clone",
       "roles": [
         "Administrator",
-        "Site Admin"
+        "Site Admin",
+        "Site Builder"
       ]
     },
     {
@@ -680,7 +683,8 @@
       "provider": "entity_clone",
       "roles": [
         "Administrator",
-        "Site Admin"
+        "Site Admin",
+        "Site Builder"
       ]
     },
     {
@@ -689,7 +693,8 @@
       "provider": "entity_clone",
       "roles": [
         "Administrator",
-        "Site Admin"
+        "Site Admin",
+        "Site Builder"
       ]
     },
     {
@@ -725,7 +730,8 @@
       "provider": "entity_clone",
       "roles": [
         "Administrator",
-        "Site Admin"
+        "Site Admin",
+        "Site Builder"
       ]
     },
     {
@@ -788,7 +794,8 @@
       "provider": "entity_clone",
       "roles": [
         "Administrator",
-        "Site Admin"
+        "Site Admin",
+        "Site Builder"
       ]
     },
     {
@@ -2622,7 +2629,8 @@
       "provider": "file",
       "roles": [
         "Administrator",
-        "Site Admin"
+        "Site Admin",
+        "Site Builder"
       ]
     },
     {
@@ -2630,8 +2638,7 @@
       "title": "Delete any file",
       "provider": "file",
       "roles": [
-        "Administrator",
-        "Site Admin"
+        "Administrator"
       ]
     },
     {
@@ -2639,8 +2646,7 @@
       "title": "Delete own files",
       "provider": "file",
       "roles": [
-        "Administrator",
-        "Site Admin"
+        "Administrator"
       ]
     },
     {
@@ -2668,7 +2674,8 @@
       "provider": "filter",
       "roles": [
         "Administrator",
-        "Site Admin"
+        "Site Admin",
+        "Site Builder"
       ]
     },
     {
@@ -2966,8 +2973,7 @@
       "title": "Administer Media",
       "provider": "media",
       "roles": [
-        "Administrator",
-        "Site Admin"
+        "Administrator"
       ]
     },
     {
@@ -3133,9 +3139,7 @@
       "title": "Delete Own Audio Media",
       "provider": "media",
       "roles": [
-        "Administrator",
-        "Site Admin",
-        "Site Builder"
+        "Administrator"
       ]
     },
     {
@@ -3143,9 +3147,7 @@
       "title": "Delete Own File Media",
       "provider": "media",
       "roles": [
-        "Administrator",
-        "Site Admin",
-        "Site Builder"
+        "Administrator"
       ]
     },
     {
@@ -3153,9 +3155,7 @@
       "title": "Delete Own Image Media",
       "provider": "media",
       "roles": [
-        "Administrator",
-        "Site Admin",
-        "Site Builder"
+        "Administrator"
       ]
     },
     {
@@ -3163,9 +3163,7 @@
       "title": "Delete Own Remote Video Media",
       "provider": "media",
       "roles": [
-        "Administrator",
-        "Site Admin",
-        "Site Builder"
+        "Administrator"
       ]
     },
     {
@@ -3173,9 +3171,7 @@
       "title": "Delete Own Video Media",
       "provider": "media",
       "roles": [
-        "Administrator",
-        "Site Admin",
-        "Site Builder"
+        "Administrator"
       ]
     },
     {
@@ -3183,8 +3179,7 @@
       "title": "Delete Any Audio Media",
       "provider": "media",
       "roles": [
-        "Administrator",
-        "Site Admin"
+        "Administrator"
       ]
     },
     {
@@ -3192,8 +3187,7 @@
       "title": "Delete Any File Media",
       "provider": "media",
       "roles": [
-        "Administrator",
-        "Site Admin"
+        "Administrator"
       ]
     },
     {
@@ -3201,8 +3195,7 @@
       "title": "Delete Any Image Media",
       "provider": "media",
       "roles": [
-        "Administrator",
-        "Site Admin"
+        "Administrator"
       ]
     },
     {
@@ -3210,8 +3203,7 @@
       "title": "Delete Any Remote Video Media",
       "provider": "media",
       "roles": [
-        "Administrator",
-        "Site Admin"
+        "Administrator"
       ]
     },
     {
@@ -3219,8 +3211,7 @@
       "title": "Delete Any Video Media",
       "provider": "media",
       "roles": [
-        "Administrator",
-        "Site Admin"
+        "Administrator"
       ]
     },
     {
@@ -3228,8 +3219,7 @@
       "title": "Delete Any Audio Media Revisions",
       "provider": "media",
       "roles": [
-        "Administrator",
-        "Site Admin"
+        "Administrator"
       ]
     },
     {
@@ -3237,8 +3227,7 @@
       "title": "Delete Any File Media Revisions",
       "provider": "media",
       "roles": [
-        "Administrator",
-        "Site Admin"
+        "Administrator"
       ]
     },
     {
@@ -3246,8 +3235,7 @@
       "title": "Delete Any Image Media Revisions",
       "provider": "media",
       "roles": [
-        "Administrator",
-        "Site Admin"
+        "Administrator"
       ]
     },
     {
@@ -3255,8 +3243,7 @@
       "title": "Delete Any Remote Video Media Revisions",
       "provider": "media",
       "roles": [
-        "Administrator",
-        "Site Admin"
+        "Administrator"
       ]
     },
     {
@@ -3264,8 +3251,7 @@
       "title": "Delete Any Video Media Revisions",
       "provider": "media",
       "roles": [
-        "Administrator",
-        "Site Admin"
+        "Administrator"
       ]
     },
     {
