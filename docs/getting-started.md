@@ -81,7 +81,7 @@ Here's how to use a simple card component:
 5. Publish when ready
 
 ### Component Selection Guide
-- **Text Content**: Use `hp_html` or `hp_wysiwyg_text_filter_ul`
+- **Text Content**: Use `hp_html`
 - **Call-to-Actions**: Use `hp_button_link` or `hp_callout`
 - **Media**: Use `hp_media`, `hp_carousel_with_caption`, or `hp_video_slideshow`
 - **Data Display**: Use `hp_cards`, `hp_table`, or `hp_data_point`
