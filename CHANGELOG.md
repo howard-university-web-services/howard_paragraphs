@@ -2,6 +2,55 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.2.7] - 2026-07-23
+
+### Added
+
+- **External Data Source**: Bundled `drupal/external_data_source` contrib module directly into `howard_paragraphs/modules/external_data_source/`, removing the Composer dependency. Allows Howard-specific customizations without relying on upstream releases.
+
+### Changed
+
+- **composer.json**: Removed `drupal/external_data_source: ^3.2` Composer requirement — module is now provided locally.
+- **External Data Source**: Updated module metadata — `version`, `description`, and `core_version_requirement` aligned with other Howard submodules. Added origin note and "do not update from Drupal.org" warning.
+- **External Data Source**: Removed contrib example plugins (`Countries`, `FranceRegions`, `FranceZipCodes`) — not applicable to Howard projects.
+- **External Data Source**: Rewrote `README.md` in Howard module style with origin documentation and Howard-specific plugin listing.
+
+### Fixed
+
+- **External Data Source** (`ExternalDataSourceFormatter`): Removed deprecated `quickedit` annotation (removed in Drupal 10.1).
+- **External Data Source** (`ExternalDataSourceFormatter`): Fixed security issue — `t()` was being called on user-supplied field data; corrected to `Html::escape()` only.
+- **External Data Source** (`ExternalDataSourceCheckboxesWidget`): Added missing `use` statement for `SuspiciousOperationException` — absence caused a fatal PHP error at runtime.
+- **External Data Source** (`ExternalDataSourceBase`): Added missing `use` statements for `UTF8Utils` and `Request`; added `setRequest()` method to base class (called by the controller but previously absent).
+- **External Data Source** (`ExternalDataSourceSelectWidget`, `ExternalDataSourceCheckboxesWidget`): Fixed undefined variable `$pluginInstance` when no plugin is configured — both widgets now return gracefully instead of a PHP notice/fatal.
+- **External Data Source** (`ExternalDataSourceBase`): Simplified `sanitizeArray()` to call `UTF8Utils::convertToUTF8()` statically, removing unnecessary class instantiation.
+- **External Data Source** (`ExternalDataSource` FieldType): Removed stale `'ws' => 'countries'` default referencing the removed example plugin; default is now an empty string.
+- **External Data Source** (`external_data_source.schema.yml`): Fixed schema key mismatch — `external_data_source_autocomplete_widget` corrected to `external_data_source_auto_complete_widget` to match the actual widget plugin ID.
+- **External Data Source** (`ExternalDataSourceCheckboxesWidget`): Renamed `$SettingPlugin` to `$settingPlugin` and loop variable `$plugin` to `$pluginDef` per Drupal coding standards.
+
+## [11.2.6] - 2026-07-22
+
+### Removed
+
+- **HP WYSIWYG Text Filter UL** (`hp_wysiwyg_text_filter_ul`): Module removed.
+
+## [11.2.5] - 2026-07-14
+
+### Changed
+
+- **Howard Permissions**: Standardized roles and permissions across Howard University multisite installations.
+
+## [11.2.4] - 2026-06-09
+
+### Fixed
+
+- **HP Featured Article**: Updated entity decoding for featured article field values.
+
+## [11.2.3] - 2026-05-18
+
+### Fixed
+
+- **Howard Permissions**: Updated core permissions configuration.
+
 ## [11.2.2] - 2026-05-08
 
 ### Added

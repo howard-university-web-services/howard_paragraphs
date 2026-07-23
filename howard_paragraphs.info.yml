@@ -1,7 +1,7 @@
 name: Howard Paragraphs
 type: module
 description: A suite of Paragraph bundles made for Howard University projects.
-version: '11.2.3'
+version: '11.2.7'
 # Note: This is a custom module, not distributed through Drupal.org
 # project: 'howard_paragraphs'
 
