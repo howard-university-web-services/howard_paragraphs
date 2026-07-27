@@ -151,3 +151,56 @@ function howard_paragraphs_update_8007() {
   }
 
 }
+
+/**
+ * Migrate paragraph media fields from Entity Browser to core Media Library widget.
+ */
+function howard_paragraphs_update_8008() {
+  // Ensure core media_library module is enabled.
+  if (!\Drupal::moduleHandler()->moduleExists('media_library')) {
+    \Drupal::service('module_installer')->install(['media_library']);
+  }
+
+  // Map Howard entity browser IDs to media_library_widget media_types.
+  $browser_media_types = [
+    'hc_media_browser_image'   => ['image'],
+    'hc_media_browser_video'   => ['video', 'remote_video'],
+    'hc_media_browser_file'    => ['file'],
+    'hc_media_browser_general' => [],
+  ];
+
+  $storage = \Drupal::entityTypeManager()->getStorage('entity_form_display');
+  $config_names = \Drupal::service('config.factory')
+    ->listAll('core.entity_form_display.paragraph.');
+
+  foreach ($config_names as $config_name) {
+    $id = str_replace('core.entity_form_display.', '', $config_name);
+    /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $display */
+    $display = $storage->load($id);
+    if (!$display) {
+      continue;
+    }
+
+    $changed = FALSE;
+    foreach ($display->getComponents() as $field_name => $component) {
+      if (($component['type'] ?? '') !== 'entity_browser_entity_reference') {
+        continue;
+      }
+      $browser = $component['settings']['entity_browser'] ?? '';
+      $media_types = $browser_media_types[$browser] ?? [];
+
+      $display->setComponent($field_name, [
+        'type'                 => 'media_library_widget',
+        'weight'               => $component['weight'],
+        'region'               => $component['region'] ?? 'content',
+        'settings'             => ['media_types' => $media_types],
+        'third_party_settings' => $component['third_party_settings'] ?? [],
+      ]);
+      $changed = TRUE;
+    }
+
+    if ($changed) {
+      $display->save();
+    }
+  }
+}

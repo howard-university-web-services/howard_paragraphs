@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.media_entity_browser
     - field.field.paragraph.hp_testimonial.field_hp_tst_image
     - field.field.paragraph.hp_testimonial.field_hp_tst_intro
     - field.field.paragraph.hp_testimonial.field_hp_tst_name
@@ -10,7 +9,7 @@ dependencies:
     - field.field.paragraph.hp_testimonial.field_hp_tst_title
     - paragraphs.paragraphs_type.hp_testimonial
   module:
-    - entity_browser
+    - media_library
     - text
 id: paragraph.hp_testimonial.default
 targetEntityType: paragraph
@@ -18,19 +17,13 @@ bundle: hp_testimonial
 mode: default
 content:
   field_hp_tst_image:
+    type: media_library_widget
     weight: 0
-    settings:
-      entity_browser: hc_media_browser_image
-      field_widget_display: label
-      field_widget_edit: true
-      field_widget_remove: true
-      selection_mode: selection_append
-      field_widget_replace: false
-      open: false
-      field_widget_display_settings: {  }
-    third_party_settings: {  }
-    type: entity_browser_entity_reference
     region: content
+    settings:
+      media_types:
+        - image
+    third_party_settings: {  }
   field_hp_tst_intro:
     weight: 3
     settings:

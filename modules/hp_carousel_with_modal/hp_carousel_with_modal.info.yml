@@ -9,5 +9,5 @@ package: Howard University
 dependencies:
   - entity_reference_revisions
   - howard_paragraphs
-  - entity_browser
+  - drupal:media_library
   - link_target

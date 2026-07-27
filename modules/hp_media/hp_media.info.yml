@@ -10,7 +10,6 @@ dependencies:
   - entity_reference_revisions
   - howard_paragraphs
   - howard_content_types
-  - entity_browser
-  - media_entity_browser
+  - drupal:media_library
   - video_embed_field
   - video_embed_media

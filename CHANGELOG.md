@@ -2,6 +2,17 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.2.8] - 2026-07-27
+
+### Changed
+
+- **Media widget migration**: Migrated all paragraph media fields from `entity_browser_entity_reference` to core `media_library_widget` across `hp_callout`, `hp_carousel_with_caption_slide`, `hp_carousel_with_modal_slide`, `hp_parallax`, `hp_promo_space`, `hp_countdown`, `hp_media`, `hp_testimonial`, and `hp_card` paragraph types.
+- **`hp_media/hp_media.info.yml`**: Removed `entity_browser` and `media_entity_browser` dependencies; added `drupal:media_library`.
+
+### Added
+
+- **`howard_paragraphs_update_8008`**: Database update hook to migrate existing sites — scans all active paragraph form displays and converts any `entity_browser_entity_reference` widget to `media_library_widget` with appropriate `media_types` (`hc_media_browser_image` → `[image]`, `hc_media_browser_video` → `[video, remote_video]`, `hc_media_browser_file` → `[file]`, `hc_media_browser_general` → all types).
+
 ## [11.2.7] - 2026-07-23
 
 ### Added
