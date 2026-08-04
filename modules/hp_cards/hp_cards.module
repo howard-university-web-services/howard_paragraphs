@@ -92,7 +92,7 @@ function hp_cards_preprocess_paragraph__hp_card(&$variables) {
   // Get card media image URL.
   if ($paragraph->hasField('field_hp_cd_image')) {
     // Large image style by default.
-    $image_style = 'large';
+   $image_style = ImageStyle::load('card_landscape') ? 'card_landscape' : 'large';
     if ($layout == 'person') {
       // Person style requires different image.
       $image_style = 'hc_large_480_480_cropped';
