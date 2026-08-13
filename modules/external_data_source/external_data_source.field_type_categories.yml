@@ -1,0 +1,3 @@
+external_data_source_fields:
+  label: 'External Data Source Fields'
+  weight: 50

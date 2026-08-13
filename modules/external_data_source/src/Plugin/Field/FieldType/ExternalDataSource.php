@@ -17,7 +17,7 @@ use Drupal\Core\TypedData\DataDefinition;
  *   id = "external_data_source",
  *   label = @Translation("External Data Source Field"),
  *   description = @Translation("External Data Source Field Type"),
- *   category = @Translation("External Data Source Fields"),
+ *   category = "external_data_source_fields",
  *   default_widget = "external_data_source_select_widget",
  *   default_formatter = "external_data_source_formatter",
  *   list_class = "\Drupal\Core\Field\FieldItemList",

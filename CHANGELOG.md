@@ -2,6 +2,19 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.2.10] - 2026-08-13
+
+### Fixed
+
+- **`external_data_source` FieldType**: Changed `category` annotation from `@Translation("External Data Source Fields")` to the machine-name string `"external_data_source_fields"` for Drupal 11 compatibility. Drupal 11 requires field type categories to be machine-name strings backed by a `.field_type_categories.yml` file.
+- **`external_data_source.field_type_categories.yml`**: Added new file defining the `external_data_source_fields` category with label `External Data Source Fields`.
+
+## [11.2.9] - 2026-08-04
+
+### Changed
+
+- **`hp_cards`**: Updated card image style from hardcoded `large` to `card_landscape` (with `large` as fallback) in `hp_cards_preprocess_paragraph__hp_card()`.
+
 ## [11.2.8] - 2026-07-27
 
 ### Changed
