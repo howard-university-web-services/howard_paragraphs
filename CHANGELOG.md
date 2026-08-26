@@ -2,6 +2,13 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+
+## [11.2.11] - 2026-08-26
+
+### Fixed
+
+- **`hp_parallax`**: Updated mobile font colors 
+
 ## [11.2.10] - 2026-08-13
 
 ### Fixed
