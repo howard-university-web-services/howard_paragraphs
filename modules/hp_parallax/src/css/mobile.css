@@ -1,0 +1,5 @@
+@media (max-width: 799px) {
+  .parallax_text, .parallax_text .lead-in{
+    color: white;
+  }
+}

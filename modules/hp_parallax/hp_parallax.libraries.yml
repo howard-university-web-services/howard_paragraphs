@@ -1,0 +1,6 @@
+global:
+  version: VERSION
+  css:
+    base:
+      src/css/mobile.css: {}
+  

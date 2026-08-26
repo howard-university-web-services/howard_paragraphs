@@ -49,6 +49,7 @@ function hp_parallax_theme($existing, $type, $theme, $path) {
  */
 function hp_parallax_preprocess_paragraph__hp_parallax(array &$variables) {
   $paragraph = $variables['elements']['#paragraph'];
+  $variables['#attached']['library'][] = 'hp_parallax/global';
   $variables['float_left'] = $paragraph->get('field_hp_parallax_left_align')->value;
 
   // Get media url.
