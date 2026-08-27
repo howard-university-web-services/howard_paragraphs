@@ -1,0 +1,20 @@
+uuid: 00000000-0000-0000-0000-000000000001
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.hp_ai_agent
+  module:
+    - text
+id: hp_ai_agent.field_agent_name
+entity_type: paragraph
+bundle: hp_ai_agent
+label: 'Agent Name'
+description: 'The name of the Azure AI agent to use'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  max_length: 255
+field_type: string

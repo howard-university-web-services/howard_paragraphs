@@ -1,0 +1,32 @@
+uuid: 00000000-0000-0000-0000-000000000005
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.hp_ai_agent
+id: hp_ai_agent.default
+targetEntityType: paragraph
+bundle: hp_ai_agent
+mode: default
+content:
+  field_agent_name:
+    label: above
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+  field_agent_version:
+    label: above
+    type: string
+    weight: 1
+    region: content
+    settings:
+      link_to_entity: false
+  field_system_prompt:
+    label: above
+    type: text_default
+    weight: 2
+    region: content
+    settings: {  }
+hidden: {  }
