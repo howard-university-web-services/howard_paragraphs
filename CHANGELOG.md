@@ -3,6 +3,12 @@
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
 
+## [11.2.13] - 2026-09-18
+
+### Added
+
+- **`hp_statistics`**: New paragraph type for a Statistics widget - a heading/intro/link block plus up to 3 repeating `hp_statistics_item` stat entries (stat number, optional suffix, body, source). Kept fully separate from `hp_data_point`, since the visual treatment (large stat + superscript suffix, source line) diverges enough that reuse wasn't worth the coupling. Supports side-by-side or stacked display layout. Excluded from direct Kitchen Sink addition in `howard_content_types` (only addable via the `hp_statistics` container's own item field), matching how other repeating child bundles like `hp_carousel_with_caption_slide` are handled.
+
 ## [11.2.12] - 2026-09-18
 
 ### Added

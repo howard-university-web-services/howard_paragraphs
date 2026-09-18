@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_stat_layout
+    - paragraphs.paragraphs_type.hp_statistics
+  module:
+    - options
+id: paragraph.hp_statistics.field_hp_stat_layout
+field_name: field_hp_stat_layout
+entity_type: paragraph
+bundle: hp_statistics
+label: 'Display Style'
+description: 'Side by Side works best for stats with longer/varying descriptions and pages with a sidebar. Stacked works best for shorter, more uniform stats and pages without a sidebar.'
+required: true
+translatable: false
+default_value:
+  -
+    value: side_by_side
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,60 @@
+{#
+/**
+* @file
+* HP Statistics paragraph bundle.
+*
+* @ingroup themeable
+*/
+#}
+
+{%
+  set stat_layout = paragraph.field_hp_stat_layout.value|default('side_by_side')
+%}
+
+{%
+  set classes = [
+    'section--padded-top',
+    'section--padded-bottom',
+    'hp-statistics',
+    'hp-statistics--' ~ stat_layout|replace({'_': '-'})
+  ]
+%}
+
+<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Statistics">
+  {% if hp_show_wrapper %}
+    <div class="compartment">
+  {% endif %}
+
+    <div class="hp-statistics__inner">
+
+      <div class="hp-statistics__intro">
+        {% if content.field_hp_stat_eyebrow|render %}
+          <span class="hp-statistics__eyebrow">{{ content.field_hp_stat_eyebrow }}</span>
+        {% endif %}
+        {% if content.field_hp_stat_title|render %}
+          <h2 class="hp-statistics__title">{{ content.field_hp_stat_title }}</h2>
+        {% endif %}
+        {{ content.field_hp_stat_text }}
+        {% if content.field_hp_stat_link[0] %}
+          <a href="{{ content.field_hp_stat_link[0]['#url'] }}" class="fancy-link" {% if content.field_hp_stat_link[0]['#options'].attributes.target %} target="{{ content.field_hp_stat_link[0]['#options'].attributes.target }}"{% endif %}>
+            <span>{{ content.field_hp_stat_link[0]['#title'] }}</span>
+            <span class="icon-arrow-right"></span>
+          </a>
+        {% endif %}
+      </div>
+
+      {#
+        Layout note: 2 vs 3 stats display differently in the design
+        (2 stats get more room each) - "hp-statistics__items--count-N"
+        lets CSS target that without a preprocess hook.
+      #}
+      <div class="hp-statistics__items hp-statistics__items--count-{{ paragraph.field_hp_stat_items|length }}">
+        {{ content.field_hp_stat_items }}
+      </div>
+
+    </div>
+
+  {% if hp_show_wrapper %}
+    </div>
+  {% endif %}
+</section>

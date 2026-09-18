@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_statistics_item
+label: 'HP Statistics Item'
+icon_uuid: null
+description: 'Individual statistic item for the HP Statistics widget (max 3 per widget).'
+behavior_plugins: {  }

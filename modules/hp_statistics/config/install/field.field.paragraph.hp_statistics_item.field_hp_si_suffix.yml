@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_si_suffix
+    - paragraphs.paragraphs_type.hp_statistics_item
+id: paragraph.hp_statistics_item.field_hp_si_suffix
+field_name: field_hp_si_suffix
+entity_type: paragraph
+bundle: hp_statistics_item
+label: 'Statistic Suffix'
+description: 'Optional, rendered smaller/raised next to the number (e.g. "%", "th").'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

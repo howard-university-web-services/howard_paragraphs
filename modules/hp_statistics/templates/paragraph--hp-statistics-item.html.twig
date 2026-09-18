@@ -1,0 +1,20 @@
+{#
+/**
+* @file
+* HP Statistics Item paragraph bundle.
+*
+* @ingroup themeable
+*/
+#}
+
+<div class="hp-statistics__item">
+  {% if content.field_hp_si_stat|render %}
+    <p class="hp-statistics__item-stat">
+      {{ content.field_hp_si_stat }}{% if content.field_hp_si_suffix|render %}<sup class="hp-statistics__item-suffix">{{ content.field_hp_si_suffix }}</sup>{% endif %}
+    </p>
+  {% endif %}
+  {{ content.field_hp_si_body }}
+  {% if content.field_hp_si_source|render %}
+    <p class="hp-statistics__item-source">{{ content.field_hp_si_source }}</p>
+  {% endif %}
+</div>

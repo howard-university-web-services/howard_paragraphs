@@ -1,0 +1,66 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_statistics.field_hp_stat_eyebrow
+    - field.field.paragraph.hp_statistics.field_hp_stat_items
+    - field.field.paragraph.hp_statistics.field_hp_stat_layout
+    - field.field.paragraph.hp_statistics.field_hp_stat_link
+    - field.field.paragraph.hp_statistics.field_hp_stat_text
+    - field.field.paragraph.hp_statistics.field_hp_stat_title
+    - paragraphs.paragraphs_type.hp_statistics
+  module:
+    - entity_reference_revisions
+    - link
+id: paragraph.hp_statistics.default
+targetEntityType: paragraph
+bundle: hp_statistics
+mode: default
+content:
+  field_hp_stat_eyebrow:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_hp_stat_title:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_hp_stat_text:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_hp_stat_link:
+    weight: 3
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_hp_stat_items:
+    type: entity_reference_revisions_entity_view
+    weight: 4
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  field_hp_stat_layout: true
+  status: true
+  uid: true

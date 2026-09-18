@@ -1,0 +1,45 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_statistics_item.field_hp_si_body
+    - field.field.paragraph.hp_statistics_item.field_hp_si_source
+    - field.field.paragraph.hp_statistics_item.field_hp_si_stat
+    - field.field.paragraph.hp_statistics_item.field_hp_si_suffix
+    - paragraphs.paragraphs_type.hp_statistics_item
+content:
+  field_hp_si_stat:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_hp_si_suffix:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_hp_si_body:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_hp_si_source:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: string
+    region: content
+targetEntityType: paragraph
+bundle: hp_statistics_item
+mode: default
+hidden:
+  created: true
+  status: true
+  uid: true

@@ -1,0 +1,13 @@
+name: 'Howard Paragraphs: Statistics'
+type: module
+description: Provides a paragraphs bundle for displaying a heading/intro with up to 3 statistic items as a Kitchen Sink Widget.
+version: '11.x-1.0'
+
+core_version_requirement: ^10 || ^11
+
+package: Howard University
+dependencies:
+  - entity_reference_revisions
+  - howard_paragraphs
+  - link
+  - link_target

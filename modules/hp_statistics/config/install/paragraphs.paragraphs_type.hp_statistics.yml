@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_statistics
+label: 'HP Statistics'
+icon_uuid: null
+description: 'Heading/intro/link block plus up to 3 statistic items.'
+behavior_plugins: {  }
