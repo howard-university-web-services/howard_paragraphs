@@ -1,0 +1,9 @@
+hp_deadlines_feed.proxy:
+  path: '/hp-deadlines-feed/proxy'
+  defaults:
+    _controller: '\Drupal\hp_deadlines_feed\Controller\DeadlinesProxyController::proxy'
+    _title: 'Howard Dates & Deadlines Proxy'
+  options:
+    no_cache: TRUE
+  requirements:
+    _permission: 'access content'

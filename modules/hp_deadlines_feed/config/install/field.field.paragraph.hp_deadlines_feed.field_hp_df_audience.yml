@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_df_audience
+    - paragraphs.paragraphs_type.hp_deadlines_feed
+  module:
+    - external_data_source
+id: paragraph.hp_deadlines_feed.field_hp_df_audience
+field_name: field_hp_df_audience
+entity_type: paragraph
+bundle: hp_deadlines_feed
+label: Audience
+description: 'Optionally, prefilter this feed by Audience (one or more). These are pulled from the "Deadline Audience" taxonomy (hc_deadline_audience) on the prod installation of deadlines.howard.edu.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: external_data_source

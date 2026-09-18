@@ -1,0 +1,79 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_deadlines_feed.field_hp_df_audience
+    - field.field.paragraph.hp_deadlines_feed.field_hp_df_category
+    - field.field.paragraph.hp_deadlines_feed.field_hp_df_count
+    - field.field.paragraph.hp_deadlines_feed.field_hp_df_environment
+    - field.field.paragraph.hp_deadlines_feed.field_hp_df_link
+    - field.field.paragraph.hp_deadlines_feed.field_hp_df_school
+    - field.field.paragraph.hp_deadlines_feed.field_hp_df_title
+    - paragraphs.paragraphs_type.hp_deadlines_feed
+  module:
+    - external_data_source
+    - link
+    - options
+id: paragraph.hp_deadlines_feed.default
+targetEntityType: paragraph
+bundle: hp_deadlines_feed
+mode: default
+content:
+  field_hp_df_title:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_hp_df_link:
+    weight: 1
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_hp_df_environment:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_hp_df_count:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_hp_df_category:
+    weight: 4
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: external_data_source_formatter
+    region: content
+  field_hp_df_audience:
+    weight: 5
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: external_data_source_formatter
+    region: content
+  field_hp_df_school:
+    weight: 6
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: external_data_source_formatter
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

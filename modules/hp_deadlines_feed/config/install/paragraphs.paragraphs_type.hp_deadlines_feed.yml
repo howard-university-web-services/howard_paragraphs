@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_deadlines_feed
+label: 'HP Deadlines Feed'
+icon_uuid: null
+description: 'Holds a prefiltered feed of Dates & Deadlines from deadlines.howard.edu.'
+behavior_plugins: {  }

@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_df_environment
+    - paragraphs.paragraphs_type.hp_deadlines_feed
+  module:
+    - options
+id: paragraph.hp_deadlines_feed.field_hp_df_environment
+field_name: field_hp_df_environment
+entity_type: paragraph
+bundle: hp_deadlines_feed
+label: Environment
+description: 'Choose which environment to pull Howard Dates & Deadlines from, normally this should be "Production" unless you are testing on another environment. Note that this is only for the deadlines feed itself. The taxonomy terms used as filters below are currently pulled from Staging, since deadlines.howard.edu does not have a Production site yet — this will switch to Production once that launches.'
+required: true
+translatable: false
+default_value:
+  -
+    value: prod
+default_value_callback: ''
+settings: {  }
+field_type: list_string

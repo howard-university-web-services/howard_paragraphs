@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_df_count
+    - paragraphs.paragraphs_type.hp_deadlines_feed
+  module:
+    - options
+id: paragraph.hp_deadlines_feed.field_hp_df_count
+field_name: field_hp_df_count
+entity_type: paragraph
+bundle: hp_deadlines_feed
+label: 'Number to Show'
+description: 'How many upcoming dates/deadlines to display.'
+required: true
+translatable: false
+default_value:
+  -
+    value: '5'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

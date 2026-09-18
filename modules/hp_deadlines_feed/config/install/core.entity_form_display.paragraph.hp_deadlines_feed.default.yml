@@ -1,0 +1,123 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hp_deadlines_feed.field_hp_df_audience
+    - field.field.paragraph.hp_deadlines_feed.field_hp_df_category
+    - field.field.paragraph.hp_deadlines_feed.field_hp_df_count
+    - field.field.paragraph.hp_deadlines_feed.field_hp_df_environment
+    - field.field.paragraph.hp_deadlines_feed.field_hp_df_link
+    - field.field.paragraph.hp_deadlines_feed.field_hp_df_school
+    - field.field.paragraph.hp_deadlines_feed.field_hp_df_title
+    - paragraphs.paragraphs_type.hp_deadlines_feed
+  module:
+    - external_data_source
+    - field_group
+    - link_target
+    - options
+id: paragraph.hp_deadlines_feed.default
+targetEntityType: paragraph
+bundle: hp_deadlines_feed
+mode: default
+content:
+  field_hp_df_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_hp_df_link:
+    weight: 1
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+      link_target: ''
+    third_party_settings: {  }
+    type: link_target_field_widget
+    region: content
+  field_hp_df_environment:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_hp_df_count:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_hp_df_category:
+    weight: 4
+    settings:
+      size: 1
+      placeholder: ''
+    third_party_settings: {  }
+    type: external_data_source_select_widget
+    region: content
+  field_hp_df_audience:
+    weight: 5
+    settings:
+      size: 1
+      placeholder: ''
+    third_party_settings: {  }
+    type: external_data_source_checkboxes_widget
+    region: content
+  field_hp_df_school:
+    weight: 6
+    settings:
+      size: 1
+      placeholder: ''
+    third_party_settings: {  }
+    type: external_data_source_checkboxes_widget
+    region: content
+third_party_settings:
+  field_group:
+    group_category_filter:
+      children:
+        - field_hp_df_category
+      parent_name: ''
+      weight: 7
+      format_type: details
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: 'Optionally prefilter by Deadline Category, available on deadlines.howard.edu.'
+        open: false
+        required_fields: true
+      label: 'Category Filter'
+    group_audience_filter:
+      children:
+        - field_hp_df_audience
+      parent_name: ''
+      weight: 8
+      format_type: details
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: 'Optionally prefilter by Audience (one or more), available on deadlines.howard.edu.'
+        open: false
+        required_fields: true
+      label: 'Audience Filter'
+    group_school_filter:
+      children:
+        - field_hp_df_school
+      parent_name: ''
+      weight: 9
+      format_type: details
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: 'Optionally prefilter by School or College (one or more), sourced from thedig.howard.edu.'
+        open: false
+        required_fields: true
+      label: 'School/College Filter'
+hidden:
+  created: true
+  status: true
+  uid: true

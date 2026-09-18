@@ -1,0 +1,14 @@
+name: 'Howard Paragraphs: Deadlines Feed'
+type: module
+description: Provides a paragraphs bundle for embedding a Dates & Deadlines Feed as a Kitchen Sink Widget.
+version: '11.x-1.0'
+
+core_version_requirement: ^10 || ^11
+
+package: Howard University
+dependencies:
+  - entity_reference_revisions
+  - howard_paragraphs
+  - external_data_source
+  - link
+  - link_target

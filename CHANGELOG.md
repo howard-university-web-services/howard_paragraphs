@@ -3,6 +3,12 @@
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
 
+## [11.2.12] - 2026-09-18
+
+### Added
+
+- **`hp_deadlines_feed`**: New paragraph type for the Dates & Deadlines widget, prefiltering content from `deadlines.howard.edu` (`node/hc_deadline`, JSON:API). Supports optional Category, Audience, and School/College prefilters (each in its own collapsible accordion), a configurable item count (3/5/10/20), and an Environment toggle. Academic Term is intentionally not offered as a filter (upcoming-only list would empty out once a new term starts), but is shown as informational text under each item's title. Requests are proxied through a new `DeadlinesProxyController` route rather than called directly from the browser, since `deadlines.howard.edu` has no production site yet and its staging environment requires HTTP basic auth and has an invalid SSL certificate - neither workable from client-side JS.
+
 ## [11.2.11] - 2026-08-26
 
 ### Fixed

@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_df_school
+    - paragraphs.paragraphs_type.hp_deadlines_feed
+  module:
+    - external_data_source
+id: paragraph.hp_deadlines_feed.field_hp_df_school
+field_name: field_hp_df_school
+entity_type: paragraph
+bundle: hp_deadlines_feed
+label: 'School or College'
+description: 'Optionally, prefilter this feed by School/College (one or more). Confirmed via live field config on deadlines.howard.edu: field_hc_deadline_school is an external_data_source field sourced from thedig.howard.edu''s "Schools and Colleges" taxonomy (same plugin/convention as hp_news_feed''s School/College filter).'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: external_data_source

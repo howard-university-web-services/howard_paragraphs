@@ -1,0 +1,52 @@
+{#
+/**
+* @file
+* HP Deadlines Feed paragraph bundle.
+*
+* Academic Term is intentionally not exposed as a filter here per the
+* Dates & Deadlines widget spec - since this list only shows upcoming
+* items, filtering by term would empty out once a new term starts.
+*
+* @ingroup themeable
+*/
+#}
+
+{%
+  set classes = [
+    'section--padded-top',
+    'section--padded-bottom',
+		'hp-deadlines-feed'
+  ]
+%}
+
+<section{{attributes.addClass(classes).setAttribute('id','hp-'~paragraph.id())}} aria-label="Dates & Deadlines feed">
+	{% if hp_show_wrapper %}
+		<div class="compartment">
+	{% endif %}
+
+		<div class="block-header">
+			<div class="block-header__title">
+				<span class=" block-header__icon icon-calendar"></span>
+				<h2>{{ content.field_hp_df_title }}</h2>
+			</div>
+			{% if content.field_hp_df_link[0] %}
+				<div class="block-header__btn">
+					<a href="{{ content.field_hp_df_link[0]['#url'] }}" class="fancy-link fancy-link--light" {% if content.field_hp_df_link[0]['#options'].attributes.target %} target="{{ content.field_hp_df_link[0]['#options'].attributes.target }}" {% endif %}>
+						<span>{{ content.field_hp_df_link[0]['#title'] }}</span>
+						<span class="icon-arrow-right"></span>
+					</a>
+				</div>
+			{% endif %}
+		</div>
+
+		<div class="hp-deadlines-feed-app">
+			<deadlines-widget env="{{ hp_df_env_url }}" category="{{ hp_df_category }}" audience="{{ hp_df_audience }}" school="{{ hp_df_school }}" count="{{ hp_df_count }}"></deadlines-widget>
+		</div>
+		<noscript>
+			<p>Sorry, Javascript is required to use the deadlines widget.</p>
+		</noscript>
+
+	{% if hp_show_wrapper %}
+	</div>
+	{% endif %}
+</section>

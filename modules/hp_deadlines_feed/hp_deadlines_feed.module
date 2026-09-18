@@ -1,0 +1,100 @@
+<?php
+
+/**
+ * @file
+ * Hp_deadlines_feed module file.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ *
+ * @inheritdoc
+ */
+function hp_deadlines_feed_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.hp_deadlines_feed':
+      $text = file_get_contents(dirname(__FILE__) . "/README.md");
+      if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        return '<pre>' . $text . '</pre>';
+      }
+      else {
+        // Use the Markdown filter to render the README.
+        $filter_manager = \Drupal::service('plugin.manager.filter');
+        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $config = ['settings' => $settings];
+        $filter = $filter_manager->createInstance('markdown', $config);
+        return $filter->process($text, 'en');
+      }
+  }
+  return NULL;
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ *
+ * @param $variables
+ *   This sets variables for the deadlines widget, which are then passed to
+ *   the frontend feed component.
+ */
+function hp_deadlines_feed_preprocess_paragraph__hp_deadlines_feed(&$variables) {
+
+  // Check on env to determine which Deadlines site to pull from. Pass the
+  // raw environment code (not a full URL) - the frontend component builds
+  // the actual base URL itself, matching the hp_programs_feed pattern.
+  $env = 'prod';
+  if (isset($variables['elements']['#paragraph']->field_hp_df_environment->value)) {
+    $env = $variables['elements']['#paragraph']->field_hp_df_environment->value;
+  }
+  $variables['hp_df_env_url'] = $env;
+
+  // Check on Category filter (single value, term UUID).
+  $category = NULL;
+  if (isset($variables['elements']['#paragraph']->field_hp_df_category->value)) {
+    $category = $variables['elements']['#paragraph']->field_hp_df_category->value;
+  }
+  $variables['hp_df_category'] = $category;
+
+  // Check on Number to Show (defaults to 5 if somehow empty).
+  $count = 5;
+  if (isset($variables['elements']['#paragraph']->field_hp_df_count->value) && $variables['elements']['#paragraph']->field_hp_df_count->value) {
+    $count = (int) $variables['elements']['#paragraph']->field_hp_df_count->value;
+  }
+  $variables['hp_df_count'] = $count;
+
+  // Check on Audience filter. Unlike the other filters here, this field
+  // allows multiple values (term UUIDs), so we collect all of them.
+  $audience = [];
+  if (isset($variables['elements']['#paragraph']->field_hp_df_audience->value)) {
+    foreach ($variables['elements']['#paragraph']->field_hp_df_audience->getValue() as $item) {
+      $audience[] = $item['value'];
+    }
+  }
+  $variables['hp_df_audience'] = implode(',', $audience);
+
+  // Check on School/College filter (multi-value, "id=<tid>" strings -
+  // confirmed via live field config that field_hc_deadline_school stores
+  // these literally, unlike the UUID-based Category/Audience filters).
+  $school = [];
+  if (isset($variables['elements']['#paragraph']->field_hp_df_school->value)) {
+    foreach ($variables['elements']['#paragraph']->field_hp_df_school->getValue() as $item) {
+      $school[] = $item['value'];
+    }
+  }
+  $variables['hp_df_school'] = implode(',', $school);
+
+}
+
+/**
+ * Implements hook_theme().
+ *
+ * Lets us define our paragraphs templates in this module.
+ */
+function hp_deadlines_feed_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__hp_deadlines_feed' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
