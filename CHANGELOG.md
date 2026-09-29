@@ -3,6 +3,14 @@
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
 
+## [11.2.14] - 2026-09-29
+
+### Added
+
+- **`HowardNewsService::getNotifications()`**: Now accepts an `$env_url` parameter (default `https://thedig.howard.edu`), matching the existing convention already used by `getArticles()`/`getPeople()`/etc. Previously this method had no way to target a non-production environment at all. The cache ID now varies by `$env_url` so switching environments doesn't serve stale cross-environment results.
+- **`HowardNewsService::getData()`**: Applies the same Shield HTTP basic auth (`huweb`/`huweb`) + SSL verification bypass for `stg.thedig.howard.edu` requests that `hp_deadlines_feed`'s `DeadlinesProxyController` already uses for `stg.deadlines.howard.edu` - `stg.thedig.howard.edu` requires basic auth and has a certificate that doesn't match its hostname. Since `getData()` is the shared method every public fetch method funnels through, this applies automatically to `getArticles()`/`getPeople()`/`getHomeFeaturedArticles()` as well, not just `getNotifications()`.
+- Fixed `howard_paragraphs.info.yml`'s `version` key, which had drifted out of sync with the actual released version since 11.2.11.
+
 ## [11.2.13] - 2026-09-18
 
 ### Added

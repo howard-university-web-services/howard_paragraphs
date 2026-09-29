@@ -68,9 +68,9 @@ class HowardNewsService {
   /**
    * Public method to return Howard School wide notifications.
    */
-  public function getNotifications() {
-    $url = $this->apiEndpoint . $this->notificationEndpoint;
-    $json = $this->getData('general_notifications', $url);
+  public function getNotifications($env_url = 'https://thedig.howard.edu') {
+    $url = $env_url . $this->notificationEndpoint;
+    $json = $this->getData('general_notifications_' . md5($env_url), $url);
     if (isset($json['data'])) {
       return $json['data'];
     }
@@ -286,7 +286,7 @@ class HowardNewsService {
     }
     else {
       try {
-        $request = $this->client->get($url . '&filter[status][value]=1', [
+        $options = [
           'verify' => TRUE,
           'timeout' => 30,
           'connect_timeout' => 10,
@@ -294,7 +294,16 @@ class HowardNewsService {
             'Accept' => 'application/json',
             'User-Agent' => 'Howard Paragraphs Module/1.0',
           ],
-        ]);
+        ];
+        // stg.thedig.howard.edu requires Shield basic auth and its
+        // certificate doesn't match its hostname - same situation as
+        // stg.deadlines.howard.edu (see hp_deadlines_feed's
+        // DeadlinesProxyController).
+        if (str_contains($url, 'stg.thedig.howard.edu')) {
+          $options['auth'] = ['huweb', 'huweb'];
+          $options['verify'] = FALSE;
+        }
+        $request = $this->client->get($url . '&filter[status][value]=1', $options);
         $result = json_decode($request->getBody()->__toString(), TRUE);
       }
       catch (RequestException $e) {
