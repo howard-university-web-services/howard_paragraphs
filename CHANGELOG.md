@@ -2,7 +2,7 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
-## [Unreleased]
+## [11.2.15] - 2026-10-08
 
 ### Added
 
