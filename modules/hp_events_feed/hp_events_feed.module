@@ -1,0 +1,112 @@
+<?php
+
+/**
+ * @file
+ * Configurable Howard University Localist Events paragraph.
+ */
+
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+use Drupal\hp_events_feed\EventsQuery;
+use Drupal\hp_events_feed\Service\LocalistClient;
+
+/**
+ * Implements hook_help().
+ */
+function hp_events_feed_help($route_name, RouteMatchInterface $route_match) {
+  if ($route_name === 'help.page.hp_events_feed') {
+    return ['#type' => 'html_tag', '#tag' => 'pre', '#value' => \Drupal\Component\Utility\Html::escape(file_get_contents(__DIR__ . '/README.md'))];
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function hp_events_feed_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__hp_events_feed' => ['base hook' => 'paragraph'],
+    'hp_events_feed_events' => [
+      'variables' => ['events' => [], 'error' => FALSE, 'layout' => 'cards', 'previous' => NULL, 'next' => NULL, 'page' => 1, 'total_pages' => 1],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view() for paragraphs.
+ *
+ * Attach cache metadata during entity build, before Drupal's render cache runs.
+ * Fetching in preprocess alone would not reliably expire cached feed markup.
+ */
+function hp_events_feed_paragraph_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  if ($entity->bundle() !== 'hp_events_feed') {
+    return;
+  }
+  $parameter = 'hp_events_page_' . ($entity->id() ?? $entity->uuid());
+  $request = \Drupal::request();
+  $parameters = $request->query->all();
+  $paging = (bool) ($entity->get('field_hp_ef_pager')->value ?? TRUE);
+  $requested = $parameters[$parameter] ?? 1;
+  $page = $paging && is_scalar($requested) && filter_var($requested, FILTER_VALIDATE_INT) !== FALSE ? max(1, min(10000, (int) $requested)) : 1;
+  try {
+    $filters = EventsQuery::decode($entity->get('field_hp_ef_filters')->value);
+    $result = \Drupal::service('hp_events_feed.localist')->getFeed($filters, (int) ($entity->get('field_hp_ef_count')->value ?? 6), $page, $entity->getCacheTags());
+  }
+  catch (\Exception $exception) {
+    $result = ['events' => [], 'error' => TRUE, 'page' => [], 'max_age' => 60];
+  }
+  $total = $result['page']['total'] ?? 1;
+  $feed = [
+    '#theme' => 'hp_events_feed_events',
+    '#events' => $result['events'],
+    '#error' => $result['error'],
+    '#layout' => $entity->get('field_hp_ef_layout')->value ?? 'cards',
+    '#page' => $page,
+    '#total_pages' => $total,
+    '#previous' => NULL,
+    '#next' => NULL,
+    // Cache hits retain this absolute deadline instead of starting a new TTL.
+    // Multiple feeds append deadlines; the response subscriber uses the first
+    // expiring one and removes the internal header before delivery.
+    '#attached' => [
+      'library' => ['hp_events_feed/feed'],
+      'http_header' => [[
+        'X-Howard-Events-Expires',
+        (string) (\Drupal::service('datetime.time')->getCurrentTime() + $result['max_age']),
+        FALSE,
+      ]],
+    ],
+  ];
+  if ($paging && !$result['error']) {
+    foreach (['previous' => $page - 1, 'next' => $page + 1] as $direction => $target) {
+      if ($target >= 1 && $target <= $total) {
+        $query = $parameters;
+        $query[$parameter] = $target;
+        $feed['#' . $direction] = [
+          '#type' => 'link',
+          '#title' => $direction === 'previous' ? t('Previous events') : t('Next events'),
+          '#url' => Url::fromRoute('<current>', [], ['query' => $query, 'fragment' => 'hp-' . $entity->id()]),
+          '#attributes' => ['rel' => $direction === 'previous' ? 'prev' : 'next'],
+        ];
+      }
+    }
+  }
+  $metadata = new CacheableMetadata();
+  $metadata->setCacheTags(array_merge($entity->getCacheTags(), [LocalistClient::CACHE_TAG, 'config:hp_events_feed.settings']));
+  // Generated pager links retain all current query arguments.
+  $metadata->setCacheContexts(['url.path', 'url.query_args']);
+  $metadata->setCacheMaxAge($result['max_age']);
+  $metadata->applyTo($feed);
+  CacheableMetadata::createFromRenderArray($build)->merge($metadata)->applyTo($build);
+  $build['hp_events_feed'] = $feed;
+}
+
+/**
+ * Implements hook_cron().
+ */
+function hp_events_feed_cron() {
+  Cache::invalidateTags([LocalistClient::CACHE_TAG]);
+}

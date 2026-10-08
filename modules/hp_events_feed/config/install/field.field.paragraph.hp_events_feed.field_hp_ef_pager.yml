@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_ef_pager
+    - paragraphs.paragraphs_type.hp_events_feed
+id: paragraph.hp_events_feed.field_hp_ef_pager
+field_name: field_hp_ef_pager
+entity_type: paragraph
+bundle: hp_events_feed
+label: 'Enable pagination'
+description: 'Let visitors browse additional matching events.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: Enabled
+  off_label: Disabled
+field_type: boolean

@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_ef_filters
+    - paragraphs.paragraphs_type.hp_events_feed
+id: paragraph.hp_events_feed.field_hp_ef_filters
+field_name: field_hp_ef_filters
+entity_type: paragraph
+bundle: hp_events_feed
+label: 'Event filters'
+description: 'Configure any available calendar filters. Leave optional controls blank for all events.'
+required: false
+translatable: false
+default_value:
+  -
+    value: '{"days":30,"sort":"date","distinct":true}'
+default_value_callback: ''
+settings: {  }
+field_type: string_long

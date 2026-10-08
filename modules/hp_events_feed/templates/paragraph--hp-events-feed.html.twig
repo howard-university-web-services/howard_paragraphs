@@ -1,0 +1,17 @@
+{# Howard Events Feed; theme styling follows the idfive component classes. #}
+{% set layout = paragraph.field_hp_ef_layout.value|default('cards') %}
+{% set classes = ['section--padded-top', 'section--padded-bottom', 'news-and-events', 'hp-events-feed', 'hp-events-feed--' ~ layout|clean_class] %}
+<section{{ attributes.addClass(classes).setAttribute('id', 'hp-' ~ paragraph.id()) }} aria-labelledby="hp-events-title-{{ paragraph.id() }}">
+  {% if hp_show_wrapper %}<div class="compartment">{% endif %}
+  <div class="block-header">
+    <div class="block-header__title">
+      <span class="block-header__icon icon-calendar" aria-hidden="true"></span>
+      <h2 id="hp-events-title-{{ paragraph.id() }}">{{ paragraph.field_hp_ef_title.value }}</h2>
+    </div>
+    {% if content.field_hp_ef_link %}
+      <div class="block-header__btn">{{ content.field_hp_ef_link }}</div>
+    {% endif %}
+  </div>
+  {{ content.hp_events_feed }}
+  {% if hp_show_wrapper %}</div>{% endif %}
+</section>

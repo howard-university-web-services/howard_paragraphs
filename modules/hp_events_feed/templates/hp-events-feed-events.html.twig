@@ -1,0 +1,42 @@
+{# All event data is plain text or validated HTTP(S) URLs; keep autoescaping. #}
+<div class="silc-grid hp-events-feed__items hp-events-feed__items--{{ layout }}">
+  {% if error %}
+    <div class="silc-grid__col silc-grid__col--12-medium hp-events-feed__message">
+      <p>{{ 'Events are temporarily unavailable. Please try again later.'|t }}</p>
+    </div>
+  {% elseif not events %}
+    <div class="silc-grid__col silc-grid__col--12-medium hp-events-feed__message">
+      <p>{{ 'No upcoming events'|t }}</p>
+    </div>
+  {% else %}
+    {% for event in events %}
+      <article class="silc-grid__col {{ layout == 'cards' ? 'silc-grid__col--3-medium' : (layout == 'text_cards' ? 'silc-grid__col--4-medium' : 'silc-grid__col--12-medium') }} hp-events-feed__event">
+        <a href="{{ event.url }}" target="_blank" rel="noopener noreferrer" class="news-and-events__block">
+          {% if layout != 'text_cards' and event.image %}
+            <div class="news-and-events__img"><img src="{{ event.image }}" alt="" loading="lazy"></div>
+          {% endif %}
+          <div class="news-and-events__desc">
+            <span class="news-and-events__date">
+              <time datetime="{{ event.start }}">{{ event.date }}</time>
+            </span>
+            <span class="news-and-events__time">
+              {% if event.all_day %}
+                {{ 'All day'|t }}
+              {% else %}
+                {{ event.time_short }}{% if event.end_time_short %}<span class="hp-events-feed__end-time"> - {% if event.end_date != event.date %}{{ event.end_date }} {% endif %}{{ event.end_time_short }}</span>{% endif %}
+              {% endif %}
+            </span>
+            <h3 class="news-and-events__title header--h3-small">{{ event.title }}</h3>
+          </div>
+        </a>
+      </article>
+    {% endfor %}
+  {% endif %}
+</div>
+{% if previous or next %}
+  <nav class="hp-events-feed__pager" aria-label="{{ 'Events pagination'|t }}">
+    {{ previous }}
+    <span>{{ 'Page @page of @total'|t({'@page': page, '@total': total_pages}) }}</span>
+    {{ next }}
+  </nav>
+{% endif %}

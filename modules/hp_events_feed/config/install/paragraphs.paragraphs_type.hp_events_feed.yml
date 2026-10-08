@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hp_events_feed
+label: 'HP Events Feed'
+icon_uuid: null
+icon_default: null
+description: 'A complete Localist events feed from events.howard.edu with configurable filters and pagination.'
+behavior_plugins: {  }

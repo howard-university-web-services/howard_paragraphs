@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * @file
+ * Update hooks for the Howard Localist Events Feed.
+ */
+
+use Drupal\field\Entity\FieldStorageConfig;
+
+/**
+ * Add the text-card layout to already installed event paragraphs.
+ */
+function hp_events_feed_update_8001() {
+  $storage = FieldStorageConfig::loadByName('paragraph', 'field_hp_ef_layout');
+  if ($storage === NULL) {
+    return;
+  }
+  $values = $storage->getSetting('allowed_values');
+  $allowed = [];
+  foreach ($values as $value => $label) {
+    $allowed[$value] = $value === 'cards' && $label === 'Cards with images' ? 'Image cards (4 columns)' : $label;
+    if ($value === 'cards' && !isset($values['text_cards'])) {
+      $allowed['text_cards'] = 'Text cards (3 columns)';
+    }
+  }
+  $allowed += ['text_cards' => 'Text cards (3 columns)'];
+  $storage->setSetting('allowed_values', $allowed)->save();
+}

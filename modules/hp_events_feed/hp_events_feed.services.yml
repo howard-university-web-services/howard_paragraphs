@@ -1,0 +1,9 @@
+services:
+  hp_events_feed.localist:
+    class: Drupal\hp_events_feed\Service\LocalistClient
+    arguments: ['@http_client', '@cache.default', '@config.factory', '@logger.factory', '@datetime.time']
+  hp_events_feed.response_subscriber:
+    class: Drupal\hp_events_feed\EventSubscriber\FeedResponseSubscriber
+    arguments: ['@datetime.time']
+    tags:
+      - { name: event_subscriber }

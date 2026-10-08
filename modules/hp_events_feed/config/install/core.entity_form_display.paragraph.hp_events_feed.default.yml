@@ -1,0 +1,66 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.hp_events_feed
+    - field.field.paragraph.hp_events_feed.field_hp_ef_title
+    - field.field.paragraph.hp_events_feed.field_hp_ef_link
+    - field.field.paragraph.hp_events_feed.field_hp_ef_layout
+    - field.field.paragraph.hp_events_feed.field_hp_ef_count
+    - field.field.paragraph.hp_events_feed.field_hp_ef_pager
+    - field.field.paragraph.hp_events_feed.field_hp_ef_filters
+  module:
+    - hp_events_feed
+    - link
+    - options
+id: paragraph.hp_events_feed.default
+targetEntityType: paragraph
+bundle: hp_events_feed
+mode: default
+content:
+  field_hp_ef_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_hp_ef_link:
+    type: link_default
+    weight: 1
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_hp_ef_layout:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_hp_ef_count:
+    type: number
+    weight: 3
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_hp_ef_pager:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_hp_ef_filters:
+    type: hp_events_filters
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

@@ -1,0 +1,12 @@
+hp_events_feed.settings:
+  type: config_object
+  label: 'Howard Events Feed settings'
+  mapping:
+    access_token:
+      type: string
+      label: 'Localist API access token (prefer a settings.php override)'
+field.widget.settings.hp_events_filters:
+  type: mapping
+  label: 'Localist event filter widget settings'
+  mapping: { }
+

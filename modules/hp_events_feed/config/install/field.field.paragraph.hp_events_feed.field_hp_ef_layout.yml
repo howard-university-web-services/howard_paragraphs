@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hp_ef_layout
+    - paragraphs.paragraphs_type.hp_events_feed
+  module:
+    - options
+id: paragraph.hp_events_feed.field_hp_ef_layout
+field_name: field_hp_ef_layout
+entity_type: paragraph
+bundle: hp_events_feed
+label: Layout
+description: 'Choose image cards (four columns with serif titles) or text cards (three columns with bold sans-serif titles and time ranges). An image list is also available. All layouts use a single column of text-only cards on phones.'
+required: true
+translatable: false
+default_value:
+  -
+    value: cards
+default_value_callback: ''
+settings: {  }
+field_type: list_string

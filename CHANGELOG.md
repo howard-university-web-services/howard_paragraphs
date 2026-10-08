@@ -2,6 +2,11 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [Unreleased]
+
+### Added
+
+- **`hp_events_feed`**: Server-rendered Localist Events Feed paragraph for `events.howard.edu`, with dynamically loaded event categories, places, groups/departments and communities; date, keyword, attendance, featured/sponsored, recurring and ordering controls; image cards (four columns), text cards (three columns with time ranges), an image list and independent pagination. All layouts display a single column of text-only cards on phones. Includes verified HTTPS requests, optional server-side Bearer authentication, five-minute feed caches, render-cache expiration, cron/manual cache invalidation, and explicit empty/error states.
 
 ## [11.2.14] - 2026-09-29
 

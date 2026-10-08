@@ -1,0 +1,255 @@
+/* Howard's Localist card layout, scoped to the Events paragraph. */
+.hp-events-feed {
+  background-color: #002a47;
+}
+
+.hp-events-feed .hp-events-feed__items {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  width: 100%;
+  margin: 0;
+  padding: 0 20px;
+}
+
+.hp-events-feed .hp-events-feed__event {
+  display: flex;
+  min-width: 0;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hp-events-feed .news-and-events__block {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: #fff;
+  text-decoration: none;
+}
+
+.hp-events-feed .news-and-events__img {
+  position: relative;
+  flex: none;
+  width: 100%;
+  max-height: 176px;
+  margin: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+/* Replace the theme's portrait-ratio spacer with the card's landscape crop. */
+.hp-events-feed .news-and-events__img::before {
+  display: none;
+}
+
+.hp-events-feed .news-and-events__img img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hp-events-feed .news-and-events__desc {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  padding: 20px 15px 28px;
+}
+
+.hp-events-feed .news-and-events__date {
+  display: block;
+  margin-bottom: 5px;
+  color: #4c7290;
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 18px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+.hp-events-feed .news-and-events__time {
+  display: block;
+  color: #4c7290;
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.hp-events-feed .news-and-events__title {
+  margin-top: 10px;
+  color: #003a63;
+  font-family: "Serif12Beta", Georgia, serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.1;
+  overflow-wrap: break-word;
+}
+
+.hp-events-feed .hp-events-feed__end-time {
+  display: none;
+}
+
+.hp-events-feed--text-cards .hp-events-feed__end-time {
+  display: inline;
+}
+
+.hp-events-feed .news-and-events__block:focus-visible {
+  outline: 3px solid #edc054;
+  outline-offset: 3px;
+}
+
+.hp-events-feed .hp-events-feed__message {
+  grid-column: 1 / -1;
+  width: 100%;
+  padding: 0;
+  color: #fff;
+}
+
+.hp-events-feed .hp-events-feed__message p {
+  color: inherit;
+}
+
+.hp-events-feed .hp-events-feed__pager {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  color: #fff;
+}
+
+.hp-events-feed .hp-events-feed__pager a {
+  color: #fff;
+}
+
+.hp-events-feed.hp-events-feed--text-cards {
+  background-color: #fff;
+}
+
+.hp-events-feed--text-cards .hp-events-feed__items {
+  gap: 24px;
+}
+
+.hp-events-feed--text-cards .news-and-events__block {
+  border: 1px solid #d5d5d5;
+  box-shadow: 0 10px 20px rgb(0 42 71 / 15%);
+}
+
+.hp-events-feed--text-cards .news-and-events__desc {
+  padding: 15px;
+}
+
+.hp-events-feed--text-cards .news-and-events__date {
+  font-weight: 600;
+  letter-spacing: 1.4px;
+}
+
+.hp-events-feed--text-cards .news-and-events__title {
+  margin-top: 16px;
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.hp-events-feed--text-cards .hp-events-feed__event {
+  min-height: 180px;
+}
+
+.hp-events-feed--text-cards .hp-events-feed__message,
+.hp-events-feed--text-cards .hp-events-feed__pager,
+.hp-events-feed--text-cards .hp-events-feed__pager a,
+.hp-events-feed--text-cards .block-header__title h2 {
+  color: #003a63;
+}
+
+/* Every desktop layout uses the same compact text cards on phones. */
+@media (max-width: 639px) {
+  .hp-events-feed,
+  .hp-events-feed.hp-events-feed--text-cards {
+    background-color: #f7f8f9;
+  }
+
+  .hp-events-feed .hp-events-feed__items {
+    gap: 24px;
+  }
+
+  /* The optional theme wrapper already provides the phone's side gutters. */
+  .hp-events-feed > .compartment .hp-events-feed__items {
+    padding: 0;
+  }
+
+  .hp-events-feed .hp-events-feed__event {
+    min-height: 0;
+  }
+
+  .hp-events-feed .news-and-events__block {
+    border: 1px solid #d5d5d5;
+    box-shadow: 0 10px 20px rgb(0 42 71 / 15%);
+  }
+
+  .hp-events-feed .news-and-events__img {
+    display: none;
+  }
+
+  .hp-events-feed .news-and-events__desc {
+    padding: 15px;
+  }
+
+  .hp-events-feed .news-and-events__date {
+    font-weight: 600;
+    letter-spacing: 1.4px;
+  }
+
+  .hp-events-feed .news-and-events__time {
+    font-size: 12px;
+  }
+
+  .hp-events-feed .hp-events-feed__end-time {
+    display: inline;
+  }
+
+  .hp-events-feed .news-and-events__title {
+    margin: 20px 0 0;
+    font-family: "Open Sans", Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .hp-events-feed .hp-events-feed__message,
+  .hp-events-feed .hp-events-feed__pager,
+  .hp-events-feed .hp-events-feed__pager a,
+  .hp-events-feed .block-header__title h2 {
+    color: #003a63;
+  }
+}
+
+@media (min-width: 640px) {
+  .hp-events-feed .hp-events-feed__items--cards,
+  .hp-events-feed .hp-events-feed__items--text_cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .hp-events-feed .hp-events-feed__items--cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .hp-events-feed .hp-events-feed__items--text_cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

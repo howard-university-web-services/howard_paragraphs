@@ -109,7 +109,7 @@ The following submodules are available:
 - Deadline Feed: Paragraphs integration of Deadline Feed (from calendar.howard.edu) for Howard projects [DEPRECATED]
 - Divider: Paragraphs integration of a simple content divider for Howard projects
 - Embed: Paragraphs integration of the ability to add iframes/js/etc for Howard projects
-- Events Feed: Paragraphs integration of Events Feed (from calendar.howard.edu) for Howard projects [DEPRECATED]
+- Events Feed (Localist): Configurable, paginated events from events.howard.edu, with live Audience/Event Types/Subject selectors and configurable date, keyword, attendance, recurrence, and sorting filters. See [setup and filter reference](modules/hp_events_feed/README.md).
 - Facebook Feed: Paragraphs integration of a Facebook Feed for Howard projects [DEPRECATED]
 - Featured People from thedig.howard.edu: Provides a paragraphs bundle for embedding curated Featured People from thedig.howard.edu as a Kitchen Sink Widget
 - Featured Article: Paragraphs integration of the ability to add Featured Articles in Howard projects
