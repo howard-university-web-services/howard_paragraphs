@@ -16,9 +16,7 @@ settings:
     -
       value: text_cards
       label: 'Text cards (3 columns)'
-    -
-      value: list
-      label: 'List with images'
+      
   allowed_values_function: ''
 module: options
 locked: false

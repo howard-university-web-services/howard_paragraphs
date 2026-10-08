@@ -6,12 +6,12 @@ Provides a complete, server-rendered Localist events feed from **events.howard.e
 
 1. Enable the submodule: `drush en hp_events_feed -y`, then `drush cr`.
 2. In **Structure → Content types → your content type → Manage fields**, edit the Paragraphs / Kitchen Sink entity-reference-revisions field and allow the **HP Events Feed** paragraph type. Sites using `howard_content_types` may need their Kitchen Sink bundle allowlist updated in that project; this repository does not own those fields.
-3. Add an HP Events Feed paragraph. Set a heading, optional calendar link, layout, events per page (1–100), and whether visitors can paginate.
+3. Add an HP Events Feed paragraph. Set a heading, optional calendar link, layout, and number of events (1–100).
 4. Open the filter sections to configure the feed. Save the page.
 
-For sites that already have this module enabled, run `drush updb -y` followed by `drush cr` to add the Text cards option to the installed field configuration. The update preserves existing layout selections.
+For sites that already have this module enabled, run `drush updb -y` followed by `drush cr` to add the Text cards option and hide the legacy pagination control. Updates preserve existing layout selections.
 
-Defaults: Events heading, View all events link, six cards per page, pagination enabled, next 30 days, ascending event date, and the first matching occurrence of each event.
+Defaults: Events heading, View all events link, six events, pagination disabled, next 30 days, ascending event date, and the first matching occurrence of each event.
 
 ## Available filters
 
@@ -49,13 +49,13 @@ $config['hp_events_feed.settings']['access_token'] = getenv('HOWARD_LOCALIST_ACC
 
 The token is sent in the Authorization Bearer header, never in paragraph fields, browser URLs, markup, or logs. Keep it out of exported config. API URL is fixed to `https://events.howard.edu/api/2/`; HTTPS verification remains enabled and redirects are disabled.
 
-## Rendering, paging, and cache behavior
+## Rendering and cache behavior
 
 - **Image cards (4 columns):** Navy background, equal-height white cards, landscape images, uppercase dates, start times and serif titles, matching the existing Localist widget.
 - **Text cards (3 columns):** White background, bordered cards with a subtle shadow, no images, bold sans-serif titles and start–end time ranges. Missing end times and all-day events are handled explicitly.
 - **List with images:** The image-card content in one column.
 - Both card layouts collapse to two columns on tablets. Below 640px, all layouts use one column of text-only cards on a light background, with borders, shadows, bold sans-serif titles and time ranges. Mobile cards fit their content instead of using the desktop minimum height. Dates use the full month/day/year format. Times use America/New_York; all-day dates retain their calendar date. Event links open in a new tab.
-- Each paragraph has its own `hp_events_page_<paragraph ID>` query argument, so multiple feeds can paginate independently. Links retain other current query parameters and return to the feed's anchor. Disabling pagination shows the first page only.
+- Feeds always show the first API results page, limited by Number of events. Pagination links are disabled, and legacy page query arguments and saved pager selections are ignored. The old pager field remains stored for compatibility but is hidden from paragraph forms.
 - API feed pages cache for 5 minutes. Render metadata uses the remaining API cache lifetime, so an old cached API response cannot extend stale markup for another full 5 minutes. Rolling queries include today's date. Editor catalogues cache for an hour; failures retry after one minute.
 - A response subscriber bounds `Expires` and public HTTP cache lifetimes on pages containing feeds, because Drupal's Internal Page Cache otherwise ignores render max-age. Existing private/no-cache/no-store responses remain restricted.
 - Successful zero results show “No upcoming events”. Transport/HTTP/JSON/configuration failures show “Events are temporarily unavailable.” Failures are cached for one minute to avoid repeated requests.
@@ -69,13 +69,13 @@ The token is sent in the Authorization Bearer header, never in paragraph fields,
 | `field_hp_ef_title` | Heading (required) |
 | `field_hp_ef_link` | Optional link to full calendar |
 | `field_hp_ef_layout` | Image cards, text cards, or image list |
-| `field_hp_ef_count` | Events per page |
-| `field_hp_ef_pager` | Enable visitor pagination |
+| `field_hp_ef_count` | Number of events |
+| `field_hp_ef_pager` | Hidden legacy field; ignored when rendering |
 | `field_hp_ef_filters` | JSON-backed filter settings, edited by `hp_events_filters` widget |
 
 The filter field uses core `string_long` storage and a purpose-built widget; editors use labelled controls rather than writing JSON. Settings are revisionable with the paragraph. Keep the supplied widget selected in Manage form display. Imported/programmatically written filter JSON is defensively validated before fetching.
 
-Override `paragraph--hp-events-feed.html.twig` for the section/header or `hp-events-feed-events.html.twig` for event rows and pagination in your client theme. Render `content.hp_events_feed` so the feed's cache metadata bubbles. Styling comes from existing `news-and-events`, `block-header` and `silc-grid` classes, with `hp-events-feed__*` hooks for customization. The bundled CSS controls responsive columns, landscape crops, card spacing, colors and layout-specific typography. Additional event metadata (location, summary, status, cost and calendar/registration URLs) remains available to template overrides.
+Override `paragraph--hp-events-feed.html.twig` for the section/header or `hp-events-feed-events.html.twig` for event rows in your client theme. Render `content.hp_events_feed` so the feed's cache metadata bubbles. Styling comes from existing `news-and-events`, `block-header` and `silc-grid` classes, with `hp-events-feed__*` hooks for customization. The bundled CSS controls responsive columns, landscape crops, card spacing, colors and layout-specific typography. Additional event metadata (location, summary, status, cost and calendar/registration URLs) remains available to template overrides.
 
 ## Verification
 

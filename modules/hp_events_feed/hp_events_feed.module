@@ -10,7 +10,6 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\Core\Url;
 use Drupal\hp_events_feed\EventsQuery;
 use Drupal\hp_events_feed\Service\LocalistClient;
 
@@ -45,12 +44,8 @@ function hp_events_feed_paragraph_view(array &$build, EntityInterface $entity, E
   if ($entity->bundle() !== 'hp_events_feed') {
     return;
   }
-  $parameter = 'hp_events_page_' . ($entity->id() ?? $entity->uuid());
-  $request = \Drupal::request();
-  $parameters = $request->query->all();
-  $paging = (bool) ($entity->get('field_hp_ef_pager')->value ?? TRUE);
-  $requested = $parameters[$parameter] ?? 1;
-  $page = $paging && is_scalar($requested) && filter_var($requested, FILTER_VALIDATE_INT) !== FALSE ? max(1, min(10000, (int) $requested)) : 1;
+  // Always show the first results page, including for legacy pager selections.
+  $page = 1;
   try {
     $filters = EventsQuery::decode($entity->get('field_hp_ef_filters')->value);
     $result = \Drupal::service('hp_events_feed.localist')->getFeed($filters, (int) ($entity->get('field_hp_ef_count')->value ?? 6), $page, $entity->getCacheTags());
@@ -80,24 +75,9 @@ function hp_events_feed_paragraph_view(array &$build, EntityInterface $entity, E
       ]],
     ],
   ];
-  if ($paging && !$result['error']) {
-    foreach (['previous' => $page - 1, 'next' => $page + 1] as $direction => $target) {
-      if ($target >= 1 && $target <= $total) {
-        $query = $parameters;
-        $query[$parameter] = $target;
-        $feed['#' . $direction] = [
-          '#type' => 'link',
-          '#title' => $direction === 'previous' ? t('Previous events') : t('Next events'),
-          '#url' => Url::fromRoute('<current>', [], ['query' => $query, 'fragment' => 'hp-' . $entity->id()]),
-          '#attributes' => ['rel' => $direction === 'previous' ? 'prev' : 'next'],
-        ];
-      }
-    }
-  }
   $metadata = new CacheableMetadata();
   $metadata->setCacheTags(array_merge($entity->getCacheTags(), [LocalistClient::CACHE_TAG, 'config:hp_events_feed.settings']));
-  // Generated pager links retain all current query arguments.
-  $metadata->setCacheContexts(['url.path', 'url.query_args']);
+  $metadata->setCacheContexts(['url.path']);
   $metadata->setCacheMaxAge($result['max_age']);
   $metadata->applyTo($feed);
   CacheableMetadata::createFromRenderArray($build)->merge($metadata)->applyTo($build);

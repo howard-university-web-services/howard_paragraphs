@@ -2,6 +2,13 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.2.16] - 2026-10-08
+
+### Changed
+
+- **`hp_events_feed`**: Disabled visitor pagination and ignored legacy pager selections and page query arguments. Added update hook `8003` to hide the pager checkbox on installed paragraph forms and rename "Events per page" to "Number of events".
+- **`hp_events_feed`**: Removed the "List with images" option from the layout choices supplied for new installations.
+
 ## [11.2.15] - 2026-10-08
 
 ### Added

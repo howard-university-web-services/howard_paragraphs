@@ -8,7 +8,7 @@ id: paragraph.hp_events_feed.field_hp_ef_count
 field_name: field_hp_ef_count
 entity_type: paragraph
 bundle: hp_events_feed
-label: 'Events per page'
+label: 'Number of events'
 description: 'Between 1 and 100.'
 required: true
 translatable: false

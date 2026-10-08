@@ -47,13 +47,6 @@ content:
     settings:
       placeholder: ''
     third_party_settings: {  }
-  field_hp_ef_pager:
-    type: boolean_checkbox
-    weight: 4
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
   field_hp_ef_filters:
     type: hp_events_filters
     weight: 5
@@ -61,6 +54,7 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_hp_ef_pager: true
   created: true
   status: true
   uid: true

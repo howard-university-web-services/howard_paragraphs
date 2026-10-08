@@ -1,7 +1,4 @@
 /* Howard's Localist card layout, scoped to the Events paragraph. */
-.hp-events-feed {
-  background-color: #002a47;
-}
 
 .hp-events-feed .hp-events-feed__items {
   box-sizing: border-box;
@@ -71,7 +68,7 @@
   display: block;
   margin-bottom: 5px;
   color: #4c7290;
-  font-family: "Open Sans", Arial, sans-serif;
+  font-family: inherit;
   font-size: 14px;
   font-weight: 800;
   line-height: 18px;
@@ -82,7 +79,7 @@
 .hp-events-feed .news-and-events__time {
   display: block;
   color: #4c7290;
-  font-family: "Open Sans", Arial, sans-serif;
+  font-family: inherit;
   font-size: 14px;
   line-height: 18px;
 }
@@ -90,7 +87,7 @@
 .hp-events-feed .news-and-events__title {
   margin-top: 10px;
   color: #003a63;
-  font-family: "Serif12Beta", Georgia, serif;
+  font-family: inherit;
   font-size: 28px;
   font-weight: 700;
   line-height: 1.1;
@@ -159,7 +156,7 @@
 
 .hp-events-feed--text-cards .news-and-events__title {
   margin-top: 16px;
-  font-family: "Open Sans", Arial, sans-serif;
+  font-family: inherit;
   font-size: 20px;
   font-weight: 800;
   line-height: 1.2;

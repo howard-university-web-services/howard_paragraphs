@@ -9,12 +9,12 @@ field_name: field_hp_ef_pager
 entity_type: paragraph
 bundle: hp_events_feed
 label: 'Enable pagination'
-description: 'Let visitors browse additional matching events.'
+description: 'Legacy pagination setting; pagination is disabled.'
 required: false
 translatable: false
 default_value:
   -
-    value: 1
+    value: 0
 default_value_callback: ''
 settings:
   on_label: Enabled

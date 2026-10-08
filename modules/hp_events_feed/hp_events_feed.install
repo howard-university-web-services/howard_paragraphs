@@ -26,3 +26,30 @@ function hp_events_feed_update_8001() {
   $allowed += ['text_cards' => 'Text cards (3 columns)'];
   $storage->setSetting('allowed_values', $allowed)->save();
 }
+
+/**
+ * Hide the legacy pager control and update event-count wording.
+ */
+function hp_events_feed_update_8003() {
+  $displays = \Drupal::entityTypeManager()->getStorage('entity_form_display')->loadByProperties([
+    'targetEntityType' => 'paragraph',
+    'bundle' => 'hp_events_feed',
+  ]);
+  foreach ($displays as $display) {
+    $display->removeComponent('field_hp_ef_pager')->save();
+  }
+
+  $pager = \Drupal\field\Entity\FieldConfig::loadByName('paragraph', 'hp_events_feed', 'field_hp_ef_pager');
+  if ($pager) {
+    $pager->setDefaultValue([['value' => 0]])
+      ->setDescription('Legacy pagination setting; pagination is disabled.')
+      ->save();
+  }
+
+  $count = \Drupal\field\Entity\FieldConfig::loadByName('paragraph', 'hp_events_feed', 'field_hp_ef_count');
+  if ($count && $count->label() === 'Events per page') {
+    $count->setLabel('Number of events')->save();
+  }
+
+  return t('Pagination is disabled and its editor control has been hidden.');
+}
