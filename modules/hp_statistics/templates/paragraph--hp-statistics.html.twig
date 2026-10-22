@@ -29,10 +29,10 @@
 
       <div class="hp-statistics__intro">
         {% if content.field_hp_stat_eyebrow|render %}
-          <span class="hp-statistics__eyebrow">{{ content.field_hp_stat_eyebrow }}</span>
+          <h2 class="hp-statistics__eyebrow">{{ content.field_hp_stat_eyebrow }}</h2>
         {% endif %}
         {% if content.field_hp_stat_title|render %}
-          <h2 class="hp-statistics__title">{{ content.field_hp_stat_title }}</h2>
+          <p class="hp-statistics__title">{{ content.field_hp_stat_title }}</p>
         {% endif %}
         {{ content.field_hp_stat_text }}
         {% if content.field_hp_stat_link[0] %}

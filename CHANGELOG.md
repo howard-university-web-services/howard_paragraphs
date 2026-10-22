@@ -2,6 +2,12 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.2.17] - 2026-10-22
+
+### Changed
+
+- **`hp_statistics`**: Relabeled `field_hp_stat_eyebrow` ("Heading (small)" → "Title") and made it required, now rendered as the widget's only `<h2>`. Relabeled `field_hp_stat_title` ("Intro Heading" → "Large Intro Text") and changed its markup from `<h2>` to `<p>`, since it was never meant to be an actual heading. Added update hook `8001` to relabel/require these fields on already-installed sites.
+
 ## [11.2.16] - 2026-10-08
 
 ### Changed

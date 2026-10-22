@@ -46,3 +46,20 @@ function hp_statistics_theme($existing, $type, $theme, $path) {
     ],
   ];
 }
+
+// UPDATES.
+
+/**
+ * Relabels heading fields to match sitebuilder widget conventions and
+ * requires field_hp_stat_eyebrow (now the only real heading on the widget).
+ */
+function hp_statistics_update_8001() {
+  \Drupal::configFactory()->getEditable('field.field.paragraph.hp_statistics.field_hp_stat_eyebrow')
+    ->set('label', 'Title')
+    ->set('required', TRUE)
+    ->save();
+
+  \Drupal::configFactory()->getEditable('field.field.paragraph.hp_statistics.field_hp_stat_title')
+    ->set('label', 'Large Intro Text')
+    ->save();
+}

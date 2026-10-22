@@ -8,9 +8,9 @@ id: paragraph.hp_statistics.field_hp_stat_eyebrow
 field_name: field_hp_stat_eyebrow
 entity_type: paragraph
 bundle: hp_statistics
-label: 'Heading (small)'
+label: 'Title'
 description: 'Small heading label above the intro.'
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
