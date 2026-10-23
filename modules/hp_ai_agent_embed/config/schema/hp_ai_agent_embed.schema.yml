@@ -1,0 +1,24 @@
+hp_ai_agent_embed.settings:
+  type: config_object
+  label: 'AI Agent settings'
+  mapping:
+    azure_endpoint:
+      type: string
+      label: 'Azure Foundry endpoint'
+      description: 'The Azure AI Foundry project endpoint URL'
+    azure_api_key:
+      type: string
+      label: 'Azure API key'
+      description: 'API key for Azure AI Foundry authentication'
+    default_agent_name:
+      type: string
+      label: 'Default agent name'
+      description: 'Default agent name to use if not specified in paragraph'
+    default_agent_version:
+      type: string
+      label: 'Default agent version'
+      description: 'Default agent version to use if not specified in paragraph'
+    stream_timeout:
+      type: integer
+      label: 'Stream timeout (seconds)'
+      description: 'WebSocket connection timeout in seconds'

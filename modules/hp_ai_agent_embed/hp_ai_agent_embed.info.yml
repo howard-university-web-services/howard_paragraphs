@@ -1,0 +1,13 @@
+name: 'Howard Paragraphs: AI Agent Embed'
+type: module
+description: Provides a paragraphs bundle for embedding Azure AI Foundry agents with real-time streaming support.
+version: '11.x-1.0'
+
+core_version_requirement: ^10 || ^11
+
+package: Howard University
+
+dependencies:
+  - entity_reference_revisions
+  - howard_paragraphs
+  - paragraphs

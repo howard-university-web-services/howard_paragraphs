@@ -1,0 +1,9 @@
+ai-agent-embed:
+  version: '1.0'
+  js:
+    js/ai-agent-client.js: {}
+  css:
+    theme:
+      js/ai-agent-widget.css: {}
+  dependencies:
+    - core/drupal

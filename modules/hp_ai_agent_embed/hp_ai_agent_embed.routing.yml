@@ -1,0 +1,14 @@
+hp_ai_agent_embed.stream:
+  path: '/api/ai-agent/stream'
+  defaults:
+    _controller: '\Drupal\hp_ai_agent_embed\Controller\StreamingController::stream'
+  requirements:
+    _access: 'TRUE'
+
+hp_ai_agent_embed.config:
+  path: '/admin/config/services/ai-agent'
+  defaults:
+    _form: '\Drupal\hp_ai_agent_embed\Form\AiAgentConfigForm'
+    _title: 'AI Agent Configuration'
+  requirements:
+    _permission: 'administer ai agent settings'

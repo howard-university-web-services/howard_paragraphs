@@ -1,0 +1,17 @@
+services:
+  hp_ai_agent_embed.azure_agent_client:
+    class: Drupal\hp_ai_agent_embed\Service\AzureAgentClient
+    arguments:
+      - '@config.factory'
+      - '@http_client'
+      - '@logger.channel.hp_ai_agent_embed'
+
+  logger.channel.hp_ai_agent_embed:
+    parent: logger.channel_base
+    arguments: ['hp_ai_agent_embed']
+
+  hp_ai_agent_embed.streaming_service:
+    class: Drupal\hp_ai_agent_embed\Service\StreamingService
+    arguments:
+      - '@hp_ai_agent_embed.azure_agent_client'
+      - '@logger.channel.hp_ai_agent_embed'
