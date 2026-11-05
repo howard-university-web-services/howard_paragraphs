@@ -23,7 +23,7 @@ Each filter is grouped into its own collapsed `details` accordion on the edit fo
 
 **Academic Term is intentionally not a filter.** Since this widget only ever shows upcoming items, filtering by term would empty the list out once a new term starts. It's still shown as informational text under each item's title (fulfilling the "subtitle" slot in the design spec), not offered as a prefilter option.
 
-`deadlines.howard.edu` added `field_hc_deadline_time` (seconds since midnight, optional) to `hc_deadline`. The frontend widget (`deadlines-widget` in hu_general's idfive-component-library) now renders "Opens at [time]" in the item badge when it's set, falling back to the date/date-range badge otherwise - no change needed here, the proxy already passes every attribute through.
+`deadlines.howard.edu` added `field_hc_deadline_time` (seconds since midnight, optional) to `hc_deadline`. The frontend widget (`deadlines-widget` in hu_general's idfive-component-library) now renders a "by [time]" badge above the existing date/date-range badge when it's set, and also renders `field_hc_deadline_summary`/`field_hc_deadline_body` (truncated) under the title - no change needed here, the proxy already passes every attribute through.
 
 ## Data source & the proxy pattern
 

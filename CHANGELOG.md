@@ -2,6 +2,12 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.2.18] - 2026-11-05
+
+### Changed
+
+- **`hp_deadlines_feed`**: Documented `deadlines.howard.edu`'s new `field_hc_deadline_time` field - the `deadlines-widget` frontend (hu_general's idfive-component-library) now renders a "by [time]" badge and the item summary/body, and fixed a bug where `field_hc_deadline_link`'s relative path resolved against the embedding site instead of the Deadlines environment. Removed the now-outdated "No Time field" known gap.
+
 ## [11.2.17] - 2026-10-22
 
 ### Changed
