@@ -44,8 +44,13 @@ function hp_video_slideshow_preprocess_paragraph__hp_video_slideshow(&$variables
 
   // Get fallback image URL.
   $paragraph = $variables['elements']['#paragraph'];
-  if ($paragraph->hasField('field_hp_vs_fallback_img')) {
-    $variables['hp_vs_fallback_img_url'] = $paragraph->get('field_hp_vs_fallback_img')->first()->entity->createFileUrl();
+  if ($paragraph->hasField('field_hp_vs_fallback_img') && !$paragraph->get('field_hp_vs_fallback_img')->isEmpty()) {
+    $media = $paragraph->get('field_hp_vs_fallback_img')->entity;
+    // Entity can be NULL for an orphaned/inaccessible reference (e.g. an
+    // anonymous, no-session request denied access to the referenced file).
+    if ($media) {
+      $variables['hp_vs_fallback_img_url'] = $media->createFileUrl();
+    }
   }
 }
 

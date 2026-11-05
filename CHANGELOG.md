@@ -2,6 +2,12 @@
 
 All notable changes to the Howard Paragraphs module will be documented in this file.
 
+## [11.2.19] - 2026-11-05
+
+### Fixed
+
+- **`hp_video_slideshow`**: Fixed a fatal error ("Call to a member function createFileUrl() on null") when the Fallback Image field's referenced media entity is orphaned or inaccessible (e.g. an anonymous request with no session/cookies). The field is now checked for emptiness and the resolved entity is null-checked before calling `createFileUrl()`.
+
 ## [11.2.18] - 2026-11-05
 
 ### Changed
