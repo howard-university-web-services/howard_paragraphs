@@ -23,6 +23,8 @@ Each filter is grouped into its own collapsed `details` accordion on the edit fo
 
 **Academic Term is intentionally not a filter.** Since this widget only ever shows upcoming items, filtering by term would empty the list out once a new term starts. It's still shown as informational text under each item's title (fulfilling the "subtitle" slot in the design spec), not offered as a prefilter option.
 
+`deadlines.howard.edu` added `field_hc_deadline_time` (seconds since midnight, optional) to `hc_deadline`. The frontend widget (`deadlines-widget` in hu_general's idfive-component-library) now renders "Opens at [time]" in the item badge when it's set, falling back to the date/date-range badge otherwise - no change needed here, the proxy already passes every attribute through.
+
 ## Data source & the proxy pattern
 
 This widget prefilters against content on `deadlines.howard.edu` (`node/hc_deadline`, JSON:API). Unlike other `hp_*_feed` widgets, **the frontend does not call the Deadlines site directly** - it calls a same-origin Drupal route (`/hp-deadlines-feed/proxy`, see `DeadlinesProxyController`) which forwards the request server-side. This is required because, as of this writing:
@@ -36,7 +38,6 @@ The proxy response is cached server-side for 5 minutes (keyed by the full outgoi
 
 ## Known gaps vs. the design spec
 
-- **No "Time" field.** The wireframe's "Opens at [time]" badge style depends on a field that doesn't exist on `hc_deadline` - only Start Date and End Date (no time component). Can't be built until the Deadlines site adds it.
 - **Only one link per item.** The wireframe shows what could be two links; `field_hc_deadline_link` only carries one value.
 - **School/College filter uses `IN`-style plain-field filtering**, not a taxonomy relationship filter, since `field_hc_deadline_school` stores literal `"id=<tid>"` strings rather than an entity reference on the Deadlines site itself.
 
