@@ -1,0 +1,19 @@
+uuid: 00000000-0000-0000-0000-000000000003
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.hp_ai_agent
+  module:
+    - text
+id: hp_ai_agent.field_system_prompt
+entity_type: paragraph
+bundle: hp_ai_agent
+label: 'System Prompt'
+description: 'Custom system prompt for the agent (optional)'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
